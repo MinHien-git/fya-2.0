@@ -1,10 +1,13 @@
 import React from "react";
+import Home from "./pages/Home/Home";
+import NavigationBar from "./components/NavigationBar/NavigationBar";
 
 function App() {
   return (
-    <div>
-      <h1>Fya Management</h1>
-    </div>
+    <>
+      <NavigationBar />
+      <Home />
+    </>
   );
 }
 
