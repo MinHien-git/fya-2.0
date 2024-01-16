@@ -1,7 +1,7 @@
 export default function Home() {
   return (
-    <main className="w-full min-h-80">
-      <section className="w-full border-2 max-w-7xl py-5 px-8 sm:px-12 lg:px-16 my-5 rounded-xl mx-4 md:mx-auto">
+    <main className="w-full min-h-80 p-2">
+      <section className="w-full border-2 max-w-7xl py-5 px-8 sm:px-12 lg:px-16 my-5 rounded-xl md:mx-auto">
         <div className="py-5">
           <h1 className="text-4xl  pb-2 font-bold text-primary">
             Find
@@ -58,7 +58,7 @@ export default function Home() {
         <div></div>
       </section>
 
-      <section className="w-full border-2 max-w-7xl px-2 sm:px-4 lg:px-8 my-5 rounded-xl mx-4 md:mx-auto">
+      <section className="w-full border-2 max-w-7xl px-2 sm:px-4 lg:px-8 my-5 rounded-xl md:mx-auto">
         <div className="py-5">
           <h2 className="text-2xl py-2 font-bold text-center">
             Agencies of the week
@@ -144,13 +144,13 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="w-full max-w-7xl px-2 sm:px-4 lg:px-8 my-5  mx-4 md:mx-auto h-80 flex">
+      <section className="w-full max-w-7xl px-2 sm:px-4 lg:px-8 my-5 md:mx-auto h-80 flex">
         <div className="h-2/4 flex justify-center items-center w-100 border-2 w-4/5 mx-auto my-auto rounded-xl">
           <p className="text-3xl font-bold text-primary">Your ad here</p>
         </div>
       </section>
 
-      <section className="w-full border-2 max-w-7xl px-2 sm:px-4 lg:px-8 my-5 rounded-xl mx-4 md:mx-auto flex flex-col justify-center items-center">
+      <section className="w-full border-2 max-w-7xl px-2 sm:px-4 lg:px-8 my-5 rounded-xl md:mx-auto flex flex-col justify-center items-center">
         <div className="py-5 w-10/12">
           <h2 className="text-2xl py-2 font-bold text-center">
             What We can Do For{" "}
@@ -270,7 +270,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="w-full max-w-7xl px-2 sm:px-4 lg:px-8 my-5  mx-4 md:mx-auto grid">
+      <section className="w-full max-w-7xl px-2 sm:px-4 lg:px-8 my-5 md:mx-auto grid">
         <h2 className="text-2xl py-2 font-bold text-center">
           Let us join your business journey!
         </h2>
@@ -285,7 +285,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="w-full border-2 max-w-7xl px-2 sm:px-4 lg:px-8 my-5 rounded-xl mx-4 md:mx-auto flex flex-col justify-center items-center">
+      <section className="w-full border-2 max-w-7xl px-2 sm:px-4 lg:px-8 my-5 rounded-xl md:mx-auto flex flex-col justify-center items-center">
         <div className="py-5 w-10/12">
           <h2 className="text-2xl py-2 font-bold text-center">
             Join the community of agencies
@@ -353,6 +353,75 @@ export default function Home() {
               >
                 Join FyaPro today!
               </a>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section className="w-full max-w-7xl px-2 sm:px-4 lg:px-8 my-5 md:mx-auto grid">
+        <h2 className="text-2xl py-2 font-bold text-center">
+          Let us grow with your agency business
+        </h2>
+        <div className="flex items-center gap-1 justify-center">
+          <button className="bg-primary text-white text-xs rounded-lg px-6 py-3 font-semibold mt-2">
+            Search Agencies
+          </button>
+          <p>Or</p>
+          <button className="text-primary bg-tertiary text-xs rounded-lg px-6 py-3 font-semibold mt-2">
+            Post your Project now!
+          </button>
+        </div>
+      </section>
+
+      <section className="w-full border-2 max-w-7xl px-2 sm:px-4 lg:px-8 my-5 rounded-xl md:mx-auto flex flex-col justify-center items-center">
+        <div className="py-5 w-10/12">
+          <h2 className="text-2xl py-2 font-bold text-center">
+            Join the community of agencies
+          </h2>
+          <p className="text-text">
+            if you are a small agencies and wanna grow your business larger?
+          </p>
+          <div className="flex flex-wrap mt-4 gap-4">
+            <div className="bg-tertiary flex flex-col h-auto sm:h-[32rem] w-full p-6 border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+              <div className="w-11/12 bg-slate-200 aspect-square self-center justify-self-center rounded-md mb-4"></div>
+              <a href="/#">
+                <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                  Reach your potential customer
+                </h5>
+              </a>
+              <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce
+                at sapien eu ipsum ornare sollicitudin vel nec nisl. Nullam ut
+                lacus porttitor, vestibulum ipsum eu, porta libero. Aliquam erat
+                volutpat. Morbi ac tincidunt orci.
+              </p>
+            </div>
+            <div className="flex flex-col h-auto sm:h-[32rem] w-full p-6 bg-secondary border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+              <div className="w-11/12 bg-slate-200 aspect-square self-center justify-self-center rounded-md mb-4"></div>
+              <a href="/#">
+                <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                  Get notification for suitable project
+                </h5>
+              </a>
+              <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce
+                at sapien eu ipsum ornare sollicitudin vel nec nisl. Nullam ut
+                lacus porttitor, vestibulum ipsum eu, porta libero. Aliquam erat
+                volutpat. Morbi ac tincidunt orci.
+              </p>
+            </div>
+            <div className="bg-tertiary flex flex-col h-auto sm:h-[32rem] w-full p-6 border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+              <div className="w-11/12 bg-slate-200 aspect-square self-center justify-self-center rounded-md mb-4"></div>
+              <a href="/#">
+                <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                  Generate quality leads efficiently
+                </h5>
+              </a>
+              <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce
+                at sapien eu ipsum ornare sollicitudin vel nec nisl. Nullam ut
+                lacus porttitor, vestibulum ipsum eu, porta libero. Aliquam erat
+                volutpat. Morbi ac tincidunt orci.
+              </p>
             </div>
           </div>
         </div>
