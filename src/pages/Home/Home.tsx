@@ -1,7 +1,7 @@
 export default function Home() {
   return (
     <main className="w-full min-h-80">
-      <section className="border-2 max-w-7xl py-5 px-8 sm:px-12 lg:px-16 my-5 rounded-xl mx-4 md:mx-auto">
+      <section className="w-full border-2 max-w-7xl py-5 px-8 sm:px-12 lg:px-16 my-5 rounded-xl mx-4 md:mx-auto">
         <div className="py-5">
           <h1 className="text-4xl  pb-2 font-bold text-primary">
             Find
@@ -58,105 +58,85 @@ export default function Home() {
         <div></div>
       </section>
 
-      <section className="border-2 max-w-7xl px-2 sm:px-4 lg:px-8 my-5 rounded-xl mx-4 md:mx-auto">
+      <section className="w-full border-2 max-w-7xl px-2 sm:px-4 lg:px-8 my-5 rounded-xl mx-4 md:mx-auto">
         <div className="py-5">
           <h2 className="text-2xl py-2 font-bold text-center">
             Agencies of the week
           </h2>
           <div className="flex justify-center mt-5 flex-wrap gap-4">
-            <div className="bg-gray-200 font-sans w-10/12 flex border-2 rounded-xl">
-              <div className="card mx-auto bg-white py-4">
+            <div className="font-sans w-10/12 flex border-2 rounded-xl ">
+              <div className="card mx-auto bg-white flex-col py-4 flex items-center gap-2">
                 <img
-                  className="w-32 mx-auto rounded-full border-8 border-white"
+                  className="w-28 mx-auto rounded-full border-8 border-white mb-2"
                   src="https://avatars.githubusercontent.com/u/67946056?v=4"
                   alt=""
                 />
-                <div className="text-center mt-2 text-3xl font-medium">
-                  Ajo Alex
+                <div className="flex flex-col py-5 border-2 rounded-md w-5/6 justify-center ">
+                  <h5 className="text-center text-md font-medium">
+                    Agency Name
+                  </h5>
+                  <ul className="flex gap-1 justify-center">
+                    <li className="text-xs font-bold bg-secondary text-white px-3 py-1 rounded-md">
+                      Fya Pro
+                    </li>
+                    <li className="text-xs font-bold bg-tertiary text-primary px-3 py-1 rounded-md">
+                      Verified
+                    </li>
+                  </ul>
+                  <ul className="flex mt-1 gap-1 items-center justify-center">
+                    <li className="bg-secondary w-3 aspect-square rounded-md"></li>
+                    <li className="bg-secondary w-3 aspect-square rounded-md"></li>
+                    <li className="bg-secondary w-3 aspect-square rounded-md"></li>
+                    <li className="bg-secondary w-3 aspect-square rounded-md"></li>
+                    <li className="bg-secondary w-3 aspect-square rounded-md"></li>
+                    <li className="font-bold">0.0/5.0</li>
+                    <li className="hidden md:block">(0 review)</li>
+                  </ul>
                 </div>
-                <div className="text-center mt-2 font-light text-sm">
-                  @devpenzil
-                </div>
-                <div className="text-center font-normal text-lg">Kerala</div>
-                <div className="px-6 text-center mt-2 font-light text-sm">
+                <ul className="text-center mt-2 font-light text-sm gap-1 flex flex-wrap w-5/6">
+                  <li className="text-xs font-bold bg-tertiary text-primary px-3 py-1 rounded-md">
+                    Digital Marketing
+                  </li>
+                  <li className="text-xs font-bold bg-tertiary text-primary px-3 py-1 rounded-md">
+                    Data Analyzing
+                  </li>
+                  <li className="text-xs font-bold bg-tertiary text-primary px-3 py-1 rounded-md">
+                    Social Media Advertising
+                  </li>
+                </ul>
+                <div className="border-2 rounded-md font-normal text-xs w-5/6 mt-2 py-3 px-2 text-text">
                   <p>
-                    Front end Developer, avid reader. Love to take a long walk,
-                    swim
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Fusce at sapien eu ipsum ornare sollicitudin vel nec nisl.
+                    Nullam ut lacus porttitor, vestibulum ipsum eu, porta
+                    libero. Aliquam erat volutpat. Morbi ac tincidunt orci.
                   </p>
                 </div>
-                <hr className="mt-8" />
-                <div className="flex p-4">
-                  <div className="w-1/2 text-center">
-                    <span className="font-bold">1.8 k</span> Followers
+
+                <div className="flex w-5/6 gap-1">
+                  <div className="w-1/2 bg-slate-200 text-xs text-center py-2 rounded-md">
+                    ABC City, Vietnam
                   </div>
-                  <div className="w-0 border border-gray-300"></div>
-                  <div className="w-1/2 text-center">
-                    <span className="font-bold">2.0 k</span> Following
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="bg-gray-200 font-sans w-10/12 flex border-2 rounded-xl ">
-              <div className="card mx-auto bg-white py-4 flex-wrap">
-                <img
-                  className="w-32 mx-auto rounded-full border-8 border-white"
-                  src="https://avatars.githubusercontent.com/u/67946056?v=4"
-                  alt=""
-                />
-                <div className="text-center mt-2 text-3xl font-medium">
-                  Ajo Alex
-                </div>
-                <div className="text-center mt-2 font-light text-sm">
-                  @devpenzil
-                </div>
-                <div className="text-center font-normal text-lg">Kerala</div>
-                <div className="px-6 text-center mt-2 font-light text-sm">
-                  <p>
-                    Front end Developer, avid reader. Love to take a long walk,
-                    swim
-                  </p>
-                </div>
-                <hr className="mt-8" />
-                <div className="flex p-4">
-                  <div className="w-1/2 text-center">
-                    <span className="font-bold">1.8 k</span> Followers
-                  </div>
-                  <div className="w-0 border border-gray-300"></div>
-                  <div className="w-1/2 text-center">
-                    <span className="font-bold">2.0 k</span> Following
+                  <div className="w-1/2 bg-slate-200 text-xs text-center py-2 rounded-md">
+                    SE Asia
                   </div>
                 </div>
-              </div>
-            </div>
-            <div className="bg-gray-200 font-sans w-10/12 flex border-2 rounded-xl">
-              <div className="card mx-auto bg-white py-4">
-                <img
-                  className="w-32 mx-auto rounded-full border-8 border-white"
-                  src="https://avatars.githubusercontent.com/u/67946056?v=4"
-                  alt=""
-                />
-                <div className="text-center mt-2 text-3xl font-medium">
-                  Ajo Alex
+                <div className="w-5/6 bg-slate-200 text-xs text-center py-2 rounded-md">
+                  From $9999/project
                 </div>
-                <div className="text-center mt-2 font-light text-sm">
-                  @devpenzil
-                </div>
-                <div className="text-center font-normal text-lg">Kerala</div>
-                <div className="px-6 text-center mt-2 font-light text-sm">
-                  <p>
-                    Front end Developer, avid reader. Love to take a long walk,
-                    swim
-                  </p>
-                </div>
-                <hr className="mt-8" />
-                <div className="flex p-4">
-                  <div className="w-1/2 text-center">
-                    <span className="font-bold">1.8 k</span> Followers
+                <div className="flex w-5/6 gap-1">
+                  <div className="w-1/2 bg-slate-200 text-xs text-center py-2 rounded-md">
+                    ABC City, Vietnam
                   </div>
-                  <div className="w-0 border border-gray-300"></div>
-                  <div className="w-1/2 text-center">
-                    <span className="font-bold">2.0 k</span> Following
+                  <div className="w-1/2 bg-slate-200 text-xs text-center py-2 rounded-md">
+                    SE Asia
                   </div>
+                </div>
+                <div className="flex w-5/6 gap-1 my-2">
+                  <button className="bg-secondary w-5/6 font-semibold rounded-md">
+                    Contact
+                  </button>
+                  <button className="bg-slate-200 w-1/6 aspect-square rounded-md"></button>
                 </div>
               </div>
             </div>
@@ -164,108 +144,215 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="border-2 max-w-7xl px-2 sm:px-4 lg:px-8 my-5 rounded-xl mx-4 md:mx-auto">
-        <div className="py-5">
+      <section className="w-full max-w-7xl px-2 sm:px-4 lg:px-8 my-5  mx-4 md:mx-auto h-80 flex">
+        <div className="h-2/4 flex justify-center items-center w-100 border-2 w-4/5 mx-auto my-auto rounded-xl">
+          <p className="text-3xl font-bold text-primary">Your ad here</p>
+        </div>
+      </section>
+
+      <section className="w-full border-2 max-w-7xl px-2 sm:px-4 lg:px-8 my-5 rounded-xl mx-4 md:mx-auto flex flex-col justify-center items-center">
+        <div className="py-5 w-10/12">
           <h2 className="text-2xl py-2 font-bold text-center">
             What We can Do For{" "}
             <span className="text-secondary"> You & Your Business</span>
           </h2>
-          <div className="flex justify-center mt-5 flex-wrap gap-4">
-            <div className="bg-gray-200 font-sans w-10/12 flex border-2 rounded-xl">
-              <div className="card mx-auto bg-white py-4">
-                <img
-                  className="w-32 mx-auto rounded-full border-8 border-white"
-                  src="https://avatars.githubusercontent.com/u/67946056?v=4"
-                  alt=""
-                />
-                <div className="text-center mt-2 text-3xl font-medium">
-                  Ajo Alex
-                </div>
-                <div className="text-center mt-2 font-light text-sm">
-                  @devpenzil
-                </div>
-                <div className="text-center font-normal text-lg">Kerala</div>
-                <div className="px-6 text-center mt-2 font-light text-sm">
-                  <p>
-                    Front end Developer, avid reader. Love to take a long walk,
-                    swim
-                  </p>
-                </div>
-                <hr className="mt-8" />
-                <div className="flex p-4">
-                  <div className="w-1/2 text-center">
-                    <span className="font-bold">1.8 k</span> Followers
-                  </div>
-                  <div className="w-0 border border-gray-300"></div>
-                  <div className="w-1/2 text-center">
-                    <span className="font-bold">2.0 k</span> Following
-                  </div>
-                </div>
-              </div>
+          <p className="text-text">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce at
+            sapien eu ipsum ornare{" "}
+          </p>
+          <div className="flex flex-wrap mt-4 gap-4">
+            <div className="flex flex-col h-auto sm:h-[32rem] w-full p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+              <div className="w-12 bg-slate-200 aspect-square self-center justify-self-center rounded-md mb-4"></div>
+              <a href="/#">
+                <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                  Find you an Agency that fit.
+                </h5>
+              </a>
+              <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce
+                at sapien eu ipsum ornare sollicitudin vel nec nisl. Nullam ut
+                lacus porttitor, vestibulum ipsum eu, porta libero. Aliquam erat
+                volutpat. Morbi ac tincidunt orci.
+              </p>
+              <a
+                href="/#"
+                className="w-full mt-auto justify-center inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+              >
+                Search agencies
+                <svg
+                  className="rtl:rotate-180 w-3.5 h-3.5 ms-2"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 14 10"
+                >
+                  <path
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M1 5h12m0 0L9 1m4 4L9 9"
+                  />
+                </svg>
+              </a>
             </div>
-            <div className="bg-gray-200 font-sans w-10/12 flex border-2 rounded-xl ">
-              <div className="card mx-auto bg-white py-4 flex-wrap">
-                <img
-                  className="w-32 mx-auto rounded-full border-8 border-white"
-                  src="https://avatars.githubusercontent.com/u/67946056?v=4"
-                  alt=""
-                />
-                <div className="text-center mt-2 text-3xl font-medium">
-                  Ajo Alex
-                </div>
-                <div className="text-center mt-2 font-light text-sm">
-                  @devpenzil
-                </div>
-                <div className="text-center font-normal text-lg">Kerala</div>
-                <div className="px-6 text-center mt-2 font-light text-sm">
-                  <p>
-                    Front end Developer, avid reader. Love to take a long walk,
-                    swim
-                  </p>
-                </div>
-                <hr className="mt-8" />
-                <div className="flex p-4">
-                  <div className="w-1/2 text-center">
-                    <span className="font-bold">1.8 k</span> Followers
-                  </div>
-                  <div className="w-0 border border-gray-300"></div>
-                  <div className="w-1/2 text-center">
-                    <span className="font-bold">2.0 k</span> Following
-                  </div>
-                </div>
-              </div>
+            <div className="flex flex-col h-auto sm:h-[32rem] w-full p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+              <div className="w-12 bg-slate-200 aspect-square self-center justify-self-center rounded-md mb-4"></div>
+              <a href="/#">
+                <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                  Find you an Agency that fit.
+                </h5>
+              </a>
+              <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce
+                at sapien eu ipsum ornare sollicitudin vel nec nisl. Nullam ut
+                lacus porttitor, vestibulum ipsum eu, porta libero. Aliquam erat
+                volutpat. Morbi ac tincidunt orci.
+              </p>
+              <a
+                href="/#"
+                className="w-full mt-auto justify-center inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+              >
+                Search agencies
+                <svg
+                  className="rtl:rotate-180 w-3.5 h-3.5 ms-2"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 14 10"
+                >
+                  <path
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M1 5h12m0 0L9 1m4 4L9 9"
+                  />
+                </svg>
+              </a>
             </div>
-            <div className="bg-gray-200 font-sans w-10/12 flex border-2 rounded-xl">
-              <div className="card mx-auto bg-white py-4">
-                <img
-                  className="w-32 mx-auto rounded-full border-8 border-white"
-                  src="https://avatars.githubusercontent.com/u/67946056?v=4"
-                  alt=""
-                />
-                <div className="text-center mt-2 text-3xl font-medium">
-                  Ajo Alex
-                </div>
-                <div className="text-center mt-2 font-light text-sm">
-                  @devpenzil
-                </div>
-                <div className="text-center font-normal text-lg">Kerala</div>
-                <div className="px-6 text-center mt-2 font-light text-sm">
-                  <p>
-                    Front end Developer, avid reader. Love to take a long walk,
-                    swim
-                  </p>
-                </div>
-                <hr className="mt-8" />
-                <div className="flex p-4">
-                  <div className="w-1/2 text-center">
-                    <span className="font-bold">1.8 k</span> Followers
-                  </div>
-                  <div className="w-0 border border-gray-300"></div>
-                  <div className="w-1/2 text-center">
-                    <span className="font-bold">2.0 k</span> Following
-                  </div>
-                </div>
-              </div>
+            <div className="flex flex-col h-auto sm:h-[32rem] w-full p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+              <div className="w-12 bg-slate-200 aspect-square self-center justify-self-center rounded-md mb-4"></div>
+              <a href="/#">
+                <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                  Find you an Agency that fit.
+                </h5>
+              </a>
+              <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce
+                at sapien eu ipsum ornare sollicitudin vel nec nisl. Nullam ut
+                lacus porttitor, vestibulum ipsum eu, porta libero. Aliquam erat
+                volutpat. Morbi ac tincidunt orci.
+              </p>
+              <a
+                href="/#"
+                className="w-full mt-auto justify-center inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+              >
+                Search agencies
+                <svg
+                  className="rtl:rotate-180 w-3.5 h-3.5 ms-2"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 14 10"
+                >
+                  <path
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M1 5h12m0 0L9 1m4 4L9 9"
+                  />
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="w-full max-w-7xl px-2 sm:px-4 lg:px-8 my-5  mx-4 md:mx-auto grid">
+        <h2 className="text-2xl py-2 font-bold text-center">
+          Let us join your business journey!
+        </h2>
+        <div className="flex items-center gap-1 justify-center">
+          <button className="bg-primary text-white text-xs rounded-lg px-6 py-3 font-semibold mt-2">
+            Search Agencies
+          </button>
+          <p>Or</p>
+          <button className="text-primary bg-tertiary text-xs rounded-lg px-6 py-3 font-semibold mt-2">
+            Post your Project now!
+          </button>
+        </div>
+      </section>
+
+      <section className="w-full border-2 max-w-7xl px-2 sm:px-4 lg:px-8 my-5 rounded-xl mx-4 md:mx-auto flex flex-col justify-center items-center">
+        <div className="py-5 w-10/12">
+          <h2 className="text-2xl py-2 font-bold text-center">
+            Join the community of agencies
+          </h2>
+          <p className="text-text">
+            if you are a small agencies and wanna grow your business larger?
+          </p>
+          <div className="flex flex-wrap mt-4 gap-4">
+            <div className="flex flex-col h-auto sm:h-[32rem] w-full p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+              <div className="w-12 bg-slate-200 aspect-square self-center justify-self-center rounded-md mb-4"></div>
+              <a href="/#">
+                <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                  Reach your potential customer
+                </h5>
+              </a>
+              <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce
+                at sapien eu ipsum ornare sollicitudin vel nec nisl. Nullam ut
+                lacus porttitor, vestibulum ipsum eu, porta libero. Aliquam erat
+                volutpat. Morbi ac tincidunt orci.
+              </p>
+              <a
+                href="/#"
+                className="w-full mt-auto justify-center inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+              >
+                Create Your Profile
+              </a>
+            </div>
+            <div className="flex flex-col h-auto sm:h-[32rem] w-full p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+              <div className="w-12 bg-slate-200 aspect-square self-center justify-self-center rounded-md mb-4"></div>
+              <a href="/#">
+                <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                  Get notification for suitable project
+                </h5>
+              </a>
+              <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce
+                at sapien eu ipsum ornare sollicitudin vel nec nisl. Nullam ut
+                lacus porttitor, vestibulum ipsum eu, porta libero. Aliquam erat
+                volutpat. Morbi ac tincidunt orci.
+              </p>
+              <a
+                href="/#"
+                className="w-full mt-auto justify-center inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+              >
+                Learn more
+              </a>
+            </div>
+            <div className="flex flex-col h-auto sm:h-[32rem] w-full p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+              <div className="w-12 bg-slate-200 aspect-square self-center justify-self-center rounded-md mb-4"></div>
+              <a href="/#">
+                <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                  Generate quality leads efficiently
+                </h5>
+              </a>
+              <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce
+                at sapien eu ipsum ornare sollicitudin vel nec nisl. Nullam ut
+                lacus porttitor, vestibulum ipsum eu, porta libero. Aliquam erat
+                volutpat. Morbi ac tincidunt orci.
+              </p>
+              <a
+                href="/#"
+                className="w-full mt-auto justify-center inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+              >
+                Join FyaPro today!
+              </a>
             </div>
           </div>
         </div>
