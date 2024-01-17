@@ -2,8 +2,8 @@ export default function Home() {
   return (
     <main className="w-full min-h-80 p-2">
       <section className="w-full border-2 max-w-7xl py-5 px-8 sm:px-12 lg:px-16 my-5 rounded-xl md:mx-auto h-auto md:flex md:gap-2 md:px-4">
-        <div className="py-5 md:w-3/5">
-          <h1 className="text-4xl  pb-2 font-bold text-primary">
+        <div className="py-5 md:w-3/5 lg:w-2/5">
+          <h1 className="text-4xl pb-2 font-bold text-primary lg:text-5xl">
             Find
             <span className="text-secondary">
               {" "}
@@ -45,7 +45,7 @@ export default function Home() {
               type="text"
               placeholder="Location"
             />
-            <button className="bg-primary text-white text-xs rounded-lg px-6 py-3 font-semibold mt-2">
+            <button className="bg-primary text-white text-xs rounded-lg px-6 py-3 font-semibold mt-2 lg:mt-0">
               Search Agencies
             </button>
           </div>
@@ -55,7 +55,7 @@ export default function Home() {
             Post your Project
           </button>
         </div>
-        <div className="hidden md:inline-block md:w-2/5">
+        <div className="hidden md:inline-block md:w-2/5 lg:w-2/5 lg:ml-auto lg:aspect-square">
           <div className="bg-tertiary w-full h-full rounded-lg"></div>
         </div>
       </section>
@@ -581,10 +581,10 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="w-full bg-tertiary border-2 max-w-7xl py-5 px-8 sm:px-12 lg:px-16 my-5 rounded-2xl md:mx-auto">
-        <div className="py-5">
-          <div className="flex flex-col">
-            <div className="grid gap-3">
+      <section className="w-full bg-tertiary border-2 max-w-7xl py-5 px-8 sm:px-12 lg:px-16 my-5 rounded-2xl md:mx-auto mb-10">
+        <div className="pt-5 pb-8">
+          <div className="flex flex-col lg:flex-row lg:items-center gap-5 lg:justify-around">
+            <div className="grid gap-3 lg:w-1/3">
               <h2 className="text-primary text-2xl font-bold">
                 Find <span className="text-secondary">Your</span> Agencies
               </h2>
@@ -603,9 +603,9 @@ export default function Home() {
                 2023 © Fya - All rights reserved - Terms of Use - Privacy Policy
               </h5>
             </div>
-            <br />
-            <div className="flex flex-wrap gap-3 justify-between">
-              <div className="w-2/5">
+            <hr className="my-8 bg-gray-500 lg:w-[2px] lg:h-[12rem]" />
+            <div className="flex flex-wrap gap-3 justify-between lg:w-1/3">
+              <div className="w-2/5 md:w-1/5">
                 <p className="font-semibold pb-2">Company</p>
                 <ul>
                   <li className="text-text">About</li>
@@ -613,7 +613,7 @@ export default function Home() {
                 </ul>
               </div>
 
-              <div className="w-2/5">
+              <div className="w-2/5 md:w-1/5">
                 <p className="font-semibold pb-2">Brands</p>
                 <ul>
                   <li className="text-text">Post Project</li>
@@ -621,7 +621,7 @@ export default function Home() {
                 </ul>
               </div>
 
-              <div className="w-2/5">
+              <div className="w-2/5 md:w-1/5">
                 <p className="font-semibold pb-2">Agencies</p>
                 <ul>
                   <li className="text-text">Get Listed</li>
@@ -631,7 +631,7 @@ export default function Home() {
                 </ul>
               </div>
 
-              <div className="w-2/5">
+              <div className="w-2/5 md:w-1/5">
                 <p className="font-semibold pb-2">Careers</p>
                 <ul>
                   <li className="text-text">Jobs At Fya</li>
