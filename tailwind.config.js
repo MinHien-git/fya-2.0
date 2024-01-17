@@ -10,7 +10,11 @@ module.exports = {
       text: "#5A5A61",
       tertiary: "#EDF2FD",
     },
-    extend: {},
+    extend: {
+      aspectRatio: {
+        "5/6": "5 / 6",
+      },
+    },
   },
   plugins: [],
 };

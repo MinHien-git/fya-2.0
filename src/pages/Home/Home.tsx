@@ -1,15 +1,11 @@
 export default function Home() {
   return (
     <main className="w-full min-h-80 p-2">
-      <section className="w-full border-2 max-w-7xl py-5 px-8 sm:px-12 lg:px-16 my-5 rounded-xl md:mx-auto h-auto md:flex md:gap-2 md:px-4">
-        <div className="py-5 md:w-3/5 lg:w-2/5">
+      <section className="w-full border-2 max-w-7xl py-5 px-8 sm:px-12 lg:px-16 my-5 rounded-xl md:mx-auto h-auto md:flex md:gap-2 md:px-4 lg:items-center lg:justify-evenly">
+        <div className="py-5 md:w-3/5 lg:w-2/5 lg:h-1/2">
           <h1 className="text-4xl pb-2 font-bold text-primary lg:text-5xl">
             Find
-            <span className="text-secondary">
-              {" "}
-              Your Marketing PR & Event
-            </span>{" "}
-            Agencies
+            <span className="text-secondary"> Your Ideal</span> Agencies
           </h1>
           <p className="font-semibold pt-2 text-primary opacity-55">
             Through personalized recommendation, made from the description of
@@ -55,7 +51,7 @@ export default function Home() {
             Post your Project
           </button>
         </div>
-        <div className="hidden md:inline-block md:w-2/5 lg:w-2/5 lg:ml-auto lg:aspect-square">
+        <div className="hidden md:inline-block md:w-2/5 lg:w-2/5 lg:aspect-square">
           <div className="bg-tertiary w-full h-full rounded-lg"></div>
         </div>
       </section>
