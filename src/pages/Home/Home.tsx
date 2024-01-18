@@ -57,7 +57,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="w-full border-2 max-w-7xl px-2 sm:px-4 lg:px-8 my-5 rounded-xl md:mx-auto">
+      <section className="w-full border-2 max-w-7xl px-2 sm:px-4 lg:px-12 my-5 rounded-xl md:mx-auto">
         <div className="py-5">
           <h2 className="text-2xl py-2 font-bold text-center">
             Agencies of the week
@@ -301,7 +301,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="w-full border-2 max-w-7xl px-2 sm:px-4 lg:px-8 my-5 rounded-xl md:mx-auto flex flex-col justify-center items-center">
+      <section className="w-full border-2 max-w-7xl px-2 sm:px-4 lg:px-12 my-5 rounded-xl md:mx-auto flex flex-col justify-center items-center">
         <div className="py-5 w-10/12 md:w-full">
           <h2 className="text-2xl py-2 font-bold text-center">
             What We can Do For{" "}
@@ -436,7 +436,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="w-full border-2 max-w-7xl px-2 sm:px-4 lg:px-8 my-5 rounded-xl md:mx-auto flex flex-col justify-center items-center">
+      <section className="w-full border-2 max-w-7xl px-2 sm:px-4 lg:px-12 my-5 rounded-xl md:mx-auto flex flex-col justify-center items-center">
         <div className="py-5 w-10/12 md:w-full">
           <h2 className="text-2xl py-2 font-bold text-center">
             Join the community of agencies
@@ -523,7 +523,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="w-full border-2 max-w-7xl px-2 sm:px-4 lg:px-8 my-5 rounded-xl md:mx-auto flex flex-col justify-center items-center">
+      <section className="w-full border-2 max-w-7xl px-2 sm:px-4 lg:px-12 my-5 rounded-xl md:mx-auto flex flex-col justify-center items-center">
         <div className="py-5 w-10/12 md:w-full">
           <h2 className="text-2xl py-2 font-bold text-center">
             Join the community of agencies
