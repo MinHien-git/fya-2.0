@@ -1,7 +1,7 @@
 export default function Home() {
   return (
     <main className="w-full min-h-80 p-2">
-      <section className="w-full border-2 max-w-7xl py-5 px-8 sm:px-12 lg:px-16 my-5 rounded-xl md:mx-auto h-auto md:flex md:gap-2 md:px-4 lg:items-center lg:justify-between">
+      <section className="w-full border-2 max-w-7xl py-5 px-8 sm:px-12 lg:px-16 my-5 rounded-[3rem] md:mx-auto h-auto md:flex md:gap-2 md:px-4 lg:items-center lg:justify-between">
         <div className="py-5 md:w-3/5 lg:w-2/5 lg:h-1/2">
           <h1 className="text-4xl pb-2 font-bold text-primary lg:text-5xl">
             Find
@@ -57,14 +57,14 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="w-full border-2 max-w-7xl px-2 sm:px-4 lg:px-12 my-5 rounded-xl md:mx-auto">
+      <section className="w-full border-2 max-w-7xl px-2 sm:px-4 lg:px-12 my-5 rounded-[3rem] md:mx-auto">
         <div className="py-5">
-          <h2 className="text-2xl py-2 font-bold text-center">
+          <h2 className="text-2xl py-2 font-bold text-center md:text-2xl lg:text-5xl">
             Agencies of the week
           </h2>
           <div className="flex justify-center mt-5 flex-wrap gap-4 md:flex-nowrap md:w-full">
-            <div className="font-sans w-10/12 flex border-2 rounded-xl ">
-              <div className="card mx-auto bg-white flex-col py-4 flex items-center gap-2">
+            <div className="font-sans w-10/12 flex border-2 rounded-2xl ">
+              <div className="card mx-auto flex-col py-4 flex items-center gap-2">
                 <img
                   className="w-28 mx-auto rounded-full border-8 border-white mb-2"
                   src="https://avatars.githubusercontent.com/u/67946056?v=4"
@@ -139,15 +139,15 @@ export default function Home() {
                 </div>
               </div>
             </div>
-            <div className="font-sans w-10/12 flex border-2 rounded-xl ">
-              <div className="card mx-auto bg-white flex-col py-4 flex items-center gap-2">
+            <div className="font-sans w-10/12 flex border-2 rounded-2xl ">
+              <div className="card mx-auto flex-col py-4 flex items-center gap-2">
                 <img
                   className="w-28 mx-auto rounded-full border-8 border-white mb-2"
                   src="https://avatars.githubusercontent.com/u/67946056?v=4"
                   alt=""
                 />
                 <div className="flex flex-col py-5 border-2 rounded-md w-5/6 justify-center ">
-                  <h5 className="text-center text-md font-medium">
+                  <h5 className="text-center text-md font-medium ,d">
                     Agency Name
                   </h5>
                   <ul className="flex gap-1 justify-center">
@@ -215,8 +215,8 @@ export default function Home() {
                 </div>
               </div>
             </div>
-            <div className="font-sans w-10/12 flex border-2 rounded-xl ">
-              <div className="card mx-auto bg-white flex-col py-4 flex items-center gap-2">
+            <div className="font-sans w-10/12 flex border-2 rounded-2xl ">
+              <div className="card mx-auto flex-col py-4 flex items-center gap-2">
                 <img
                   className="w-28 mx-auto rounded-full border-8 border-white mb-2"
                   src="https://avatars.githubusercontent.com/u/67946056?v=4"
@@ -301,7 +301,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="w-full border-2 max-w-7xl px-2 sm:px-4 lg:px-12 my-5 rounded-xl md:mx-auto flex flex-col justify-center items-center">
+      <section className="w-full border-2 max-w-7xl px-2 sm:px-4 lg:px-12 my-5 rounded-[3rem] md:mx-auto flex flex-col justify-center items-center">
         <div className="py-5 w-10/12 md:w-full">
           <h2 className="text-2xl py-2 font-bold text-center">
             What We can Do For{" "}
@@ -312,7 +312,7 @@ export default function Home() {
             sapien eu ipsum ornare{" "}
           </p>
           <div className="flex flex-wrap mt-4 gap-4 md:flex-nowrap">
-            <div className="flex flex-col h-auto sm:h-[32rem] md:h-auto w-full p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 md:w-1/3">
+            <div className="flex flex-col h-auto sm:h-[32rem] md:h-auto w-full p-6 bg-white border border-gray-200 rounded-2xl shadow dark:bg-gray-800 dark:border-gray-700 md:w-1/3">
               <div className="w-12 bg-slate-200 aspect-square self-center justify-self-center rounded-md mb-4"></div>
               <a href="/#">
                 <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
@@ -347,7 +347,7 @@ export default function Home() {
                 </svg>
               </a>
             </div>
-            <div className="flex flex-col h-auto sm:h-[32rem] md:h-auto w-full p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 md:w-1/3">
+            <div className="flex flex-col h-auto sm:h-[32rem] md:h-auto w-full p-6 bg-white border border-gray-200 rounded-2xl shadow dark:bg-gray-800 dark:border-gray-700 md:w-1/3">
               <div className="w-12 bg-slate-200 aspect-square self-center justify-self-center rounded-md mb-4"></div>
               <a href="/#">
                 <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
@@ -382,7 +382,7 @@ export default function Home() {
                 </svg>
               </a>
             </div>
-            <div className="flex flex-col h-auto sm:h-[32rem] md:h-auto w-full p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 md:w-1/3">
+            <div className="flex flex-col h-auto sm:h-[32rem] md:h-auto w-full p-6 bg-white border border-gray-200 rounded-2xl shadow dark:bg-gray-800 dark:border-gray-700 md:w-1/3">
               <div className="w-12 bg-slate-200 aspect-square self-center justify-self-center rounded-md mb-4"></div>
               <a href="/#">
                 <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
@@ -436,7 +436,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="w-full border-2 max-w-7xl px-2 sm:px-4 lg:px-12 my-5 rounded-xl md:mx-auto flex flex-col justify-center items-center">
+      <section className="w-full border-2 max-w-7xl px-2 sm:px-4 lg:px-12 my-5 rounded-[3rem] md:mx-auto flex flex-col justify-center items-center">
         <div className="py-5 w-10/12 md:w-full">
           <h2 className="text-2xl py-2 font-bold text-center">
             Join the community of agencies
@@ -445,7 +445,7 @@ export default function Home() {
             if you are a small agencies and wanna grow your business larger?
           </p>
           <div className="flex flex-wrap mt-4 gap-4 md:flex-nowrap">
-            <div className="flex flex-col h-auto sm:h-[32rem] md:h-auto w-full p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 md:w-1/3">
+            <div className="flex flex-col h-auto sm:h-[32rem] md:h-auto w-full p-6 bg-white border border-gray-200 rounded-2xl shadow dark:bg-gray-800 dark:border-gray-700 md:w-1/3">
               <div className="w-12 bg-slate-200 aspect-square self-center justify-self-center rounded-md mb-4"></div>
               <a href="/#">
                 <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
@@ -465,7 +465,7 @@ export default function Home() {
                 Create Your Profile
               </a>
             </div>
-            <div className="flex flex-col h-auto sm:h-[32rem] md:h-auto w-full p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 md:w-1/3">
+            <div className="flex flex-col h-auto sm:h-[32rem] md:h-auto w-full p-6 bg-white border border-gray-200 rounded-2xl shadow dark:bg-gray-800 dark:border-gray-700 md:w-1/3">
               <div className="w-12 bg-slate-200 aspect-square self-center justify-self-center rounded-md mb-4"></div>
               <a href="/#">
                 <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
@@ -485,7 +485,7 @@ export default function Home() {
                 Learn more
               </a>
             </div>
-            <div className="flex flex-col h-auto sm:h-[32rem] md:h-auto w-full p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 md:w-1/3">
+            <div className="flex flex-col h-auto sm:h-[32rem] md:h-auto w-full p-6 bg-white border border-gray-200 rounded-2xl shadow dark:bg-gray-800 dark:border-gray-700 md:w-1/3">
               <div className="w-12 bg-slate-200 aspect-square self-center justify-self-center rounded-md mb-4"></div>
               <a href="/#">
                 <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
@@ -523,7 +523,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="w-full border-2 max-w-7xl px-2 sm:px-4 lg:px-12 my-5 rounded-xl md:mx-auto flex flex-col justify-center items-center">
+      <section className="w-full border-2 max-w-7xl px-2 sm:px-4 lg:px-12 my-5 rounded-[3rem] md:mx-auto flex flex-col justify-center items-center">
         <div className="py-5 w-10/12 md:w-full">
           <h2 className="text-2xl py-2 font-bold text-center">
             Join the community of agencies

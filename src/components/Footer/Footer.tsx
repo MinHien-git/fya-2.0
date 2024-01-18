@@ -1,9 +1,9 @@
 export default function Footer() {
   return (
-    <footer className="w-full bg-tertiary border-2 max-w-7xl py-5 px-8 sm:px-12 lg:px-16 my-5 rounded-2xl md:mx-auto mb-10">
+    <footer className="w-full bg-tertiary border-2 max-w-7xl py-5 px-8 sm:px-12 lg:px-16 my-5 rounded-[3rem] md:mx-auto mb-10">
       <div className="pt-5 pb-8">
         <div className="flex flex-col lg:flex-row lg:items-center gap-5 lg:justify-around">
-          <div className="grid gap-3 lg:w-1/3">
+          <div className="grid gap-3 lg:w-1/2">
             <h2 className="text-primary text-2xl font-bold">
               Find <span className="text-secondary">Your</span> Agencies
             </h2>
@@ -11,7 +11,7 @@ export default function Footer() {
               Our answer to the growing needs for a reliable, effective
               connection between SMEs/Startups and Agencies.{" "}
             </p>
-            <ul className="flex gap-2 items-center justify-around py-2">
+            <ul className="flex gap-2 items-center py-2">
               <li className="aspect-square w-1/5 bg-gray-200 rounded-full max-w-12"></li>
               <li className="aspect-square w-1/5 bg-gray-200 rounded-full max-w-12"></li>
               <li className="aspect-square w-1/5 bg-gray-200 rounded-full max-w-12"></li>
@@ -23,8 +23,8 @@ export default function Footer() {
             </h5>
           </div>
           <hr className="my-8 bg-gray-500 lg:w-[2px] lg:h-[12rem]" />
-          <div className="flex flex-wrap gap-3 justify-between lg:w-1/3">
-            <div className="w-2/5 md:w-1/5">
+          <div className="flex flex-wrap gap-3 justify-between lg:w-1/2 md:ml-12">
+            <div className="w-2/5 md:w-1/5 lg:pl-5">
               <p className="font-semibold pb-2">Company</p>
               <ul>
                 <li className="text-text">About</li>
@@ -32,7 +32,7 @@ export default function Footer() {
               </ul>
             </div>
 
-            <div className="w-2/5 md:w-1/5">
+            <div className="w-2/5 md:w-1/5 lg:pl-5">
               <p className="font-semibold pb-2">Brands</p>
               <ul>
                 <li className="text-text">Post Project</li>
@@ -40,7 +40,7 @@ export default function Footer() {
               </ul>
             </div>
 
-            <div className="w-2/5 md:w-1/5">
+            <div className="w-2/5 md:w-1/5 lg:pl-5">
               <p className="font-semibold pb-2">Agencies</p>
               <ul>
                 <li className="text-text">Get Listed</li>
@@ -50,7 +50,7 @@ export default function Footer() {
               </ul>
             </div>
 
-            <div className="w-2/5 md:w-1/5">
+            <div className="w-2/5 md:w-1/5 lg:pl-5">
               <p className="font-semibold pb-2">Careers</p>
               <ul>
                 <li className="text-text">Jobs At Fya</li>
