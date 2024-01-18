@@ -1,7 +1,7 @@
 export default function Home() {
   return (
     <main className="w-full min-h-80 p-2">
-      <section className="w-full border-2 max-w-7xl py-5 px-8 sm:px-12 lg:px-16 my-5 rounded-xl md:mx-auto h-auto md:flex md:gap-2 md:px-4 lg:items-center lg:justify-evenly">
+      <section className="w-full border-2 max-w-7xl py-5 px-8 sm:px-12 lg:px-16 my-5 rounded-xl md:mx-auto h-auto md:flex md:gap-2 md:px-4 lg:items-center lg:justify-between">
         <div className="py-5 md:w-3/5 lg:w-2/5 lg:h-1/2">
           <h1 className="text-4xl pb-2 font-bold text-primary lg:text-5xl">
             Find
@@ -45,11 +45,12 @@ export default function Home() {
               Search Agencies
             </button>
           </div>
-
-          <p className="mx-2 font-semibold my-2">or</p>
-          <button className="bg-secondary text-white text-xs rounded-lg px-6 py-3 font-semibold mx-auto">
-            Post your Project
-          </button>
+          <div className="md:flex">
+            <p className="mx-2 my-2 font-light">or</p>
+            <button className="bg-secondary text-white text-xs rounded-lg px-6 py-3 font-semibold mx-auto md:mx-2">
+              Post your Project
+            </button>
+          </div>
         </div>
         <div className="hidden md:inline-block md:w-2/5 lg:w-2/5 lg:aspect-square">
           <div className="bg-tertiary w-full h-full rounded-lg"></div>
