@@ -2,13 +2,13 @@ export default function AgencyPage() {
   return (
     <main className="w-full min-h-80 p-2">
       <section className="w-full border-2 max-w-7xl my-5 rounded-xl md:mx-auto h-[40vh] bg-gray-200 flex aspect-[4/1]">
-        <div className="flex items-center w-full border-t-2 border-gray-300 h-[3rem] mt-auto relative md:h-">
+        <div className="flex items-center w-full border-t-2 border-gray-300 h-[3rem] mt-auto relative ">
           <div className="w-[6rem] aspect-square bg-gray-500 rounded-full absolute top-[-3.5rem] left-[1.5rem] h-auto md:w-[8rem] md:top-[-3rem]"></div>
           <h1 className="pl-[8rem] text-md font-bold md:hidden">
             [Brand Name Brand Name]
           </h1>
 
-          <ul className="justify-center w-full hidden md:flex gap-4">
+          <ul className="justify-center w-full hidden md:flex gap-4 md:ml-20">
             <li>About</li>
             <li>
               <hr className="h-full w-[2px] bg-slate-500" />
@@ -34,7 +34,7 @@ export default function AgencyPage() {
         </div>
       </section>
       <section className="w-full max-w-7xl my-5 md:mx-auto flex md:hidden">
-        <ul className="flex justify-around w-full">
+        <ul className="flex w-full flex-wrap gap-4">
           <li>About</li>
           <li>Services</li>
           <li>Portfolio</li>
@@ -345,9 +345,9 @@ export default function AgencyPage() {
         </div>
       </section>
       <section className="w-full border-2 max-w-7xl px-2 sm:px-4 lg:px-40 my-5 rounded-xl md:mx-auto flex flex-col justify-center items-center relative">
-        <div className="py-5 w-11/12 mx-auto grid gap-5">
+        <div className="py-5 w-11/12 mx-auto grid gap-5 justify-items-center">
           <h2 className="text-2xl py-2 font-bold text-center">Company</h2>
-          <div className="bg-tertiary aspect-video w-full rounded-2xl text-xs"></div>
+          <div className="bg-tertiary aspect-video w-full rounded-2xl text-xs lg:w-2/3"></div>
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce at
             sapien eu ipsum ornare sollicitudin vel nec nisl. Nullam ut lacus
@@ -356,10 +356,10 @@ export default function AgencyPage() {
           </p>
         </div>
       </section>
-      <section className="w-full border-2 max-w-7xl px-2 sm:px-4 lrg:px-40 my-5 rounded-xl md:mx-auto flex flex-col justify-center items-center relative">
+      <section className="w-full border-2 max-w-7xl px-2 sm:px-4 lg:px-40 my-5 rounded-xl md:mx-auto flex flex-col justify-center items-center relative">
         <div className="py-5 w-10/12 md:w-full">
           <h2 className="text-2xl py-2 font-bold text-center">
-            Brand Name's Agency projects
+            Brand Name's Agency Projects
           </h2>
           <div className="flex flex-wrap mt-4 gap-4 md:flex-nowrap">
             <div className="flex flex-col h-auto sm:h-[32rem] md:h-auto w-full p-4 border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 md:w-1/3">
@@ -660,17 +660,33 @@ export default function AgencyPage() {
         </div>
       </section>
       <section className="w-full border-2 max-w-7xl px-2 sm:px-4 lg:px-40 my-5 rounded-xl md:mx-auto flex flex-col justify-center items-center relative">
-        <div className="py-5 grid w-11/12 gap-5">
-          <div className="grid gap-3 aligns-center">
+        <div className="py-5 grid w-11/12 gap-5 md:flex">
+          <div className="grid gap-3 aligns-center md:w-1/2">
             <h2 className="text-2xl py-2 font-bold text-center">Contacts</h2>
-            <button className="bg-primary text-white w-4/6 rounded-md text-xs h-[2.125rem] font-semibold lg:w-[12rem] mt-2 mx-auto">
+            <button className="bg-primary text-white rounded-md text-xs h-[2.125rem] font-semibold lg:w-[12rem] mt-2 mx-auto w-full">
               Contact
             </button>
-            <button className="bg-secondary w-4/6 rounded-md text-xs h-[2.125rem] font-semibold lg:w-[12rem] mx-auto">
+            <button className="bg-secondary rounded-md text-xs h-[2.125rem] font-semibold lg:w-[12rem] mx-auto w-full">
               Open website
             </button>
+            <div className="border-2 rounded-lg">
+              <div className="text-primary text-sm bg-gray-300 rounded-t-md py-3 px-4 font-bold">
+                Addresses
+              </div>
+              <div className="text-sm rounded-t-xs py-3 px-4 font-bold">
+                123 ABC address, Street, City abc
+              </div>
+            </div>
+            <ul className="flex gap-3 items-center">
+              <li className="bg-gray-300 w-1/12 aspect-square rounded-full"></li>
+              <li className="bg-gray-300 w-1/12 aspect-square rounded-full"></li>
+              <li className="bg-gray-300 w-1/12 aspect-square rounded-full"></li>
+              <li className="bg-gray-300 w-1/12 aspect-square rounded-full"></li>
+              <li className="bg-gray-300 w-1/12 aspect-square rounded-full"></li>
+              <li className="bg-gray-300 w-1/12 aspect-square rounded-full"></li>
+            </ul>
           </div>
-          <div className="grid aspect-square bg-tertiary rounded-xl"></div>
+          <div className="grid aspect-square bg-tertiary rounded-xl md:w-1/2"></div>
         </div>
       </section>
     </main>
