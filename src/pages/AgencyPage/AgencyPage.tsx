@@ -1,7 +1,7 @@
 export default function AgencyPage() {
   return (
     <main className="w-full min-h-80 p-2">
-      <section className="w-full border-2 max-w-7xl my-5 rounded-xl md:mx-auto h-[40vh] bg-gray-200 flex md:h-[25vh]">
+      <section className="w-full border-2 max-w-7xl my-5 rounded-xl md:mx-auto h-[40vh] bg-gray-200 flex aspect-[4/1]">
         <div className="flex items-center w-full border-t-2 border-gray-300 h-[3rem] mt-auto relative md:h-">
           <div className="w-[6rem] aspect-square bg-gray-500 rounded-full absolute top-[-3.5rem] left-[1.5rem] h-auto md:w-[8rem] md:top-[-3rem]"></div>
           <h1 className="pl-[8rem] text-md font-bold md:hidden">
@@ -101,7 +101,7 @@ export default function AgencyPage() {
           </h2>
           <div className="flex justify-center mt-5 flex-wrap gap-4 md:flex-nowrap md:w-full">
             <div className="font-sans w-10/12 flex border-2 rounded-xl ">
-              <div className="card mx-auto bg-white flex-col py-4 flex items-center gap-2">
+              <div className="card mx-auto flex-col py-4 flex items-center gap-2">
                 <img
                   className="w-28 mx-auto rounded-full border-8 border-white mb-2"
                   src="https://avatars.githubusercontent.com/u/67946056?v=4"
@@ -177,7 +177,7 @@ export default function AgencyPage() {
               </div>
             </div>
             <div className="font-sans w-10/12 flex border-2 rounded-xl ">
-              <div className="card mx-auto bg-white flex-col py-4 flex items-center gap-2">
+              <div className="card mx-auto  flex-col py-4 flex items-center gap-2">
                 <img
                   className="w-28 mx-auto rounded-full border-8 border-white mb-2"
                   src="https://avatars.githubusercontent.com/u/67946056?v=4"
@@ -253,7 +253,7 @@ export default function AgencyPage() {
               </div>
             </div>
             <div className="font-sans w-10/12 flex border-2 rounded-xl ">
-              <div className="card mx-auto bg-white flex-col py-4 flex items-center gap-2">
+              <div className="card mx-auto flex-col py-4 flex items-center gap-2">
                 <img
                   className="w-28 mx-auto rounded-full border-8 border-white mb-2"
                   src="https://avatars.githubusercontent.com/u/67946056?v=4"
@@ -339,14 +339,30 @@ export default function AgencyPage() {
           />
         </div>
       </section>
-
       <section className="w-full border-2 max-w-7xl px-2 sm:px-4 lg:px-40 my-5 rounded-xl md:mx-auto flex flex-col justify-center items-center relative">
+        <div className="py-5">
+          <h2 className="text-2xl py-2 font-bold text-center">Services</h2>
+        </div>
+      </section>
+      <section className="w-full border-2 max-w-7xl px-2 sm:px-4 lg:px-40 my-5 rounded-xl md:mx-auto flex flex-col justify-center items-center relative">
+        <div className="py-5 w-11/12 mx-auto grid gap-5">
+          <h2 className="text-2xl py-2 font-bold text-center">Company</h2>
+          <div className="bg-tertiary aspect-video w-full rounded-2xl text-xs"></div>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce at
+            sapien eu ipsum ornare sollicitudin vel nec nisl. Nullam ut lacus
+            porttitor, vestibulum ipsum eu, porta libero. Aliquam erat volutpat.
+            Morbi ac tincidunt orci.
+          </p>
+        </div>
+      </section>
+      <section className="w-full border-2 max-w-7xl px-2 sm:px-4 lrg:px-40 my-5 rounded-xl md:mx-auto flex flex-col justify-center items-center relative">
         <div className="py-5 w-10/12 md:w-full">
           <h2 className="text-2xl py-2 font-bold text-center">
             Brand Name's Agency projects
           </h2>
           <div className="flex flex-wrap mt-4 gap-4 md:flex-nowrap">
-            <div className="flex flex-col h-auto sm:h-[32rem] md:h-auto w-full p-4 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 md:w-1/3">
+            <div className="flex flex-col h-auto sm:h-[32rem] md:h-auto w-full p-4 border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 md:w-1/3">
               <div className="w-full bg-tertiary aspect-[4/3] self-center justify-self-center rounded-md mb-4"></div>
               <a href="/#">
                 <h5 className="mb-2 text-lg font-bold tracking-tight text-gray-900 dark:text-white">
@@ -384,7 +400,7 @@ export default function AgencyPage() {
               </ul>
             </div>
 
-            <div className="flex flex-col h-auto sm:h-[32rem] md:h-auto w-full p-4 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 md:w-1/3">
+            <div className="flex flex-col h-auto sm:h-[32rem] md:h-auto w-full p-4 border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 md:w-1/3">
               <div className="w-full bg-tertiary aspect-[4/3] self-center justify-self-center rounded-md mb-4"></div>
               <a href="/#">
                 <h5 className="mb-2 text-lg font-bold tracking-tight text-gray-900 dark:text-white">
@@ -418,7 +434,7 @@ export default function AgencyPage() {
           <h2 className="text-2xl py-2 font-bold text-center">Portfolio</h2>
 
           <div className="flex flex-wrap mt-4 gap-4 md:flex-nowrap">
-            <div className="flex flex-col h-auto sm:h-[32rem] md:h-auto w-full p-4 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 md:w-1/3">
+            <div className="flex flex-col h-auto sm:h-[32rem] md:h-auto w-full p-4 border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 md:w-1/3">
               <div className="w-full bg-tertiary aspect-[4/3] self-center justify-self-center rounded-md mb-4"></div>
               <a href="/#">
                 <h5 className="mb-2 text-lg font-bold tracking-tight text-gray-900 dark:text-white">
@@ -437,7 +453,7 @@ export default function AgencyPage() {
               </ul>
             </div>
 
-            <div className="flex flex-col h-auto sm:h-[32rem] md:h-auto w-full p-4 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 md:w-1/3">
+            <div className="flex flex-col h-auto sm:h-[32rem] md:h-auto w-full p-4 border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 md:w-1/3">
               <div className="w-full bg-tertiary aspect-[4/3] self-center justify-self-center rounded-md mb-4"></div>
               <a href="/#">
                 <h5 className="mb-2 text-lg font-bold tracking-tight text-gray-900 dark:text-white">
@@ -456,7 +472,7 @@ export default function AgencyPage() {
               </ul>
             </div>
 
-            <div className="flex flex-col h-auto sm:h-[32rem] md:h-auto w-full p-4 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 md:w-1/3">
+            <div className="flex flex-col h-auto sm:h-[32rem] md:h-auto w-full p-4 border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 md:w-1/3">
               <div className="w-full bg-tertiary aspect-[4/3] self-center justify-self-center rounded-md mb-4"></div>
               <a href="/#">
                 <h5 className="mb-2 text-lg font-bold tracking-tight text-gray-900 dark:text-white">
@@ -490,7 +506,7 @@ export default function AgencyPage() {
           <h2 className="text-2xl py-2 font-bold text-center">Awards</h2>
 
           <div className="flex flex-wrap mt-4 gap-4 md:flex-nowrap">
-            <div className="flex flex-col h-auto sm:h-[32rem] md:h-auto w-full p-4 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 md:w-1/3">
+            <div className="flex flex-col h-auto sm:h-[32rem] md:h-auto w-full p-4 border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 md:w-1/3">
               <div className="w-full bg-tertiary aspect-[4/3] self-center justify-self-center rounded-md mb-4"></div>
               <a href="/#">
                 <h5 className="mb-2 text-lg font-bold tracking-tight text-gray-900 dark:text-white">
@@ -509,7 +525,7 @@ export default function AgencyPage() {
               </ul>
             </div>
 
-            <div className="flex flex-col h-auto sm:h-[32rem] md:h-auto w-full p-4 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 md:w-1/3">
+            <div className="flex flex-col h-auto sm:h-[32rem] md:h-auto w-full p-4 border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 md:w-1/3">
               <div className="w-full bg-tertiary aspect-[4/3] self-center justify-self-center rounded-md mb-4"></div>
               <a href="/#">
                 <h5 className="mb-2 text-lg font-bold tracking-tight text-gray-900 dark:text-white">
@@ -528,7 +544,7 @@ export default function AgencyPage() {
               </ul>
             </div>
 
-            <div className="flex flex-col h-auto sm:h-[32rem] md:h-auto w-full p-4 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 md:w-1/3">
+            <div className="flex flex-col h-auto sm:h-[32rem] md:h-auto w-full p-4 border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 md:w-1/3">
               <div className="w-full bg-tertiary aspect-[4/3] self-center justify-self-center rounded-md mb-4"></div>
               <a href="/#">
                 <h5 className="mb-2 text-lg font-bold tracking-tight text-gray-900 dark:text-white">
@@ -641,6 +657,20 @@ export default function AgencyPage() {
             alt="right arrow"
             className="w-6 md:w-10"
           />
+        </div>
+      </section>
+      <section className="w-full border-2 max-w-7xl px-2 sm:px-4 lg:px-40 my-5 rounded-xl md:mx-auto flex flex-col justify-center items-center relative">
+        <div className="py-5 grid w-11/12 gap-5">
+          <div className="grid gap-3 aligns-center">
+            <h2 className="text-2xl py-2 font-bold text-center">Contacts</h2>
+            <button className="bg-primary text-white w-4/6 rounded-md text-xs h-[2.125rem] font-semibold lg:w-[12rem] mt-2 mx-auto">
+              Contact
+            </button>
+            <button className="bg-secondary w-4/6 rounded-md text-xs h-[2.125rem] font-semibold lg:w-[12rem] mx-auto">
+              Open website
+            </button>
+          </div>
+          <div className="grid aspect-square bg-tertiary rounded-xl"></div>
         </div>
       </section>
     </main>

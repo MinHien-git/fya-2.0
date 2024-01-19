@@ -1,7 +1,7 @@
 export default function BrandPage() {
   return (
     <main className="w-full min-h-80 p-2">
-      <section className="w-full border-2 max-w-7xl my-5 rounded-xl md:mx-auto h-[40vh] bg-gray-200 flex md:h-[25vh]">
+      <section className="w-full border-2 max-w-7xl my-5 rounded-xl md:mx-auto h-[40vh] bg-gray-200 flex aspect-[4/1]">
         <div className="flex items-center w-full border-t-2 border-gray-300 h-[3rem] mt-auto relative md:h-">
           <div className="w-[6rem] aspect-square bg-gray-500 rounded-full absolute top-[-3.5rem] left-[1.5rem] h-auto md:w-[8rem] md:top-[-3rem]"></div>
           <h1 className="pl-[8rem] text-md font-bold md:hidden">
@@ -85,7 +85,7 @@ export default function BrandPage() {
           </h2>
           <div className="flex justify-center mt-5 flex-wrap gap-4 md:flex-nowrap md:w-full">
             <div className="font-sans w-10/12 flex border-2 rounded-xl ">
-              <div className="card mx-auto bg-white flex-col py-4 flex items-center gap-2">
+              <div className="card mx-auto flex-col py-4 flex items-center gap-2">
                 <img
                   className="w-28 mx-auto rounded-full border-8 border-white mb-2"
                   src="https://avatars.githubusercontent.com/u/67946056?v=4"
@@ -161,7 +161,7 @@ export default function BrandPage() {
               </div>
             </div>
             <div className="font-sans w-10/12 flex border-2 rounded-xl ">
-              <div className="card mx-auto bg-white flex-col py-4 flex items-center gap-2">
+              <div className="card mx-auto flex-col py-4 flex items-center gap-2">
                 <img
                   className="w-28 mx-auto rounded-full border-8 border-white mb-2"
                   src="https://avatars.githubusercontent.com/u/67946056?v=4"
@@ -237,7 +237,7 @@ export default function BrandPage() {
               </div>
             </div>
             <div className="font-sans w-10/12 flex border-2 rounded-xl ">
-              <div className="card mx-auto bg-white flex-col py-4 flex items-center gap-2">
+              <div className="card mx-auto flex-col py-4 flex items-center gap-2">
                 <img
                   className="w-28 mx-auto rounded-full border-8 border-white mb-2"
                   src="https://avatars.githubusercontent.com/u/67946056?v=4"
@@ -330,7 +330,7 @@ export default function BrandPage() {
             Brand Name's Agency projects
           </h2>
           <div className="flex flex-wrap mt-4 gap-4 md:flex-nowrap">
-            <div className="flex flex-col h-auto sm:h-[32rem] md:h-auto w-full p-4 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 md:w-1/3">
+            <div className="flex flex-col h-auto sm:h-[32rem] md:h-auto w-full p-4border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 md:w-1/3">
               <div className="w-full bg-tertiary aspect-[4/3] self-center justify-self-center rounded-md mb-4"></div>
               <a href="/#">
                 <h5 className="mb-2 text-lg font-bold tracking-tight text-gray-900 dark:text-white">
@@ -349,7 +349,7 @@ export default function BrandPage() {
               </ul>
             </div>
 
-            <div className="flex flex-col h-auto sm:h-[32rem] md:h-auto w-full p-4 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 md:w-1/3">
+            <div className="flex flex-col h-auto sm:h-[32rem] md:h-auto w-full p-4 border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 md:w-1/3">
               <div className="w-full bg-tertiary aspect-[4/3] self-center justify-self-center rounded-md mb-4"></div>
               <a href="/#">
                 <h5 className="mb-2 text-lg font-bold tracking-tight text-gray-900 dark:text-white">
@@ -368,7 +368,7 @@ export default function BrandPage() {
               </ul>
             </div>
 
-            <div className="flex flex-col h-auto sm:h-[32rem] md:h-auto w-full p-4 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 md:w-1/3">
+            <div className="flex flex-col h-auto sm:h-[32rem] md:h-auto w-full p-4 border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 md:w-1/3">
               <div className="w-full bg-tertiary aspect-[4/3] self-center justify-self-center rounded-md mb-4"></div>
               <a href="/#">
                 <h5 className="mb-2 text-lg font-bold tracking-tight text-gray-900 dark:text-white">
@@ -403,7 +403,7 @@ export default function BrandPage() {
           <h2 className="text-2xl py-2 font-bold text-center">Awards</h2>
 
           <div className="flex flex-wrap mt-4 gap-4 md:flex-nowrap">
-            <div className="flex flex-col h-auto sm:h-[32rem] md:h-auto w-full p-4 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 md:w-1/3">
+            <div className="flex flex-col h-auto sm:h-[32rem] md:h-auto w-full p-4 border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 md:w-1/3">
               <div className="w-full bg-tertiary aspect-[4/3] self-center justify-self-center rounded-md mb-4"></div>
               <a href="/#">
                 <h5 className="mb-2 text-lg font-bold tracking-tight text-gray-900 dark:text-white">
@@ -422,7 +422,7 @@ export default function BrandPage() {
               </ul>
             </div>
 
-            <div className="flex flex-col h-auto sm:h-[32rem] md:h-auto w-full p-4 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 md:w-1/3">
+            <div className="flex flex-col h-auto sm:h-[32rem] md:h-auto w-full p-4 border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 md:w-1/3">
               <div className="w-full bg-tertiary aspect-[4/3] self-center justify-self-center rounded-md mb-4"></div>
               <a href="/#">
                 <h5 className="mb-2 text-lg font-bold tracking-tight text-gray-900 dark:text-white">
@@ -441,7 +441,7 @@ export default function BrandPage() {
               </ul>
             </div>
 
-            <div className="flex flex-col h-auto sm:h-[32rem] md:h-auto w-full p-4 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 md:w-1/3">
+            <div className="flex flex-col h-auto sm:h-[32rem] md:h-auto w-full p-4 border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 md:w-1/3">
               <div className="w-full bg-tertiary aspect-[4/3] self-center justify-self-center rounded-md mb-4"></div>
               <a href="/#">
                 <h5 className="mb-2 text-lg font-bold tracking-tight text-gray-900 dark:text-white">
@@ -480,7 +480,7 @@ export default function BrandPage() {
             if you are a small agencies and wanna grow your business larger?
           </p>
           <div className="flex flex-wrap mt-4 gap-4 md:flex-nowrap">
-            <div className="flex flex-col h-auto sm:h-[32rem] md:h-auto w-full p-4 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 md:w-1/3">
+            <div className="flex flex-col h-auto sm:h-[32rem] md:h-auto w-full p-4 border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 md:w-1/3">
               <div className="w-full bg-tertiary aspect-[4/3] self-center justify-self-center rounded-md mb-4"></div>
               <ul className="flex flex-wrap gap-2 items-center">
                 <li className="bg-secondary w-[0.75rem] aspect-square rounded-xl"></li>
@@ -502,7 +502,7 @@ export default function BrandPage() {
               </p>
             </div>
 
-            <div className="flex flex-col h-auto sm:h-[32rem] md:h-auto w-full p-4 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 md:w-1/3">
+            <div className="flex flex-col h-auto sm:h-[32rem] md:h-auto w-full p-4 border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 md:w-1/3">
               <div className="w-full bg-tertiary aspect-[4/3] self-center justify-self-center rounded-md mb-4"></div>
               <ul className="flex flex-wrap gap-2 items-center">
                 <li className="bg-secondary w-[0.75rem] aspect-square rounded-xl"></li>
@@ -524,7 +524,7 @@ export default function BrandPage() {
               </p>
             </div>
 
-            <div className="flex flex-col h-auto sm:h-[32rem] md:h-auto w-full p-4 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 md:w-1/3">
+            <div className="flex flex-col h-auto sm:h-[32rem] md:h-auto w-full p-4 border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 md:w-1/3">
               <div className="w-full bg-tertiary aspect-[4/3] self-center justify-self-center rounded-md mb-4"></div>
               <ul className="flex flex-wrap gap-2 items-center">
                 <li className="bg-secondary w-[0.75rem] aspect-square rounded-xl"></li>
