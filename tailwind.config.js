@@ -10,6 +10,7 @@ module.exports = {
       text: "#5A5A61",
       tertiary: "#EDF2FD",
       light_yellow: "#FDFBED",
+      light_blue: "#9CCAFF",
     },
     extend: {
       aspectRatio: {
