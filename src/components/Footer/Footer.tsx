@@ -4,7 +4,7 @@ export default function Footer() {
       <div className="pt-5 pb-8">
         <div className="flex flex-col lg:flex-row lg:items-center gap-5 lg:justify-around">
           <div className="grid gap-3 lg:w-1/2">
-            <img src="/logo.png" alt="logo" className="w-[10rem] mb-6" />
+            <img src={"/logo.png"} alt="logo" className="w-[10rem] mb-6" />
             <h2 className="text-primary text-2xl font-bold">
               Find <span className="text-secondary">Your</span> Agencies
             </h2>

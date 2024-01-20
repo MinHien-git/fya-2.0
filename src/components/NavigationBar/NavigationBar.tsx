@@ -17,7 +17,7 @@ export default function NavigationBar() {
                     <img src="/logo.png" className="w-20" alt="logo" />
                   </span>
                   <span className="hidden lg:block w-auto font-bold text-center">
-                    <img src="/logo.png" className="w-20" alt="logo" />
+                    <img src={"/logo.png"} className="w-20" alt="logo" />
                   </span>
                 </a>
               </div>
