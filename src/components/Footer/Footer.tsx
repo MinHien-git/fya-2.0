@@ -5,9 +5,9 @@ export default function Footer() {
         <div className="flex flex-col lg:flex-row lg:items-center gap-5 lg:justify-around">
           <div className="grid gap-3 lg:w-1/2">
             <img
-              src={"/static/images/logo.svg"}
+              src={"/static/images/Logo_BG.svg"}
               alt="logo"
-              className="w-[10rem] mb-6"
+              className="w-[4rem] mb-6"
             />
             <h2 className="text-primary text-2xl font-bold">
               Find <span className="text-secondary">Your</span> Agencies
