@@ -15,14 +15,14 @@ export default function NavigationBar() {
                 <a className="flex-shrink-0 flex " href="/#">
                   <span className="block lg:hidden font-bold text-center">
                     <img
-                      src="/static/images/logo.png"
+                      src="/static/images/logo.svg"
                       className="w-20"
                       alt="logo"
                     />
                   </span>
                   <span className="hidden lg:block w-auto font-bold text-center">
                     <img
-                      src={"/static/images/logo.png"}
+                      src={"/static/images/logo.svg"}
                       className="w-20"
                       alt="logo"
                     />
