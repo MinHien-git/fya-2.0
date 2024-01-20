@@ -315,9 +315,13 @@ export default function BrandPage() {
           </div>
         </div>
         <div className="absolute w-full left-0 h-full flex items-center justify-between md:relative lg:absolute md:py-2 lg:px-10 -z-10">
-          <img src="/arrowleft.png" alt="left arrow" className="w-6 md:w-10" />
           <img
-            src="/arrowright.png"
+            src="/static/images/arrowleft.png"
+            alt="left arrow"
+            className="w-6 md:w-10"
+          />
+          <img
+            src="/static/images/arrowright.png"
             alt="right arrow"
             className="w-6 md:w-10"
           />
@@ -389,9 +393,13 @@ export default function BrandPage() {
           </div>
         </div>
         <div className="absolute w-full left-0 h-full flex items-center justify-between md:relative lg:absolute lg:px-10 md:py-2 -z-10">
-          <img src="/arrowleft.png" alt="left arrow" className="w-6 md:w-10" />
           <img
-            src="/arrowright.png"
+            src="/static/images/arrowleft.png"
+            alt="left arrow"
+            className="w-6 md:w-10"
+          />
+          <img
+            src="/static/images/arrowright.png"
             alt="right arrow"
             className="w-6 md:w-10"
           />
@@ -462,9 +470,13 @@ export default function BrandPage() {
           </div>
         </div>
         <div className="absolute w-full left-0 h-full flex items-center justify-between md:relative lg:absolute lg:px-10 md:py-2 -z-10">
-          <img src="/arrowleft.png" alt="left arrow" className="w-6 md:w-10" />
           <img
-            src="/arrowright.png"
+            src="/static/images/arrowleft.png"
+            alt="left arrow"
+            className="w-6 md:w-10"
+          />
+          <img
+            src="/static/images/arrowright.png"
             alt="right arrow"
             className="w-6 md:w-10"
           />
@@ -548,9 +560,13 @@ export default function BrandPage() {
           </div>
         </div>
         <div className="absolute w-full left-0 h-full flex items-center justify-between md:relative lg:absolute lg:px-10 md:py-2 -z-10">
-          <img src="/arrowleft.png" alt="left arrow" className="w-6 md:w-10" />
           <img
-            src="/arrowright.png"
+            src="/static/images/arrowleft.png"
+            alt="left arrow"
+            className="w-6 md:w-10"
+          />
+          <img
+            src="/static/images/arrowright.png"
             alt="right arrow"
             className="w-6 md:w-10"
           />
