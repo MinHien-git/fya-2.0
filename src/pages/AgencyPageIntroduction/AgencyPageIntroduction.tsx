@@ -1,29 +1,29 @@
 export default function AgencyPageIntroduction() {
   return (
     <main className="w-full min-h-80 py-2 pt-0">
-      <section className="w-full border-2 max-w-7xl pb-5 rounded-b-3xl md:mx-auto min-h-[40vh] bg-primary px-3 flex items-center">
+      <section className="w-full border-2 max-w-5xl pb-5 rounded-b-3xl md:mx-auto min-h-[40vh] bg-primary px-3 flex items-center">
         <div className="grid gap-3 px-2 py-5 h-full mx-auto">
-          <h1 className="text-2xl sm:text-4xl font-bold text-white text-center">
+          <h1 className="text-2xl sm:text-4xl font-bold text-white text-center lg:w-[30rem]">
             Differentiate yourself with{" "}
             <span className="text-secondary">Fya's</span> free{" "}
             <span className="text-secondary">Agency Page</span>
           </h1>
-          <button className="bg-secondary text-text font-bold text-xs rounded-lg px-8 py-3 mx-auto mt-2 sm:mt-5 md:w-fit">
+          <button className="bg-secondary text-text font-bold text-xs rounded-lg px-8 py-3 mx-auto mt-2 sm:mt-5 md:w-fit ">
             Create your free Agency Page now!
           </button>
         </div>
       </section>
 
-      <section className="w-full border-2 max-w-7xl pb-5 rounded-3xl md:mx-auto min-h-[40vh] px-3 mt-[-2rem] bg-white">
+      <section className="w-full border-2 max-w-2xl pb-5 rounded-3xl md:mx-auto min-h-[40vh] px-3 mt-[-2rem] bg-white lg:max-w-[40rem]">
         <div className="flex gap-3 px-2 py-5 h-full flex-col">
           <div className="flex flex-col gap-3 items-center">
             <div className="bg-tertiary w-full h-[10rem] rounded-2xl relative">
               <div className="bg-primary aspect-square w-[6rem] absolute rounded-full bottom-[-3rem] left-1/2 -translate-x-1/2 md:left-[calc(25%-4.5rem)]  md:-translate-x-[0] md:w-[9rem] md:bottom-[-4.5rem]"></div>
             </div>
-            <div className="flex flex-col gap-3 md:flex-row md:mt-5">
+            <div className="flex flex-col gap-3 md:flex-row md:mt-5 w-full ">
               <div className="grid gap-3 justify-items-center md:w-1/2">
                 <h2 className="font-bold mt-12">Your Agency</h2>
-                <p className="border-2 rounded-2xl px-2 py-3">
+                <p className="border-2 rounded-2xl px-2 py-3 lg:max-w-[15rem]">
                   Lorem ipsum dolor sit amet consectetur adipisicing elit.
                   Numquam cum et fuga quis ratione autem voluptatem molestias
                   quos, reiciendis exercitationem ab dolorum obcaecati
@@ -32,7 +32,7 @@ export default function AgencyPageIntroduction() {
                   distinctio corrupti assumenda quisquam amet et.
                 </p>
               </div>
-              <div className="flex flex-col gap-3 items-center w-full md:w-1/2 md:grid">
+              <div className="flex flex-col gap-3 items-center w-full md:w-1/2 md:grid content-center">
                 <div className="flex items-center justify-between w-full bg-gray-100 px-2 py-4 rounded-lg">
                   <h5 className="font-semibold">Services</h5>
                   <ul className="flex gap-1">
@@ -60,7 +60,7 @@ export default function AgencyPageIntroduction() {
         </div>
       </section>
 
-      <section className="w-full border-2 max-w-7xl px-2 sm:px-4 lg:px-12 my-5 rounded-[3rem] md:mx-auto flex flex-col justify-center items-center">
+      <section className="w-full border-2 max-w-5xl px-2 sm:px-4 lg:px-12 my-5 rounded-[3rem] md:mx-auto flex flex-col justify-center items-center">
         <div className="py-5 w-11/12 md:w-full">
           <h2 className="text-2xl py-2 font-bold text-center">
             Be seen. Be known.{" "}
@@ -113,7 +113,7 @@ export default function AgencyPageIntroduction() {
         </div>
       </section>
 
-      <section className="w-full border-2 max-w-7xl px-2 sm:px-4 lg:px-12 my-5 rounded-[3rem] md:mx-auto flex flex-col justify-center items-center">
+      <section className="w-full border-2 max-w-5xl px-2 sm:px-4 lg:px-12 my-5 rounded-[3rem] md:mx-auto flex flex-col justify-center items-center">
         <div className="py-5 w-11/12 md:w-full">
           <h2 className="text-2xl py-2 font-bold text-center">
             Establish your agency appearance on Fya{" "}
@@ -148,7 +148,7 @@ export default function AgencyPageIntroduction() {
         </div>
       </section>
 
-      <section className="w-full border-2 max-w-7xl px-2 sm:px-4 lg:px-12 my-5 md:mx-auto flex flex-col justify-center items-center relative bg-light_yellow">
+      <section className="w-full border-2 max-w-5xl px-2 sm:px-4 lg:px-12 my-5 md:mx-auto flex flex-col justify-center items-center relative bg-light_yellow">
         <div className="bg-primary w-12 rounded-full absolute left-1/2 -translate-x-1/2 aspect-square top-[-1.5rem]"></div>
         <div className="py-5 w-11/12 md:w-full">
           <h2 className="text-2xl py-2 font-bold text-center">
@@ -250,20 +250,20 @@ export default function AgencyPageIntroduction() {
               <button className="bg-slate-200 w-1/6 aspect-square rounded-md"></button>
             </div>
           </div>{" "}
-          <div className="flex flex-col h-auto sm:h-[32rem] w-full p-6 bg-secondary border border-gray-200 rounded-2xl shadow dark:bg-gray-800 dark:border-gray-700 md:w-1/3 relative mt-5 md:h-[20rem] md:rounded-none md:rounded-r-2xl">
+          <div className=" flex flex-col h-auto sm:h-[32rem] w-full p-6 bg-secondary border border-gray-200 rounded-2xl shadow dark:bg-gray-800 dark:border-gray-700 md:w-1/3 relative mt-5 md:h-[20rem] md:rounded-none md:rounded-r-2xl">
             <div className="w-14 bg-primary aspect-square self-center justify-self-center rounded-md mb-4 absolute -top-[1.75rem]"></div>
             <a href="/#">
-              <h5 className="mt-4 mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+              <h5 className="mt-4 mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white lg:text-right">
                 Boost Conversion and Visibility
               </h5>
             </a>
-            <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
+            <p className="mb-3 font-normal text-gray-700 dark:text-gray-400 lg:text-right">
               Website Engagement tools
             </p>
-            <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
+            <p className="mb-3 font-normal text-gray-700 dark:text-gray-400 lg:text-right">
               Connect your Social Media
             </p>
-            <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
+            <p className="mb-3 font-normal text-gray-700 dark:text-gray-400 lg:text-right">
               {" "}
               Featured on Competitors's Page
             </p>
@@ -271,13 +271,13 @@ export default function AgencyPageIntroduction() {
         </div>
       </section>
 
-      <section className="w-full max-w-7xl px-2 sm:px-4 lg:px-12 rounded-[3rem] md:mx-auto flex flex-col justify-center items-center relative">
+      <section className="w-full max-w-5xl px-2 sm:px-4 lg:px-12 rounded-[3rem] md:mx-auto flex flex-col justify-center items-center relative">
         <div className="bg-secondary w-12 rounded-full absolute left-1/2 -translate-x-1/2 aspect-square top-[-1.5rem]"></div>
-        <div className="py-5 w-full">
-          <div className="w-10/12 mx-auto">
-            <div className="relative bg-primary pt-8 pb-5 mt-12 rounded-t-2xl px-5">
+        <div className="py-5 w-full md:flex md:py-10">
+          <div className="w-10/12 mx-auto flex md:w-1/2">
+            <div className="relative bg-primary pt-8 pb-5 mt-12 rounded-t-2xl px-5 md:rounded-none md:rounded-l-2xl grid gap-2 md:my-auto w-full">
               <div className="absolute w-12 aspect-square bg-secondary top-[-1.5rem] left-1/2 -translate-x-1/2 rounded-md "></div>
-              <h5 className="text-center text-md font-medium text-white">
+              <h5 className="text-center text-xl font-medium text-white pb-4">
                 Advertising Features
               </h5>
               <p className="text-white text-sx">
@@ -295,22 +295,22 @@ export default function AgencyPageIntroduction() {
               <p className="text-white font-thin text-sx">
                 Pay by clicks: start from $0.12/click
               </p>
-              <button className="bg-white text-primary font-bold text-xs rounded-lg px-8 py-2 mx-auto md:mx-2 sm:mt-5 w-full mt-5 sm:w-auto">
+              <button className="bg-white text-primary font-bold text-xs rounded-lg px-8 py-2 mx-auto md:mx-auto sm:mt-5 w-full mt-5 sm:w-auto md:w-[80%]">
                 Learn More
               </button>
             </div>
           </div>
-          <div className="w-full aspect-square bg-tertiary rounded-2xl mb-5 border-2"></div>
+          <div className="w-full aspect-square bg-tertiary rounded-2xl border-2 md:w-1/2"></div>
         </div>
       </section>
-      <section className="w-full max-w-7xl px-2 sm:px-4 lg:px-12 md:mx-auto flex flex-col justify-center items-center relative border-2 bg-light_blue">
+      <section className="w-full max-w-5xl px-2 sm:px-4 lg:px-12 md:mx-auto flex flex-col justify-center items-center relative border-2 bg-light_blue">
         <div className="bg-primary w-12 rounded-full absolute left-1/2 -translate-x-1/2 aspect-square top-[-1.5rem]"></div>
-        <div className="py-5 w-full">
-          <div className="w-full aspect-square bg-tertiary rounded-2xl mt-5 border-2"></div>
-          <div className="w-10/12 mx-auto">
-            <div className="relative bg-white pt-8 pb-5  rounded-b-2xl px-5 border-2">
-              <div className="absolute w-12 aspect-square bg-primary top-[-1.5rem] left-1/2 -translate-x-1/2 rounded-md "></div>
-              <h5 className="text-center text-md font-medium text-black">
+        <div className="py-5 w-full md:flex md:py-10">
+          <div className="w-full aspect-square bg-tertiary rounded-2xl border-2 md:w-1/2"></div>
+          <div className="w-10/12 mx-auto flex md:w-1/2">
+            <div className="relative bg-white pt-8 pb-5 w-full rounded-b-2xl px-5 border-2 md:rounded-none md:rounded-r-2xl grid text-right gap-2 md:my-auto">
+              <div className="absolute w-12 aspect-square bg-primary top-[-1.5rem] left-1/2 -translate-x-1/2 rounded-md"></div>
+              <h5 className="text-center text-xl font-medium text-black pb-4">
                 Project Leads Extension
               </h5>
               <p className="text-black text-sx">Connect directly to clients.</p>
@@ -326,16 +326,16 @@ export default function AgencyPageIntroduction() {
               <p className="text-black font-thin text-sx">
                 Pay by project: start from $2.00/project
               </p>
-              <button className="bg-primary text-white font-bold text-xs rounded-lg px-8 py-2 mx-auto md:mx-2 sm:mt-5 w-full mt-5 sm:w-auto">
+              <button className="bg-primary text-white font-bold text-xs rounded-lg px-8 py-2 mx-auto md:mx-auto sm:mt-5 w-full mt-5 sm:w-auto md:w-[80%]">
                 Learn More
               </button>
             </div>
           </div>
         </div>
       </section>
-      <section className="w-full max-w-7xl px-2 sm:px-4 lg:px-12 md:mx-auto flex flex-col justify-center items-center relative border-2 bg-light_yellow">
+      <section className="w-full max-w-5xl px-2 sm:px-4 lg:px-12 md:mx-auto flex flex-col justify-center items-center relative border-2 bg-light_yellow">
         <div className="bg-secondary w-[80%] rounded-xl absolute left-1/2 -translate-x-1/2 top-[-1rem] py-2">
-          <h2 className="text-lg font-bold px-6">
+          <h2 className="text-lg font-bold px-6 text-center">
             and many more features to come!
           </h2>
         </div>
@@ -343,23 +343,23 @@ export default function AgencyPageIntroduction() {
           <h5 className="text-center text-2xl font-medium text-black">
             <span className="text-secondary">FyaPro</span> is waiting for you!
           </h5>
-          <p className="text-black text-sx text-center">
+          <p className="text-black text-sx text-center w-80 mx-auto">
             Experience Fya's comprehensive marketing and sales solution,
             tailored for your agency.
           </p>
 
-          <button className="bg-primary text-white font-bold text-xs rounded-lg px-8 py-2 mx-auto md:mx-2 sm:mt-5 mt-5">
+          <button className="bg-primary text-white font-bold text-xs rounded-lg px-8 py-2 mx-auto sm:mt-5 mt-5 md:w-fit md:mx-auto">
             Subscribe to FyaPro now
           </button>
         </div>
       </section>
 
-      <section className="w-full border-2 max-w-7xl px-2 sm:px-4 lg:px-12 my-5 rounded-[3rem] md:mx-auto flex flex-col justify-center items-center">
+      <section className="w-full border-2 max-w-5xl px-2 sm:px-4 lg:px-12 my-5 rounded-[3rem] md:mx-auto flex flex-col justify-center items-center">
         <div className="py-5 w-11/12 md:w-full">
           <h2 className="text-2xl py-2 font-bold text-center">
             Frequently Asked Questions
           </h2>
-          <div className="aspect-square w-full"></div>
+          <div className="aspect-video w-full"></div>
         </div>
       </section>
     </main>
