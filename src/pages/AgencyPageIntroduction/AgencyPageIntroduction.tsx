@@ -2,13 +2,13 @@ export default function AgencyPageIntroduction() {
   return (
     <main className="w-full min-h-80 py-2 pt-0">
       <section className="w-full border-2 max-w-7xl pb-5 rounded-b-3xl md:mx-auto min-h-[40vh] bg-primary px-3 flex items-center">
-        <div className="grid gap-3 px-2 py-5 h-full">
+        <div className="grid gap-3 px-2 py-5 h-full mx-auto">
           <h1 className="text-2xl sm:text-4xl font-bold text-white text-center">
             Differentiate yourself with{" "}
             <span className="text-secondary">Fya's</span> free{" "}
             <span className="text-secondary">Agency Page</span>
           </h1>
-          <button className="bg-secondary text-text font-bold text-xs rounded-lg px-8 py-3 mx-auto md:mx-2 mt-2 sm:mt-5">
+          <button className="bg-secondary text-text font-bold text-xs rounded-lg px-8 py-3 mx-auto mt-2 sm:mt-5 md:w-fit">
             Create your free Agency Page now!
           </button>
         </div>
@@ -18,39 +18,43 @@ export default function AgencyPageIntroduction() {
         <div className="flex gap-3 px-2 py-5 h-full flex-col">
           <div className="flex flex-col gap-3 items-center">
             <div className="bg-tertiary w-full h-[10rem] rounded-2xl relative">
-              <div className="bg-primary aspect-square w-[6rem] absolute rounded-full bottom-[-3rem] left-1/2 transform -translate-x-1/2"></div>
+              <div className="bg-primary aspect-square w-[6rem] absolute rounded-full bottom-[-3rem] left-1/2 -translate-x-1/2 md:left-[calc(25%-4.5rem)]  md:-translate-x-[0] md:w-[9rem] md:bottom-[-4.5rem]"></div>
             </div>
-            <h2 className="font-bold mt-10">Your Agency</h2>
-            <p className="border-2 rounded-2xl px-2 py-3">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam
-              cum et fuga quis ratione autem voluptatem molestias quos,
-              reiciendis exercitationem ab dolorum obcaecati accusamus, corporis
-              delectus. Labore, error nobis illo numquam ipsum veritatis fugit
-              aut, quasi accusantium corporis beatae distinctio corrupti
-              assumenda quisquam amet et.
-            </p>
-          </div>
-          <div className="flex flex-col gap-3 items-center">
-            <div className="flex items-center justify-between w-full bg-gray-100 px-2 py-4 rounded-lg">
-              <h5 className="font-semibold">Services</h5>
-              <ul className="flex gap-1">
-                <li className="bg-secondary w-4 aspect-square rounded-full"></li>
-                <li className="bg-secondary w-4 aspect-square rounded-full"></li>
-                <li className="bg-secondary w-4 aspect-square rounded-full"></li>
-                <li className="bg-secondary w-4 aspect-square rounded-full"></li>
-                <li className="bg-secondary w-4 aspect-square rounded-full"></li>
-              </ul>
-              <p className="font-semibold text-sm">5.0/5.0</p>
-            </div>
+            <div className="flex flex-col gap-3 md:flex-row md:mt-5">
+              <div className="grid gap-3 justify-items-center md:w-1/2">
+                <h2 className="font-bold mt-12">Your Agency</h2>
+                <p className="border-2 rounded-2xl px-2 py-3">
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Numquam cum et fuga quis ratione autem voluptatem molestias
+                  quos, reiciendis exercitationem ab dolorum obcaecati
+                  accusamus, corporis delectus. Labore, error nobis illo numquam
+                  ipsum veritatis fugit aut, quasi accusantium corporis beatae
+                  distinctio corrupti assumenda quisquam amet et.
+                </p>
+              </div>
+              <div className="flex flex-col gap-3 items-center w-full md:w-1/2 md:grid">
+                <div className="flex items-center justify-between w-full bg-gray-100 px-2 py-4 rounded-lg">
+                  <h5 className="font-semibold">Services</h5>
+                  <ul className="flex gap-1">
+                    <li className="bg-secondary w-4 aspect-square rounded-full"></li>
+                    <li className="bg-secondary w-4 aspect-square rounded-full"></li>
+                    <li className="bg-secondary w-4 aspect-square rounded-full"></li>
+                    <li className="bg-secondary w-4 aspect-square rounded-full"></li>
+                    <li className="bg-secondary w-4 aspect-square rounded-full"></li>
+                  </ul>
+                  <p className="font-semibold text-sm">5.0/5.0</p>
+                </div>
 
-            <div className="flex items-center justify-between w-full bg-gray-100 px-2 py-4 rounded-lg">
-              <h5 className="font-semibold">Portfolio</h5>
-            </div>
-            <div className="flex items-center justify-between w-full bg-gray-100 px-2 py-4 rounded-lg">
-              <h5 className="font-semibold">Awards</h5>
-            </div>
-            <div className="flex items-center justify-between w-full bg-gray-100 px-2 py-4 rounded-lg">
-              <h5 className="font-semibold">Reviews & Feedback</h5>
+                <div className="flex items-center justify-between w-full bg-gray-100 px-2 py-4 rounded-lg">
+                  <h5 className="font-semibold">Portfolio</h5>
+                </div>
+                <div className="flex items-center justify-between w-full bg-gray-100 px-2 py-4 rounded-lg">
+                  <h5 className="font-semibold">Awards</h5>
+                </div>
+                <div className="flex items-center justify-between w-full bg-gray-100 px-2 py-4 rounded-lg">
+                  <h5 className="font-semibold">Reviews & Feedback</h5>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -121,24 +125,24 @@ export default function AgencyPageIntroduction() {
         </div>
         <div className="py-5 w-11/12 md:w-full grid gap-5">
           <div className="bg-tertiary w-full h-10 rounded-3xl relative">
-            <div className="absolute h-12 rounded-full aspect-square bg-primary flex justify-center items-center top-1/2 -translate-y-1/2 text-white font-bold">
+            <div className="absolute h-12 rounded-full aspect-square bg-primary flex justify-center items-center top-1/2 -translate-y-1/2 text-white font-bold md:h-16">
               1
             </div>
           </div>
           <div className="bg-secondary w-8 aspect-square rounded-full justify-self-center"></div>
           <div className="bg-tertiary w-full h-10 rounded-3xl relative">
-            <div className="absolute h-12 rounded-full aspect-square bg-primary flex justify-center items-center top-1/2 -translate-y-1/2 text-white font-bold right-0">
+            <div className="absolute h-12 rounded-full aspect-square bg-primary flex justify-center items-center top-1/2 -translate-y-1/2 text-white font-bold right-0 md:h-16">
               2
             </div>
           </div>
           <div className="bg-secondary w-8 aspect-square rounded-full justify-self-center"></div>
           <div className="bg-tertiary w-full h-10 rounded-3xl relative">
-            <div className="absolute h-12 rounded-full aspect-square bg-primary flex justify-center items-center top-1/2 -translate-y-1/2 text-white font-bold">
+            <div className="absolute h-12 rounded-full aspect-square bg-primary flex justify-center items-center top-1/2 -translate-y-1/2 text-white font-bold md:h-16">
               3
             </div>
           </div>
 
-          <button className="bg-primary text-white font-bold text-xs rounded-lg px-8 py-3 mx-auto md:mx-2 mt-2 sm:mt-5">
+          <button className="bg-primary text-white font-bold text-xs rounded-lg px-8 py-3 mx-auto md:mx-auto mt-2 sm:mt-5 md:w-fit">
             Create your free Agency Page
           </button>
         </div>
