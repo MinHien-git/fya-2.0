@@ -11,6 +11,7 @@ module.exports = {
       tertiary: "#EDF2FD",
       light_yellow: "#FDFBED",
       light_blue: "#9CCAFF",
+      dark_blue: "#13366F",
     },
     extend: {
       aspectRatio: {
