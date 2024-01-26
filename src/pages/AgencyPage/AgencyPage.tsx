@@ -428,7 +428,7 @@ export default function AgencyPage() {
           <h2 className="text-[2rem] py-2 font-bold text-center font-title">
             Company
           </h2>
-          <div className="bg-tertiary aspect-video w-full rounded-2xl text-xs"></div>
+          <div className="bg-tertiary aspect-video w-full rounded-2xl text-xs drop-shadow-md"></div>
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce at
             sapien eu ipsum ornare sollicitudin vel nec nisl. Nullam ut lacus
