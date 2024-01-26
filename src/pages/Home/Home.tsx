@@ -67,7 +67,7 @@ export default function Home() {
             Agencies of the week
           </h2>
           <div className="flex justify-center mt-5 flex-wrap gap-4 md:flex-nowrap md:w-full max-w-5xl mx-auto">
-            <div className="font-sans w-10/12 flex border-2 rounded-2xl sm:w-2/5">
+            <div className="font-sans w-10/12 flex border-2 rounded-2xl sm:w-2/5 bg-white">
               <div className="card mx-auto flex-col py-4 flex items-center gap-2">
                 <img
                   className="w-20 mx-auto rounded-full border-8 border-white"
@@ -114,7 +114,7 @@ export default function Home() {
                 </div>
               </div>
             </div>
-            <div className="font-sans w-10/12 flex border-2 rounded-2xl sm:w-2/5">
+            <div className="font-sans w-10/12 flex border-2 rounded-2xl sm:w-2/5 bg-white">
               <div className="card mx-auto flex-col py-4 flex items-center gap-2">
                 <img
                   className="w-20 mx-auto rounded-full border-8 border-white"
@@ -161,7 +161,7 @@ export default function Home() {
                 </div>
               </div>
             </div>
-            <div className="font-sans w-10/12 flex border-2 rounded-2xl sm:w-2/5">
+            <div className="font-sans w-10/12 flex border-2 rounded-2xl sm:w-2/5 bg-white">
               <div className="card mx-auto flex-col py-4 flex items-center gap-2">
                 <img
                   className="w-20 mx-auto rounded-full border-8 border-white"
