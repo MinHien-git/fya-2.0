@@ -3,7 +3,7 @@ export default function Home() {
     <main className="w-full min-h-80 p-2">
       <section className="w-full border-[1px] border-border bg-light_gray max-w-7xl py-5 px-8 sm:px-12 lg:px-16 my-5 rounded-[3rem] md:mx-auto h-auto md:flex md:gap-2 md:px-4 lg:items-center md:justify-between">
         <div className="py-5 md:w-3/5 lg:w-3/5 lg:h-1/2">
-          <h1 className="text-4xl pb-2 font-bold text-primary lg:text-5xl">
+          <h1 className="text-4xl pb-2 font-bold text-primary lg:text-5xl font-header">
             Find
             <span className="text-secondary"> Your Ideal</span> Agencies
           </h1>
@@ -62,8 +62,8 @@ export default function Home() {
       </section>
 
       <section className="w-full border-[1px] border-border bg-light_gray max-w-7xl px-2 sm:px-4 lg:px-12 my-5 rounded-[3rem] md:mx-auto">
-        <div className="py-5">
-          <h2 className="text-xl py-2 font-bold text-center md:text-2xl font-title">
+        <div className="py-5 pb-10">
+          <h2 className="text-[2rem] py-2 font-bold text-center md:text-[2rem] font-title">
             Agencies of the week
           </h2>
           <div className="flex justify-center mt-5 flex-wrap gap-4 md:flex-nowrap md:w-full max-w-5xl mx-auto">
@@ -219,8 +219,8 @@ export default function Home() {
       </section>
 
       <section className="w-full border-[1px] border-border bg-light_gray max-w-7xl px-2 sm:px-4 lg:px-12 my-5 rounded-[3rem] md:mx-auto flex flex-col justify-center items-center">
-        <div className="py-5 w-10/12 md:w-full max-w-5xl">
-          <h2 className="text-xl py-2 font-bold text-center md:text-2xl font-title">
+        <div className="py-5 w-10/12 md:w-full max-w-5xl pb-10">
+          <h2 className="text-[2rem] py-2 font-bold text-center font-title">
             What We can Do For{" "}
             <span className="text-secondary"> You & Your Business</span>
           </h2>
@@ -234,7 +234,7 @@ export default function Home() {
                 <img src="/static/images/telescope.png" alt="telescope" />
               </div>
               <a href="/#">
-                <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 ">
+                <h5 className="mb-2 text-xl font-bold tracking-tight text-gray-900 ">
                   Find you an Agency that fit.
                 </h5>
               </a>
@@ -271,7 +271,7 @@ export default function Home() {
                 <img src="/static/images/goal.png" alt="goal" />
               </div>
               <a href="/#">
-                <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 ">
+                <h5 className="mb-2 text-xl font-bold tracking-tight text-gray-900 ">
                   Hit the spot with Post Your Project
                 </h5>
               </a>
@@ -308,7 +308,7 @@ export default function Home() {
                 <img src="/static/images/compass.png" alt="compass" />
               </div>
               <a href="/#">
-                <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 ">
+                <h5 className="mb-2 text-xl font-bold tracking-tight text-gray-900 ">
                   Direct Access to an Agency
                 </h5>
               </a>
@@ -353,14 +353,14 @@ export default function Home() {
       </section>
 
       <section className="w-full max-w-7xl px-2 sm:px-4 lg:px-8 my-5 md:mx-auto grid">
-        <h2 className="text-xl py-2 font-bold text-center md:text-2xl font-title">
+        <h2 className="text-[2rem] py-2 font-bold text-center font-title">
           Let us join your business journey!
         </h2>
-        <div className="flex items-center gap-1 justify-center">
+        <div className="flex items-center gap-4 justify-center">
           <button className="bg-primary text-white text-xs rounded-lg px-6 py-3 font-semibold mt-2">
             Search Agencies
           </button>
-          <p>Or</p>
+          <p>or</p>
           <button className="text-primary bg-tertiary text-xs rounded-lg px-6 py-3 font-semibold mt-2">
             Post your Project now!
           </button>
@@ -368,8 +368,8 @@ export default function Home() {
       </section>
 
       <section className="w-full border-[1px] border-border bg-light_gray max-w-7xl px-2 sm:px-4 lg:px-12 my-5 rounded-[3rem] md:mx-auto flex flex-col justify-center items-center">
-        <div className="py-5 w-10/12 md:w-full">
-          <h2 className="text-xl py-2 font-bold text-center md:text-2xl font-title">
+        <div className="py-5 w-10/12 md:w-full pb-10">
+          <h2 className="text-[2rem] py-2 font-bold text-center font-title">
             Join the community of agencies
           </h2>
           <p className="text-text text-center">
@@ -381,7 +381,7 @@ export default function Home() {
                 <img src="/static/images/flash.png" alt="flash" />
               </div>
               <a href="/#">
-                <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 ">
+                <h5 className="mb-2 text-xl font-bold tracking-tight text-gray-900 ">
                   Reach your potential customer
                 </h5>
               </a>
@@ -403,7 +403,7 @@ export default function Home() {
                 <img src="/static/images/bell.png" alt="bell" />
               </div>
               <a href="/#">
-                <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 ">
+                <h5 className="mb-2 text-xl font-bold tracking-tight text-gray-900 ">
                   Get notification for suitable project
                 </h5>
               </a>
@@ -425,7 +425,7 @@ export default function Home() {
                 <img src="/static/images/power.png" alt="power" />
               </div>
               <a href="/#">
-                <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 ">
+                <h5 className="mb-2 text-xl font-bold tracking-tight text-gray-900 ">
                   Generate quality leads efficiently
                 </h5>
               </a>
@@ -446,14 +446,14 @@ export default function Home() {
         </div>
       </section>
       <section className="w-full max-w-7xl px-2 sm:px-4 lg:px-8 my-5 md:mx-auto grid">
-        <h2 className="text-xl py-2 font-bold text-center md:text-2xl font-title">
+        <h2 className="text-[2rem] py-2 font-bold text-center font-title">
           Let us grow with your agency business
         </h2>
-        <div className="flex items-center gap-1 justify-center">
+        <div className="flex items-center gap-4 justify-center">
           <button className="bg-primary text-white text-xs rounded-lg px-6 py-3 font-semibold mt-2">
             Search Agencies
           </button>
-          <p>Or</p>
+          <p>or</p>
           <button className="text-primary bg-tertiary text-xs rounded-lg px-6 py-3 font-semibold mt-2">
             Post your Project now!
           </button>
@@ -461,8 +461,8 @@ export default function Home() {
       </section>
 
       <section className="w-full border-[1px] border-border bg-light_gray max-w-7xl px-2 sm:px-4 lg:px-12 my-5 rounded-[3rem] md:mx-auto flex flex-col justify-center items-center">
-        <div className="py-5 w-10/12 md:w-full">
-          <h2 className="text-xl py-2 font-bold text-center md:text-2xl font-title">
+        <div className="py-5 w-10/12 md:w-full pb-10">
+          <h2 className="text-[2rem] py-2 font-bold text-center font-title">
             Join the community of agencies
           </h2>
           <p className="text-text text-center">
@@ -474,7 +474,7 @@ export default function Home() {
                 <img src="/static/images/investigator.png" alt="invest" />
               </div>
               <a href="/#">
-                <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 ">
+                <h5 className="mb-2 text-xl font-bold tracking-tight text-gray-900 ">
                   Reach your potential customer
                 </h5>
               </a>
@@ -490,7 +490,7 @@ export default function Home() {
                 <img src="/static/images/Search-amico.png" alt="Search-amico" />
               </div>
               <a href="/#">
-                <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 ">
+                <h5 className="mb-2 text-xl font-bold tracking-tight text-gray-900 ">
                   Get notification for suitable project
                 </h5>
               </a>
@@ -506,7 +506,7 @@ export default function Home() {
                 <img src="/static/images/investigator.png" alt="invest" />
               </div>
               <a href="/#">
-                <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 ">
+                <h5 className="mb-2 text-xl font-bold tracking-tight text-gray-900 ">
                   Generate quality leads efficiently
                 </h5>
               </a>

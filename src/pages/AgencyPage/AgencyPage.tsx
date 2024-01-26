@@ -44,25 +44,27 @@ export default function AgencyPage() {
         </ul>
       </section>
       <section className="w-full max-w-7xl my-5 md:mx-auto grid md:flex lg:gap-4">
-        <div className="grid gap-3 px-2 md:mt-5 content-baseline lg:w-3/6 lg:ml-6 lg:gap-5">
+        <div className="flex flex-col gap-3 px-2 md:mt-5 content-baseline lg:w-3/6 lg:ml-6 lg:gap-5">
           <h1 className="text-md font-bold hidden md:block text-xl lg:text-2xl">
             [Brand Name Brand Name]
           </h1>
-          <p className="text-text font-semibold text-sm lg:w-1/2">
+          <p className="text-text font-semibold text-sm lg:w-full">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce at
             sapien eu ipsum ornare sollicitudin vel nec nisl. Nullam ut lacus
             porttitor, vestibulum ipsum eu, porta libero. Aliquam erat volutpat.
             Morbi ac tincidunt orci.
           </p>
-          <button className="bg-primary text-white w-4/6 rounded-md text-xs h-[2.125rem] font-semibold lg:w-[12rem] mt-2">
-            Contact
-          </button>
-          <button className="bg-secondary w-4/6 rounded-md text-xs h-[2.125rem] font-semibold lg:w-[12rem]">
-            Open website
-          </button>
-          <button className="bg-tertiary text-primary w-4/6 rounded-md text-xs h-[2.125rem] font-semibold lg:w-[12rem]">
-            Add To Saved
-          </button>
+          <div className="grid gap-2 lg:mt-auto mb-5">
+            <button className="bg-primary text-white w-4/6 rounded-md text-xs h-[2.125rem] font-semibold lg:w-[20rem] lg:h-[3rem] mt-2">
+              Contact
+            </button>
+            <button className="bg-secondary w-4/6 rounded-md text-xs h-[2.125rem] font-semibold lg:w-[20rem] lg:h-[3rem]">
+              Open website
+            </button>
+            <button className="bg-tertiary text-primary w-4/6 rounded-md text-xs h-[2.125rem] font-semibold lg:w-[20rem] lg:h-[3rem]">
+              Add To Saved
+            </button>
+          </div>
         </div>
         <section className="w-full max-w-7xl my-5 md:mx-auto flex lg:w-3/6">
           <div className="grid gap-3 px-2 lg:grid lg:grid-cols-2">
@@ -113,8 +115,8 @@ export default function AgencyPage() {
       </section>
 
       <section className="w-full border-[1px] border-border bg-light_gray max-w-7xl px-2 sm:px-4 lg:px-40 my-5 rounded-[3rem] md:mx-auto flex flex-col justify-center items-center relative">
-        <div className="py-5">
-          <h2 className="text-2xl py-2 font-bold text-center font-title">
+        <div className="py-5 pb-10">
+          <h2 className="text-[2rem] py-2 font-bold text-center font-title">
             Agencies Similar to [Agency Name]
           </h2>
           <div className="flex justify-center mt-5 flex-wrap gap-4 md:flex-nowrap md:w-full max-w-5xl mx-auto">
@@ -275,8 +277,8 @@ export default function AgencyPage() {
         </div>
       </section>
       <section className="w-full border-[1px] border-border max-w-7xl bg-light_gray px-2 sm:px-4 lg:px-40 my-5 rounded-[3rem] md:mx-auto flex flex-col justify-center items-center relative">
-        <div className="py-5 w-full">
-          <h2 className="text-2xl py-2 font-bold text-center font-title">
+        <div className="py-5 w-full pb-10">
+          <h2 className="text-[2rem] py-2 font-bold text-center font-title">
             Services
           </h2>
           <div className="py-5 w-full md:w-11/12 mx-auto grid gap-4 justify-items-center max-w-5xl">
@@ -291,7 +293,7 @@ export default function AgencyPage() {
               <li className="grid w-full items-center relative">
                 <div className="flex w-full items-center md:gap-2 relative border-[1px] border-border rounded-xl bg-tertiary drop-shadow-md">
                   <div className="w-1/3 border-r-2 py-4 my-4">
-                    <h3 className="text-xs md:text-lg lg:text-xl font-bold sm:pl-2 md:pl-5 text-center md:text-left">
+                    <h3 className="text-xs md:text-lg lg:text-2xl font-bold sm:pl-2 md:pl-5 text-center md:text-left">
                       E-commerce
                     </h3>
                   </div>
@@ -308,7 +310,7 @@ export default function AgencyPage() {
                     </ul>
                   </div>
                   <div className="w-1/3 py-4 my-4">
-                    <p className="text-xs md:text-md font-bold pl-2 md:pl-5">
+                    <p className="text-xs md:text-base font-bold pl-2 md:pl-5">
                       $0 - $100
                     </p>
                   </div>
@@ -334,7 +336,7 @@ export default function AgencyPage() {
               <li className="grid w-full items-center relative">
                 <div className="flex w-full items-center md:gap-2 relative border-[1px] border-border rounded-xl bg-primary  drop-shadow-md">
                   <div className="w-1/3 border-r-2 py-4 my-4">
-                    <h3 className="text-xs md:text-lg lg:text-xl font-bold sm:pl-2 md:pl-5 text-white text-center md:text-left">
+                    <h3 className="text-xs md:text-lg lg:text-2xl font-bold sm:pl-2 md:pl-5 text-white text-center md:text-left">
                       E-commerce
                     </h3>
                   </div>
@@ -351,7 +353,7 @@ export default function AgencyPage() {
                     </ul>
                   </div>
                   <div className="w-1/3 py-4 my-4">
-                    <p className="text-xs md:text-md font-bold pl-2 md:pl-5 text-white">
+                    <p className="text-xs md:text-base font-bold pl-2 md:pl-5 text-white">
                       $0 - $100
                     </p>
                   </div>
@@ -377,7 +379,7 @@ export default function AgencyPage() {
               <li className="grid w-full items-center relative">
                 <div className="flex w-full items-center md:gap-2 relative border-[1px] border-border rounded-xl bg-tertiary drop-shadow-md">
                   <div className="w-1/3 border-r-2 py-4 my-4">
-                    <h3 className="text-xs md:text-lg lg:text-xl font-bold sm:pl-2 md:pl-5 text-center md:text-left">
+                    <h3 className="text-xs md:text-lg lg:text-2xl font-bold sm:pl-2 md:pl-5 text-center md:text-left">
                       E-commerce
                     </h3>
                   </div>
@@ -394,7 +396,7 @@ export default function AgencyPage() {
                     </ul>
                   </div>
                   <div className="w-1/3 py-4 my-4">
-                    <p className="text-xs md:text-md font-bold pl-2 md:pl-5">
+                    <p className="text-xs md:text-base font-bold pl-2 md:pl-5">
                       $0 - $100
                     </p>
                   </div>
@@ -422,11 +424,11 @@ export default function AgencyPage() {
         </div>
       </section>
       <section className="w-full border-[1px] border-border max-w-7xl bg-light_gray px-2 sm:px-4 lg:px-40 my-5 rounded-[3rem] md:mx-auto flex flex-col justify-center items-center relative">
-        <div className="py-5 w-11/12 mx-auto grid gap-5 justify-items-center max-w-5xl mx-auto">
-          <h2 className="text-2xl py-2 font-bold text-center font-title">
+        <div className="py-5 w-11/12 mx-auto grid gap-5 justify-items-center max-w-5xl pb-10">
+          <h2 className="text-[2rem] py-2 font-bold text-center font-title">
             Company
           </h2>
-          <div className="bg-tertiary aspect-video w-full rounded-2xl text-xs lg:w-2/3"></div>
+          <div className="bg-tertiary aspect-video w-full rounded-2xl text-xs"></div>
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce at
             sapien eu ipsum ornare sollicitudin vel nec nisl. Nullam ut lacus
@@ -436,8 +438,8 @@ export default function AgencyPage() {
         </div>
       </section>
       <section className="w-full border-[1px] border-border max-w-7xl bg-light_gray px-2 sm:px-4 lg:px-40 my-5 rounded-[3rem] md:mx-auto flex flex-col justify-center items-center relative">
-        <div className="py-5 w-10/12 md:w-full">
-          <h2 className="text-2xl py-2 font-bold text-center font-title">
+        <div className="py-5 w-10/12 md:w-full pb-10">
+          <h2 className="text-[2rem] py-2 font-bold text-center font-title">
             Brand Name's Agency Projects
           </h2>
           <div className="flex flex-wrap mt-4 gap-4 md:flex-nowrap max-w-5xl mx-auto">
@@ -513,8 +515,8 @@ export default function AgencyPage() {
         </div>
       </section>
       <section className="w-full border-[1px] border-border max-w-7xl bg-light_gray px-2 sm:px-4 lg:px-40 my-5 rounded-[3rem] md:mx-auto flex flex-col justify-center items-center relative">
-        <div className="py-5 w-10/12 md:w-full">
-          <h2 className="text-2xl py-2 font-bold text-center font-title">
+        <div className="py-5 w-10/12 md:w-full pb-10">
+          <h2 className="text-[2rem] py-2 font-bold text-center font-title">
             Portfolio
           </h2>
 
@@ -591,8 +593,8 @@ export default function AgencyPage() {
         </div>
       </section>
       <section className="w-full border-[1px] border-border max-w-7xl px-2 sm:px-4 lg:px-40 my-5 rounded-[3rem] md:mx-auto flex flex-col justify-center items-center relative">
-        <div className="py-5 w-10/12 md:w-full">
-          <h2 className="text-2xl py-2 font-bold text-center font-title">
+        <div className="py-5 w-10/12 md:w-full pb-10">
+          <h2 className="text-[2rem] py-2 font-bold text-center font-title">
             Awards
           </h2>
 
@@ -670,8 +672,8 @@ export default function AgencyPage() {
       </section>
 
       <section className="w-full border-[1px] border-border bg-light_gray max-w-7xl px-2 sm:px-4 lg:px-40 my-5 rounded-[3rem] md:mx-auto flex flex-col justify-center items-center relative">
-        <div className="py-5 w-10/12 md:w-full max-w-5xl mx-auto">
-          <h2 className="text-2xl py-2 font-bold text-center font-title">
+        <div className="py-5 w-10/12 md:w-full max-w-5xl mx-auto pb-10">
+          <h2 className="text-[2rem] py-2 font-bold text-center font-title">
             Reviews & Feedback
           </h2>
           <p className="text-text text-center">
@@ -759,18 +761,12 @@ export default function AgencyPage() {
         </div>
       </section>
       <section className="w-full border-[1px] border-border bg-light_gray max-w-7xl px-2 sm:px-4 lg:px-40 my-5 rounded-[3rem] md:mx-auto flex flex-col justify-center items-center relative">
-        <div className="py-5 grid w-11/12 gap-5 md:flex">
-          <div className="grid gap-3 aligns-center md:w-1/2 content-center justify-center">
-            <h2 className="text-2xl py-2 font-bold text-center font-title">
+        <div className="py-5 grid w-11/12 gap-5 md:flex pb-10">
+          <div className="flex flex-col gap-3 items-center md:w-1/2 content-center justify-center lg:justify-start lg:items-start">
+            <h2 className="text-[2rem] font-bold text-center font-title">
               Contacts
             </h2>
-            <button className="bg-primary text-white rounded-md text-xs h-[2.125rem] font-semibold lg:w-[12rem] mt-2 mx-auto w-full">
-              Contact
-            </button>
-            <button className="bg-secondary rounded-md text-xs h-[2.125rem] font-semibold lg:w-[12rem] mx-auto w-full">
-              Open website
-            </button>
-            <div className="border-2 rounded-lg">
+            <div className="border-2 rounded-lg w-full lg:w-[20rem]">
               <div className="text-primary text-sm bg-gray-300 rounded-t-md py-3 px-4 font-bold">
                 Addresses
               </div>
@@ -778,7 +774,14 @@ export default function AgencyPage() {
                 123 ABC address, Street, City abc
               </div>
             </div>
-            <ul className="flex gap-3 items-center">
+            <button className="bg-primary text-white rounded-md text-xs h-[2.125rem] font-semibold lg:w-[20rem] lg:h-[3rem] mt-5 w-full">
+              Contact
+            </button>
+            <button className="bg-secondary rounded-md text-xs h-[2.125rem] font-semibold lg:w-[20rem] lg:h-[3rem] w-full">
+              Open website
+            </button>
+
+            <ul className="flex gap-3 items-center w-full">
               <li className="bg-gray-300 w-1/12 aspect-square rounded-full"></li>
               <li className="bg-gray-300 w-1/12 aspect-square rounded-full"></li>
               <li className="bg-gray-300 w-1/12 aspect-square rounded-full"></li>
@@ -787,7 +790,7 @@ export default function AgencyPage() {
               <li className="bg-gray-300 w-1/12 aspect-square rounded-full"></li>
             </ul>
           </div>
-          <div className="grid aspect-square bg-tertiary rounded-xl md:w-1/2"></div>
+          <div className="grid aspect-square bg-tertiary rounded-xl md:w-1/2  lg:aspect-video"></div>
         </div>
       </section>
     </main>

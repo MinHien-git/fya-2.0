@@ -28,10 +28,10 @@ export default function Footer() {
             </h5>
           </div>
           <hr className="my-8 bg-primary lg:w-[2px] lg:h-[20rem] opacity-35" />
-          <div className="flex flex-wrap gap-3 justify-between lg:w-1/2 md:ml-12">
+          <div className="flex flex-wrap gap-1 justify-between lg:w-1/2 md:ml-12">
             <div className="w-2/5 md:w-1/5 lg:pl-5">
               <p className="font-semibold pb-2">Company</p>
-              <ul>
+              <ul className="grid gap-2">
                 <li className="text-text">About</li>
                 <li className="text-text">Contact</li>
               </ul>
@@ -39,26 +39,26 @@ export default function Footer() {
 
             <div className="w-2/5 md:w-1/5 lg:pl-5">
               <p className="font-semibold pb-2">Brands</p>
-              <ul>
-                <li className="text-text">Post Project</li>
-                <li className="text-text">Find Agencies</li>
+              <ul className="grid gap-2">
+                <li className="text-text text-nowrap">Post Project</li>
+                <li className="text-text text-nowrap">Find Agencies</li>
               </ul>
             </div>
 
             <div className="w-2/5 md:w-1/5 lg:pl-5">
               <p className="font-semibold pb-2">Agencies</p>
-              <ul>
+              <ul className="grid gap-2">
                 <li className="text-text">Get Listed</li>
-                <li className="text-text">Agency Page</li>
+                <li className="text-text text-nowrap">Agency Page</li>
                 <li className="text-text">FyaPro</li>
-                <li className="text-text">Learn More</li>
+                <li className="text-text text-nowrap">Learn More</li>
               </ul>
             </div>
 
             <div className="w-2/5 md:w-1/5 lg:pl-5">
               <p className="font-semibold pb-2">Careers</p>
-              <ul>
-                <li className="text-text">Jobs At Fya</li>
+              <ul className="grid gap-2">
+                <li className="text-text text-nowrap">Jobs At Fya</li>
               </ul>
             </div>
           </div>

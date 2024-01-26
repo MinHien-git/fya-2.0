@@ -24,6 +24,7 @@ module.exports = {
       },
       fontFamily: {
         title: ["Montserrat"],
+        header: ["Poppins"],
         sans: ["Inter", ...defaultTheme.fontFamily.sans],
       },
     },
