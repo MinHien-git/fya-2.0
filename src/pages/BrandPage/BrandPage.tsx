@@ -78,20 +78,20 @@ export default function BrandPage() {
         </section>
       </section>
 
-      <section className="w-full border-2 max-w-7xl px-2 sm:px-4 lg:px-40 my-5 rounded-xl md:mx-auto flex flex-col justify-center items-center relative">
+      <section className="w-full border-[1px] border-border bg-light_gray max-w-7xl px-2 sm:px-4 lg:px-40 my-5 rounded-[3rem] md:mx-auto flex flex-col justify-center items-center relative">
         <div className="py-5">
-          <h2 className="text-2xl py-2 font-bold text-center">
+          <h2 className="text-2xl py-2 font-bold text-center font-title">
             Agencies working with [Brand Name]
           </h2>
           <div className="flex justify-center mt-5 flex-wrap gap-4 md:flex-nowrap md:w-full">
-            <div className="font-sans w-10/12 flex border-2 rounded-xl ">
+            <div className="font-sans w-10/12 flex border-2 rounded-2xl sm:w-2/5 bg-white">
               <div className="card mx-auto flex-col py-4 flex items-center gap-2">
                 <img
-                  className="w-28 mx-auto rounded-full border-8 border-white mb-2"
-                  src="https://avatars.githubusercontent.com/u/67946056?v=4"
+                  className="w-20 mx-auto rounded-full border-8 border-white"
+                  src="/static/images/profile.png"
                   alt=""
                 />
-                <div className="flex flex-col py-5 border-2 rounded-md w-5/6 justify-center ">
+                <div className="flex flex-col py-2 border-2 rounded-md w-5/6 justify-center ">
                   <h5 className="text-center text-md font-medium">
                     Agency Name
                   </h5>
@@ -113,17 +113,7 @@ export default function BrandPage() {
                     <li className="hidden lg:block">(0 review)</li>
                   </ul>
                 </div>
-                <ul className="text-center mt-2 font-light text-sm gap-1 flex flex-wrap w-5/6">
-                  <li className="text-xs font-bold bg-tertiary text-primary px-3 py-1 rounded-md">
-                    Digital Marketing
-                  </li>
-                  <li className="text-xs font-bold bg-tertiary text-primary px-3 py-1 rounded-md">
-                    Data Analyzing
-                  </li>
-                  <li className="text-xs font-bold bg-tertiary text-primary px-3 py-1 rounded-md">
-                    Social Media Advertising
-                  </li>
-                </ul>
+
                 <div className="border-2 rounded-md font-normal text-xs w-5/6 mt-2 py-3 px-2 text-text md:max-h-[5rem] overflow-hidden">
                   <p>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit.
@@ -133,25 +123,6 @@ export default function BrandPage() {
                   </p>
                 </div>
 
-                <div className="flex w-5/6 gap-1">
-                  <div className="w-1/2 bg-slate-200 text-xs text-center py-2 rounded-md">
-                    ABC City, Vietnam
-                  </div>
-                  <div className="w-1/2 bg-slate-200 text-xs text-center py-2 rounded-md">
-                    SE Asia
-                  </div>
-                </div>
-                <div className="w-5/6 bg-slate-200 text-xs text-center py-2 rounded-md">
-                  From $9999/project
-                </div>
-                <div className="flex w-5/6 gap-1">
-                  <div className="w-1/2 bg-slate-200 text-xs text-center py-2 rounded-md">
-                    ABC City, Vietnam
-                  </div>
-                  <div className="w-1/2 bg-slate-200 text-xs text-center py-2 rounded-md">
-                    SE Asia
-                  </div>
-                </div>
                 <div className="flex w-5/6 gap-1 my-2">
                   <button className="bg-secondary w-5/6 font-semibold rounded-md text-xs">
                     Contact
@@ -160,14 +131,14 @@ export default function BrandPage() {
                 </div>
               </div>
             </div>
-            <div className="font-sans w-10/12 flex border-2 rounded-xl ">
+            <div className="font-sans w-10/12 flex border-2 rounded-2xl sm:w-2/5 bg-white">
               <div className="card mx-auto flex-col py-4 flex items-center gap-2">
                 <img
-                  className="w-28 mx-auto rounded-full border-8 border-white mb-2"
-                  src="https://avatars.githubusercontent.com/u/67946056?v=4"
+                  className="w-20 mx-auto rounded-full border-8 border-white"
+                  src="/static/images/profile.png"
                   alt=""
                 />
-                <div className="flex flex-col py-5 border-2 rounded-md w-5/6 justify-center ">
+                <div className="flex flex-col py-2 border-2 rounded-md w-5/6 justify-center ">
                   <h5 className="text-center text-md font-medium">
                     Agency Name
                   </h5>
@@ -189,17 +160,7 @@ export default function BrandPage() {
                     <li className="hidden lg:block">(0 review)</li>
                   </ul>
                 </div>
-                <ul className="text-center mt-2 font-light text-sm gap-1 flex flex-wrap w-5/6">
-                  <li className="text-xs font-bold bg-tertiary text-primary px-3 py-1 rounded-md">
-                    Digital Marketing
-                  </li>
-                  <li className="text-xs font-bold bg-tertiary text-primary px-3 py-1 rounded-md">
-                    Data Analyzing
-                  </li>
-                  <li className="text-xs font-bold bg-tertiary text-primary px-3 py-1 rounded-md">
-                    Social Media Advertising
-                  </li>
-                </ul>
+
                 <div className="border-2 rounded-md font-normal text-xs w-5/6 mt-2 py-3 px-2 text-text md:max-h-[5rem] overflow-hidden">
                   <p>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit.
@@ -209,25 +170,6 @@ export default function BrandPage() {
                   </p>
                 </div>
 
-                <div className="flex w-5/6 gap-1">
-                  <div className="w-1/2 bg-slate-200 text-xs text-center py-2 rounded-md">
-                    ABC City, Vietnam
-                  </div>
-                  <div className="w-1/2 bg-slate-200 text-xs text-center py-2 rounded-md">
-                    SE Asia
-                  </div>
-                </div>
-                <div className="w-5/6 bg-slate-200 text-xs text-center py-2 rounded-md">
-                  From $9999/project
-                </div>
-                <div className="flex w-5/6 gap-1">
-                  <div className="w-1/2 bg-slate-200 text-xs text-center py-2 rounded-md">
-                    ABC City, Vietnam
-                  </div>
-                  <div className="w-1/2 bg-slate-200 text-xs text-center py-2 rounded-md">
-                    SE Asia
-                  </div>
-                </div>
                 <div className="flex w-5/6 gap-1 my-2">
                   <button className="bg-secondary w-5/6 font-semibold rounded-md text-xs">
                     Contact
@@ -236,14 +178,14 @@ export default function BrandPage() {
                 </div>
               </div>
             </div>
-            <div className="font-sans w-10/12 flex border-2 rounded-xl ">
+            <div className="font-sans w-10/12 flex border-2 rounded-2xl sm:w-2/5 bg-white">
               <div className="card mx-auto flex-col py-4 flex items-center gap-2">
                 <img
-                  className="w-28 mx-auto rounded-full border-8 border-white mb-2"
-                  src="https://avatars.githubusercontent.com/u/67946056?v=4"
+                  className="w-20 mx-auto rounded-full border-8 border-white"
+                  src="/static/images/profile.png"
                   alt=""
                 />
-                <div className="flex flex-col py-5 border-2 rounded-md w-5/6 justify-center ">
+                <div className="flex flex-col py-2 border-2 rounded-md w-5/6 justify-center ">
                   <h5 className="text-center text-md font-medium">
                     Agency Name
                   </h5>
@@ -265,17 +207,7 @@ export default function BrandPage() {
                     <li className="hidden lg:block">(0 review)</li>
                   </ul>
                 </div>
-                <ul className="text-center mt-2 font-light text-sm gap-1 flex flex-wrap w-5/6">
-                  <li className="text-xs font-bold bg-tertiary text-primary px-3 py-1 rounded-md">
-                    Digital Marketing
-                  </li>
-                  <li className="text-xs font-bold bg-tertiary text-primary px-3 py-1 rounded-md">
-                    Data Analyzing
-                  </li>
-                  <li className="text-xs font-bold bg-tertiary text-primary px-3 py-1 rounded-md">
-                    Social Media Advertising
-                  </li>
-                </ul>
+
                 <div className="border-2 rounded-md font-normal text-xs w-5/6 mt-2 py-3 px-2 text-text md:max-h-[5rem] overflow-hidden">
                   <p>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit.
@@ -285,25 +217,6 @@ export default function BrandPage() {
                   </p>
                 </div>
 
-                <div className="flex w-5/6 gap-1">
-                  <div className="w-1/2 bg-slate-200 text-xs text-center py-2 rounded-md">
-                    ABC City, Vietnam
-                  </div>
-                  <div className="w-1/2 bg-slate-200 text-xs text-center py-2 rounded-md">
-                    SE Asia
-                  </div>
-                </div>
-                <div className="w-5/6 bg-slate-200 text-xs text-center py-2 rounded-md">
-                  From $9999/project
-                </div>
-                <div className="flex w-5/6 gap-1">
-                  <div className="w-1/2 bg-slate-200 text-xs text-center py-2 rounded-md">
-                    ABC City, Vietnam
-                  </div>
-                  <div className="w-1/2 bg-slate-200 text-xs text-center py-2 rounded-md">
-                    SE Asia
-                  </div>
-                </div>
                 <div className="flex w-5/6 gap-1 my-2">
                   <button className="bg-secondary w-5/6 font-semibold rounded-md text-xs">
                     Contact
@@ -328,13 +241,13 @@ export default function BrandPage() {
         </div>
       </section>
 
-      <section className="w-full border-2 max-w-7xl px-2 sm:px-4 lg:px-40 my-5 rounded-xl md:mx-auto flex flex-col justify-center items-center relative">
+      <section className="w-full border-[1px] border-border bg-light_gray max-w-7xl px-2 sm:px-4 lg:px-40 my-5 rounded-[3rem] md:mx-auto flex flex-col justify-center items-center relative">
         <div className="py-5 w-10/12 md:w-full">
-          <h2 className="text-2xl py-2 font-bold text-center">
+          <h2 className="text-2xl py-2 font-bold text-center font-title">
             Brand Name's Agency projects
           </h2>
           <div className="flex flex-wrap mt-4 gap-4 md:flex-nowrap">
-            <div className="flex flex-col h-auto sm:h-[32rem] md:h-auto w-full p-4border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 md:w-1/3">
+            <div className="flex flex-col h-auto sm:h-[32rem] md:h-auto w-full p-4 border border-gray-200 rounded-2xl shadow dark:bg-gray-800 dark:border-gray-700 md:w-1/3">
               <div className="w-full bg-tertiary aspect-[4/3] self-center justify-self-center rounded-md mb-4"></div>
               <a href="/#">
                 <h5 className="mb-2 text-lg font-bold tracking-tight text-gray-900 dark:text-white">
@@ -353,7 +266,7 @@ export default function BrandPage() {
               </ul>
             </div>
 
-            <div className="flex flex-col h-auto sm:h-[32rem] md:h-auto w-full p-4 border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 md:w-1/3">
+            <div className="flex flex-col h-auto sm:h-[32rem] md:h-auto w-full p-4 border border-gray-200 rounded-2xl shadow dark:bg-gray-800 dark:border-gray-700 md:w-1/3">
               <div className="w-full bg-tertiary aspect-[4/3] self-center justify-self-center rounded-md mb-4"></div>
               <a href="/#">
                 <h5 className="mb-2 text-lg font-bold tracking-tight text-gray-900 dark:text-white">
@@ -372,7 +285,7 @@ export default function BrandPage() {
               </ul>
             </div>
 
-            <div className="flex flex-col h-auto sm:h-[32rem] md:h-auto w-full p-4 border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 md:w-1/3">
+            <div className="flex flex-col h-auto sm:h-[32rem] md:h-auto w-full p-4 border border-gray-200 rounded-2xl shadow dark:bg-gray-800 dark:border-gray-700 md:w-1/3">
               <div className="w-full bg-tertiary aspect-[4/3] self-center justify-self-center rounded-md mb-4"></div>
               <a href="/#">
                 <h5 className="mb-2 text-lg font-bold tracking-tight text-gray-900 dark:text-white">
@@ -406,12 +319,14 @@ export default function BrandPage() {
         </div>
       </section>
 
-      <section className="w-full border-2 max-w-7xl px-2 sm:px-4 lg:px-40 my-5 rounded-xl md:mx-auto flex flex-col justify-center items-center relative">
+      <section className="w-full border-[1px] border-border bg-light_gray max-w-7xl px-2 sm:px-4 lg:px-40 my-5 rounded-[3rem] md:mx-auto flex flex-col justify-center items-center relative">
         <div className="py-5 w-10/12 md:w-full">
-          <h2 className="text-2xl py-2 font-bold text-center">Awards</h2>
+          <h2 className="text-2xl py-2 font-bold text-center font-title">
+            Awards
+          </h2>
 
           <div className="flex flex-wrap mt-4 gap-4 md:flex-nowrap">
-            <div className="flex flex-col h-auto sm:h-[32rem] md:h-auto w-full p-4 border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 md:w-1/3">
+            <div className="flex flex-col h-auto sm:h-[32rem] md:h-auto w-full p-4 border border-gray-200 rounded-2xl shadow dark:bg-gray-800 dark:border-gray-700 md:w-1/3">
               <div className="w-full bg-tertiary aspect-[4/3] self-center justify-self-center rounded-md mb-4"></div>
               <a href="/#">
                 <h5 className="mb-2 text-lg font-bold tracking-tight text-gray-900 dark:text-white">
@@ -430,7 +345,7 @@ export default function BrandPage() {
               </ul>
             </div>
 
-            <div className="flex flex-col h-auto sm:h-[32rem] md:h-auto w-full p-4 border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 md:w-1/3">
+            <div className="flex flex-col h-auto sm:h-[32rem] md:h-auto w-full p-4 border border-gray-200 rounded-2xl shadow dark:bg-gray-800 dark:border-gray-700 md:w-1/3">
               <div className="w-full bg-tertiary aspect-[4/3] self-center justify-self-center rounded-md mb-4"></div>
               <a href="/#">
                 <h5 className="mb-2 text-lg font-bold tracking-tight text-gray-900 dark:text-white">
@@ -449,7 +364,7 @@ export default function BrandPage() {
               </ul>
             </div>
 
-            <div className="flex flex-col h-auto sm:h-[32rem] md:h-auto w-full p-4 border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 md:w-1/3">
+            <div className="flex flex-col h-auto sm:h-[32rem] md:h-auto w-full p-4 border border-gray-200 rounded-2xl shadow dark:bg-gray-800 dark:border-gray-700 md:w-1/3">
               <div className="w-full bg-tertiary aspect-[4/3] self-center justify-self-center rounded-md mb-4"></div>
               <a href="/#">
                 <h5 className="mb-2 text-lg font-bold tracking-tight text-gray-900 dark:text-white">
@@ -483,16 +398,16 @@ export default function BrandPage() {
         </div>
       </section>
 
-      <section className="w-full border-2 max-w-7xl px-2 sm:px-4 lg:px-40 my-5 rounded-xl md:mx-auto flex flex-col justify-center items-center relative">
+      <section className="w-full border-[1px] border-border bg-light_gray max-w-7xl px-2 sm:px-4 lg:px-40 my-5 rounded-[3rem] md:mx-auto flex flex-col justify-center items-center relative">
         <div className="py-5 w-10/12 md:w-full">
-          <h2 className="text-2xl py-2 font-bold text-center">
+          <h2 className="text-2xl py-2 font-bold text-center font-title">
             Reviews & Feedback
           </h2>
           <p className="text-text text-center">
             if you are a small agencies and wanna grow your business larger?
           </p>
           <div className="flex flex-wrap mt-4 gap-4 md:flex-nowrap">
-            <div className="flex flex-col h-auto sm:h-[32rem] md:h-auto w-full p-4 border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 md:w-1/3">
+            <div className="flex flex-col h-auto sm:h-[32rem] md:h-auto w-full p-4 border border-gray-200 rounded-2xl shadow dark:bg-gray-800 dark:border-gray-700 md:w-1/3">
               <div className="w-full bg-tertiary aspect-[4/3] self-center justify-self-center rounded-md mb-4"></div>
               <ul className="flex flex-wrap gap-2 items-center">
                 <li className="bg-secondary w-[0.75rem] aspect-square rounded-xl"></li>
@@ -514,7 +429,7 @@ export default function BrandPage() {
               </p>
             </div>
 
-            <div className="flex flex-col h-auto sm:h-[32rem] md:h-auto w-full p-4 border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 md:w-1/3">
+            <div className="flex flex-col h-auto sm:h-[32rem] md:h-auto w-full p-4 border border-gray-200 rounded-2xl shadow dark:bg-gray-800 dark:border-gray-700 md:w-1/3">
               <div className="w-full bg-tertiary aspect-[4/3] self-center justify-self-center rounded-md mb-4"></div>
               <ul className="flex flex-wrap gap-2 items-center">
                 <li className="bg-secondary w-[0.75rem] aspect-square rounded-xl"></li>
@@ -536,7 +451,7 @@ export default function BrandPage() {
               </p>
             </div>
 
-            <div className="flex flex-col h-auto sm:h-[32rem] md:h-auto w-full p-4 border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 md:w-1/3">
+            <div className="flex flex-col h-auto sm:h-[32rem] md:h-auto w-full p-4 border border-gray-200 rounded-2xl shadow dark:bg-gray-800 dark:border-gray-700 md:w-1/3">
               <div className="w-full bg-tertiary aspect-[4/3] self-center justify-self-center rounded-md mb-4"></div>
               <ul className="flex flex-wrap gap-2 items-center">
                 <li className="bg-secondary w-[0.75rem] aspect-square rounded-xl"></li>
