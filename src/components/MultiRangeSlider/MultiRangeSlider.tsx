@@ -39,7 +39,7 @@ export default function MultiRangeSlider() {
   }, [maxVal, getPercent]);
 
   return (
-    <div className="border-primary slider pt-5 pb-8 border-2 flex justify-center rounded-xl px-5 bg-white lg:pt-0 lg:pb-1">
+    <div className="border-primary slider pt-5 pb-2 border-2 flex justify-center rounded-xl px-5 bg-white lg:pt-0 lg:pb-1 h-[3rem] lg:h-[6.5rem]">
       <div className="slider pt-5 pb-8 flex justify-center relative">
         <label htmlFor="left" className="hidden">
           left
@@ -79,7 +79,7 @@ export default function MultiRangeSlider() {
         />
         <div className="slider__track" />
         <div className="slider__range" ref={range} />
-        <ul className="flex w-full absolute justify-between pt-12">
+        <ul className="flex w-full absolute justify-between pt-6 md:pt-12">
           <li className="font-bold">$0</li>
           <li className="w-[2px] h-[8px] bg-gray-400 mt-2"></li>
           <li className="w-[2px] h-[8px] bg-gray-400 mt-2"></li>
