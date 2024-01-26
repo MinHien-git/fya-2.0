@@ -27,7 +27,7 @@ export default function Footer() {
               2023 © Fya - All rights reserved - Terms of Use - Privacy Policy
             </h5>
           </div>
-          <hr className="my-8 bg-gray-500 lg:w-[2px] lg:h-[12rem]" />
+          <hr className="my-8 bg-primary lg:w-[2px] lg:h-[20rem] opacity-35" />
           <div className="flex flex-wrap gap-3 justify-between lg:w-1/2 md:ml-12">
             <div className="w-2/5 md:w-1/5 lg:pl-5">
               <p className="font-semibold pb-2">Company</p>
