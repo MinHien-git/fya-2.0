@@ -114,7 +114,7 @@ export default function AgencyPage() {
 
       <section className="w-full border-[1px] border-border bg-light_gray max-w-7xl px-2 sm:px-4 lg:px-40 my-5 rounded-[3rem] md:mx-auto flex flex-col justify-center items-center relative">
         <div className="py-5">
-          <h2 className="text-2xl py-2 font-bold text-center">
+          <h2 className="text-2xl py-2 font-bold text-center font-title">
             Agencies Similar to [Agency Name]
           </h2>
           <div className="flex justify-center mt-5 flex-wrap gap-4 md:flex-nowrap md:w-full max-w-5xl mx-auto">
@@ -276,7 +276,9 @@ export default function AgencyPage() {
       </section>
       <section className="w-full border-[1px] border-border max-w-7xl bg-light_gray px-2 sm:px-4 lg:px-40 my-5 rounded-[3rem] md:mx-auto flex flex-col justify-center items-center relative">
         <div className="py-5 w-full">
-          <h2 className="text-2xl py-2 font-bold text-center">Services</h2>
+          <h2 className="text-2xl py-2 font-bold text-center font-title">
+            Services
+          </h2>
           <div className="py-5 w-full md:w-11/12 mx-auto grid gap-4 justify-items-center max-w-5xl">
             <ul className="flex w-full">
               <li className="w-1/3 text-xs md:ml-4 text-text">
@@ -421,7 +423,9 @@ export default function AgencyPage() {
       </section>
       <section className="w-full border-[1px] border-border max-w-7xl bg-light_gray px-2 sm:px-4 lg:px-40 my-5 rounded-[3rem] md:mx-auto flex flex-col justify-center items-center relative">
         <div className="py-5 w-11/12 mx-auto grid gap-5 justify-items-center max-w-5xl mx-auto">
-          <h2 className="text-2xl py-2 font-bold text-center">Company</h2>
+          <h2 className="text-2xl py-2 font-bold text-center font-title">
+            Company
+          </h2>
           <div className="bg-tertiary aspect-video w-full rounded-2xl text-xs lg:w-2/3"></div>
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce at
@@ -433,7 +437,7 @@ export default function AgencyPage() {
       </section>
       <section className="w-full border-[1px] border-border max-w-7xl bg-light_gray px-2 sm:px-4 lg:px-40 my-5 rounded-[3rem] md:mx-auto flex flex-col justify-center items-center relative">
         <div className="py-5 w-10/12 md:w-full">
-          <h2 className="text-2xl py-2 font-bold text-center">
+          <h2 className="text-2xl py-2 font-bold text-center font-title">
             Brand Name's Agency Projects
           </h2>
           <div className="flex flex-wrap mt-4 gap-4 md:flex-nowrap max-w-5xl mx-auto">
@@ -510,7 +514,9 @@ export default function AgencyPage() {
       </section>
       <section className="w-full border-[1px] border-border max-w-7xl bg-light_gray px-2 sm:px-4 lg:px-40 my-5 rounded-[3rem] md:mx-auto flex flex-col justify-center items-center relative">
         <div className="py-5 w-10/12 md:w-full">
-          <h2 className="text-2xl py-2 font-bold text-center">Portfolio</h2>
+          <h2 className="text-2xl py-2 font-bold text-center font-title">
+            Portfolio
+          </h2>
 
           <div className="flex flex-wrap mt-4 gap-4 md:flex-nowrap max-w-5xl mx-auto">
             <div className="flex flex-col h-auto sm:h-[32rem] md:h-auto w-full p-4 border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 md:w-1/3 drop-shadow-md">
@@ -586,7 +592,9 @@ export default function AgencyPage() {
       </section>
       <section className="w-full border-[1px] border-border max-w-7xl px-2 sm:px-4 lg:px-40 my-5 rounded-[3rem] md:mx-auto flex flex-col justify-center items-center relative">
         <div className="py-5 w-10/12 md:w-full">
-          <h2 className="text-2xl py-2 font-bold text-center">Awards</h2>
+          <h2 className="text-2xl py-2 font-bold text-center font-title">
+            Awards
+          </h2>
 
           <div className="flex flex-wrap mt-4 gap-4 md:flex-nowrap max-w-5xl mx-auto">
             <div className="flex flex-col h-auto sm:h-[32rem] md:h-auto w-full p-4 border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 md:w-1/3 drop-shadow-md">
@@ -663,7 +671,7 @@ export default function AgencyPage() {
 
       <section className="w-full border-[1px] border-border bg-light_gray max-w-7xl px-2 sm:px-4 lg:px-40 my-5 rounded-[3rem] md:mx-auto flex flex-col justify-center items-center relative">
         <div className="py-5 w-10/12 md:w-full max-w-5xl mx-auto">
-          <h2 className="text-2xl py-2 font-bold text-center">
+          <h2 className="text-2xl py-2 font-bold text-center font-title">
             Reviews & Feedback
           </h2>
           <p className="text-text text-center">
@@ -753,7 +761,9 @@ export default function AgencyPage() {
       <section className="w-full border-[1px] border-border bg-light_gray max-w-7xl px-2 sm:px-4 lg:px-40 my-5 rounded-[3rem] md:mx-auto flex flex-col justify-center items-center relative">
         <div className="py-5 grid w-11/12 gap-5 md:flex">
           <div className="grid gap-3 aligns-center md:w-1/2 content-center justify-center">
-            <h2 className="text-2xl py-2 font-bold text-center">Contacts</h2>
+            <h2 className="text-2xl py-2 font-bold text-center font-title">
+              Contacts
+            </h2>
             <button className="bg-primary text-white rounded-md text-xs h-[2.125rem] font-semibold lg:w-[12rem] mt-2 mx-auto w-full">
               Contact
             </button>
