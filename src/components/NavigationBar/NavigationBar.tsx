@@ -9,8 +9,8 @@ export default function NavigationBar() {
     <header className="font-sans w-full">
       <nav className="z-0 relative">
         <div className="relative z-10 shadow">
-          <div className="max-w-7xl mx-auto px-2 sm:px-4 lg:px-8">
-            <div className="relative flex items-center justify-between h-16 gap-4">
+          <div className="max-w-7xl mx-auto px-2 sm:px-0 lg:px-0">
+            <div className="relative flex items-center justify-between h-16 gap-8">
               <div className="flex items-center px-2 lg:px-0">
                 <a className="flex-shrink-0 flex " href="/#">
                   <span className="block lg:hidden font-bold text-center">
@@ -29,7 +29,7 @@ export default function NavigationBar() {
                   </span>
                 </a>
               </div>
-              <div className="flex-1 flex justify-center lg:ml-6 lg:justify-end">
+              <div className="flex-1 flex justify-center lg:ml-6 lg:w-[10rem]">
                 <div className="max-w-lg w-full lg:max-w-xs">
                   <label htmlFor="search" className="sr-only">
                     Search{" "}
@@ -63,29 +63,29 @@ export default function NavigationBar() {
                 </div>
               </div>
               <div className="hidden lg:block lg:ml-2">
-                <div className="flex">
+                <div className="flex gap-5">
                   <a
                     href="/#"
-                    className="ml-4 px-3 py-2 rounded-md text-sm leading-5 font-medium text-gray-800 font-semibold hover:bg-yellow-500  hover:text-white transition duration-150 ease-in-out cursor-pointer focus:outline-none focus:text-white focus:bg-gray-700 "
+                    className="ml-4 px-3 py-2 rounded-md text-sm leading-5 text-gray-800 font-semibold hover:bg-yellow-500  hover:text-white transition duration-150 ease-in-out cursor-pointer focus:outline-none focus:text-white focus:bg-gray-700 "
                   >
                     About{" "}
                   </a>
                   <a
                     href="/#"
-                    className="ml-4 px-3 py-2 rounded-md text-sm leading-5 font-medium text-gray-800 font-semibold hover:bg-yellow-500 hover:text-white transition duration-150 ease-in-out cursor-pointer focus:outline-none focus:text-white focus:bg-gray-700 "
+                    className="ml-4 px-3 py-2 rounded-md text-sm leading-5 text-gray-800 font-semibold hover:bg-yellow-500 hover:text-white transition duration-150 ease-in-out cursor-pointer focus:outline-none focus:text-white focus:bg-gray-700 "
                   >
                     Find Agencies{" "}
                   </a>
                   <a
                     href="/#"
-                    className="ml-4 px-3 py-2 rounded-md text-sm leading-5 font-medium text-gray-800 font-semibold hover:bg-yellow-500 hover:text-white transition duration-150 ease-in-out cursor-pointer focus:outline-none focus:text-white focus:bg-gray-700 "
+                    className="ml-4 px-3 py-2 rounded-md text-sm leading-5 text-gray-800 font-semibold hover:bg-yellow-500 hover:text-white transition duration-150 ease-in-out cursor-pointer focus:outline-none focus:text-white focus:bg-gray-700 "
                   >
                     Get Customers{" "}
                   </a>
                 </div>
               </div>
               <button
-                className="middle none center rounded-md py-2 px-10 font-sans text-xs font-bold text-white shadow-md shadow-primary-500/20 transition-all hover:shadow-lg hover:shadow-pink-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none bg-primary hidden lg:inline-block"
+                className="middle none center rounded-md py-2 px-10 font-sans text-xs font-bold text-white shadow-md shadow-primary-500/20 transition-all hover:shadow-lg hover:shadow-pink-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none bg-primary hidden lg:inline-block mr-2"
                 data-ripple-light="true"
               >
                 Post your Project

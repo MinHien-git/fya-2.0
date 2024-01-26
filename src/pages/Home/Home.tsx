@@ -96,17 +96,7 @@ export default function Home() {
                     <li className="hidden lg:block">(0 review)</li>
                   </ul>
                 </div>
-                <ul className="text-center mt-2 font-light text-sm gap-1 flex flex-wrap w-5/6">
-                  <li className="text-xs font-bold bg-tertiary text-primary px-3 py-1 rounded-md">
-                    Digital Marketing
-                  </li>
-                  <li className="text-xs font-bold bg-tertiary text-primary px-3 py-1 rounded-md">
-                    Data Analyzing
-                  </li>
-                  <li className="text-xs font-bold bg-tertiary text-primary px-3 py-1 rounded-md">
-                    Social Media Advertising
-                  </li>
-                </ul>
+
                 <div className="border-2 rounded-md font-normal text-xs w-5/6 mt-2 py-3 px-2 text-text md:max-h-[5rem] overflow-hidden">
                   <p>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit.
@@ -153,17 +143,7 @@ export default function Home() {
                     <li className="hidden lg:block">(0 review)</li>
                   </ul>
                 </div>
-                <ul className="text-center mt-2 font-light text-sm gap-1 flex flex-wrap w-5/6">
-                  <li className="text-xs font-bold bg-tertiary text-primary px-3 py-1 rounded-md">
-                    Digital Marketing
-                  </li>
-                  <li className="text-xs font-bold bg-tertiary text-primary px-3 py-1 rounded-md">
-                    Data Analyzing
-                  </li>
-                  <li className="text-xs font-bold bg-tertiary text-primary px-3 py-1 rounded-md">
-                    Social Media Advertising
-                  </li>
-                </ul>
+
                 <div className="border-2 rounded-md font-normal text-xs w-5/6 mt-2 py-3 px-2 text-text md:max-h-[5rem] overflow-hidden">
                   <p>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit.
@@ -210,17 +190,7 @@ export default function Home() {
                     <li className="hidden lg:block">(0 review)</li>
                   </ul>
                 </div>
-                <ul className="text-center mt-2 font-light text-sm gap-1 flex flex-wrap w-5/6">
-                  <li className="text-xs font-bold bg-tertiary text-primary px-3 py-1 rounded-md">
-                    Digital Marketing
-                  </li>
-                  <li className="text-xs font-bold bg-tertiary text-primary px-3 py-1 rounded-md">
-                    Data Analyzing
-                  </li>
-                  <li className="text-xs font-bold bg-tertiary text-primary px-3 py-1 rounded-md">
-                    Social Media Advertising
-                  </li>
-                </ul>
+
                 <div className="border-2 rounded-md font-normal text-xs w-5/6 mt-2 py-3 px-2 text-text md:max-h-[5rem] overflow-hidden">
                   <p>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit.
