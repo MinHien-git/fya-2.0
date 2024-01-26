@@ -34,17 +34,17 @@ export default function BrandPage() {
         </ul>
       </section>
       <section className="w-full max-w-7xl my-5 md:mx-auto grid md:flex lg:gap-4">
-        <div className="grid gap-3 px-2 md:mt-5 content-baseline lg:w-3/6 lg:ml-6 lg:gap-5">
+        <div className="flex flex-col gap-3 px-2 md:mt-5 content-baseline lg:w-3/6 lg:ml-6 lg:gap-5">
           <h1 className="text-md font-bold hidden md:block text-xl lg:text-2xl">
             [Brand Name Brand Name]
           </h1>
-          <p className="text-text font-semibold text-sm lg:w-1/2">
+          <p className="text-text font-semibold text-sm lg:w-7/8">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce at
             sapien eu ipsum ornare sollicitudin vel nec nisl. Nullam ut lacus
             porttitor, vestibulum ipsum eu, porta libero. Aliquam erat volutpat.
             Morbi ac tincidunt orci.
           </p>
-          <button className="bg-secondary w-4/6 rounded-md text-xs h-[2.125rem] font-semibold lg:w-[12rem] mt-2">
+          <button className="bg-secondary w-4/6 rounded-md text-xs h-[2.125rem] font-semibold lg:w-[20rem] lg:h-[3rem] mt-auto mb-5">
             Open website
           </button>
         </div>
@@ -79,8 +79,8 @@ export default function BrandPage() {
       </section>
 
       <section className="w-full border-[1px] border-border bg-light_gray max-w-7xl px-2 sm:px-4 lg:px-40 my-5 rounded-[3rem] md:mx-auto flex flex-col justify-center items-center relative">
-        <div className="py-5">
-          <h2 className="text-2xl py-2 font-bold text-center font-title">
+        <div className="py-5 pb-10">
+          <h2 className="text-[2rem] py-2 font-bold text-center font-title">
             Agencies working with [Brand Name]
           </h2>
           <div className="flex justify-center mt-5 flex-wrap gap-4 md:flex-nowrap md:w-full">
@@ -242,8 +242,8 @@ export default function BrandPage() {
       </section>
 
       <section className="w-full border-[1px] border-border bg-light_gray max-w-7xl px-2 sm:px-4 lg:px-40 my-5 rounded-[3rem] md:mx-auto flex flex-col justify-center items-center relative">
-        <div className="py-5 w-10/12 md:w-full">
-          <h2 className="text-2xl py-2 font-bold text-center font-title">
+        <div className="py-5 w-10/12 md:w-full pb-10">
+          <h2 className="text-[2rem] py-2 font-bold text-center font-title">
             Brand Name's Agency projects
           </h2>
           <div className="flex flex-wrap mt-4 gap-4 md:flex-nowrap">
@@ -320,8 +320,8 @@ export default function BrandPage() {
       </section>
 
       <section className="w-full border-[1px] border-border bg-light_gray max-w-7xl px-2 sm:px-4 lg:px-40 my-5 rounded-[3rem] md:mx-auto flex flex-col justify-center items-center relative">
-        <div className="py-5 w-10/12 md:w-full">
-          <h2 className="text-2xl py-2 font-bold text-center font-title">
+        <div className="py-5 w-10/12 md:w-full pb-10">
+          <h2 className="text-[2rem] py-2 font-bold text-center font-title">
             Awards
           </h2>
 
@@ -399,8 +399,8 @@ export default function BrandPage() {
       </section>
 
       <section className="w-full border-[1px] border-border bg-light_gray max-w-7xl px-2 sm:px-4 lg:px-40 my-5 rounded-[3rem] md:mx-auto flex flex-col justify-center items-center relative">
-        <div className="py-5 w-10/12 md:w-full">
-          <h2 className="text-2xl py-2 font-bold text-center font-title">
+        <div className="py-5 w-10/12 md:w-full pb-10">
+          <h2 className="text-[2rem] py-2 font-bold text-center font-title">
             Reviews & Feedback
           </h2>
           <p className="text-text text-center">
