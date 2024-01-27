@@ -48,13 +48,13 @@ export default function AgencyPage() {
           <h1 className="text-md font-bold hidden md:block text-xl lg:text-2xl">
             [Brand Name Brand Name]
           </h1>
-          <p className="text-text font-semibold text-sm lg:w-full">
+          <p className="text-text font-semibold text-sm lg:text-[1.125rem] md:w-2/3 lg:w-7/8">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce at
             sapien eu ipsum ornare sollicitudin vel nec nisl. Nullam ut lacus
             porttitor, vestibulum ipsum eu, porta libero. Aliquam erat volutpat.
             Morbi ac tincidunt orci.
           </p>
-          <div className="grid gap-2 lg:mt-auto mb-5">
+          <div className="grid gap-2 mt-6 lg:mt-auto mb-5">
             <button className="bg-primary text-white w-4/6 rounded-md text-xs h-[2.125rem] font-semibold lg:w-[20rem] lg:h-[3rem] mt-2">
               Contact
             </button>
@@ -71,17 +71,16 @@ export default function AgencyPage() {
             <div className="w-full border-2 max-w-7xl px-4 sm:px-4 lg:px-8 py-5 rounded-xl md:mx-auto grid gap-3 lg:col-span-2">
               <p className="text-primary">Provides services in:</p>
               <ul className="w-full flex flex-wrap gap-2">
-                <li className="bg-primary py-2 px-6 rounded-md text-white text-sm font-semibold">
-                  {" "}
+                <li className="bg-primary py-2 px-6 rounded-md text-white text-sm font-semibold text-nowrap">
                   Website{" "}
                 </li>
-                <li className="bg-primary py-2 px-6 rounded-md text-white text-sm font-semibold">
+                <li className="bg-primary py-2 px-6 rounded-md text-white text-sm font-semibold text-nowrap">
                   Lorem ipsum dolor sit amet .
                 </li>
-                <li className="bg-primary py-2 px-6 rounded-md text-white text-sm font-semibold">
+                <li className="bg-primary py-2 px-6 rounded-md text-white text-sm font-semibold text-nowrap">
                   ipsum dolor sit
                 </li>
-                <li className="bg-primary py-2 px-6 rounded-md text-white text-sm font-semibold">
+                <li className="bg-primary py-2 px-6 rounded-md text-white text-sm font-semibold text-nowrap">
                   Lorem ipsum dolor sit amet .
                 </li>
               </ul>
@@ -292,12 +291,12 @@ export default function AgencyPage() {
             <ul className="grid w-full gap-5">
               <li className="grid w-full items-center relative">
                 <div className="flex w-full items-center md:gap-2 relative border-[1px] border-border rounded-xl bg-tertiary drop-shadow-md">
-                  <div className="w-1/3 border-r-2 py-4 my-4">
-                    <h3 className="text-xs md:text-lg lg:text-2xl font-bold sm:pl-2 md:pl-5 text-center md:text-left">
+                  <div className="w-1/3 border-r-2 py-2 my-2 lg:py-4 lg:my-4">
+                    <h3 className="text-xs md:text-lg font-bold sm:pl-2 md:pl-5 text-center md:text-left">
                       E-commerce
                     </h3>
                   </div>
-                  <div className="w-1/3 border-r-2 py-4 my-4">
+                  <div className="w-1/3 border-r-2 py-2 my-2 lg:py-4 lg:my-4">
                     <ul className="flex mt-1 gap-1 md:gap-2 justify-center items-center">
                       <li className="bg-secondary w-2 md:w-4 aspect-square rounded-full"></li>
                       <li className="bg-secondary w-2 md:w-4 aspect-square rounded-full"></li>
@@ -309,7 +308,7 @@ export default function AgencyPage() {
                       </li>
                     </ul>
                   </div>
-                  <div className="w-1/3 py-4 my-4">
+                  <div className="w-1/3 py-2 my-2 lg:py-4 lg:my-4">
                     <p className="text-xs md:text-base font-bold pl-2 md:pl-5">
                       $0 - $100
                     </p>
@@ -335,12 +334,12 @@ export default function AgencyPage() {
               </li>
               <li className="grid w-full items-center relative">
                 <div className="flex w-full items-center md:gap-2 relative border-[1px] border-border rounded-xl bg-primary  drop-shadow-md">
-                  <div className="w-1/3 border-r-2 py-4 my-4">
-                    <h3 className="text-xs md:text-lg lg:text-2xl font-bold sm:pl-2 md:pl-5 text-white text-center md:text-left">
+                  <div className="w-1/3 border-r-2 py-2 my-2 lg:py-4 lg:my-4">
+                    <h3 className="text-xs md:text-lg font-bold sm:pl-2 md:pl-5 text-white text-center md:text-left">
                       E-commerce
                     </h3>
                   </div>
-                  <div className="w-1/3 border-r-2 py-4 my-4">
+                  <div className="w-1/3 border-r-2 py-2 my-2 lg:py-4 lg:my-4">
                     <ul className="flex mt-1 gap-1 md:gap-2 justify-center items-center">
                       <li className="bg-secondary w-2 md:w-4 aspect-square rounded-full"></li>
                       <li className="bg-secondary w-2 md:w-4 aspect-square rounded-full"></li>
@@ -352,7 +351,7 @@ export default function AgencyPage() {
                       </li>
                     </ul>
                   </div>
-                  <div className="w-1/3 py-4 my-4">
+                  <div className="w-1/3 py-2 my-2 lg:py-4 lg:my-4">
                     <p className="text-xs md:text-base font-bold pl-2 md:pl-5 text-white">
                       $0 - $100
                     </p>
@@ -378,12 +377,12 @@ export default function AgencyPage() {
               </li>
               <li className="grid w-full items-center relative">
                 <div className="flex w-full items-center md:gap-2 relative border-[1px] border-border rounded-xl bg-tertiary drop-shadow-md">
-                  <div className="w-1/3 border-r-2 py-4 my-4">
-                    <h3 className="text-xs md:text-lg lg:text-2xl font-bold sm:pl-2 md:pl-5 text-center md:text-left">
+                  <div className="w-1/3 border-r-2 py-2 my-2 lg:py-4 lg:my-4">
+                    <h3 className="text-xs md:text-lg font-bold sm:pl-2 md:pl-5 text-center md:text-left">
                       E-commerce
                     </h3>
                   </div>
-                  <div className="w-1/3 border-r-2 py-4 my-4">
+                  <div className="w-1/3 border-r-2 py-2 my-2 lg:py-4 lg:my-4">
                     <ul className="flex mt-1 gap-1 md:gap-2 justify-center items-center">
                       <li className="bg-secondary w-2 md:w-4 aspect-square rounded-full"></li>
                       <li className="bg-secondary w-2 md:w-4 aspect-square rounded-full"></li>
@@ -395,7 +394,7 @@ export default function AgencyPage() {
                       </li>
                     </ul>
                   </div>
-                  <div className="w-1/3 py-4 my-4">
+                  <div className="w-1/3 py-2 my-2 lg:py-4 lg:my-4">
                     <p className="text-xs md:text-base font-bold pl-2 md:pl-5">
                       $0 - $100
                     </p>
