@@ -12,7 +12,7 @@ export default function AgencyNavigationBar() {
           </span>
           <hr className="w-full" />
         </header>
-        <nav className="h-[90%] grid items-start">
+        <nav className="h-[90%] grid items-start pt-2">
           <ul className="grid gap-1">
             <li className="pl-8 text-white w-full py-4 text-sm">Dashboard</li>
             <li className="pl-8 text-white w-full py-4 text-sm">Your Page</li>
