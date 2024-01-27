@@ -1,9 +1,9 @@
 export default function AgencyPageIntroduction() {
   return (
     <main className="w-full min-h-80 py-2 pt-0">
-      <section className="w-full border-2 max-w-5xl pb-5 rounded-b-3xl md:mx-auto min-h-[40vh] bg-primary px-3 flex items-center">
+      <section className="w-full border-2 pb-5 rounded-b-3xl md:mx-auto min-h-[50vh] bg-primary px-3 flex items-center">
         <div className="grid gap-3 px-2 py-5 h-full mx-auto">
-          <h1 className="text-2xl sm:text-4xl font-bold text-white text-center lg:w-[30rem]">
+          <h1 className="text-2xl sm:text-4xl font-bold text-white text-center lg:w-[30rem] font-header">
             Differentiate yourself with{" "}
             <span className="text-secondary">Fya's</span> free{" "}
             <span className="text-secondary">Agency Page</span>
@@ -14,45 +14,48 @@ export default function AgencyPageIntroduction() {
         </div>
       </section>
 
-      <section className="w-full border-2 max-w-2xl pb-5 rounded-3xl md:mx-auto min-h-[40vh] px-3 mt-[-2rem] bg-white lg:max-w-[40rem]">
+      <section className="w-full border-2 max-w-2xl pb-5 rounded-3xl md:mx-auto px-3 mt-[-5rem] bg-white lg:max-w-[30rem]">
         <div className="flex gap-3 px-2 py-5 h-full flex-col">
           <div className="flex flex-col gap-3 items-center">
             <div className="bg-tertiary w-full h-[10rem] rounded-2xl relative">
               <div className="bg-primary aspect-square w-[6rem] absolute rounded-full bottom-[-3rem] left-1/2 -translate-x-1/2 md:left-[calc(25%-4.5rem)]  md:-translate-x-[0] md:w-[9rem] md:bottom-[-4.5rem]"></div>
             </div>
             <div className="flex flex-col gap-3 md:flex-row md:mt-5 w-full ">
-              <div className="grid gap-3 justify-items-center md:w-1/2">
-                <h2 className="font-bold mt-12">Your Agency</h2>
-                <p className="border-2 rounded-2xl px-2 py-3 lg:max-w-[15rem]">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Numquam cum et fuga quis ratione autem voluptatem molestias
-                  quos, reiciendis exercitationem ab dolorum obcaecati
-                  accusamus, corporis delectus. Labore, error nobis illo numquam
-                  ipsum veritatis fugit aut, quasi accusantium corporis beatae
-                  distinctio corrupti assumenda quisquam amet et.
-                </p>
+              <div className="flex flex-col gap-3 md:w-1/2 items-center">
+                <h2 className="font-bold mt-12 h-fit font-title">
+                  Your Agency
+                </h2>
+                <div className="flex flex-wrap w-full gap-2">
+                  <div className="w-1/3 h-[1rem] rounded-lg bg-slate-300 mt-2"></div>
+                  <div className="w-1/2 h-[1rem] rounded-lg bg-slate-300 mt-2"></div>
+                  <div className="w-2/3 h-[1rem] rounded-lg bg-slate-300 mt-2"></div>
+                  <div className="w-1/3 h-[1rem] rounded-lg bg-slate-300 mt-2"></div>
+                  <div className="w-1/2 h-[1rem] rounded-lg bg-slate-300 mt-2"></div>
+                  <div className="w-1/2 h-[1rem] rounded-lg bg-slate-300 mt-2"></div>
+                  <div className="w-1/3 h-[1rem] rounded-lg bg-slate-300 mt-2"></div>
+                </div>
               </div>
               <div className="flex flex-col gap-3 items-center w-full md:w-1/2 md:grid content-center">
                 <div className="flex items-center justify-between w-full bg-gray-100 px-2 py-4 rounded-lg">
-                  <h5 className="font-semibold">Services</h5>
+                  <h5 className="font-semibold text-sm">Services</h5>
                   <ul className="flex gap-1">
-                    <li className="bg-secondary w-4 aspect-square rounded-full"></li>
-                    <li className="bg-secondary w-4 aspect-square rounded-full"></li>
-                    <li className="bg-secondary w-4 aspect-square rounded-full"></li>
-                    <li className="bg-secondary w-4 aspect-square rounded-full"></li>
-                    <li className="bg-secondary w-4 aspect-square rounded-full"></li>
+                    <li className="bg-secondary w-3 aspect-square rounded-full"></li>
+                    <li className="bg-secondary w-3 aspect-square rounded-full"></li>
+                    <li className="bg-secondary w-3 aspect-square rounded-full"></li>
+                    <li className="bg-secondary w-3 aspect-square rounded-full"></li>
+                    <li className="bg-secondary w-3 aspect-square rounded-full"></li>
                   </ul>
                   <p className="font-semibold text-sm">5.0/5.0</p>
                 </div>
 
                 <div className="flex items-center justify-between w-full bg-gray-100 px-2 py-4 rounded-lg">
-                  <h5 className="font-semibold">Portfolio</h5>
+                  <h5 className="font-semibold text-sm">Portfolio</h5>
                 </div>
                 <div className="flex items-center justify-between w-full bg-gray-100 px-2 py-4 rounded-lg">
-                  <h5 className="font-semibold">Awards</h5>
+                  <h5 className="font-semibold text-sm">Awards</h5>
                 </div>
                 <div className="flex items-center justify-between w-full bg-gray-100 px-2 py-4 rounded-lg">
-                  <h5 className="font-semibold">Reviews & Feedback</h5>
+                  <h5 className="font-semibold text-sm">Reviews & Feedback</h5>
                 </div>
               </div>
             </div>
@@ -61,8 +64,8 @@ export default function AgencyPageIntroduction() {
       </section>
 
       <section className="w-full border-2 max-w-5xl px-2 sm:px-4 lg:px-12 my-5 rounded-[3rem] md:mx-auto flex flex-col justify-center items-center">
-        <div className="py-5 w-11/12 md:w-full">
-          <h2 className="text-2xl py-2 font-bold text-center">
+        <div className="py-5 w-11/12 md:w-full pb-10">
+          <h2 className="md:text-xl lg:text-[2rem] py-2 font-bold text-center font-title">
             Be seen. Be known.{" "}
             <span className="text-secondary"> For free.</span>
           </h2>
@@ -114,8 +117,8 @@ export default function AgencyPageIntroduction() {
       </section>
 
       <section className="w-full border-2 max-w-5xl px-2 sm:px-4 lg:px-12 my-5 rounded-[3rem] md:mx-auto flex flex-col justify-center items-center">
-        <div className="py-5 w-11/12 md:w-full">
-          <h2 className="text-2xl py-2 font-bold text-center">
+        <div className="py-5 w-11/12 md:w-full pb-10">
+          <h2 className="md:text-xl lg:text-[2rem] py-2 font-bold text-center font-title">
             Establish your agency appearance on Fya{" "}
           </h2>
           <p className="text-secondary text-xl font-bold text-center">
@@ -123,7 +126,7 @@ export default function AgencyPageIntroduction() {
             in 3 simple steps:
           </p>
         </div>
-        <div className="py-5 w-11/12 md:w-full grid gap-5">
+        <div className="py-5 w-11/12 md:w-full grid gap-5 pb-10">
           <div className="bg-tertiary w-full h-10 rounded-3xl relative">
             <div className="absolute h-12 rounded-full aspect-square bg-primary flex justify-center items-center top-1/2 -translate-y-1/2 text-white font-bold md:h-16">
               1
@@ -150,8 +153,8 @@ export default function AgencyPageIntroduction() {
 
       <section className="w-full border-2 max-w-5xl px-2 sm:px-4 lg:px-12 my-5 md:mx-auto flex flex-col justify-center items-center relative bg-light_yellow">
         <div className="bg-primary w-12 rounded-full absolute left-1/2 -translate-x-1/2 aspect-square top-[-1.5rem]"></div>
-        <div className="py-5 w-11/12 md:w-full">
-          <h2 className="text-2xl py-2 font-bold text-center">
+        <div className="py-5 w-11/12 md:w-full pb-10">
+          <h2 className="md:text-xl lg:text-[2rem] py-2 font-bold text-center font-title">
             Upgrade your revenue stream with{" "}
             <span className="text-secondary">FyaPro.</span>
           </h2>
@@ -273,7 +276,7 @@ export default function AgencyPageIntroduction() {
 
       <section className="w-full max-w-5xl px-2 sm:px-4 lg:px-12 rounded-[3rem] md:mx-auto flex flex-col justify-center items-center relative">
         <div className="bg-secondary w-12 rounded-full absolute left-1/2 -translate-x-1/2 aspect-square top-[-1.5rem]"></div>
-        <div className="py-5 w-full md:flex md:py-10">
+        <div className="w-full md:flex py-10">
           <div className="w-10/12 mx-auto flex md:w-1/2">
             <div className="relative bg-primary pt-8 pb-5 mt-12 rounded-t-2xl px-5 md:rounded-none md:rounded-l-2xl grid gap-2 md:my-auto w-full">
               <div className="absolute w-12 aspect-square bg-secondary top-[-1.5rem] left-1/2 -translate-x-1/2 rounded-md "></div>
@@ -305,7 +308,7 @@ export default function AgencyPageIntroduction() {
       </section>
       <section className="w-full max-w-5xl px-2 sm:px-4 lg:px-12 md:mx-auto flex flex-col justify-center items-center relative border-2 bg-light_blue">
         <div className="bg-primary w-12 rounded-full absolute left-1/2 -translate-x-1/2 aspect-square top-[-1.5rem]"></div>
-        <div className="py-5 w-full md:flex md:py-10">
+        <div className="w-full md:flex py-10">
           <div className="w-full aspect-square bg-tertiary rounded-2xl border-2 md:w-1/2"></div>
           <div className="w-10/12 mx-auto flex md:w-1/2">
             <div className="relative bg-white pt-8 pb-5 w-full rounded-b-2xl px-5 border-2 md:rounded-none md:rounded-r-2xl grid text-right gap-2 md:my-auto">
@@ -335,12 +338,12 @@ export default function AgencyPageIntroduction() {
       </section>
       <section className="w-full max-w-5xl px-2 sm:px-4 lg:px-12 md:mx-auto flex flex-col justify-center items-center relative border-2 bg-light_yellow">
         <div className="bg-secondary w-[80%] rounded-xl absolute left-1/2 -translate-x-1/2 top-[-1rem] py-2">
-          <h2 className="text-lg font-bold px-6 text-center">
+          <h2 className="md:text-xl lg:text-[2rem] font-bold px-6 text-center font-title">
             and many more features to come!
           </h2>
         </div>
-        <div className="py-8 w-full mt-10 grid gap-1">
-          <h5 className="text-center text-2xl font-medium text-black">
+        <div className="py-8 w-full mt-10 grid gap-1 pb-10">
+          <h5 className="text-center md:text-xl lg:text-[2rem] font-title mb-4 font-medium text-black">
             <span className="text-secondary">FyaPro</span> is waiting for you!
           </h5>
           <p className="text-black text-sx text-center w-80 mx-auto">
@@ -356,7 +359,7 @@ export default function AgencyPageIntroduction() {
 
       <section className="w-full border-2 max-w-5xl px-2 sm:px-4 lg:px-12 my-5 rounded-[3rem] md:mx-auto flex flex-col justify-center items-center">
         <div className="py-5 w-11/12 md:w-full">
-          <h2 className="text-2xl py-2 font-bold text-center">
+          <h2 className="md:text-xl lg:text-[2rem] py-2 font-bold text-center font-title">
             Frequently Asked Questions
           </h2>
           <div className="aspect-video w-full"></div>
