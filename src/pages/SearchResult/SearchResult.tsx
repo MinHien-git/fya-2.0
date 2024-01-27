@@ -128,7 +128,7 @@ export default function SearchResult() {
           <div className="flex justify-center mt-5 flex-wrap gap-4 md:flex-nowrap md:w-full md:grid md:grid-cols-3 lg:grid-cols-4">
             <div className="card mx-auto flex-col py-4 flex items-center gap-1 bg-white border-2 rounded-2xl font-sans lg:w-full">
               <img
-                className="w-28 mx-auto rounded-full border-8 border-white mb-2"
+                className="w-20 mx-auto rounded-full border-8 border-white mb-2"
                 src="/static/images/profile.png"
                 alt=""
               />
@@ -192,15 +192,15 @@ export default function SearchResult() {
                 </div>
               </div>
               <div className="flex w-5/6 gap-1 my-2">
-                <button className="bg-secondary w-full font-semibold rounded-md text-xs">
+                <button className="bg-secondary w-5/6 font-semibold rounded-md text-xs">
                   Contact
                 </button>
-                <button className="bg-slate-200 w-[3rem] aspect-square rounded-md"></button>
+                <button className="bg-slate-200 w-1/6 aspect-square rounded-md"></button>
               </div>
             </div>
             <div className="card mx-auto flex-col py-4 flex items-center gap-1 bg-white border-2 rounded-2xl font-sans  lg:w-full">
               <img
-                className="w-28 mx-auto rounded-full border-8 border-white mb-2"
+                className="w-20 mx-auto rounded-full border-8 border-white mb-2"
                 src="/static/images/profile.png"
                 alt=""
               />
@@ -264,15 +264,15 @@ export default function SearchResult() {
                 </div>
               </div>
               <div className="flex w-5/6 gap-1 my-2">
-                <button className="bg-secondary w-full font-semibold rounded-md text-xs">
+                <button className="bg-secondary w-5/6 font-semibold rounded-md text-xs">
                   Contact
                 </button>
-                <button className="bg-slate-200 w-[3rem] aspect-square rounded-md"></button>
+                <button className="bg-slate-200 w-1/6 aspect-square rounded-md"></button>
               </div>
             </div>
             <div className="card mx-auto flex-col py-4 flex items-center gap-1 bg-white border-2 rounded-2xl font-sans  lg:w-full">
               <img
-                className="w-28 mx-auto rounded-full border-8 border-white mb-2"
+                className="w-20 mx-auto rounded-full border-8 border-white mb-2"
                 src="/static/images/profile.png"
                 alt=""
               />
@@ -336,15 +336,15 @@ export default function SearchResult() {
                 </div>
               </div>
               <div className="flex w-5/6 gap-1 my-2">
-                <button className="bg-secondary w-full font-semibold rounded-md text-xs">
+                <button className="bg-secondary w-5/6 font-semibold rounded-md text-xs">
                   Contact
                 </button>
-                <button className="bg-slate-200 w-[3rem] aspect-square rounded-md"></button>
+                <button className="bg-slate-200 w-1/6 aspect-square rounded-md"></button>
               </div>
             </div>
             <div className="card mx-auto flex-col py-4 flex items-center gap-1 bg-white border-2 rounded-2xl font-sans  lg:w-full">
               <img
-                className="w-28 mx-auto rounded-full border-8 border-white mb-2"
+                className="w-20 mx-auto rounded-full border-8 border-white mb-2"
                 src="/static/images/profile.png"
                 alt=""
               />
@@ -408,10 +408,10 @@ export default function SearchResult() {
                 </div>
               </div>
               <div className="flex w-5/6 gap-1 my-2">
-                <button className="bg-secondary w-full font-semibold rounded-md text-xs">
+                <button className="bg-secondary w-5/6 font-semibold rounded-md text-xs">
                   Contact
                 </button>
-                <button className="bg-slate-200 w-[3rem] aspect-square rounded-md"></button>
+                <button className="bg-slate-200 w-1/6 aspect-square rounded-md"></button>
               </div>
             </div>
           </div>
