@@ -2,7 +2,7 @@ export default function SecondaryNavigationBar() {
   return (
     <div className="w-full">
       <div className="flex justify-center items-center h-[4rem] border-b-2">
-        <p>Your Page</p>
+        <p className="font-title">Your Page</p>
       </div>
       <ul className="flex justify-center items-center h-[4rem] border-b-2 w-full">
         <li className="w-[16.66%] text-center border-r-2">About</li>

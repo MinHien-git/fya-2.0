@@ -14,25 +14,33 @@ export default function AgencyNavigationBar() {
         </header>
         <nav className="h-[90%] grid items-start pt-2">
           <ul className="grid gap-1">
-            <li className="pl-8 text-white w-full py-4 text-sm">Dashboard</li>
-            <li className="pl-8 text-white w-full py-4 text-sm">Your Page</li>
-            <li className="pl-8 text-white w-full py-4 text-sm">
+            <li className="pl-8 text-white w-full py-4 text-sm font-title">
+              Dashboard
+            </li>
+            <li className="pl-8 text-white w-full py-4 text-sm font-title">
+              Your Page
+            </li>
+            <li className="pl-8 text-white w-full py-4 text-sm font-title">
               Notification
             </li>
-            <li className="pl-8 text-white w-full py-4 text-sm">Inbox</li>
-            <li className="pl-8 text-white w-full py-4 text-sm">
+            <li className="pl-8 text-white w-full py-4 text-sm font-title">
+              Inbox
+            </li>
+            <li className="pl-8 text-white w-full py-4 text-sm font-title">
               Project Leads Extension
             </li>
-            <li className="pl-8 text-white w-full py-4 text-sm">Advertising</li>
+            <li className="pl-8 text-white w-full py-4 text-sm font-title">
+              Advertising
+            </li>
           </ul>
           <ul className="grid gap-1 mt-auto">
-            <li className="pl-8 text-white w-full py-4 mt-auto border-b-2 text-sm">
+            <li className="pl-8 text-white w-full py-4 mt-auto border-b-2 text-sm font-title">
               Updates from Fya
             </li>
-            <li className="pl-8 text-white w-full py-4 mt-auto border-b-2 text-sm">
+            <li className="pl-8 text-white w-full py-4 mt-auto border-b-2 text-sm font-title">
               Helps
             </li>
-            <li className="pl-8 text-white w-full py-6 mt-auto border-b-2 text-sm">
+            <li className="pl-8 text-white w-full py-6 mt-auto border-b-2 text-sm font-title">
               <div className="flex gap-2 items-center">
                 <div className="bg-white h-8 aspect-square rounded-full"></div>
                 <div className="grid">
@@ -45,7 +53,7 @@ export default function AgencyNavigationBar() {
               <div className="flex gap-2 items-center">
                 <div className="bg-white h-8 aspect-square rounded-full"></div>
                 <div className="grid">
-                  <p className="text-sm">Personal Acc...</p>{" "}
+                  <p className="text-sm font-title">Personal Acc...</p>{" "}
                 </div>
               </div>
             </li>
