@@ -11,6 +11,7 @@ import AgencyPageIntroduction from "./pages/AgencyPageIntroduction/AgencyPageInt
 import EditService from "./pages/Management/EditService/EditService";
 import GuestLayout from "./layouts/GuestLayout/GuestLayout";
 import AgencyManagementLayout from "./layouts/AgencyManagementLayout/AgencyManagementLayout";
+import Portfolio from "./pages/Management/Portfolio/Portfolio";
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
           </Route>
           <Route path="/management/" element={<AgencyManagementLayout />}>
             <Route path="editService" element={<EditService />} />
+            <Route path="portfolio" element={<Portfolio />} />
           </Route>
         </Routes>
       </BrowserRouter>

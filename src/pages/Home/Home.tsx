@@ -1,7 +1,9 @@
+import MediumCard from "../../components/MediumCard/MediumCard";
+
 export default function Home() {
   return (
     <main className="w-full min-h-80 p-2">
-      <section className="w-full border-[1px] border-border bg-light_gray max-w-7xl py-5 px-8 sm:px-12 lg:px-16 my-5 rounded-[3rem] md:mx-auto h-auto md:flex md:gap-2 md:px-4 lg:items-center md:justify-between">
+      <section className="w-full border-[1px] border-border bg-light_gray max-w-7xl py-5 px-8 sm:px-  lg:px-16 my-5 rounded-[3rem] md:mx-auto h-auto md:flex md:gap-2 md:px-4 lg:items-center md:justify-between">
         <div className="py-5 md:w-3/5 lg:w-3/5 lg:h-1/2">
           <h1 className="text-4xl pb-2 font-bold text-primary lg:text-5xl font-header">
             Find
@@ -67,147 +69,13 @@ export default function Home() {
             Agencies of the week
           </h2>
           <div className="flex justify-center mt-5 flex-wrap gap-4 md:flex-nowrap md:w-full max-w-5xl mx-auto">
-            <div className="font-sans w-10/12 flex border-2 rounded-2xl sm:w-2/5 bg-white">
-              <div className="card mx-auto flex-col py-4 flex items-center gap-2">
-                <img
-                  className="w-20 mx-auto rounded-full border-8 border-white"
-                  src="/static/images/profile.png"
-                  alt=""
-                />
-                <div className="flex flex-col py-2 border-2 rounded-md w-5/6 justify-center ">
-                  <h5 className="text-center text-md font-medium">
-                    Agency Name
-                  </h5>
-                  <ul className="flex gap-1 justify-center">
-                    <li className="text-xs font-bold bg-secondary text-white px-3 py-1 rounded-md">
-                      Fya Pro
-                    </li>
-                    <li className="text-xs font-bold bg-tertiary text-primary px-3 py-1 rounded-md">
-                      Verified
-                    </li>
-                  </ul>
-                  <ul className="flex mt-1 gap-1 items-center justify-center">
-                    <li className="bg-secondary w-3 aspect-square rounded-md"></li>
-                    <li className="bg-secondary w-3 aspect-square rounded-md"></li>
-                    <li className="bg-secondary w-3 aspect-square rounded-md"></li>
-                    <li className="bg-secondary w-3 aspect-square rounded-md"></li>
-                    <li className="bg-secondary w-3 aspect-square rounded-md"></li>
-                    <li className="font-bold">0.0/5.0</li>
-                    <li className="hidden lg:block">(0 review)</li>
-                  </ul>
-                </div>
-
-                <div className="border-2 rounded-md font-normal text-xs w-5/6 mt-2 py-3 px-2 text-text md:max-h-[5rem] overflow-hidden">
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Fusce at sapien eu ipsum ornare sollicitudin vel nec nisl.
-                    Nullam ut lacus porttitor, vestibulum ipsum eu, porta
-                    libero. Aliquam erat volutpat. Morbi ac tincidunt orci.
-                  </p>
-                </div>
-
-                <div className="flex w-5/6 gap-1 my-2">
-                  <button className="bg-secondary w-5/6 font-semibold rounded-md text-xs">
-                    Contact
-                  </button>
-                  <button className="bg-slate-200 w-1/6 aspect-square rounded-md"></button>
-                </div>
-              </div>
-            </div>
-            <div className="font-sans w-10/12 flex border-2 rounded-2xl sm:w-2/5 bg-white">
-              <div className="card mx-auto flex-col py-4 flex items-center gap-2">
-                <img
-                  className="w-20 mx-auto rounded-full border-8 border-white"
-                  src="/static/images/profile.png"
-                  alt=""
-                />
-                <div className="flex flex-col py-2 border-2 rounded-md w-5/6 justify-center ">
-                  <h5 className="text-center text-md font-medium ,d">
-                    Agency Name
-                  </h5>
-                  <ul className="flex gap-1 justify-center">
-                    <li className="text-xs font-bold bg-secondary text-white px-3 py-1 rounded-md">
-                      Fya Pro
-                    </li>
-                    <li className="text-xs font-bold bg-tertiary text-primary px-3 py-1 rounded-md">
-                      Verified
-                    </li>
-                  </ul>
-                  <ul className="flex mt-1 gap-1 items-center justify-center">
-                    <li className="bg-secondary w-3 aspect-square rounded-md"></li>
-                    <li className="bg-secondary w-3 aspect-square rounded-md"></li>
-                    <li className="bg-secondary w-3 aspect-square rounded-md"></li>
-                    <li className="bg-secondary w-3 aspect-square rounded-md"></li>
-                    <li className="bg-secondary w-3 aspect-square rounded-md"></li>
-                    <li className="font-bold">0.0/5.0</li>
-                    <li className="hidden lg:block">(0 review)</li>
-                  </ul>
-                </div>
-
-                <div className="border-2 rounded-md font-normal text-xs w-5/6 mt-2 py-3 px-2 text-text md:max-h-[5rem] overflow-hidden">
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Fusce at sapien eu ipsum ornare sollicitudin vel nec nisl.
-                    Nullam ut lacus porttitor, vestibulum ipsum eu, porta
-                    libero. Aliquam erat volutpat. Morbi ac tincidunt orci.
-                  </p>
-                </div>
-
-                <div className="flex w-5/6 gap-1 my-2">
-                  <button className="bg-secondary w-5/6 font-semibold rounded-md text-xs">
-                    Contact
-                  </button>
-                  <button className="bg-slate-200 w-1/6 aspect-square rounded-md"></button>
-                </div>
-              </div>
-            </div>
-            <div className="font-sans w-10/12 flex border-2 rounded-2xl sm:w-2/5 bg-white">
-              <div className="card mx-auto flex-col py-4 flex items-center gap-2">
-                <img
-                  className="w-20 mx-auto rounded-full border-8 border-white"
-                  src="/static/images/profile.png"
-                  alt=""
-                />
-                <div className="flex flex-col py-2 border-2 rounded-md w-5/6 justify-center ">
-                  <h5 className="text-center text-md font-medium">
-                    Agency Name
-                  </h5>
-                  <ul className="flex gap-1 justify-center">
-                    <li className="text-xs font-bold bg-secondary text-white px-3 py-1 rounded-md">
-                      Fya Pro
-                    </li>
-                    <li className="text-xs font-bold bg-tertiary text-primary px-3 py-1 rounded-md">
-                      Verified
-                    </li>
-                  </ul>
-                  <ul className="flex mt-1 gap-1 items-center justify-center">
-                    <li className="bg-secondary w-3 aspect-square rounded-md"></li>
-                    <li className="bg-secondary w-3 aspect-square rounded-md"></li>
-                    <li className="bg-secondary w-3 aspect-square rounded-md"></li>
-                    <li className="bg-secondary w-3 aspect-square rounded-md"></li>
-                    <li className="bg-secondary w-3 aspect-square rounded-md"></li>
-                    <li className="font-bold">0.0/5.0</li>
-                    <li className="hidden lg:block">(0 review)</li>
-                  </ul>
-                </div>
-
-                <div className="border-2 rounded-md font-normal text-xs w-5/6 mt-2 py-3 px-2 text-text md:max-h-[5rem] overflow-hidden">
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Fusce at sapien eu ipsum ornare sollicitudin vel nec nisl.
-                    Nullam ut lacus porttitor, vestibulum ipsum eu, porta
-                    libero. Aliquam erat volutpat. Morbi ac tincidunt orci.
-                  </p>
-                </div>
-
-                <div className="flex w-5/6 gap-1 my-2">
-                  <button className="bg-secondary w-5/6 font-semibold rounded-md text-xs">
-                    Contact
-                  </button>
-                  <button className="bg-slate-200 w-1/6 aspect-square rounded-md"></button>
-                </div>
-              </div>
-            </div>
+            <MediumCard name="ABC Company" />
+            <MediumCard name="BCD Company" />
+            <MediumCard
+              click={() => {
+                console.log("Hello world");
+              }}
+            />
           </div>
         </div>
       </section>
