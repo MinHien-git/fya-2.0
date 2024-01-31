@@ -5,7 +5,7 @@ import AgencyNavigationBar from "../../components/AgencyNavigationBar/AgencyNavi
 
 export default function AgencyManagementLayout() {
   return (
-    <div className="flex">
+    <div className="flex overflow-hidden h-[100vh]">
       <AgencyNavigationBar />
       <Outlet />
     </div>

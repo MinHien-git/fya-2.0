@@ -12,6 +12,19 @@ import EditService from "./pages/Management/EditService/EditService";
 import GuestLayout from "./layouts/GuestLayout/GuestLayout";
 import AgencyManagementLayout from "./layouts/AgencyManagementLayout/AgencyManagementLayout";
 import Portfolio from "./pages/Management/Portfolio/Portfolio";
+import About from "./pages/Management/About/About";
+import AdvertisingFeatures from "./pages/Management/AdvertisingFeatures/AdvertisingFeatures";
+import Awards from "./pages/Management/Awards/Awards";
+import Company from "./pages/Management/Company/Company";
+import General from "./pages/Management/General/General";
+import ManageAddress from "./pages/Management/ManageAddress/ManageAddress";
+import ManagePortfolio from "./pages/Management/ManagePortfolio/ManagePortfolio";
+import ReviewInvitaion from "./pages/Management/ReviewInvitation/ReviewInvitation";
+import Reviews from "./pages/Management/Reviews/Reviews";
+import Services from "./pages/Management/Services/Services";
+import ViewReview from "./pages/Management/ViewReview/ViewReview";
+import ProjectLeadsExtension from "./pages/Management/ProjectLeadsExtension/ProjectLeadsExtension";
+import Contact from "./pages/Management/Contact/Contact";
 
 function App() {
   return (
@@ -30,8 +43,27 @@ function App() {
             />
           </Route>
           <Route path="/management/" element={<AgencyManagementLayout />}>
-            <Route path="editService" element={<EditService />} />
+            <Route path="about" element={<About />} />
+            <Route
+              path="advertising-features"
+              element={<AdvertisingFeatures />}
+            />
+            <Route path="awards" element={<Awards />} />
+            <Route path="company" element={<Company />} />
+            <Route path="contact" element={<Contact />} />
+            <Route path="edit-service" element={<EditService />} />
+            <Route path="general" element={<General />} />
+            <Route path="manage-address" element={<ManageAddress />} />
+            <Route path="manageport-portfolio" element={<ManagePortfolio />} />
             <Route path="portfolio" element={<Portfolio />} />
+            <Route
+              path="project-leads-extension"
+              element={<ProjectLeadsExtension />}
+            />
+            <Route path="review-invitation" element={<ReviewInvitaion />} />
+            <Route path="reviews" element={<Reviews />} />
+            <Route path="services" element={<Services />} />
+            <Route path="view-review" element={<ViewReview />} />
           </Route>
         </Routes>
       </BrowserRouter>

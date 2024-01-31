@@ -4,7 +4,7 @@ export default function EditService() {
   return (
     <main className="w-full min-h-80 py-2 pt-0 flex flex-col gap-2">
       <SecondaryNavigationBar />
-      <section className="max-w-5xl w-[90%] min-h-[70vh] rounded-xl border-2 mt-10 mx-auto flex-col">
+      <section className="max-w-7xl w-[90%] min-h-[70vh] rounded-xl border-2 mt-10 mx-auto flex-col  px-12">
         <div className="flex w-full px-10 mt-14">
           <ul className="flex w-[50%] gap-3">
             <li className="w-8 aspect-square rounded-md bg-slate-300"></li>
