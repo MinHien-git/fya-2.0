@@ -15,6 +15,7 @@ module.exports = {
       dark_blue: "#13366F",
       light_gray: "#F9FBFF",
       border: "#2F2E41",
+      blue: "#0071F2",
     },
     extend: {
       aspectRatio: {

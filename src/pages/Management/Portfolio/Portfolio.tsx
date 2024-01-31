@@ -20,8 +20,8 @@ export default function Portfolio() {
         </p>
         <section className="grid w-full gap-5 mt-6">
           <p> The arrangement of your works will be displayed on your Page.</p>
-          <div className="font-sans flex border-2 rounded-[10px] border-dotted w-full py-6 px-8 border-text h-[6.25rem] items-center">
-            <ul className="flex w-full items-center justify-between h-full">
+          <div className="font-sans flex border-2 rounded-[10px] w-full py-6 px-8 border-text h-[6.25rem] items-center">
+            <ul className="flex w-full items-center h-full">
               <li className="h-[3.125rem] flex">
                 <button
                   className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:bg-gray-700 focus:text-white transition duration-150 ease-in-out"
@@ -62,7 +62,7 @@ export default function Portfolio() {
                 [Project Name]
               </li>
               <li className="bg-gray-300 text-primary text-sm py-2 w-12 rounded-md aspect-square"></li>
-              <li className="w-1/3 px-3 border-2 h-full rounded-lg flex gap-1 py-3 overflow-x-auto no-scrollbar overflow-y-hidden">
+              <li className="w-1/3 px-3 border-2 h-full rounded-lg flex gap-1 py-3 overflow-x-auto no-scrollbar overflow-y-hidden max-w-[18rem] ml-auto">
                 <div className="flex text-xs justify-between items-center w-auto gap-2 flex-nowrap text-nowrap bg-primary text-white px-1 rounded-md font-semibold py-2 max-h-[2rem]">
                   <div>[Service Name]</div>
                 </div>
@@ -76,7 +76,7 @@ export default function Portfolio() {
                   <div>[Service Name]</div>
                 </div>
               </li>
-              <li className="w-1/3 px-3 border-2 h-full rounded-lg flex gap-1 py-3 overflow-x-auto no-scrollbar overflow-y-hidden">
+              <li className="w-1/3 px-3 border-2 h-full rounded-lg flex gap-1 py-3 overflow-x-auto no-scrollbar overflow-y-hidden max-w-[18rem] ml-auto">
                 <div className="flex text-xs justify-between items-center w-auto gap-2 text-nowrap bg-secondary text-white px-1 rounded-md font-semibold py-2 max-h-[2rem]">
                   <div>[Skills Name]</div>
                 </div>

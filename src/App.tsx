@@ -19,9 +19,7 @@ import Company from "./pages/Management/Company/Company";
 import General from "./pages/Management/General/General";
 import ManagePortfolio from "./pages/Management/ManagePortfolio/ManagePortfolio";
 import ReviewInvitaion from "./pages/Management/ReviewInvitation/ReviewInvitation";
-import Reviews from "./pages/Management/Reviews/Reviews";
 import Services from "./pages/Management/Services/Services";
-import ViewReview from "./pages/Management/ViewReview/ViewReview";
 import ProjectLeadsExtension from "./pages/Management/ProjectLeadsExtension/ProjectLeadsExtension";
 import Contact from "./pages/Management/Contact/Contact";
 
@@ -59,9 +57,7 @@ function App() {
               element={<ProjectLeadsExtension />}
             />
             <Route path="review-invitation" element={<ReviewInvitaion />} />
-            <Route path="reviews" element={<Reviews />} />
             <Route path="services" element={<Services />} />
-            <Route path="view-review" element={<ViewReview />} />
           </Route>
         </Routes>
       </BrowserRouter>

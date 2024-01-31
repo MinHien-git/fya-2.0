@@ -11,7 +11,7 @@ export default function Contact() {
             <div className="grid w-1/2 mx-auto">
               <label
                 htmlFor="number"
-                className="font-semibold w-fit py-[0.125rem] text-sm rounded-md text-text"
+                className="font-semibold w-fit py-[0.125rem] text-2xl rounded-md text-text"
               >
                 Agency phone number*
               </label>
@@ -41,7 +41,7 @@ export default function Contact() {
             <div className="grid w-1/2 mx-auto">
               <label
                 htmlFor="language"
-                className="font-semibold w-fit py-[0.225rem] md:py-[0.425rem] text-sm rounded-md text-text"
+                className="font-semibold w-fit py-[0.225rem] md:py-[0.425rem] text-2xl rounded-md text-text"
               >
                 Agency email address*
               </label>
