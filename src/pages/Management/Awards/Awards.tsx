@@ -18,7 +18,7 @@ export default function Awards() {
             <ul className="flex w-full items-center justify-between">
               <li className="h-[3.125rem] self-end flex">
                 <button
-                  className="inline-flex items-center justify-center p-2 pb-1 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:bg-gray-700 focus:text-white transition duration-150 ease-in-out mt-auto"
+                  className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:bg-gray-700 focus:text-white transition duration-150 ease-in-out mt-auto"
                   aria-label="Main menu"
                   aria-expanded="false"
                 >

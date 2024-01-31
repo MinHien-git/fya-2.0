@@ -17,7 +17,6 @@ import AdvertisingFeatures from "./pages/Management/AdvertisingFeatures/Advertis
 import Awards from "./pages/Management/Awards/Awards";
 import Company from "./pages/Management/Company/Company";
 import General from "./pages/Management/General/General";
-import ManageAddress from "./pages/Management/ManageAddress/ManageAddress";
 import ManagePortfolio from "./pages/Management/ManagePortfolio/ManagePortfolio";
 import ReviewInvitaion from "./pages/Management/ReviewInvitation/ReviewInvitation";
 import Reviews from "./pages/Management/Reviews/Reviews";
@@ -53,7 +52,6 @@ function App() {
             <Route path="contact" element={<Contact />} />
             <Route path="edit-service" element={<EditService />} />
             <Route path="general" element={<General />} />
-            <Route path="manage-address" element={<ManageAddress />} />
             <Route path="manageport-portfolio" element={<ManagePortfolio />} />
             <Route path="portfolio" element={<Portfolio />} />
             <Route
