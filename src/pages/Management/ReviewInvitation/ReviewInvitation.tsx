@@ -13,7 +13,7 @@ export default function ReviewInvitaion() {
         </p>
         <section className="flex w-full gap-5 border-2 px-6 py-4 rounded-2xl">
           <ul className="w-full flex justify-between">
-            <li className="pr-4 border-r-2">
+            <li className="pr-4">
               <ul>
                 <li className="text-text text-md">Rating</li>
                 <li>
@@ -28,18 +28,21 @@ export default function ReviewInvitaion() {
                 </li>
               </ul>
             </li>
-            <li className="pr-4 border-r-2">
+            <li className="h-full w-[2px] bg-gray-200"></li>
+            <li className="pr-4">
               <ul>
                 <li className="text-text text-md">Client’s name</li>
                 <li className="font-bold">[Client’s Name]</li>
               </ul>
             </li>
-            <li className="pr-4 border-r-2">
+            <li className="h-full w-[2px] bg-gray-200"></li>
+            <li className="pr-4">
               <ul>
                 <li className="text-text text-md">Company name</li>
                 <li className="font-bold">[Company Name]</li>
               </ul>
             </li>
+            <li className="h-full w-[2px] bg-gray-200"></li>
             <li>
               <ul>
                 <li className="text-text text-md">Service provided</li>
