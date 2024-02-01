@@ -16,7 +16,7 @@ export default function EditService() {
             <li className="min-w-max bg-red-200 text-red-500 px-6 rounded-md py-1 text-sm flex items-center font-bold">
               Delete service
             </li>
-            <li className="min-w-max bg-blue-500 text-white px-6 rounded-md py-1 text-sm flex items-center font-bold">
+            <li className="min-w-max bg-blue-500 text-white px-6 rounded-md py-1 text-sm flex items-center font-bold bg-primary">
               Save changes
             </li>
           </ul>
@@ -38,11 +38,11 @@ export default function EditService() {
                 placeholder="Select service"
               />
               <div className="w-full border-2 border-t-0 border-dashed flex py-4 rounded-b-2xl px-4 gap-2 flex-wrap">
-                <div className="flex text-xs justify-between w-fit gap-8 bg-primary text-white px-4 rounded-md font-semibold py-2">
+                <div className="flex text-xs justify-between w-fit gap-8 bg-primary text-white px-4 rounded-[10px] py-2 font-title font-semibold">
                   <div>[Service Name]</div>
                   <div>X</div>
                 </div>
-                <div className="flex text-xs justify-between w-fit gap-8 bg-primary text-white px-4 rounded-md font-semibold py-2">
+                <div className="flex text-xs justify-between w-fit gap-8 bg-primary text-white px-4 rounded-[10px] font-semibold py-2 font-title">
                   <div>[Service Name]</div>
                   <div>X</div>
                 </div>
@@ -172,27 +172,27 @@ export default function EditService() {
                 placeholder="Select service"
               />
               <div className="w-full border-2 border-t-0 border-dashed flex py-4 rounded-b-2xl px-4 gap-2 flex-wrap">
-                <div className="flex text-xs justify-between w-fit gap-8 bg-secondary text-text px-4 rounded-md font-semibold py-2">
+                <div className="flex text-xs justify-between w-fit gap-8 bg-secondary text-text px-4 rounded-[10px] font-semibold py-2 font-title">
                   <div>[Skills Skills Name]</div>
                   <div>X</div>
                 </div>
-                <div className="flex text-xs justify-between w-fit gap-8 bg-secondary text-text px-4 rounded-md font-semibold py-2">
+                <div className="flex text-xs justify-between w-fit gap-8 bg-secondary text-text px-4 rounded-[10px] font-semibold py-2 font-title">
                   <div>[Skills Name]</div>
                   <div>X</div>
                 </div>{" "}
-                <div className="flex text-xs justify-between w-fit gap-8 bg-secondary text-text px-4 rounded-md font-semibold py-2">
+                <div className="flex text-xs justify-between w-fit gap-8 bg-secondary text-text px-4 rounded-[10px] font-semibold py-2 font-title">
                   <div>[Name Skills]</div>
                   <div>X</div>
                 </div>
-                <div className="flex text-xs justify-between w-fit gap-8 bg-secondary text-text px-4 rounded-md font-semibold py-2">
+                <div className="flex text-xs justify-between w-fit gap-8 bg-secondary text-text px-4 rounded-[10px] font-semibold py-2 font-title">
                   <div>[Skills Name Skills]</div>
                   <div>X</div>
                 </div>
-                <div className="flex text-xs justify-between w-fit gap-8 bg-secondary text-text px-4 rounded-md font-semibold py-2">
+                <div className="flex text-xs justify-between w-fit gap-8 bg-secondary text-text px-4 rounded-[10px] font-semibold py-2 font-title">
                   <div>[Name Skills Name Name]</div>
                   <div>X</div>
                 </div>
-                <div className="flex text-xs justify-between w-fit gap-8 bg-secondary text-text px-4 rounded-md font-semibold py-2">
+                <div className="flex text-xs justify-between w-fit gap-8 bg-secondary text-text px-4 rounded-[10px] font-semibold py-2 font-title">
                   <div>[Skills Name]</div>
                   <div>X</div>
                 </div>
@@ -203,27 +203,27 @@ export default function EditService() {
                 Suggested skills tags:
               </p>
               <div className="w-full flex py-2 rounded-b-2xl gap-2 flex-wrap">
-                <div className="flex text-xs justify-between w-fit gap-8 bg-secondary text-text px-4 rounded-md font-semibold py-2">
+                <div className="flex text-xs justify-between w-fit gap-8 bg-secondary text-text px-4 rounded-[10px] font-semibold py-2 font-title">
                   <div>[Skills Skills Name]</div>
                   <div>X</div>
                 </div>
-                <div className="flex text-xs justify-between w-fit gap-8 bg-secondary text-text px-4 rounded-md font-semibold py-2">
+                <div className="flex text-xs justify-between w-fit gap-8 bg-secondary text-text px-4 rounded-[10px] font-semibold py-2 font-title">
                   <div>[Skills Name]</div>
                   <div>X</div>
                 </div>{" "}
-                <div className="flex text-xs justify-between w-fit gap-8 bg-secondary text-text px-4 rounded-md font-semibold py-2">
+                <div className="flex text-xs justify-between w-fit gap-8 bg-secondary text-text px-4 rounded-[10px] font-semibold py-2 font-title">
                   <div>[Name Skills]</div>
                   <div>X</div>
                 </div>
-                <div className="flex text-xs justify-between w-fit gap-8 bg-secondary text-text px-4 rounded-md font-semibold py-2">
+                <div className="flex text-xs justify-between w-fit gap-8 bg-secondary text-text px-4 rounded-[10px] font-semibold py-2 font-title">
                   <div>[Skills Name Skills]</div>
                   <div>X</div>
                 </div>
-                <div className="flex text-xs justify-between w-fit gap-8 bg-secondary text-text px-4 rounded-md font-semibold py-2">
+                <div className="flex text-xs justify-between w-fit gap-8 bg-secondary text-text px-4 rounded-[10px] font-semibold py-2 font-title">
                   <div>[Name Skills Name Name]</div>
                   <div>X</div>
                 </div>
-                <div className="flex text-xs justify-between w-fit gap-8 bg-secondary text-text px-4 rounded-md font-semibold py-2">
+                <div className="flex text-xs justify-between w-fit gap-8 bg-secondary text-text px-4 rounded-[10px] font-semibold py-2 font-title">
                   <div>[Skills Name]</div>
                   <div>X</div>
                 </div>

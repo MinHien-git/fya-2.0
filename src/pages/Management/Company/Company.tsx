@@ -21,7 +21,7 @@ export default function Company() {
             Save changes
           </button>
         </div>
-        <section className="w-full rounded-xl border-2 h-[28rem] mt-4 mx-auto px-12 flex gap-4 border-dotted justify-center items-center">
+        <section className="w-full rounded-xl border-2 h-[28rem] mt-4 mx-auto px-12 flex gap-4 border-dotted justify-center items-center aspect-video">
           <button className="bg-gray-300 rounded-md text-xs h-[2.125rem] font-semibold lg:h-[2.5rem] mt-2 px-6">
             Upload
           </button>

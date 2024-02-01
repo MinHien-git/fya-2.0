@@ -8,8 +8,8 @@ export default function SearchResult() {
           <div className="bg-tertiary text-primary font-bold px-16 py-4 text-center font-title w-fit mb-4">
             Result Filters:
           </div>
-          <div className="grid flex-wrap gap-5 md:flex md:justify-start items-start">
-            <div className="grid gap-3">
+          <div className="grid gap-5 md:flex justify-between items-start">
+            <div className="grid gap-3 w-1/4">
               <label
                 htmlFor="services"
                 className="bg-secondary font-semibold w-fit px-6 py-[0.225rem] md:py-[0.425rem] text-sm rounded-md"
@@ -22,7 +22,7 @@ export default function SearchResult() {
                 className="border-primary border-2 p-2 rounded-md"
               />
             </div>
-            <div className="grid gap-3">
+            <div className="grid gap-3 w-1/4">
               <label
                 htmlFor="experience"
                 className="bg-secondary font-semibold w-fit px-6 py-[0.225rem] md:py-[0.425rem] text-sm rounded-md"
@@ -37,7 +37,7 @@ export default function SearchResult() {
               />
             </div>
 
-            <div className="grid gap-3">
+            <div className="grid gap-3 w-1/4">
               <label
                 htmlFor="location"
                 className="bg-secondary font-semibold w-fit px-6 py-[0.225rem] md:py-[0.425rem] text-sm rounded-md"
@@ -51,18 +51,31 @@ export default function SearchResult() {
                 placeholder="Type location"
               />
             </div>
-            <div className="grid gap-3 md:w-full lg:w-1/3">
+            <div className="grid gap-3 w-1/4">
               <label
-                htmlFor="budget"
-                className="bg-secondary font-semibold w-fit px-6 py-[0.225rem] md:py-[0.425rem] text-sm rounded-md "
+                htmlFor="location"
+                className="bg-secondary font-semibold w-fit px-6 py-[0.225rem] md:py-[0.425rem] text-sm rounded-md"
               >
-                Estimated budget{" "}
+                Estimated budget
               </label>
-              <MultiRangeSlider />
+              <div className="flex">
+                <input
+                  type="text"
+                  id="location"
+                  className="border-primary border-2 p-2 rounded-l-md w-1/2 border-r-[1px]"
+                  placeholder="From"
+                />
+                <input
+                  type="text"
+                  id="location"
+                  className="border-primary border-2 p-2 rounded-r-md w-1/2 border-l-0"
+                  placeholder="To"
+                />
+              </div>
             </div>
           </div>
-          <div className="grid md:flex flex-wrap gap-5 md:justify-start">
-            <div className="grid gap-3">
+          <div className="grid md:flex gap-5 justify-between">
+            <div className="grid gap-3 w-1/4">
               <label
                 htmlFor="services"
                 className="bg-secondary font-semibold w-fit px-6 py-[0.225rem] md:py-[0.425rem] text-sm rounded-md"
@@ -75,7 +88,7 @@ export default function SearchResult() {
                 className="border-primary border-2 p-2 rounded-md"
               />
             </div>
-            <div className="grid gap-3">
+            <div className="grid gap-3 w-1/4">
               <label
                 htmlFor="services"
                 className="bg-secondary font-semibold w-fit px-6 py-[0.225rem] md:py-[0.425rem] text-sm rounded-md"
@@ -89,7 +102,7 @@ export default function SearchResult() {
                 placeholder="Select language(s)"
               />
             </div>
-            <div className="grid gap-3">
+            <div className="grid gap-3 w-1/4">
               <label
                 htmlFor="services"
                 className="bg-secondary font-semibold w-fit px-6 py-[0.225rem] md:py-[0.425rem] text-sm rounded-md"
@@ -103,7 +116,7 @@ export default function SearchResult() {
                 placeholder="Select a size"
               />
             </div>
-            <div className="grid gap-3">
+            <div className="grid gap-3 w-1/4">
               <label
                 htmlFor="services"
                 className="bg-secondary font-semibold w-fit px-6 py-[0.225rem] md:py-[0.425rem] text-sm rounded-md"

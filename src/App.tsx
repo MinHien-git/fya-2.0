@@ -50,7 +50,7 @@ function App() {
             <Route path="contact" element={<Contact />} />
             <Route path="edit-service" element={<EditService />} />
             <Route path="general" element={<General />} />
-            <Route path="manageport-portfolio" element={<ManagePortfolio />} />
+            <Route path="manage-portfolio" element={<ManagePortfolio />} />
             <Route path="portfolio" element={<Portfolio />} />
             <Route
               path="project-leads-extension"

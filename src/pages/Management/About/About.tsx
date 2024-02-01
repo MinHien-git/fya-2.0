@@ -141,10 +141,10 @@ export default function About() {
           </div>
         </section>
         <section className="w-1/3 rounded-xl mt-10 mx-auto px-6">
-          <button className="bg-primary text-white w-full rounded-md text-xs h-[2.125rem] font-semibold lg:h-[3rem] mt-2">
+          <button className="bg-primary text-white w-full rounded-md py-2 font-semibold mt-2 font-title text-[1.125rem]">
             Save changes
           </button>
-          <button className="bg-tertiary text-primary w-full rounded-md text-xs h-[2.125rem] font-semibold lg:h-[3rem] mt-2">
+          <button className="bg-tertiary text-primary w-full rounded-md  py-2 font-semibold mt-2 text-[1.125rem]">
             Cancel
           </button>
         </section>

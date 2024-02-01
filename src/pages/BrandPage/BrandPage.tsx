@@ -38,13 +38,13 @@ export default function BrandPage() {
           <h1 className="text-md font-bold hidden md:block text-xl lg:text-2xl">
             [Brand Name Brand Name]
           </h1>
-          <p className="text-text font-semibold text-sm lg:text-[1.125rem] md:w-2/3 lg:w-7/8">
+          <p className="text-text text-sm lg:text-base">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce at
             sapien eu ipsum ornare sollicitudin vel nec nisl. Nullam ut lacus
             porttitor, vestibulum ipsum eu, porta libero. Aliquam erat volutpat.
             Morbi ac tincidunt orci.
           </p>
-          <button className="bg-secondary w-4/6 rounded-md text-xs h-[2.125rem] mt-6 font-semibold lg:w-[20rem] lg:h-[3rem] lg:mt-auto mb-5">
+          <button className="bg-secondary w-4/6 rounded-2xl py-4 text-[1.125rem] mt-6 font-bold lg:w-[15rem] lg:mt-auto mb-5 font-title">
             Open website
           </button>
         </div>

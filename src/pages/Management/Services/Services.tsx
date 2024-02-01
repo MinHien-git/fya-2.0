@@ -16,11 +16,11 @@ export default function Services() {
         </p>
         <section className="grid w-full gap-5 mt-6">
           <p> The arrangement of your works will be displayed on your Page.</p>
-          <div className="font-sans flex border-2 rounded-[10px] w-full py-6 px-8 border-text h-[6.25rem] items-center">
+          <div className="font-sans flex border-2 rounded-[10px] w-full py-6 px-8  h-[6.25rem] items-center shadow-md shadow-primary-500/20">
             <ul className="flex w-full items-center h-full">
               <li className="h-[3.125rem] flex">
                 <button
-                  className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:bg-gray-700 focus:text-white transition duration-150 ease-in-out"
+                  className="inline-flex mt-0 pl-0 items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:bg-gray-700 focus:text-white transition duration-150 ease-in-out"
                   aria-label="Main menu"
                   aria-expanded="false"
                 >
@@ -54,7 +54,7 @@ export default function Services() {
                   </svg>
                 </button>
               </li>
-              <li className="flex w-1/6 font-bold text-nowrap">
+              <li className="flex w-1/6 font-bold text-nowrap px-5">
                 [Service Name]
               </li>
 

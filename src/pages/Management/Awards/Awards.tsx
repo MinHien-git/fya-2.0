@@ -14,11 +14,11 @@ export default function Awards() {
         </p>
         <section className="grid w-full gap-5 mt-6">
           <p>The arrangement of your awards will be displayed on your Page.</p>
-          <div className="font-sans flex border-2 rounded-[10px] border-dotted w-full py-6 px-8 border-text h-[6.25rem] items-center">
+          <div className="font-sans flex border-2 rounded-[10px] w-full py-6 px-8  h-[6.25rem] items-center shadow-md shadow-primary-500/20">
             <ul className="flex w-full items-center justify-between">
               <li className="h-[3.125rem] self-end flex">
                 <button
-                  className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:bg-gray-700 focus:text-white transition duration-150 ease-in-out mt-auto"
+                  className="inline-flex mt-0 pl-0 items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:bg-gray-700 focus:text-white transition duration-150 ease-in-out"
                   aria-label="Main menu"
                   aria-expanded="false"
                 >
@@ -52,8 +52,9 @@ export default function Awards() {
                   </svg>
                 </button>
               </li>
-              <li className="self-end flex mb-[5px] w-1/4 font-bold pr-5 text-nowrap">
-                [Award Name]
+              <li className="w-1/4 px-5">
+                <li className="text-xs">Award Name</li>
+                <li className="font-bold text-nowrap">[Award Name]</li>
               </li>
               <li className="w-1/4 px-5 border-l-2">
                 <ul>
@@ -75,7 +76,7 @@ export default function Awards() {
                   <li className="font-bold text-nowrap">[sample.com]</li>
                 </ul>
               </li>
-              <li className="px-8 bg-gray-300 text-primary text-sm py-2 rounded-md self-end">
+              <li className="px-8 bg-gray-300 text-primary text-sm py-2 rounded-md">
                 Edit
               </li>
             </ul>

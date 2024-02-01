@@ -48,20 +48,20 @@ export default function AgencyPage() {
           <h1 className="text-md font-bold hidden md:block text-xl lg:text-2xl">
             [Brand Name Brand Name]
           </h1>
-          <p className="text-text font-semibold text-sm lg:text-[1.125rem] md:w-2/3 lg:w-7/8">
+          <p className="text-text text-sm lg:text-base">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce at
             sapien eu ipsum ornare sollicitudin vel nec nisl. Nullam ut lacus
             porttitor, vestibulum ipsum eu, porta libero. Aliquam erat volutpat.
             Morbi ac tincidunt orci.
           </p>
-          <div className="grid gap-2 mt-6 lg:mt-auto mb-5">
-            <button className="bg-primary text-white w-4/6 rounded-md text-xs h-[2.125rem] font-semibold lg:w-[20rem] lg:h-[3rem] mt-2">
+          <div className="grid gap-1 mt-6 lg:mt-auto mb-5">
+            <button className="bg-primary w-4/6 rounded-2xl py-4 text-[1.125rem] mt-2 font-bold lg:w-[15rem] lg:mt-auto mb-1 font-title text-white">
               Contact
             </button>
-            <button className="bg-secondary w-4/6 rounded-md text-xs h-[2.125rem] font-semibold lg:w-[20rem] lg:h-[3rem]">
+            <button className="bg-secondary w-4/6 rounded-2xl py-4 text-[1.125rem] mt-2 font-bold lg:w-[15rem] lg:mt-auto mb-1 font-title">
               Open website
             </button>
-            <button className="bg-tertiary text-primary w-4/6 rounded-md text-xs h-[2.125rem] font-semibold lg:w-[20rem] lg:h-[3rem]">
+            <button className="bg-tertiary w-4/6 rounded-2xl py-4 text-[1.125rem] mt-2 font-bold lg:w-[15rem] lg:mt-auto mb-1 font-title text-primary">
               Add To Saved
             </button>
           </div>

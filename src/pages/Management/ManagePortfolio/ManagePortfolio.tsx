@@ -14,11 +14,14 @@ export default function ManagePortfolio() {
           </ul>
         </div>
         <div className="flex w-full px-10 mt-8 gap-6 items-start">
-          <div className="w-1/2 grid gap-6">
+          <div className="w-1/2 grid gap-1">
+            <h2 className="font-bold text-[1.875rem] font-title mb-2">
+              Project’s Details
+            </h2>
             <div className="grid w-full mx-auto">
               <label
                 htmlFor="name"
-                className="font-bold text-[1.875rem] font-title w-fit py-[0.225rem] md:py-[0.425rem] rounded-md"
+                className="font-semibold w-fit py-[0.225rem] md:py-[0.425rem] text-sm rounded-md text-text"
               >
                 Project’s Name
               </label>
@@ -153,8 +156,8 @@ export default function ManagePortfolio() {
       </section>
 
       <section className="max-w-7xl w-[90%] rounded-xl border-2 mt-10 mx-auto flex-col px-6 pb-10">
-        <div className="flex w-full px-10 mt-8 gap-6 items-start">
-          <div className="w-1/2 grid">
+        <div className="flex w-full px-10 mt-8 gap-6 items-start h-full pb-5">
+          <div className="w-1/2 grid h-full">
             <h2 className="font-bold text-2xl font-title">Service</h2>
             <p className="text-sm  mb-2">
               Indicate the services you provided for the client in this project.
@@ -173,11 +176,11 @@ export default function ManagePortfolio() {
                 placeholder="Select service"
               />
               <div className="w-full border-2 border-t-0 border-dashed flex py-4 rounded-b-2xl px-4 gap-2 flex-wrap">
-                <div className="flex text-xs justify-between w-fit gap-8 bg-primary text-white px-4 rounded-md font-semibold py-2">
+                <div className="flex text-xs justify-between w-fit gap-8 bg-primary text-white px-4 rounded-[10px] font-semibold py-2 font-title">
                   <div>[Service Name]</div>
                   <div>X</div>
                 </div>
-                <div className="flex text-xs justify-between w-fit gap-8 bg-primary text-white px-4 rounded-md font-semibold py-2">
+                <div className="flex text-xs justify-between w-fit gap-8 bg-primary text-white px-4 rounded-[10px] font-semibold py-2 font-title">
                   <div>[Service Name]</div>
                   <div>X</div>
                 </div>
@@ -260,13 +263,13 @@ export default function ManagePortfolio() {
                 />
               </div>
             </div>
-            <div className="flex mt-5 items-center">
+            <div className="flex mt-3 items-center">
               <input
                 id="default-radio-1"
                 type="radio"
                 value=""
                 name="default-radio"
-                className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600 "
               />
               <label
                 htmlFor="default-radio-1"
@@ -276,7 +279,7 @@ export default function ManagePortfolio() {
               </label>
             </div>
           </div>
-          <div className="w-1/2 grid gap-1">
+          <div className="w-1/2 grid gap-1 h-full items-start">
             <h2 className="font-bold text-2xl font-title mb-2">Skills</h2>
             <p className="text-sm">
               Indicate the skills needed for your team to complete the project
@@ -296,27 +299,27 @@ export default function ManagePortfolio() {
                 placeholder="Select service"
               />
               <div className="w-full border-2 border-t-0 border-dashed flex py-4 rounded-b-2xl px-4 gap-2 flex-wrap">
-                <div className="flex text-xs justify-between w-fit gap-8 bg-secondary text-text px-4 rounded-md font-semibold py-2">
+                <div className="flex text-xs justify-between w-fit gap-8 bg-secondary text-text px-4 rounded-[10px] font-semibold py-2 font-title">
                   <div>[Skills Skills Name]</div>
                   <div>X</div>
                 </div>
-                <div className="flex text-xs justify-between w-fit gap-8 bg-secondary text-text px-4 rounded-md font-semibold py-2">
+                <div className="flex text-xs justify-between w-fit gap-8 bg-secondary text-text px-4 rounded-[10px] font-semibold py-2 font-title">
                   <div>[Skills Name]</div>
                   <div>X</div>
                 </div>{" "}
-                <div className="flex text-xs justify-between w-fit gap-8 bg-secondary text-text px-4 rounded-md font-semibold py-2">
+                <div className="flex text-xs justify-between w-fit gap-8 bg-secondary text-text px-4 rounded-[10px] font-semibold py-2 font-title">
                   <div>[Name Skills]</div>
                   <div>X</div>
                 </div>
-                <div className="flex text-xs justify-between w-fit gap-8 bg-secondary text-text px-4 rounded-md font-semibold py-2">
+                <div className="flex text-xs justify-between w-fit gap-8 bg-secondary text-text px-4 rounded-[10px] font-semibold py-2 font-title">
                   <div>[Skills Name Skills]</div>
                   <div>X</div>
                 </div>
-                <div className="flex text-xs justify-between w-fit gap-8 bg-secondary text-text px-4 rounded-md font-semibold py-2">
+                <div className="flex text-xs justify-between w-fit gap-8 bg-secondary text-text px-4 rounded-[10px] font-semibold py-2 font-title">
                   <div>[Name Skills Name Name]</div>
                   <div>X</div>
                 </div>
-                <div className="flex text-xs justify-between w-fit gap-8 bg-secondary text-text px-4 rounded-md font-semibold py-2">
+                <div className="flex text-xs justify-between w-fit gap-8 bg-secondary text-text px-4 rounded-[10px] font-semibold py-2 font-title">
                   <div>[Skills Name]</div>
                   <div>X</div>
                 </div>
@@ -327,27 +330,27 @@ export default function ManagePortfolio() {
                 Suggested skills tags:
               </p>
               <div className="w-full flex py-2 rounded-b-2xl gap-2 flex-wrap">
-                <div className="flex text-xs justify-between w-fit gap-8 bg-secondary text-text px-4 rounded-md font-semibold py-2">
+                <div className="flex text-xs justify-between w-fit gap-8 bg-secondary text-text px-4 rounded-[10px] font-semibold py-2 font-title">
                   <div>[Skills Skills Name]</div>
                   <div>X</div>
                 </div>
-                <div className="flex text-xs justify-between w-fit gap-8 bg-secondary text-text px-4 rounded-md font-semibold py-2">
+                <div className="flex text-xs justify-between w-fit gap-8 bg-secondary text-text px-4 rounded-[10px] font-semibold py-2 font-title">
                   <div>[Skills Name]</div>
                   <div>X</div>
                 </div>{" "}
-                <div className="flex text-xs justify-between w-fit gap-8 bg-secondary text-text px-4 rounded-md font-semibold py-2">
+                <div className="flex text-xs justify-between w-fit gap-8 bg-secondary text-text px-4 rounded-[10px] font-semibold py-2 font-title">
                   <div>[Name Skills]</div>
                   <div>X</div>
                 </div>
-                <div className="flex text-xs justify-between w-fit gap-8 bg-secondary text-text px-4 rounded-md font-semibold py-2">
+                <div className="flex text-xs justify-between w-fit gap-8 bg-secondary text-text px-4 rounded-[10px] font-semibold py-2 font-title">
                   <div>[Skills Name Skills]</div>
                   <div>X</div>
                 </div>
-                <div className="flex text-xs justify-between w-fit gap-8 bg-secondary text-text px-4 rounded-md font-semibold py-2">
+                <div className="flex text-xs justify-between w-fit gap-8 bg-secondary text-text px-4 rounded-[10px] font-semibold py-2 font-title">
                   <div>[Name Skills Name Name]</div>
                   <div>X</div>
                 </div>
-                <div className="flex text-xs justify-between w-fit gap-8 bg-secondary text-text px-4 rounded-md font-semibold py-2">
+                <div className="flex text-xs justify-between w-fit gap-8 bg-secondary text-text px-4 rounded-[10px] font-semibold py-2 font-title">
                   <div>[Skills Name]</div>
                   <div>X</div>
                 </div>

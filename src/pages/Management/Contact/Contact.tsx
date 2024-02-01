@@ -65,7 +65,7 @@ export default function Contact() {
         </h2>
 
         <div className="grid gap-3">
-          <div className="font-sans flex border-2 rounded-[10px] w-full py-6 px-8 border-text items-center">
+          <div className="font-sans flex border-2 rounded-[10px] w-full py-6 px-8 items-center shadow-md shadow-primary-500/20">
             <ul className="flex w-full items-center justify-between">
               <li className="flex">
                 <button
@@ -103,7 +103,7 @@ export default function Contact() {
                   </svg>
                 </button>
               </li>
-              <li className="flex  w-1/4 font-bold pr-5 text-nowrap mr-auto">
+              <li className="flex pl-5 w-1/4 font-bold pr-5 text-nowrap mr-auto">
                 [Address]
               </li>
               <li className="px-8 bg-gray-300 text-primary text-sm py-2 rounded-md">
@@ -149,19 +149,19 @@ export default function Contact() {
                   </svg>
                 </button>
               </li>
-              <li className="flex  w-1/4 font-bold pr-5 text-nowrap mr-auto">
+              <li className="flex pl-5 w-1/4 font-bold pr-5 text-nowrap mr-auto">
                 Add a new address
               </li>
             </ul>
           </div>
         </div>
-        <h2 className="font-title text-[1.25rem] pt-5 pb-3">
-          Remote Work option
-        </h2>
-        <p>
-          Enable this option on your Agency Page know that your agency is able
-          to work and communicate remotely with clients
-        </p>
+        <div className="grid gap-1">
+          <h2 className="font-title text-[1.25rem] pt-5">Remote Work option</h2>
+          <p>
+            Enable this option on your Agency Page know that your agency is able
+            to work and communicate remotely with clients
+          </p>
+        </div>
       </section>
       <section className="max-w-7xl w-[90%] pb-10 rounded-xl border-2 mt-10 mx-auto flex-col px-6">
         <h2 className="font-title text-[1.875rem] font-bold pt-5">
