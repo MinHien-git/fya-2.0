@@ -26,6 +26,8 @@ import Overview from "./pages/Management/Overview/Overview";
 import TopAgencies from "./pages/TopAgencies/TopAgencies";
 import Subscription from "./pages/Subscription/Subscription";
 import CreateAgencyPage from "./pages/CreateAgencyPage/CreateAgencyPage";
+import WorkingSpace from "./pages/Management/WorkingSpace/WorkingSpace";
+import WorkingSpaceTarget from "./pages/Management/WorkingSpaceTarget/WorkingSpaceTarget";
 
 function App() {
   return (
@@ -66,6 +68,8 @@ function App() {
             <Route path="review-invitation" element={<ReviewInvitaion />} />
             <Route path="services" element={<Services />} />
             <Route path="overview" element={<Overview />} />
+            <Route path="workspace" element={<WorkingSpace />} />
+            <Route path="target" element={<WorkingSpaceTarget />} />
           </Route>
         </Routes>
       </BrowserRouter>
