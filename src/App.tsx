@@ -22,6 +22,10 @@ import ReviewInvitaion from "./pages/Management/ReviewInvitation/ReviewInvitatio
 import Services from "./pages/Management/Services/Services";
 import ProjectLeadsExtension from "./pages/Management/ProjectLeadsExtension/ProjectLeadsExtension";
 import Contact from "./pages/Management/Contact/Contact";
+import Overview from "./pages/Management/Overview/Overview";
+import TopAgencies from "./pages/TopAgencies/TopAgencies";
+import Subscription from "./pages/Subscription/Subscription";
+import CreateAgencyPage from "./pages/CreateAgencyPage/CreateAgencyPage";
 
 function App() {
   return (
@@ -38,6 +42,9 @@ function App() {
               path="/agencyIntroduction"
               element={<AgencyPageIntroduction />}
             />
+            <Route path="top-agencies" element={<TopAgencies />} />
+            <Route path="subscription" element={<Subscription />} />
+            <Route path="create-agency-page" element={<CreateAgencyPage />} />
           </Route>
           <Route path="/management/" element={<AgencyManagementLayout />}>
             <Route path="about" element={<About />} />
@@ -58,6 +65,7 @@ function App() {
             />
             <Route path="review-invitation" element={<ReviewInvitaion />} />
             <Route path="services" element={<Services />} />
+            <Route path="overview" element={<Overview />} />
           </Route>
         </Routes>
       </BrowserRouter>
