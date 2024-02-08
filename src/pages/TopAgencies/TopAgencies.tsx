@@ -3,12 +3,14 @@ export default function TopAgencies() {
     <main className="w-full min-h-80 py-2 pt-0 flex flex-col gap-2 overflow-y-auto h-full mx-auto px-2 sm:px-4 lg:px-0">
       <section className="w-full max-w-7xl border-2 pb-5 rounded-3xl mt-8 md:mx-auto min-h-[50vh] bg-dark_blue px-3 flex items-center">
         <div className="grid gap-3 px-2 py-5 h-full mx-auto">
-          <h1 className="text-2xl sm:text-4xl font-bold text-white text-center lg:w-[28rem] font-header">
+          <h1 className="text-2xl lg:text-[2.5rem] sm:text-4xl font-bold text-white text-center lg:w-[32rem] font-header">
             Top <span className="text-secondary"> [Service]</span> Agencies in{" "}
             <span className="text-secondary">[Country]</span>
           </h1>
-          <p className="text-white text-center">Dont know where to start?</p>
-          <button className="bg-secondary text-text font-bold text-xs rounded-lg px-8 py-3 mx-auto mt-2 sm:mt-5 md:w-fit ">
+          <p className="text-white text-center mt-4">
+            Dont know where to start?
+          </p>
+          <button className="bg-secondary text-text font-bold text-xs rounded-lg px-8 py-3 mx-auto md:w-fit ">
             Create your free Agency Page now!
           </button>
           <p className="text-white text-center">

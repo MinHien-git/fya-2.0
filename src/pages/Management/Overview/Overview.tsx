@@ -30,7 +30,7 @@ export default function Overview() {
         </div>
       </section>
       <section className="max-w-7xl w-full mx-auto px-12 flex mt-1 gap-3">
-        <div className="w-[50%] grid gap-1">
+        <div className="w-[50%] grid gap-3">
           <div className="w-full pb-10 rounded-xl border-2 mx-auto flex-col px-6 py-6">
             <div className="flex items-center gap-4">
               <div className="aspect-square bg-secondary w-12 rounded-lg"></div>
