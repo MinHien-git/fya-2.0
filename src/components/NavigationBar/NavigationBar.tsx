@@ -216,7 +216,7 @@ export default function NavigationBar() {
                       <Menu.Item>
                         {({ active }) => (
                           <a
-                            href="/signin"
+                            href="/auth"
                             className={clsx(
                               active
                                 ? "bg-gray-100 text-gray-900"
@@ -225,25 +225,7 @@ export default function NavigationBar() {
                             )}
                           >
                             <div className="flex justify-between items-center">
-                              <p>Sign in</p>
-                              <div className="bg-primary w-6 aspect-square"></div>
-                            </div>
-                          </a>
-                        )}
-                      </Menu.Item>
-                      <Menu.Item>
-                        {({ active }) => (
-                          <a
-                            href="/signup"
-                            className={clsx(
-                              active
-                                ? "bg-gray-100 text-gray-900"
-                                : "text-gray-700",
-                              "block px-4 py-4 text-sm"
-                            )}
-                          >
-                            <div className="flex justify-between items-center">
-                              <p>Sign up</p>
+                              <p>Sign in/Sign up</p>
                               <div className="bg-primary w-6 aspect-square"></div>
                             </div>
                           </a>

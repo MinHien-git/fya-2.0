@@ -86,7 +86,7 @@ export default function AuthenticationPage() {
   return (
     <main className="w-full min-h-[50vh] p-2 h-auto">
       <section className="w-full border-[1px] border-primary bg-light_gray max-w-7xl px-8 lg:px-0 my-5 rounded-[3rem] md:mx-auto md:flex md:gap-2 md:px-0  md:justify-between min-h-[50vh] h-[100%]">
-        <div className="md:w-[50%] mt-12 md:mt-0 flex flex-col md:bg-sand rounded-[3rem] md:border-2 md:border-secondary md:items-center md:pt-16 gap-4">
+        <div className="md:w-[50%] lg:aspect-[4/5] mt-12 md:mt-0 flex flex-col md:bg-sand rounded-[3rem] md:border-2 md:border-secondary md:items-center md:pt-16 gap-4">
           <img
             src={"/static/images/Logo_BG.svg"}
             alt="logo"
