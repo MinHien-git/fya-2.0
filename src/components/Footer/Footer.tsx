@@ -1,3 +1,5 @@
+import { FaFacebook, FaInstagram, FaLinkedin } from "react-icons/fa";
+import { BsTwitterX, BsThreads } from "react-icons/bs";
 export default function Footer() {
   return (
     <footer className="w-full bg-tertiary border-2 max-w-7xl py-5 px-8 sm:px-12 lg:px-16 my-5 rounded-[3rem] md:mx-auto mb-10">
@@ -17,11 +19,21 @@ export default function Footer() {
               connection between SMEs/Startups and Agencies.{" "}
             </p>
             <ul className="flex gap-2 items-center py-2">
-              <li className="aspect-square w-1/5 bg-gray-200 rounded-full max-w-12"></li>
-              <li className="aspect-square w-1/5 bg-gray-200 rounded-full max-w-12"></li>
-              <li className="aspect-square w-1/5 bg-gray-200 rounded-full max-w-12"></li>
-              <li className="aspect-square w-1/5 bg-gray-200 rounded-full max-w-12"></li>
-              <li className="aspect-square w-1/5 bg-gray-200 rounded-full max-w-12"></li>
+              <li className="aspect-square w-1/5 bg-gray-200 rounded-full max-w-12 flex justify-center items-center">
+                <FaFacebook />
+              </li>
+              <li className="aspect-square w-1/5 bg-gray-200 rounded-full max-w-12 flex justify-center items-center">
+                <FaInstagram />
+              </li>
+              <li className="aspect-square w-1/5 bg-gray-200 rounded-full max-w-12 flex justify-center items-center">
+                <FaLinkedin />
+              </li>
+              <li className="aspect-square w-1/5 bg-gray-200 rounded-full max-w-12 flex justify-center items-center">
+                <BsTwitterX />
+              </li>
+              <li className="aspect-square w-1/5 bg-gray-200 rounded-full max-w-12 flex justify-center items-center">
+                <BsThreads />
+              </li>
             </ul>
             <h5 className="font-semibold">
               2023 © Fya - All rights reserved - Terms of Use - Privacy Policy

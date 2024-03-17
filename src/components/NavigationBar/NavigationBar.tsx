@@ -2,6 +2,9 @@ import { useState } from "react";
 import clsx from "clsx";
 import { Fragment } from "react";
 import { Menu, Transition } from "@headlessui/react";
+import { Link } from "react-router-dom";
+import { FaArrowRight } from "react-icons/fa6";
+import { IoIosArrowForward } from "react-icons/io";
 
 export default function NavigationBar() {
   const [isToggle, setIsToggle] = useState(false);
@@ -226,7 +229,7 @@ export default function NavigationBar() {
                           >
                             <div className="flex justify-between items-center">
                               <p>Sign in/Sign up</p>
-                              <div className="bg-primary w-6 aspect-square"></div>
+                              <FaArrowRight />
                             </div>
                           </a>
                         )}
@@ -239,24 +242,42 @@ export default function NavigationBar() {
           </div>
           <div className={clsx(isToggle ? "block" : "hidden", "lg:hidden")}>
             <div className="px-2 pt-2 pb-3">
-              <a
-                href="/#"
-                className="mt-1 block px-3 py-2 rounded-md  font-semibold font-medium hover:bg-yellow-500 focus:outline-none focus:text-white focus:bg-gray-700 transition duration-150 ease-in-out"
+              <Link
+                to="/#"
+                className="mt-1 block px-3 py-4 rounded-md  font-semibold  hover:bg-yellow-500 focus:outline-none focus:text-white focus:bg-gray-700 transition duration-150 ease-in-out"
               >
-                About{" "}
-              </a>
-              <a
-                href="/#"
-                className="mt-1 block px-3 py-2 rounded-md font-semibold font-medium hover:bg-yellow-500 focus:outline-none focus:text-white focus:bg-gray-700 transition duration-150 ease-in-out"
+                <div className="flex justify-between items-center">
+                  <p>About</p>
+                  <IoIosArrowForward />
+                </div>
+              </Link>
+              <Link
+                to="/#"
+                className="mt-1 block px-3 py-4 rounded-md font-semibold hover:bg-yellow-500 focus:outline-none focus:text-white focus:bg-gray-700 transition duration-150 ease-in-out"
               >
-                Find Agencies{" "}
-              </a>
-              <a
-                href="/#"
-                className="mt-1 block px-3 py-2 rounded-md font-semibold font-medium hover:bg-yellow-500 focus:outline-none focus:text-white focus:bg-gray-700 transition duration-150 ease-in-out"
+                <div className="flex justify-between items-center">
+                  <p>Find Agencies</p>
+                  <IoIosArrowForward />
+                </div>
+              </Link>
+              <Link
+                to="/#"
+                className="mt-1 block px-3 py-4 rounded-md font-semibold hover:bg-yellow-500 focus:outline-none focus:text-white focus:bg-gray-700 transition duration-150 ease-in-out"
               >
-                Get Customers{" "}
-              </a>
+                <div className="flex justify-between items-center">
+                  <p>Get Customers</p>
+                  <IoIosArrowForward />
+                </div>
+              </Link>
+              <Link
+                to="/auth"
+                className="mt-1 block px-3 py-4 rounded-md font-semibold hover:bg-yellow-500 focus:outline-none focus:text-white focus:bg-gray-700 transition duration-150 ease-in-out"
+              >
+                <div className="flex justify-between items-center">
+                  <p>Sign in/Sign up</p>
+                  <IoIosArrowForward />
+                </div>
+              </Link>
             </div>
           </div>
         </div>

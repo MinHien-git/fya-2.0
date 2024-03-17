@@ -1,3 +1,5 @@
+import { FiBookmark } from "react-icons/fi";
+
 interface IMediumCard {
   name?: string;
   click?: () => void;
@@ -5,7 +7,7 @@ interface IMediumCard {
 
 export default function MediumCard({ name, click }: IMediumCard) {
   return (
-    <div className="font-sans w-10/12 flex border-2 rounded-2xl sm:w-2/5 bg-white">
+    <div className="font-sans w-10/12 flex border-2 rounded-2xl md:w-1/3 bg-white">
       <div className="card mx-auto flex-col py-4 flex items-center gap-2">
         <img
           className="w-20 mx-auto rounded-full border-8 border-white"
@@ -30,8 +32,8 @@ export default function MediumCard({ name, click }: IMediumCard) {
             <li className="bg-secondary w-3 aspect-square rounded-md"></li>
             <li className="bg-secondary w-3 aspect-square rounded-md"></li>
             <li className="bg-secondary w-3 aspect-square rounded-md"></li>
-            <li className="font-bold">0.0/5.0</li>
-            <li className="hidden lg:block">(0 review)</li>
+            <li className="font-bold text-sm">0.0/5.0</li>
+            <li className="hidden lg:block text-xs">(0 review)</li>
           </ul>
         </div>
 
@@ -51,7 +53,9 @@ export default function MediumCard({ name, click }: IMediumCard) {
           >
             Contact
           </button>
-          <button className="bg-slate-200 w-1/6 aspect-square rounded-md"></button>
+          <button className="bg-slate-200 w-1/6 aspect-square rounded-md flex justify-center items-center">
+            <FiBookmark className="text-primary" />
+          </button>
         </div>
       </div>
     </div>
