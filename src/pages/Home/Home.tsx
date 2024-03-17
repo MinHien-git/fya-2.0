@@ -207,7 +207,7 @@ export default function Home() {
         transition={{ ease: "easeOut", duration: 0.5 }}
       >
         <section className="w-full border-[1px] border-border bg-light_gray max-w-7xl px-2 sm:px-4 lg:px-12 my-5 rounded-[3rem] md:mx-auto flex flex-col justify-center items-center">
-          <div className="py-5 w-10/12 md:w-full max-w-5xl pb-10">
+          <div className="py-5 w-10/12 md:w-full pb-10">
             <h2 className="text-[2rem] py-2 font-bold text-center font-title">
               What We can Do For{" "}
               <span className="text-secondary"> You & Your Business</span>
@@ -216,9 +216,9 @@ export default function Home() {
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce at
               sapien eu ipsum ornare{" "}
             </p>
-            <div className="flex flex-wrap mt-4 gap-4 md:flex-nowrap">
+            <div className="h-full w-full flex justify-center md:justify-start mt-5 flex-wrap gap-4 md:flex-nowrap md:w-[80%] max-w-5xl mx-auto">
               <motion.div
-                className="flex flex-col h-auto w-full p-6 bg-white border border-gray-200 rounded-2xl shadow md:w-1/3 aspect-[11/12] drop-shadow-md"
+                className="flex flex-col h-auto w-full p-6 bg-tertiary border border-gray-200 rounded-2xl shadow md:w-1/3 aspect-[11/12] drop-shadow-md"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ ease: "easeOut", duration: 1 }}
@@ -239,7 +239,7 @@ export default function Home() {
                 </p>
                 <a
                   href="/#"
-                  className="w-full mt-auto justify-center inline-flex items-center px-3 py-2 text-xs font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                  className="w-full mt-auto justify-center bg-primary inline-flex items-center px-3 py-2 text-xs font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                 >
                   Search agencies
                   <svg
@@ -302,7 +302,7 @@ export default function Home() {
                 </a>
               </motion.div>
               <motion.div
-                className="flex flex-col h-auto w-full p-6 bg-white border border-gray-200 rounded-2xl shadow md:w-1/3 aspect-[11/12] drop-shadow-md"
+                className="flex flex-col h-auto w-full p-6 bg-tertiary border border-gray-200 rounded-2xl shadow md:w-1/3 aspect-[11/12] drop-shadow-md"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ ease: "easeOut", duration: 2 }}
@@ -388,12 +388,12 @@ export default function Home() {
             <p className="text-text text-center">
               if you are a small agencies and wanna grow your business larger?
             </p>
-            <div className="flex flex-wrap mt-4 gap-4 md:flex-nowrap max-w-5xl mx-auto">
+            <div className="h-full w-full flex justify-center md:justify-start mt-5 flex-wrap gap-4 md:flex-nowrap md:w-[80%] max-w-5xl mx-auto">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ ease: "easeOut", duration: 1 }}
-                className="flex flex-col h-auto w-full p-6 bg-white border border-gray-200 rounded-2xl shadow md:w-1/3 aspect-[11/12] drop-shadow-md"
+                className="flex flex-col h-auto w-full p-6 bg-tertiary border border-gray-200 rounded-2xl shadow md:w-1/3 aspect-[11/12] drop-shadow-md"
               >
                 <div className="w-12 bg-primary aspect-square self-center justify-self-center rounded-md mb-4 flex items-center justify-center">
                   <img src="/static/images/flash.png" alt="flash" />
@@ -411,7 +411,7 @@ export default function Home() {
                 </p>
                 <a
                   href="/#"
-                  className="w-full mt-auto justify-center inline-flex items-center px-3 py-2 text-xs font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                  className="w-full mt-auto justify-center inline-flex bg-primary items-center px-3 py-2 text-xs font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                 >
                   Create Your Profile
                 </a>
@@ -447,7 +447,7 @@ export default function Home() {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ ease: "easeOut", duration: 2 }}
-                className="flex flex-col h-auto w-full p-6 bg-white border border-gray-200 rounded-2xl shadow md:w-1/3 aspect-[11/12] drop-shadow-md"
+                className="flex flex-col h-auto w-full p-6 bg-tertiary border border-gray-200 rounded-2xl shadow md:w-1/3 aspect-[11/12] drop-shadow-md"
               >
                 <div className="w-12 bg-primary aspect-square self-center justify-self-center rounded-md mb-4 flex items-center justify-center">
                   <img src="/static/images/power.png" alt="power" />
@@ -465,7 +465,7 @@ export default function Home() {
                 </p>
                 <a
                   href="/#"
-                  className="w-full mt-auto justify-center inline-flex items-center px-3 py-2 text-xs font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                  className="w-full mt-auto justify-center bg-primary inline-flex items-center px-3 py-2 text-xs font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                 >
                   Join FyaPro today!
                 </a>
@@ -507,7 +507,7 @@ export default function Home() {
             <p className="text-text text-center">
               if you are a small agencies and wanna grow your business larger?
             </p>
-            <div className="flex flex-wrap mt-4 gap-4 md:flex-nowrap max-w-5xl mx-auto">
+            <div className="h-full w-full flex justify-center md:justify-start mt-5 flex-wrap gap-4 md:flex-nowrap md:w-[80%] max-w-5xl mx-auto">
               <motion.div
                 className="bg-tertiary flex flex-col h-auto sm:h-[32rem] md:h-auto w-full p-6 border border-gray-200 rounded-2xl shadow md:w-1/3 drop-shadow-md"
                 initial={{ opacity: 0, y: 20 }}
