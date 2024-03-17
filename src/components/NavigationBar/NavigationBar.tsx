@@ -219,6 +219,42 @@ export default function NavigationBar() {
                       <Menu.Item>
                         {({ active }) => (
                           <a
+                            href="/managepage"
+                            className={clsx(
+                              active
+                                ? "bg-gray-100 text-gray-900"
+                                : "text-gray-700",
+                              "block px-4 py-4 text-sm"
+                            )}
+                          >
+                            <div className="flex justify-between items-center">
+                              <p>Dashboard</p>
+                              <FaArrowRight />
+                            </div>
+                          </a>
+                        )}
+                      </Menu.Item>
+                      <Menu.Item>
+                        {({ active }) => (
+                          <a
+                            href="/navigationpage"
+                            className={clsx(
+                              active
+                                ? "bg-gray-100 text-gray-900"
+                                : "text-gray-700",
+                              "block px-4 py-4 text-sm"
+                            )}
+                          >
+                            <div className="flex justify-between items-center">
+                              <p>Manage Page</p>
+                              <FaArrowRight />
+                            </div>
+                          </a>
+                        )}
+                      </Menu.Item>
+                      <Menu.Item>
+                        {({ active }) => (
+                          <a
                             href="/auth"
                             className={clsx(
                               active
@@ -266,6 +302,15 @@ export default function NavigationBar() {
               >
                 <div className="flex justify-between items-center">
                   <p>Get Customers</p>
+                  <IoIosArrowForward />
+                </div>
+              </Link>
+              <Link
+                to="/page-navigation"
+                className="mt-1 block px-3 py-4 rounded-md font-semibold hover:bg-yellow-500 focus:outline-none focus:text-white focus:bg-gray-700 transition duration-150 ease-in-out"
+              >
+                <div className="flex justify-between items-center">
+                  <p>Manage Page</p>
                   <IoIosArrowForward />
                 </div>
               </Link>

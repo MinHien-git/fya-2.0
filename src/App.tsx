@@ -29,6 +29,8 @@ import WorkingSpace from "./pages/Management/WorkingSpace/WorkingSpace";
 import WorkingSpaceTarget from "./pages/Management/WorkingSpaceTarget/WorkingSpaceTarget";
 import MatchMakingIntroduction from "./pages/MatchMakingIntroduction/MatchMakingIntroduction";
 import AuthenticationPage from "./pages/AuthenticationPage/AuthenticationPage";
+import PageCreateNavigation from "./pages/PageCreateNavigation/PageCreateNavigation";
+import CreatePage from "./pages/CreatePage/CreatePage";
 
 function App() {
   return (
@@ -52,6 +54,8 @@ function App() {
               path="match-making-introduction"
               element={<MatchMakingIntroduction />}
             />
+            <Route path="page-navigation" element={<PageCreateNavigation />} />
+            <Route path="create-page" element={<CreatePage />} />
           </Route>
           <Route path="/management/" element={<AgencyManagementLayout />}>
             <Route path="about" element={<About />} />
