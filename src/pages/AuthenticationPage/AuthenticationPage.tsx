@@ -85,25 +85,25 @@ export default function AuthenticationPage() {
 
   return (
     <main className="w-full min-h-[50vh] p-2 h-auto">
-      <section className="w-full border-[1px] border-primary bg-light_gray max-w-7xl py-5 px-8 lg:px-16 my-5 rounded-[3rem] md:mx-auto md:flex md:gap-2 md:px-4  md:justify-between min-h-[50vh] h-[100%]">
-        <div className="py-5 md:w-2/5 lg:w-3/5 lg:h-1/2 flex flex-col">
+      <section className="w-full border-[1px] border-primary bg-light_gray max-w-7xl px-8 lg:px-0 my-5 rounded-[3rem] md:mx-auto md:flex md:gap-2 md:px-0  md:justify-between min-h-[80vh] h-[100%]">
+        <div className="md:w-[50%] mt-12 md:mt-0 flex flex-col md:bg-yellow-100 rounded-[3rem] md:border-2 md:border-secondary md:items-center md:pt-12">
           <img
             src={"/static/images/Logo_BG.svg"}
             alt="logo"
             className="w-[4rem] mb-6"
           />
-          <h1 className="text-4xl pb-2 font-bold text-primary lg:text-5xl font-header">
+          <h1 className="text-4xl pb-2 font-bold text-primary lg:text-5xl font-header md:w-[80%]">
             <span className="text-secondary">Signup</span> or{" "}
             <span className="text-secondary">Log in</span> to your account to
             continue!
           </h1>
-          <p className="font-semibold pt-2 text-primary opacity-55">
+          <p className="font-semibold pt-2 text-primary opacity-55 md:w-[80%]">
             Manage all your activities on Fya with your account.
           </p>
         </div>
-        <div className="flex flex-col gap-4 mb-5 h-[100%] w-[100%] md:w-[50%] items-center justify-center px-4">
-          <div className="w-[100%] px-12 flex">
-            <div className="w-[100%] my-8 py-8 md:bg-white px-12 flex flex-col">
+        <div className="md:w-[50%] mt-12 md:mt-0 flex flex-col">
+          <div className="w-[100%]  lg:px-12 flex h-[100%]  items-center justify-center">
+            <div className="w-[100%] lg:my-8 py-8 md:bg-white md:px-8 lg:px-12 flex flex-col rounded-[2rem] mx-auto max-w-[24rem] h-auto">
               <Tabs value="Signin" className="w-[100%] my-6">
                 <TabsHeader
                   indicatorProps={{ id: "tabs-header-indicator" }}
