@@ -85,12 +85,12 @@ export default function AuthenticationPage() {
 
   return (
     <main className="w-full min-h-[50vh] p-2 h-auto">
-      <section className="w-full border-[1px] border-primary bg-light_gray max-w-7xl px-8 lg:px-0 my-5 rounded-[3rem] md:mx-auto md:flex md:gap-2 md:px-0  md:justify-between min-h-[80vh] h-[100%]">
-        <div className="md:w-[50%] mt-12 md:mt-0 flex flex-col md:bg-yellow-100 rounded-[3rem] md:border-2 md:border-secondary md:items-center md:pt-12">
+      <section className="w-full border-[1px] border-primary bg-light_gray max-w-7xl px-8 lg:px-0 my-5 rounded-[3rem] md:mx-auto md:flex md:gap-2 md:px-0  md:justify-between min-h-[50vh] h-[100%]">
+        <div className="md:w-[50%] mt-12 md:mt-0 flex flex-col md:bg-sand rounded-[3rem] md:border-2 md:border-secondary md:items-center md:pt-16 gap-4">
           <img
             src={"/static/images/Logo_BG.svg"}
             alt="logo"
-            className="w-[4rem] mb-6"
+            className="w-[4rem] md:w-[6rem] mb-6"
           />
           <h1 className="text-4xl pb-2 font-bold text-primary lg:text-5xl font-header md:w-[80%]">
             <span className="text-secondary">Signup</span> or{" "}
