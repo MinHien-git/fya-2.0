@@ -25,9 +25,11 @@ import Contact from "./pages/Management/Contact/Contact";
 import Overview from "./pages/Management/Overview/Overview";
 import TopAgencies from "./pages/TopAgencies/TopAgencies";
 import Subscription from "./pages/Subscription/Subscription";
-import CreateAgencyPage from "./pages/CreateAgencyPage/CreateAgencyPage";
 import WorkingSpace from "./pages/Management/WorkingSpace/WorkingSpace";
 import WorkingSpaceTarget from "./pages/Management/WorkingSpaceTarget/WorkingSpaceTarget";
+import MatchMakingIntroduction from "./pages/MatchMakingIntroduction/MatchMakingIntroduction";
+import SignIn from "./pages/Signin/Signin";
+import SignUp from "./pages/Signup/Signup";
 
 function App() {
   return (
@@ -45,8 +47,13 @@ function App() {
               element={<AgencyPageIntroduction />}
             />
             <Route path="top-agencies" element={<TopAgencies />} />
+            <Route path="signin" element={<SignIn />} />
+            <Route path="signup" element={<SignUp />} />
             <Route path="subscription" element={<Subscription />} />
-            <Route path="create-agency-page" element={<CreateAgencyPage />} />
+            <Route
+              path="match-making-introduction"
+              element={<MatchMakingIntroduction />}
+            />
           </Route>
           <Route path="/management/" element={<AgencyManagementLayout />}>
             <Route path="about" element={<About />} />

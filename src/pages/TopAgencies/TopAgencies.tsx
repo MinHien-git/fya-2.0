@@ -390,16 +390,16 @@ export default function TopAgencies() {
           </div>
         </div>
       </section>
-      <section className="w-full max-w-5xl px-2 sm:px-4 lg:px-12 md:mx-auto flex flex-col justify-center items-center relative border-2 border-secondary rounded-3xl">
-        <div className="py-8 w-full mt-10 grid gap-1 pb-10">
+      <section className="w-full max-w-5xl px-2 sm:px-4 lg:px-12 md:mx-auto flex flex-col justify-center items-center relative border-2 border-secondary rounded-3xl mt-4">
+        <div className="py-8 w-full my-10 grid gap-3 pb-10">
           <h5 className="text-center md:text-xl lg:text-[2rem] font-title text-black font-bold text-3xl">
             Can’t decide?
           </h5>
-          <p className="text-secondary text-sx text-center w-80 mx-auto">
+          <p className="text-secondary text-sx text-center w-80 mx-auto mt-2">
             We have got you covered
           </p>
 
-          <button className="bg-secondary text-text font-bold text-xs rounded-lg px-8 py-2 mx-auto mt-5 md:w-fit md:mx-auto">
+          <button className="bg-secondary text-text font-bold text-base rounded-lg px-10 py-3 mx-auto md:w-fit md:mx-auto">
             Post your Project
           </button>
           <p className="text-text text-center mt-2">

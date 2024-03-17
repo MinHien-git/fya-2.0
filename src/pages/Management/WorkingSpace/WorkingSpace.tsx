@@ -5,7 +5,7 @@ export default function WorkingSpace() {
     <main className="w-full min-h-80 py-2 pt-0 flex flex-col overflow-y-auto h-full mx-auto">
       <ProjectLeadsExtensionNavigation />
       <div className="w-full">
-        <ul className="flex h-[3rem] border-b-2 w-full justify-between items-center">
+        <ul className="flex h-[4rem] border-b-2 w-full justify-between items-center">
           <li className="text-center pl-8 font-semibold">Project’s name</li>
           <li className="w-[1px] h-2/3 bg-gray-200"></li>
           <li className="text-center font-semibold">Price</li>

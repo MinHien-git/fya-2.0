@@ -3,31 +3,28 @@ export default function Subscription() {
     <main className="w-full min-h-80 py-2 pt-0">
       <section className="w-full border-2 pb-5 rounded-b-3xl md:mx-auto min-h-[50vh] bg-dark_blue px-3 flex items-center">
         <div className="grid gap-3 px-2 py-5 h-full mx-auto">
-          <h1 className="text-2xl sm:text-4xl font-bold text-white text-center lg:w-[30rem] font-header">
+          <h1 className="text-2xl lg:text-5xl sm:text-4xl font-bold text-white text-center lg:w-full font-header">
             Generate revenue, <span className="text-secondary">on repeat.</span>{" "}
           </h1>
-          <p className="text-white text-center">
+          <p className="text-white text-center text-lg">
             Sign up for <span className="text-secondary">FyaPro</span> and watch
             qualified leads roll in month after month
           </p>
-          <button className="bg-secondary text-text font-bold text-xs rounded-lg px-8 py-3 mx-auto mt-2 sm:mt-5 md:w-fit ">
-            Create your free Agency Page now!
-          </button>
         </div>
       </section>
 
       <section className="w-full max-w-4xl px-2 sm:px-4 lg:px-12 mt-[-4rem] mb-4 md:mx-auto flex flex-col justify-center items-center md:grid gap-4 md:grid-cols-2 md:items-stretch">
-        <div className="border-2 w-full flex flex-col justify-center border-text rounded-2xl py-6 px-4 bg-white gap-2">
-          <h3 className="text-3xl text-center">Free</h3>
+        <div className="border-2 w-full flex flex-col justify-center rounded-[1.25rem] py-6 px-8 bg-white gap-2">
+          <h3 className="text-3xl text-center font-semibold">Free</h3>
           <div>
             <p className="text-xs text-center invisible">From</p>
-            <p className="font-bold text-[3.25rem] text-center">$0</p>
+            <p className="font-bold text-[2.625rem] text-center">$0</p>
           </div>
           <p className="font-bold">Included:</p>
           <ul className="grid gap-2">
             <li>
               <div className="flex items-start gap-2">
-                <div className="w-4 aspect-square bg-green-300 rounded-full mt-2"></div>{" "}
+                <div className="w-4 aspect-square bg-green-300 rounded-full mt-1"></div>{" "}
                 <p className="w-[calc(100%-4rem)]">
                   Create a free Agency Page.
                 </p>
@@ -35,7 +32,7 @@ export default function Subscription() {
             </li>
             <li>
               <div className="flex items-start gap-2">
-                <div className="w-4 aspect-square bg-green-300 rounded-full mt-2"></div>{" "}
+                <div className="w-4 aspect-square bg-green-300 rounded-full mt-1"></div>{" "}
                 <p className="w-[calc(100%-4rem)]">
                   Showcase your company, team, awards & experience
                 </p>
@@ -43,7 +40,7 @@ export default function Subscription() {
             </li>
             <li>
               <div className="flex items-start gap-2">
-                <div className="w-4 aspect-square bg-green-300 rounded-full mt-2"></div>{" "}
+                <div className="w-4 aspect-square bg-green-300 rounded-full mt-1"></div>{" "}
                 <p className="w-[calc(100%-4rem)]">
                   Get your verified reviews widget & boost client confidence.
                 </p>
@@ -51,7 +48,7 @@ export default function Subscription() {
             </li>
             <li>
               <div className="flex items-start gap-2">
-                <div className="w-4 aspect-square bg-green-300 rounded-full mt-2"></div>{" "}
+                <div className="w-4 aspect-square bg-green-300 rounded-full mt-1"></div>{" "}
                 <p className="w-[calc(100%-4rem)]">
                   Being discovered via Fya's search engine
                 </p>
@@ -62,7 +59,7 @@ export default function Subscription() {
           <ul className="grid gap-2">
             <li>
               <div className="flex items-start gap-2">
-                <div className="w-4 aspect-square bg-red-500 rounded-full mt-2"></div>{" "}
+                <div className="w-4 aspect-square bg-red-500 rounded-full mt-1"></div>{" "}
                 <div className="w-[calc(100%-4rem)] grid gap-1">
                   <p>Access to Advertising Features</p>
                   <p className="text-xs">From $0.12/click</p>
@@ -71,7 +68,7 @@ export default function Subscription() {
             </li>
             <li>
               <div className="flex items-start gap-2">
-                <div className="w-4 aspect-square bg-red-500 rounded-full mt-2"></div>{" "}
+                <div className="w-4 aspect-square bg-red-500 rounded-full mt-1"></div>{" "}
                 <div className="w-[calc(100%-4rem)] grid gap-1">
                   <p>Receiving projects via the Post Your Project feature</p>
                   <p className="text-xs">From $2.00/project</p>
@@ -86,11 +83,11 @@ export default function Subscription() {
             No payment required
           </p>
         </div>
-        <div className="border-2 w-full flex flex-col justify-center border-secondary rounded-2xl py-6 px-4 bg-white gap-2">
-          <h3 className="text-3xl text-center">FyaPro</h3>
+        <div className="border-2 w-full flex flex-col justify-center border-secondary rounded-[1.25rem] py-6 px-8 bg-white gap-2 drop-shadow-xl shadow-yellow-500/40">
+          <h3 className="text-3xl text-center font-semibold">FyaPro</h3>
           <div>
             <p className="text-xs text-center">From</p>
-            <p className="font-bold text-[3.25rem] text-center">
+            <p className="font-bold text-[2.625rem] text-center">
               $30.99<span className="text-xs font-normal">/month</span>
             </p>
           </div>
@@ -98,7 +95,7 @@ export default function Subscription() {
           <ul className="grid gap-2">
             <li>
               <div className="flex items-start gap-2">
-                <div className="w-4 aspect-square bg-green-300 rounded-full mt-2"></div>{" "}
+                <div className="w-4 aspect-square bg-green-300 rounded-full mt-1"></div>{" "}
                 <p className="w-[calc(100%-4rem)]">
                   Get a Fya certified badge on your Agency Page
                 </p>
@@ -106,7 +103,7 @@ export default function Subscription() {
             </li>
             <li>
               <div className="flex items-start gap-2">
-                <div className="w-4 aspect-square bg-green-300 rounded-full mt-2"></div>{" "}
+                <div className="w-4 aspect-square bg-green-300 rounded-full mt-1"></div>{" "}
                 <p className="w-[calc(100%-4rem)]">
                   It’s All About You: No more suggestions for competitors on
                   your profile
@@ -115,7 +112,7 @@ export default function Subscription() {
             </li>
             <li>
               <div className="flex items-start gap-2">
-                <div className="w-4 aspect-square bg-green-300 rounded-full mt-2"></div>{" "}
+                <div className="w-4 aspect-square bg-green-300 rounded-full mt-1"></div>{" "}
                 <p className="w-[calc(100%-4rem)]">
                   Fya’s search engine priority: be shown on top of the results
                 </p>
@@ -123,7 +120,7 @@ export default function Subscription() {
             </li>
             <li>
               <div className="flex items-start gap-2">
-                <div className="w-4 aspect-square bg-green-300 rounded-full mt-2"></div>{" "}
+                <div className="w-4 aspect-square bg-green-300 rounded-full mt-1"></div>{" "}
                 <p className="w-[calc(100%-4rem)]">
                   Receive an SEO backlink to your website
                 </p>
@@ -131,7 +128,7 @@ export default function Subscription() {
             </li>
             <li>
               <div className="flex items-start gap-2">
-                <div className="w-4 aspect-square bg-green-300 rounded-full mt-2"></div>{" "}
+                <div className="w-4 aspect-square bg-green-300 rounded-full mt-1"></div>{" "}
                 <div className="w-[calc(100%-4rem)] grid gap-1">
                   <p>Access to Advertising Features</p>
                   <p className="text-xs">From $0.12/click</p>
@@ -140,7 +137,7 @@ export default function Subscription() {
             </li>
             <li>
               <div className="flex items-start gap-2">
-                <div className="w-4 aspect-square bg-green-300 rounded-full mt-2"></div>{" "}
+                <div className="w-4 aspect-square bg-green-300 rounded-full mt-1"></div>{" "}
                 <div className="w-[calc(100%-4rem)] grid gap-1">
                   <p>Receiving projects via the Post Your Project feature</p>
                   <p className="text-xs">From $0.12/click</p>

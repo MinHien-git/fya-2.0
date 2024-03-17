@@ -145,7 +145,7 @@ export default function NavigationBar() {
                   leaveFrom="transform opacity-100 scale-100"
                   leaveTo="transform opacity-0 scale-95"
                 >
-                  <Menu.Items className="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none ">
+                  {/* <Menu.Items className="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none ">
                     <div className="py-1">
                       <Menu.Item>
                         {({ active }) => (
@@ -158,7 +158,7 @@ export default function NavigationBar() {
                               "block px-4 py-2 text-sm"
                             )}
                           >
-                            Account settings
+                            Sign in
                           </a>
                         )}
                       </Menu.Item>
@@ -173,7 +173,7 @@ export default function NavigationBar() {
                               "block px-4 py-2 text-sm"
                             )}
                           >
-                            Support
+                            Sign up
                           </a>
                         )}
                       </Menu.Item>
@@ -209,6 +209,46 @@ export default function NavigationBar() {
                           )}
                         </Menu.Item>
                       </form>
+                    </div>
+                  </Menu.Items> */}
+                  <Menu.Items className="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none ">
+                    <div className="py-1">
+                      <Menu.Item>
+                        {({ active }) => (
+                          <a
+                            href="/signin"
+                            className={clsx(
+                              active
+                                ? "bg-gray-100 text-gray-900"
+                                : "text-gray-700",
+                              "block px-4 py-4 text-sm"
+                            )}
+                          >
+                            <div className="flex justify-between items-center">
+                              <p>Sign in</p>
+                              <div className="bg-primary w-6 aspect-square"></div>
+                            </div>
+                          </a>
+                        )}
+                      </Menu.Item>
+                      <Menu.Item>
+                        {({ active }) => (
+                          <a
+                            href="/signup"
+                            className={clsx(
+                              active
+                                ? "bg-gray-100 text-gray-900"
+                                : "text-gray-700",
+                              "block px-4 py-4 text-sm"
+                            )}
+                          >
+                            <div className="flex justify-between items-center">
+                              <p>Sign up</p>
+                              <div className="bg-primary w-6 aspect-square"></div>
+                            </div>
+                          </a>
+                        )}
+                      </Menu.Item>
                     </div>
                   </Menu.Items>
                 </Transition>

@@ -215,7 +215,9 @@ export default function WorkingSpaceTarget() {
           </div>
           <div className="grid w-[90%] mx-auto gap-2">
             <ul className="flex border-2 rounded-xl px-6 py-4 w-full">
-              <li className="text-lg font-bold">Client’s industries</li>
+              <li className="text-lg font-semibold font-title">
+                Client’s industries
+              </li>
               <li className="flex gap-2 ml-auto">
                 <div className="w-16 h-full bg-slate-200 border-[1px] rounded-2xl border-text"></div>
                 <div className="w-16 h-full bg-slate-200 border-[1px] rounded-2xl border-text"></div>
@@ -225,7 +227,9 @@ export default function WorkingSpaceTarget() {
               </li>
             </ul>
             <ul className="flex border-2 rounded-xl px-6 py-4 w-full">
-              <li className="text-lg font-bold">Preferrable project scopes</li>
+              <li className="text-lg font-semibold font-title ">
+                Preferrable project scopes
+              </li>
               <li className="flex gap-2 ml-auto">
                 <div className="w-16 h-full bg-slate-200 border-[1px] rounded-2xl border-text"></div>
                 <div className="w-16 h-full bg-slate-200 border-[1px] rounded-2xl border-text"></div>
@@ -235,7 +239,9 @@ export default function WorkingSpaceTarget() {
               </li>
             </ul>
             <ul className="flex border-2 rounded-xl px-6 py-4 w-full">
-              <li className="text-lg font-bold">Client’s audiences</li>
+              <li className="text-lg font-semibold font-title">
+                Client’s audiences
+              </li>
               <li className="flex gap-2 ml-auto">
                 <div className="w-16 h-full bg-slate-200 border-[1px] rounded-2xl border-text"></div>
                 <div className="w-16 h-full bg-slate-200 border-[1px] rounded-2xl border-text"></div>
@@ -245,7 +251,9 @@ export default function WorkingSpaceTarget() {
               </li>
             </ul>
             <ul className="flex border-2 rounded-xl px-6 py-4 w-full">
-              <li className="text-lg font-bold">Client’s business type </li>
+              <li className="text-lg font-semibold font-title">
+                Client’s business type{" "}
+              </li>
               <li className="flex gap-2 ml-auto">
                 <div className="w-16 h-full bg-slate-200 border-[1px] rounded-2xl border-text"></div>
                 <div className="w-16 h-full bg-slate-200 border-[1px] rounded-2xl border-text"></div>
@@ -258,7 +266,7 @@ export default function WorkingSpaceTarget() {
               <li className="grid gap-3 w-1/2 border-2 px-5 pt-4 pb-6 rounded-xl">
                 <label
                   htmlFor="location"
-                  className="font-semibold w-fit px-1 py-[0.225rem] md:py-[0.425rem] text-lg rounded-md"
+                  className="font-semibold w-fit px-1 py-[0.225rem] md:py-[0.425rem] text-lg rounded-md font-title"
                 >
                   Client’s company revenue
                 </label>
@@ -281,7 +289,7 @@ export default function WorkingSpaceTarget() {
               <li className="grid gap-3 w-1/2 border-2 px-5 pt-4 pb-6 rounded-xl">
                 <label
                   htmlFor="location"
-                  className="font-semibold w-fit px-1 py-[0.225rem] md:py-[0.425rem] text-lg rounded-md"
+                  className="font-semibold w-fit px-1 py-[0.225rem] md:py-[0.425rem] text-lg rounded-md font-title"
                 >
                   Client’s company size
                 </label>

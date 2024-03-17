@@ -1,11 +1,11 @@
-export default function CreateAgencyPage() {
+export default function MatchMakingIntroduction() {
   return (
     <main className="w-full min-h-80 py-2 pt-0">
-      <section className="w-[95%] border-2 pb-5 max-w-4xl rounded-3xl md:mx-auto mt-5 min-h-[50vh] bg-light_blue px-3 flex items-center mx-auto">
+      <section className="w-[95%] border-2 pb-5 max-w-7xl rounded-3xl md:mx-auto mt-5 min-h-[50vh] bg-light_blue px-3 flex items-center mx-auto">
         <div className="grid gap-3 px-2 py-5 h-full mx-auto">
-          <h1 className="text-2xl sm:text-4xl font-bold text-white text-center lg:w-[30rem] font-header">
+          <h1 className="text-2xl sm:text-4xl font-bold lg:text-[2.5rem] text-white text-center lg:w-[35rem] font-header">
             Match with clients that fit,{" "}
-            <span className="text-primary">with precision.</span>{" "}
+            <span className="text-primary block">with precision.</span>{" "}
           </h1>
           <button className="bg-primary text-white font-bold text-xs rounded-lg px-8 py-3 mx-auto mt-2 sm:mt-5 md:w-fit ">
             Subscribe to FyaPro now
@@ -14,9 +14,9 @@ export default function CreateAgencyPage() {
       </section>
       <section className="w-full border-t-2 border-b-2 border-primary pb-5 rounded-3xl md:mx-auto mt-5 min-h-[50vh] px-3 flex flex-col items-center mx-auto">
         <article className="h-auto py-5 border-b-2 border-primary w-full md:h-[20rem] md:flex md:items-center md:justify-start">
-          <div className="flex max-w-5xl mx-auto w-full">
-            <div className="border-[1px] border-primary px-10 py-5 rounded-xl shadow-md w-full md:w-[25rem]">
-              <h5 className="text-2xl font-title">
+          <div className="flex max-w-7xl mx-auto w-full">
+            <div className="border-[1px] border-primary px-10 py-5 rounded-xl shadow-md w-full md:w-[25rem] lg:w-[40%] h-[10rem] grid place-content-center">
+              <h5 className="text-2xl font-title mb-2">
                 <span className="text-secondary">Tailor-made</span>{" "}
                 recommendation
               </h5>
@@ -28,9 +28,9 @@ export default function CreateAgencyPage() {
           </div>
         </article>
         <article className="h-auto py-5 border-b-2 border-primary w-full md:h-[20rem] md:flex md:items-center md:justify-end">
-          <div className="flex max-w-5xl mx-auto w-full md:items-center md:justify-end">
-            <div className="border-[1px] border-primary px-10 py-5 rounded-xl shadow-md w-full md:w-[25rem]">
-              <h5 className="text-2xl font-title">
+          <div className="flex max-w-7xl mx-auto w-full md:items-center md:justify-end">
+            <div className="border-[1px] border-primary px-10 py-5 rounded-xl shadow-md w-full md:w-[25rem] lg:w-[40%] h-[10rem] grid place-content-center">
+              <h5 className="text-2xl font-title mb-2">
                 Partner with{" "}
                 <span className="text-secondary">high-intent customers</span>
               </h5>
@@ -42,9 +42,9 @@ export default function CreateAgencyPage() {
           </div>
         </article>
         <article className="h-auto py-5 w-full md:h-[20rem] md:flex md:items-center md:justify-start">
-          <div className="flex max-w-5xl mx-auto w-full">
-            <div className="border-[1px] border-primary px-10 py-5 rounded-xl shadow-md w-full md:w-[25rem]">
-              <h5 className="text-2xl font-title">
+          <div className="flex max-w-7xl mx-auto w-full">
+            <div className="border-[1px] border-primary px-10 py-5 rounded-xl shadow-md w-full md:w-[25rem] lg:w-[40%] h-[10rem] grid place-content-center">
+              <h5 className="text-2xl font-title mb-2">
                 Pay for it <span className="text-secondary">Flexibly</span>
               </h5>
               <p>
@@ -64,11 +64,11 @@ export default function CreateAgencyPage() {
         </div>
       </section>
       <section className="w-full max-w-5xl px-2 sm:px-4 lg:px-12 md:mx-auto flex flex-col justify-center items-center relative border-2 bg-dark_blue rounded-3xl">
-        <div className="py-8 w-full mt-10 grid gap-1 pb-10">
+        <div className="py-8 w-full my-10 grid gap-1 pb-10">
           <h5 className="text-center md:text-xl lg:text-[2rem] font-title font-bold text-3xl text-white">
             Subscribe to FyaPro
           </h5>
-          <p className="text-secondary text-sx text-center w-80 mx-auto">
+          <p className="text-white text-sx text-center w-full mx-auto">
             and upgrade your revenue stream with our Project Lead Extension!
           </p>
 
