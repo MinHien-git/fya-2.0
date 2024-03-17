@@ -28,8 +28,7 @@ import Subscription from "./pages/Subscription/Subscription";
 import WorkingSpace from "./pages/Management/WorkingSpace/WorkingSpace";
 import WorkingSpaceTarget from "./pages/Management/WorkingSpaceTarget/WorkingSpaceTarget";
 import MatchMakingIntroduction from "./pages/MatchMakingIntroduction/MatchMakingIntroduction";
-import SignIn from "./pages/Signin/Signin";
-import SignUp from "./pages/Signup/Signup";
+import AuthenticationPage from "./pages/AuthenticationPage/AuthenticationPage";
 
 function App() {
   return (
@@ -47,8 +46,7 @@ function App() {
               element={<AgencyPageIntroduction />}
             />
             <Route path="top-agencies" element={<TopAgencies />} />
-            <Route path="signin" element={<SignIn />} />
-            <Route path="signup" element={<SignUp />} />
+            <Route path="auth" element={<AuthenticationPage />} />
             <Route path="subscription" element={<Subscription />} />
             <Route
               path="match-making-introduction"

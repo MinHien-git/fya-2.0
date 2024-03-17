@@ -7,10 +7,20 @@ import {
 } from "flowbite-react";
 import { useState } from "react";
 import { HiMail } from "react-icons/hi";
-import { RiLockPasswordFill } from "react-icons/ri";
+import { RiLockPasswordFill, RiProfileFill } from "react-icons/ri";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFacebook, faGoogle } from "@fortawesome/free-brands-svg-icons";
+import {
+  Tabs,
+  TabsHeader,
+  TabsBody,
+  Tab,
+  TabPanel,
+} from "@material-tailwind/react";
+import SignupForm from "../../components/SignupForm/SignupForm";
+import SigninForm from "../../components/SigninForm/SigninForm";
+
 const customInputTheme: CustomFlowbiteTheme["textInput"] = {
   base: "flex",
   addon:
@@ -59,22 +69,24 @@ const customInputTheme: CustomFlowbiteTheme["textInput"] = {
   },
 };
 
-export default function SignIn() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-
-  const changeEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setEmail(e.target.value);
-  };
-
-  const changePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setPassword(e.target.value);
-  };
+export default function AuthenticationPage() {
+  const data = [
+    {
+      label: "Sign in",
+      value: "Signin",
+      desc: <SigninForm />,
+    },
+    {
+      label: "Sign up",
+      value: "Signup",
+      desc: <SignupForm />,
+    },
+  ];
 
   return (
-    <main className="w-full min-h-80 p-2">
-      <section className="w-full border-[1px] border-primary bg-light_gray max-w-7xl py-5 px-8 sm:px-  lg:px-16 my-5 rounded-[3rem] md:mx-auto h-auto md:flex md:gap-2 md:px-4 lg:items-center md:justify-between">
-        <div className="py-5 md:w-3/5 lg:w-3/5 lg:h-1/2">
+    <main className="w-full min-h-[50vh] p-2 h-auto">
+      <section className="w-full border-[1px] border-primary bg-light_gray max-w-7xl py-5 px-8 lg:px-16 my-5 rounded-[3rem] md:mx-auto md:flex md:gap-2 md:px-4  md:justify-between min-h-[50vh] h-[100%]">
+        <div className="py-5 md:w-2/5 lg:w-3/5 lg:h-1/2 flex flex-col">
           <img
             src={"/static/images/Logo_BG.svg"}
             alt="logo"
@@ -89,52 +101,38 @@ export default function SignIn() {
             Manage all your activities on Fya with your account.
           </p>
         </div>
-        <form className="flex flex-col gap-4 mb-5">
-          <div>
-            <TextInput
-              id="email1"
-              type="email"
-              placeholder="email"
-              required
-              theme={customInputTheme}
-              icon={HiMail}
-              onChange={changeEmail}
-            />
-          </div>
-          <div>
-            <TextInput
-              id="password1"
-              type="password"
-              required
-              theme={customInputTheme}
-              placeholder="password"
-              icon={RiLockPasswordFill}
-              onChange={changePassword}
-            />
-          </div>
-          <div className="flex justify-between">
-            <div className="flex items-center gap-2">
-              <Checkbox id="remember" />
-              <Label htmlFor="remember" className="text-xs">
-                Remember me
-              </Label>
+        <div className="flex flex-col gap-4 mb-5 h-[100%] w-[100%] md:w-[50%] items-center justify-center px-4">
+          <div className="w-[100%] px-12 flex">
+            <div className="w-[100%] my-8 py-8 md:bg-white px-12 flex flex-col">
+              <Tabs value="Signin" className="w-[100%] my-6">
+                <TabsHeader
+                  indicatorProps={{ id: "tabs-header-indicator" }}
+                  placeholder={undefined}
+                >
+                  {data.map(({ label, value }) => (
+                    <Tab key={value} value={value} placeholder={undefined}>
+                      {label}
+                    </Tab>
+                  ))}
+                </TabsHeader>
+                <TabsBody
+                  placeholder={undefined}
+                  animate={{
+                    initial: { y: 250 },
+                    mount: { y: 0 },
+                    unmount: { y: 250 },
+                  }}
+                >
+                  {data.map(({ value, desc }) => (
+                    <TabPanel key={value} value={value}>
+                      {desc}
+                    </TabPanel>
+                  ))}
+                </TabsBody>
+              </Tabs>
             </div>
-            <Link
-              className="underline text-pink font-bold text-xs"
-              to="/signin"
-            >
-              Forgot password
-            </Link>
           </div>
-          <button className="bg-primary text-white text-xs rounded-lg px-6 py-3 font-semibold mt-2 md:mt-0">
-            Sign in
-          </button>
-          <p className="text-xs text-center">or login with</p>
-          <div className="flex justify-center items-center gap-6">
-            <FontAwesomeIcon icon={faFacebook} className="text-[2.5rem]" />
-            <FontAwesomeIcon icon={faGoogle} className="text-[2.5rem]" />
-          </div>
-        </form>
+        </div>
       </section>
     </main>
   );
