@@ -237,7 +237,7 @@ export default function NavigationBar() {
                       <Menu.Item>
                         {({ active }) => (
                           <a
-                            href="/navigationpage"
+                            href="/page-navigation"
                             className={clsx(
                               active
                                 ? "bg-gray-100 text-gray-900"
@@ -246,7 +246,7 @@ export default function NavigationBar() {
                             )}
                           >
                             <div className="flex justify-between items-center">
-                              <p>Manage Page</p>
+                              <p>Create Page</p>
                               <FaArrowRight />
                             </div>
                           </a>
