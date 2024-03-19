@@ -1,6 +1,26 @@
 import MediumCard from "../../components/MediumCard/MediumCard";
-import { Carousel, IconButton } from "@material-tailwind/react";
+import {
+  Carousel,
+  IconButton,
+  MenuItem,
+  MenuList,
+  MenuHandler,
+  Menu,
+  Button,
+  Input,
+} from "@material-tailwind/react";
 import { motion } from "framer-motion";
+let data = [
+  {
+    label: "service 1",
+  },
+  {
+    label: "service 2",
+  },
+  {
+    label: "service 3",
+  },
+];
 export default function Home() {
   return (
     <main className="w-full min-h-80 p-2">
@@ -9,7 +29,7 @@ export default function Home() {
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ ease: "easeOut", duration: 0.5 }}
       >
-        <section className="w-full border-[1px] border-border bg-light_gray max-w-7xl py-5 px-8  lg:px-16 my-5 rounded-[3rem] md:mx-auto h-auto md:flex md:gap-2 md:px-4 lg:items-center md:justify-between lg:min-h-[80vh]">
+        <section className="w-full border-[1px] border-border bg-light_gray max-w-7xl py-5 px-8  lg:px-16 my-5 rounded-[3rem] md:mx-auto h-auto md:flex md:gap-2 md:px-4 lg:items-center md:justify-between md:min-h-[80vh]">
           <div className="py-5 md:w-3/5 lg:w-3/5 lg:h-1/2">
             <h1 className="text-4xl pb-2 font-bold text-primary lg:text-5xl font-header">
               Find
@@ -20,42 +40,65 @@ export default function Home() {
               your needs, with the helps from AI
             </p>
 
-            <div className="sm:flex items-center px-0 rounded-lg mx-auto pt-3 pb-2 flex-wrap lg:flex-nowrap w-full">
-              <select
-                id="Com"
-                title="Com"
-                className="text-base text-gray-800 outline-none border-2 px-4 py-2 rounded-s-xl w-1/3 md:w-1/3 max-w-[12rem]"
-              >
-                <svg
-                  className="h-5 w-5 text-gray-400"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
+            <div className="items-center px-0 rounded-lg pt-3 pb-2 lg:flex-nowrap w-full relative flex lg:w-[75%]">
+              <Menu placement="bottom-start">
+                <MenuHandler>
+                  <Button
+                    placeholder={undefined}
+                    ripple={false}
+                    variant="text"
+                    color="blue-gray"
+                    className="flex h-10 items-center gap-2 rounded-r-none border border-r-0 border-blue-gray-200 bg-blue-gray-500/10 pl-3 w-1/2 md:w-2/5"
+                  >
+                    {/* <img
+                      src={flags.svg}
+                      alt={name}
+                      className="h-4 w-4 rounded-full object-cover"
+                    /> */}
+                    {"Services"}
+                  </Button>
+                </MenuHandler>
+                <MenuList
+                  className="max-h-[20rem] max-w-[18rem]"
+                  placeholder={undefined}
                 >
-                  <path
-                    fill-rule="evenodd"
-                    d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
-                    clip-rule="evenodd"
-                  ></path>
-                </svg>
-                <option value="com" selected>
-                  Services
-                </option>
-                <option value="net">net</option>
-                <option value="org">org</option>
-                <option value="io">io</option>
-              </select>
-              <input
-                className="text-base text-gray-400 py-2 border-2 flex-grow outline-none px-2 mx-0  sm:mr-2 rounded-e-xl w-1/2 md:w-1/3 max-w-[15rem]"
+                  {data.map(({ label }, index) => {
+                    return (
+                      <MenuItem
+                        placeholder={undefined}
+                        key={label}
+                        value={label}
+                        className="flex items-center gap-2"
+                        // onClick={() => setCountry(index)}
+                      >
+                        {label}{" "}
+                      </MenuItem>
+                    );
+                  })}
+                </MenuList>
+              </Menu>
+              <Input
+                crossOrigin={undefined}
                 type="text"
                 placeholder="Location"
+                className="rounded-l-none !border-t-blue-gray-200 focus:!border-t-gray-900"
+                labelProps={{
+                  className: "before:content-none after:content-none",
+                }}
+                containerProps={{
+                  className: "min-w-0",
+                }}
               />
-              <button className="bg-primary text-white text-xs rounded-lg px-6 py-3 font-semibold mt-2 md:mt-0">
+              <button className="ml-4 hidden md:block bg-primary text-white text-xs rounded-lg px-6 py-3 font-semibold mt-2 md:mt-0 w-full max-w-[10rem]">
                 Search Agencies
               </button>
             </div>
-            <div className="md:flex">
+            <button className="bg-primary text-white text-xs rounded-lg px-6 py-3 font-semibold mt-2 md:mt-0 md:hidden w-[10rem]">
+              Search Agencies
+            </button>
+            <div className="md:flex  lg:mt-5">
               <p className="mx-2 my-2 font-light">or</p>
-              <button className="bg-secondary text-white text-xs rounded-lg px-6 py-3 font-semibold mx-auto md:mx-2">
+              <button className="bg-secondary text-white text-xs rounded-lg px-6 py-3 font-semibold mx-auto md:mx-2 w-[10rem]">
                 Post your Project
               </button>
             </div>

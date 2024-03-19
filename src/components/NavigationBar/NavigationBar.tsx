@@ -5,9 +5,12 @@ import { Menu, Transition } from "@headlessui/react";
 import { Link } from "react-router-dom";
 import { FaArrowRight } from "react-icons/fa6";
 import { IoIosArrowForward } from "react-icons/io";
+import usePostProject from "../../hooks/usePostProjectPopup";
+import PostProjectModal from "../PostProjectPopup/PostProjectPopup";
 
 export default function NavigationBar() {
   const [isToggle, setIsToggle] = useState(false);
+  const { isOpen, toggle } = usePostProject();
   return (
     <header className="font-sans w-full">
       <nav className="z-0 relative">
@@ -90,6 +93,7 @@ export default function NavigationBar() {
               <button
                 className="middle none center rounded-md py-2 px-10 font-sans text-sm font-bold text-white shadow-md shadow-primary-500/20 transition-all hover:shadow-lg hover:shadow-pink-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none bg-primary hidden lg:inline-block mr-2"
                 data-ripple-light="true"
+                onClick={toggle}
               >
                 Post your Project
               </button>
@@ -323,10 +327,21 @@ export default function NavigationBar() {
                   <IoIosArrowForward />
                 </div>
               </Link>
+
+              <div className="mt-4 block px-3 rounded-md  font-semibold   focus:outline-none focus:text-white focus:bg-gray-700 transition duration-150 ease-in-out">
+                <button
+                  className="middle center rounded-md py-2 px-10 font-sans text-sm font-bold text-white shadow-md shadow-primary-500/20 transition-all hover:shadow-lg hover:shadow-pink-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none bg-primary lg:inline-block mr-2 w-full"
+                  data-ripple-light="true"
+                  onClick={toggle}
+                >
+                  Post your Project
+                </button>
+              </div>
             </div>
           </div>
         </div>
       </nav>
+      <PostProjectModal isOpen={isOpen} toggle={toggle} />
     </header>
   );
 }

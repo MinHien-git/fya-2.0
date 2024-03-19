@@ -31,8 +31,12 @@ import MatchMakingIntroduction from "./pages/MatchMakingIntroduction/MatchMaking
 import AuthenticationPage from "./pages/AuthenticationPage/AuthenticationPage";
 import PageCreateNavigation from "./pages/PageCreateNavigation/PageCreateNavigation";
 import CreatePage from "./pages/CreatePage/CreatePage";
+import usePostProject from "./hooks/usePostProjectPopup";
+import PostProjectModal from "./components/PostProjectPopup/PostProjectPopup";
 
 function App() {
+  const { isOpen, toggle } = usePostProject();
+
   return (
     <>
       <BrowserRouter>
