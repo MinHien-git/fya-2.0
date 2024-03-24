@@ -313,15 +313,21 @@ export default function Home() {
                     Find you an Agency that fit.
                   </h5>
                 </a>
-                <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
+                <Typography
+                  placeholder={undefined}
+                  variant="small"
+                  className="mb-3 font-normal text-gray-700 dark:text-gray-400"
+                >
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce
                   at sapien eu ipsum ornare sollicitudin vel nec nisl. Nullam ut
                   lacus porttitor, vestibulum ipsum eu, porta libero. Aliquam
                   erat volutpat. Morbi ac tincidunt orci.
-                </p>
-                <a
-                  href="/#"
-                  className="w-full mt-auto justify-center bg-primary inline-flex items-center px-3 py-2 text-xs font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                </Typography>
+
+                <Button
+                  size="sm"
+                  placeholder={undefined}
+                  className="bg-primary flex justify-center px-3 py-2 text-xs font-medium text-white mt-auto capitalize"
                 >
                   Search agencies
                   <svg
@@ -339,7 +345,7 @@ export default function Home() {
                       d="M1 5h12m0 0L9 1m4 4L9 9"
                     />
                   </svg>
-                </a>
+                </Button>
               </motion.div>
               <motion.div
                 className="flex flex-col h-auto w-full p-6 bg-secondary border border-gray-200 rounded-2xl shadow md:w-1/3 aspect-[11/12] drop-shadow-md"
@@ -355,15 +361,21 @@ export default function Home() {
                     Hit the spot with Post Your Project
                   </h5>
                 </a>
-                <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
+
+                <Typography
+                  placeholder={undefined}
+                  variant="small"
+                  className="mb-3 font-normal text-gray-700 dark:text-gray-400"
+                >
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce
                   at sapien eu ipsum ornare sollicitudin vel nec nisl. Nullam ut
                   lacus porttitor, vestibulum ipsum eu, porta libero. Aliquam
                   erat volutpat. Morbi ac tincidunt orci.
-                </p>
-                <a
-                  href="/#"
-                  className="w-full mt-auto justify-center inline-flex items-center px-3 py-2 text-xs font-medium text-center text-primary bg-white rounded-lg"
+                </Typography>
+                <Button
+                  size="sm"
+                  placeholder={undefined}
+                  className="text-primary bg-white  flex justify-center px-3 py-2 text-xs font-medium mt-auto capitalize"
                 >
                   Post your Project now!
                   <svg
@@ -381,7 +393,7 @@ export default function Home() {
                       d="M1 5h12m0 0L9 1m4 4L9 9"
                     />
                   </svg>
-                </a>
+                </Button>
               </motion.div>
               <motion.div
                 className="flex flex-col h-auto w-full p-6 bg-tertiary border border-gray-200 rounded-2xl shadow md:w-1/3 aspect-[11/12] drop-shadow-md"
@@ -397,12 +409,16 @@ export default function Home() {
                     Direct Access to an Agency
                   </h5>
                 </a>
-                <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
+                <Typography
+                  placeholder={undefined}
+                  variant="small"
+                  className="mb-3 font-normal text-gray-700 dark:text-gray-400"
+                >
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce
                   at sapien eu ipsum ornare sollicitudin vel nec nisl. Nullam ut
                   lacus porttitor, vestibulum ipsum eu, porta libero. Aliquam
                   erat volutpat. Morbi ac tincidunt orci.
-                </p>
+                </Typography>
 
                 <form className="flex items-center">
                   <label htmlFor="simple-search" className="sr-only">
@@ -502,18 +518,38 @@ export default function Home() {
                     Reach your potential customer
                   </h5>
                 </a>
-                <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
+                <Typography
+                  placeholder={undefined}
+                  variant="small"
+                  className="mb-3 font-normal text-gray-700 dark:text-gray-400"
+                >
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce
                   at sapien eu ipsum ornare sollicitudin vel nec nisl. Nullam ut
                   lacus porttitor, vestibulum ipsum eu, porta libero. Aliquam
                   erat volutpat. Morbi ac tincidunt orci.
-                </p>
-                <a
-                  href="/#"
-                  className="w-full mt-auto justify-center inline-flex bg-primary items-center px-3 py-2 text-xs font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                </Typography>
+                <Button
+                  size="sm"
+                  placeholder={undefined}
+                  className="bg-primary flex justify-center px-3 py-2 text-xs font-medium text-white mt-auto capitalize"
                 >
-                  Create Your Profile
-                </a>
+                  Create your profile
+                  <svg
+                    className="rtl:rotate-180 w-3.5 h-3.5 ms-2"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 14 10"
+                  >
+                    <path
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M1 5h12m0 0L9 1m4 4L9 9"
+                    />
+                  </svg>
+                </Button>
               </motion.div>
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -529,18 +565,38 @@ export default function Home() {
                     Get notification for suitable project
                   </h5>
                 </a>
-                <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
+                <Typography
+                  placeholder={undefined}
+                  variant="small"
+                  className="mb-3 font-normal text-gray-700 dark:text-gray-400"
+                >
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce
                   at sapien eu ipsum ornare sollicitudin vel nec nisl. Nullam ut
                   lacus porttitor, vestibulum ipsum eu, porta libero. Aliquam
                   erat volutpat. Morbi ac tincidunt orci.
-                </p>
-                <a
-                  href="/#"
-                  className="w-full mt-auto justify-center inline-flex items-center px-3 py-2 text-xs font-medium text-center text-primary bg-white rounded-lg"
+                </Typography>
+                <Button
+                  size="sm"
+                  placeholder={undefined}
+                  className="text-primary bg-white  flex justify-center px-3 py-2 text-xs font-medium mt-auto capitalize"
                 >
                   Learn more
-                </a>
+                  <svg
+                    className="rtl:rotate-180 w-3.5 h-3.5 ms-2"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 14 10"
+                  >
+                    <path
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M1 5h12m0 0L9 1m4 4L9 9"
+                    />
+                  </svg>
+                </Button>
               </motion.div>
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -556,18 +612,23 @@ export default function Home() {
                     Generate quality leads efficiently
                   </h5>
                 </a>
-                <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
+                <Typography
+                  placeholder={undefined}
+                  variant="small"
+                  className="mb-3 font-normal text-gray-700 dark:text-gray-400"
+                >
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce
                   at sapien eu ipsum ornare sollicitudin vel nec nisl. Nullam ut
                   lacus porttitor, vestibulum ipsum eu, porta libero. Aliquam
                   erat volutpat. Morbi ac tincidunt orci.
-                </p>
-                <a
-                  href="/#"
-                  className="w-full mt-auto justify-center bg-primary inline-flex items-center px-3 py-2 text-xs font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                </Typography>
+                <Button
+                  size="sm"
+                  placeholder={undefined}
+                  className="bg-primary flex justify-center px-3 py-2 text-xs font-medium text-white mt-auto capitalize"
                 >
                   Join FyaPro today!
-                </a>
+                </Button>
               </motion.div>
             </div>
           </div>
@@ -638,12 +699,16 @@ export default function Home() {
                     Reach your potential customer
                   </h5>
                 </a>
-                <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
+                <Typography
+                  placeholder={undefined}
+                  variant="small"
+                  className="mb-3 font-normal text-gray-700 dark:text-gray-400"
+                >
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce
                   at sapien eu ipsum ornare sollicitudin vel nec nisl. Nullam ut
                   lacus porttitor, vestibulum ipsum eu, porta libero. Aliquam
                   erat volutpat. Morbi ac tincidunt orci.
-                </p>
+                </Typography>
               </motion.div>
               <motion.div
                 className="flex flex-col h-auto sm:h-[32rem] md:h-auto w-full p-6 bg-secondary border border-gray-200 rounded-2xl shadow md:w-1/3 drop-shadow-md"
@@ -662,12 +727,16 @@ export default function Home() {
                     Get notification for suitable project
                   </h5>
                 </a>
-                <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
+                <Typography
+                  placeholder={undefined}
+                  variant="small"
+                  className="mb-3 font-normal text-gray-700 dark:text-gray-400"
+                >
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce
                   at sapien eu ipsum ornare sollicitudin vel nec nisl. Nullam ut
                   lacus porttitor, vestibulum ipsum eu, porta libero. Aliquam
                   erat volutpat. Morbi ac tincidunt orci.
-                </p>
+                </Typography>
               </motion.div>
               <motion.div
                 className="bg-tertiary flex flex-col h-auto sm:h-[32rem] md:h-auto w-full p-6 border border-gray-200 rounded-2xl shadow md:w-1/3 drop-shadow-md"
@@ -683,12 +752,16 @@ export default function Home() {
                     Generate quality leads efficiently
                   </h5>
                 </a>
-                <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
+                <Typography
+                  placeholder={undefined}
+                  variant="small"
+                  className="mb-3 font-normal text-gray-700 dark:text-gray-400"
+                >
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce
                   at sapien eu ipsum ornare sollicitudin vel nec nisl. Nullam ut
                   lacus porttitor, vestibulum ipsum eu, porta libero. Aliquam
                   erat volutpat. Morbi ac tincidunt orci.
-                </p>
+                </Typography>
               </motion.div>
             </div>
           </div>

@@ -11,9 +11,10 @@ const API_URL = `http://localhost:4000` || process.env.URL;
 const onRequest = (
   config: InternalAxiosRequestConfig
 ): InternalAxiosRequestConfig => {
-  const token = JSON.parse(Cookies.getItem("at"));
-  config.headers!["Authorization"] = `Bearer ${token.access_token}`;
-
+  const token = Cookies.get("at");
+  if (token) {
+    config.headers!["Authorization"] = `Bearer ${token.access_token}`;
+  }
   return config;
 };
 
@@ -31,16 +32,16 @@ const onResponseError = async (
   if (error.response) {
     // Access Token was expired
     if (error.response.status === 401) {
-      const rft = JSON.parse(Cookies.getItem("rft"));
+      const rft = Cookies.get("rft");
 
       try {
         const rs = await axios.post(`${API_URL}/token`, {
           token: rft,
         });
 
-        const { token } = rs.data;
+        const { accesstoken } = rs.data.data;
 
-        Cookies.setItem("at", JSON.stringify(token));
+        Cookies.set("at", accesstoken);
 
         return;
       } catch (_error) {

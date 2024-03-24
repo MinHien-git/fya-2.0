@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import clsx from "clsx";
 import { Fragment } from "react";
 import { Menu, Transition } from "@headlessui/react";
@@ -8,10 +8,41 @@ import { IoIosArrowForward } from "react-icons/io";
 import usePostProject from "../../hooks/usePostProjectPopup";
 import PostProjectModal from "../PostProjectPopup/PostProjectPopup";
 import { Button } from "@material-tailwind/react";
-
+import Cookies from "js-cookie";
+import { Signout } from "../../api/lib/authentication";
+import { useSelector, useDispatch } from "react-redux";
+import { setUser as setReduxUser } from "../../features/users/userSplice";
+interface IUser {
+  name?: string;
+  email?: string;
+  fname?: string;
+  lname?: string;
+}
 export default function NavigationBar() {
   const [isToggle, setIsToggle] = useState(false);
   const { isOpen, toggle } = usePostProject();
+  const userSelector = useSelector((state: any) => state.user.value);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    if (localStorage.getItem("user")) {
+      var u = JSON.parse(localStorage.getItem("user") || "{}");
+      dispatch(setReduxUser(u));
+      console.log(userSelector);
+    }
+  }, []);
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    let result = await Signout(Cookies.get("rft"));
+
+    if (result.status === 204) {
+      localStorage.removeItem("user");
+      dispatch(setReduxUser(null));
+      window.location.reload();
+    }
+  };
+
+  useEffect(() => {}, []);
   return (
     <header className="font-sans w-full">
       <nav className="z-0 relative">
@@ -63,7 +94,7 @@ export default function NavigationBar() {
                       type="text"
                       name="s"
                       id="s"
-                      className="block w-full pl-10 pr-3 py-2 border rounded-full leading-5 text-gray-300 placeholder-gray-400 focus:outline-none focus:bg-white focus:text-gray-900 sm:text-sm transition duration-150 ease-in-out"
+                      className="block w-full pl-10 pr-3 py-2 border rounded-lg leading-5 text-gray-300 placeholder-gray-400 focus:outline-none focus:bg-white focus:text-gray-900 sm:text-sm transition duration-150 ease-in-out"
                       placeholder="Services (e.g Digital Marketing)"
                     />
                   </form>
@@ -155,128 +186,101 @@ export default function NavigationBar() {
                   leaveFrom="transform opacity-100 scale-100"
                   leaveTo="transform opacity-0 scale-95"
                 >
-                  {/* <Menu.Items className="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none ">
-                    <div className="py-1">
-                      <Menu.Item>
-                        {({ active }) => (
-                          <a
-                            href="'/#"
-                            className={clsx(
-                              active
-                                ? "bg-gray-100 text-gray-900"
-                                : "text-gray-700",
-                              "block px-4 py-2 text-sm"
-                            )}
-                          >
-                            Sign in
-                          </a>
-                        )}
-                      </Menu.Item>
-                      <Menu.Item>
-                        {({ active }) => (
-                          <a
-                            href="/#"
-                            className={clsx(
-                              active
-                                ? "bg-gray-100 text-gray-900"
-                                : "text-gray-700",
-                              "block px-4 py-2 text-sm"
-                            )}
-                          >
-                            Sign up
-                          </a>
-                        )}
-                      </Menu.Item>
-                      <Menu.Item>
-                        {({ active }) => (
-                          <a
-                            href="/#"
-                            className={clsx(
-                              active
-                                ? "bg-gray-100 text-gray-900"
-                                : "text-gray-700",
-                              "block px-4 py-2 text-sm"
-                            )}
-                          >
-                            License
-                          </a>
-                        )}
-                      </Menu.Item>
-                      <form method="POST" action="#">
-                        <Menu.Item>
-                          {({ active }) => (
-                            <button
-                              type="submit"
-                              className={clsx(
-                                active
-                                  ? "bg-gray-100 text-gray-900"
-                                  : "text-gray-700",
-                                "block w-full px-4 py-2 text-left text-sm"
-                              )}
-                            >
-                              Sign out
-                            </button>
-                          )}
-                        </Menu.Item>
-                      </form>
-                    </div>
-                  </Menu.Items> */}
                   <Menu.Items className="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none ">
                     <div className="py-1">
-                      <Menu.Item>
-                        {({ active }) => (
-                          <a
-                            href="/managepage"
-                            className={clsx(
-                              active
-                                ? "bg-gray-100 text-gray-900"
-                                : "text-gray-700",
-                              "block px-4 py-4 text-sm"
+                      {userSelector ? (
+                        <>
+                          <Menu.Item>
+                            {({ active }) => (
+                              <a
+                                href="/managepage"
+                                className={clsx(
+                                  active
+                                    ? "bg-gray-100 text-gray-900"
+                                    : "text-gray-700",
+                                  "block px-4 py-4 text-sm"
+                                )}
+                              >
+                                <div className="flex justify-between items-center font-bold">
+                                  <p>Welcome, {userSelector?.lname}</p>
+                                  <FaArrowRight />
+                                </div>
+                              </a>
                             )}
-                          >
-                            <div className="flex justify-between items-center">
-                              <p>Dashboard</p>
-                              <FaArrowRight />
-                            </div>
-                          </a>
-                        )}
-                      </Menu.Item>
-                      <Menu.Item>
-                        {({ active }) => (
-                          <a
-                            href="/page-navigation"
-                            className={clsx(
-                              active
-                                ? "bg-gray-100 text-gray-900"
-                                : "text-gray-700",
-                              "block px-4 py-4 text-sm"
+                          </Menu.Item>
+                          <Menu.Item>
+                            {({ active }) => (
+                              <a
+                                href="/managepage"
+                                className={clsx(
+                                  active
+                                    ? "bg-gray-100 text-gray-900"
+                                    : "text-gray-700",
+                                  "block px-4 py-4 text-sm"
+                                )}
+                              >
+                                <div className="flex justify-between items-center font-bold">
+                                  <p>Dashboard</p>
+                                  <FaArrowRight />
+                                </div>
+                              </a>
                             )}
-                          >
-                            <div className="flex justify-between items-center">
-                              <p>Create Page</p>
-                              <FaArrowRight />
-                            </div>
-                          </a>
-                        )}
-                      </Menu.Item>
-                      <Menu.Item>
-                        {({ active }) => (
-                          <a
-                            href="/auth"
-                            className={clsx(
-                              active
-                                ? "bg-gray-100 text-gray-900"
-                                : "text-gray-700",
-                              "block px-4 py-4 text-sm"
+                          </Menu.Item>
+                          <Menu.Item>
+                            {({ active }) => (
+                              <a
+                                href="/page-navigation"
+                                className={clsx(
+                                  active
+                                    ? "bg-gray-100 text-gray-900"
+                                    : "text-gray-700",
+                                  "block px-4 py-4 text-sm"
+                                )}
+                              >
+                                <div className="flex justify-between items-center font-bold">
+                                  <p>Create Page</p>
+                                  <FaArrowRight />
+                                </div>
+                              </a>
                             )}
-                          >
-                            <div className="flex justify-between items-center">
-                              <p>Sign in/Sign up</p>
-                              <FaArrowRight />
-                            </div>
-                          </a>
-                        )}
-                      </Menu.Item>
+                          </Menu.Item>
+                          <Menu.Item>
+                            {({ active }) => (
+                              <form
+                                onSubmit={handleSubmit}
+                                className={clsx(
+                                  active ? "bg-gray-100 " : "text-gray-700",
+                                  "block px-4 py-4 text-sm text-red-500 font-bold"
+                                )}
+                              >
+                                <button className="flex justify-between items-center font-bold w-full">
+                                  <p>Log out</p>
+                                  <FaArrowRight />
+                                </button>
+                              </form>
+                            )}
+                          </Menu.Item>
+                        </>
+                      ) : (
+                        <>
+                          <Menu.Item>
+                            {({ active }) => (
+                              <Link
+                                to="/auth"
+                                className={clsx(
+                                  active ? "bg-gray-100" : "text-gray-700",
+                                  "block px-4 py-4 text-sm"
+                                )}
+                              >
+                                <div className="flex justify-between items-center font-bold text-primary">
+                                  <p>Sign in/Sign up</p>
+                                  <FaArrowRight />
+                                </div>
+                              </Link>
+                            )}
+                          </Menu.Item>
+                        </>
+                      )}
                     </div>
                   </Menu.Items>
                 </Transition>

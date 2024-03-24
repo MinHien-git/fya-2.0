@@ -14,6 +14,10 @@ import { faFacebook, faGoogle } from "@fortawesome/free-brands-svg-icons";
 import { ISignInData, Signin } from "../../api/lib/authentication";
 import { MdErrorOutline } from "react-icons/md";
 import Cookies from "js-cookie";
+import { useNavigate } from "react-router-dom";
+
+import { useSelector, useDispatch } from "react-redux";
+import { setUser as setReduxUser } from "../../features/users/userSplice";
 
 const customInputTheme: CustomFlowbiteTheme["textInput"] = {
   base: "flex",
@@ -71,9 +75,11 @@ export default function SigninForm() {
     email: "",
     password: "",
   });
-
   const [errors, setErrors] = useState<ISignInError>({});
   const [submitting, setSubmitting] = useState(false);
+  const navigate = useNavigate();
+
+  const dispatch = useDispatch();
 
   const validateValues = (inputValues) => {
     let errors: ISignInError = {};
@@ -102,7 +108,8 @@ export default function SigninForm() {
     e.preventDefault();
     setErrors(validateValues(user));
     setSubmitting(true);
-    if (Object.keys(errors).length === 0 && submitting) {
+    if (Object.keys(errors).length === 0) {
+      console.log(user);
       await finishSubmit();
     }
   };
@@ -110,17 +117,20 @@ export default function SigninForm() {
   const finishSubmit = async () => {
     let result = await Signin(user);
     console.log(result);
-    if (result) {
-      let { refreshtoken, accesstoken } = result.data.data;
-      console.log(refreshtoken + " " + accesstoken);
+    if (result.status === 200) {
+      let { refreshToken, accesstoken, user } = result.data.data;
+      localStorage.setItem("user", JSON.stringify(user));
+      dispatch(setReduxUser(user));
       Cookies.set("at", accesstoken, {
         expires: 2,
         secure: true,
       });
-      Cookies.set("rft", refreshtoken, {
+      Cookies.set("rft", refreshToken, {
         expires: 7,
         secure: true,
       });
+
+      navigate("/");
     }
   };
 

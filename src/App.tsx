@@ -33,59 +33,65 @@ import PageCreateNavigation from "./pages/PageCreateNavigation/PageCreateNavigat
 import CreatePage from "./pages/CreatePage/CreatePage";
 import usePostProject from "./hooks/usePostProjectPopup";
 import PostProjectModal from "./components/PostProjectPopup/PostProjectPopup";
-
+import { Provider } from "react-redux";
+import store from "./store/store";
 function App() {
   const { isOpen, toggle } = usePostProject();
 
   return (
     <>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<GuestLayout />}>
-            <Route path="/" element={<Home />} />
-            <Route path="/agencypage" element={<AgencyPage />} />
-            <Route path="/brandpage" element={<BrandPage />} />
-            <Route path="/searchresult" element={<SearchResult />} />
-            <Route path="/saveList" element={<SaveList />} />
-            <Route
-              path="/agencyIntroduction"
-              element={<AgencyPageIntroduction />}
-            />
-            <Route path="top-agencies" element={<TopAgencies />} />
-            <Route path="auth" element={<AuthenticationPage />} />
-            <Route path="subscription" element={<Subscription />} />
-            <Route
-              path="match-making-introduction"
-              element={<MatchMakingIntroduction />}
-            />
-            <Route path="page-navigation" element={<PageCreateNavigation />} />
-            <Route path="create-page" element={<CreatePage />} />
-          </Route>
-          <Route path="/management/" element={<AgencyManagementLayout />}>
-            <Route path="about" element={<About />} />
-            <Route
-              path="advertising-features"
-              element={<AdvertisingFeatures />}
-            />
-            <Route path="awards" element={<Awards />} />
-            <Route path="company" element={<Company />} />
-            <Route path="contact" element={<Contact />} />
-            <Route path="edit-service" element={<EditService />} />
-            <Route path="general" element={<General />} />
-            <Route path="manage-portfolio" element={<ManagePortfolio />} />
-            <Route path="portfolio" element={<Portfolio />} />
-            <Route
-              path="project-leads-extension"
-              element={<ProjectLeadsExtension />}
-            />
-            <Route path="review-invitation" element={<ReviewInvitaion />} />
-            <Route path="services" element={<Services />} />
-            <Route path="overview" element={<Overview />} />
-            <Route path="workspace" element={<WorkingSpace />} />
-            <Route path="target" element={<WorkingSpaceTarget />} />
-          </Route>
-        </Routes>
-      </BrowserRouter>
+      <Provider store={store}>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<GuestLayout />}>
+              <Route path="/" element={<Home />} />
+              <Route path="/agencypage" element={<AgencyPage />} />
+              <Route path="/brandpage" element={<BrandPage />} />
+              <Route path="/searchresult" element={<SearchResult />} />
+              <Route path="/saveList" element={<SaveList />} />
+              <Route
+                path="/agencyIntroduction"
+                element={<AgencyPageIntroduction />}
+              />
+              <Route path="top-agencies" element={<TopAgencies />} />
+              <Route path="auth" element={<AuthenticationPage />} />
+              <Route path="subscription" element={<Subscription />} />
+              <Route
+                path="match-making-introduction"
+                element={<MatchMakingIntroduction />}
+              />
+              <Route
+                path="page-navigation"
+                element={<PageCreateNavigation />}
+              />
+              <Route path="create-page" element={<CreatePage />} />
+            </Route>
+            <Route path="/management/" element={<AgencyManagementLayout />}>
+              <Route path="about" element={<About />} />
+              <Route
+                path="advertising-features"
+                element={<AdvertisingFeatures />}
+              />
+              <Route path="awards" element={<Awards />} />
+              <Route path="company" element={<Company />} />
+              <Route path="contact" element={<Contact />} />
+              <Route path="edit-service" element={<EditService />} />
+              <Route path="general" element={<General />} />
+              <Route path="manage-portfolio" element={<ManagePortfolio />} />
+              <Route path="portfolio" element={<Portfolio />} />
+              <Route
+                path="project-leads-extension"
+                element={<ProjectLeadsExtension />}
+              />
+              <Route path="review-invitation" element={<ReviewInvitaion />} />
+              <Route path="services" element={<Services />} />
+              <Route path="overview" element={<Overview />} />
+              <Route path="workspace" element={<WorkingSpace />} />
+              <Route path="target" element={<WorkingSpaceTarget />} />
+            </Route>
+          </Routes>
+        </BrowserRouter>
+      </Provider>
     </>
   );
 }

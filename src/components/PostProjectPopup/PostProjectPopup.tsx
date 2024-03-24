@@ -41,12 +41,17 @@ export default function PostProjectModal({
     ? createPortal(
         <>
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ ease: "easeOut", duration: 0.2 }}
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ ease: "easeOut", duration: 0.5 }}
             className="w-[100vw] h-[100vh] fixed bg-gray-500/50 z-[10000] top-0 flex justify-center items-center"
           >
-            <div className="relative bg-white w-[80%] flex flex-col justify-start items-center pt-14 pb-6 px-4 rounded-2xl gap-4 h-auto max-h-[50rem] max-w-[22rem] ">
+            <motion.div
+              className="relative bg-white w-[80%] flex flex-col justify-start items-center pt-14 pb-6 px-4 rounded-2xl gap-4 h-auto max-h-[50rem] max-w-[22rem] "
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ ease: "easeOut", duration: 0.2 }}
+            >
               <div
                 className="absolute top-2 right-2 bg-gray-200 rounded-full p-2"
                 onClick={toggle}
@@ -88,7 +93,7 @@ export default function PostProjectModal({
                   movePrevious={handlePrevious}
                 />
               ) : null}
-            </div>
+            </motion.div>
           </motion.div>
         </>,
         document.body
