@@ -5,13 +5,15 @@ import {
   TextInput,
   CustomFlowbiteTheme,
 } from "flowbite-react";
-import { useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import { HiMail } from "react-icons/hi";
 import { RiLockPasswordFill, RiProfileFill } from "react-icons/ri";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFacebook, faGoogle } from "@fortawesome/free-brands-svg-icons";
-
+import { ISignUpData, Signup } from "../../api/lib/authentication";
+import { MdErrorOutline } from "react-icons/md";
+import clsx from "clsx";
 const customInputTheme: CustomFlowbiteTheme["textInput"] = {
   base: "flex",
   addon:
@@ -37,7 +39,7 @@ const customInputTheme: CustomFlowbiteTheme["textInput"] = {
         gray: "bg-gray-50 border-primary border-2 text-gray-900 focus:border-cyan-500 focus:ring-cyan-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-cyan-500 dark:focus:ring-cyan-500",
         info: "border-cyan-500 bg-cyan-50 text-cyan-900 placeholder-cyan-700 focus:border-cyan-500 focus:ring-cyan-500 dark:border-cyan-400 dark:bg-cyan-100 dark:focus:border-cyan-500 dark:focus:ring-cyan-500",
         failure:
-          "border-red-500 bg-red-50 text-red-900 placeholder-red-700 focus:border-red-500 focus:ring-red-500 dark:border-red-400 dark:bg-red-100 dark:focus:border-red-500 dark:focus:ring-red-500",
+          "border-red-500 bg-red-50 text-red-900 border border-2  placeholder-red-700 focus:border-red-500 focus:ring-red-500 dark:border-red-400 dark:bg-red-100 dark:focus:border-red-500 dark:focus:ring-red-500",
         warning:
           "border-yellow-500 bg-yellow-50 text-yellow-900 placeholder-yellow-700 focus:border-yellow-500 focus:ring-yellow-500 dark:border-yellow-400 dark:bg-yellow-100 dark:focus:border-yellow-500 dark:focus:ring-yellow-500",
         success:
@@ -59,63 +61,145 @@ const customInputTheme: CustomFlowbiteTheme["textInput"] = {
     },
   },
 };
-
+interface ISignupError {
+  email?: string;
+  password?: string;
+  lname?: string;
+  fname?: string;
+}
 export default function SignupForm() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [user, setUser] = useState<ISignUpData>({
+    email: "",
+    password: "",
+    fname: "",
+    lname: "",
+  });
 
-  const changeEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setEmail(e.target.value);
+  const [errors, setErrors] = useState<ISignupError>({});
+  const [submitting, setSubmitting] = useState(false);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setUser({ ...user, [e.target.name]: e.target.value });
+    console.log(user);
+    if (submitting) {
+      setErrors(validateValues(user));
+    }
   };
 
-  const changePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setPassword(e.target.value);
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setErrors(validateValues(user));
+    setSubmitting(true);
+    if (Object.keys(errors).length === 0 && submitting) {
+      await finishSubmit();
+    }
   };
 
+  const finishSubmit = async () => {
+    console.log(user);
+    let result = await Signup(user);
+    console.log(result);
+  };
+
+  const validateValues = (inputValues) => {
+    let errors: ISignupError = {};
+    if (inputValues.email.length < 10) {
+      errors.email = "Email is not valid";
+    } else {
+      delete errors["email"];
+    }
+    if (inputValues.password.length < 5) {
+      errors.password = "Password is too short";
+    } else {
+      delete errors["password"];
+    }
+    if (inputValues.fname.length < 2) {
+      errors.fname = "First Name is too short";
+    } else {
+      delete errors["fname"];
+    }
+    if (inputValues.lname.length < 2) {
+      errors.lname = "Last Name is too short";
+    } else {
+      errors.lname = "";
+      delete errors["lname"];
+    }
+
+    return errors;
+  };
   return (
-    <form className="flex flex-col gap-4 mb-5 h-50%">
+    <form className="flex flex-col gap-4 mb-5 h-50%" onSubmit={handleSubmit}>
       <div>
+        {errors?.fname ? (
+          <div className="flex text-red-400 gap-2 mb-2">
+            <MdErrorOutline />
+            <p className="text-xs">First Name is too short</p>
+          </div>
+        ) : null}
         <TextInput
           id="fname"
+          name="fname"
           type="text"
-          placeholder="first name"
-          required
+          placeholder="First Name"
+          color={errors?.fname && submitting ? "failure" : "gray"}
           theme={customInputTheme}
           icon={RiProfileFill}
-          onChange={changeEmail}
+          onChange={handleChange}
         />
       </div>
       <div>
+        {errors?.lname ? (
+          <div className="flex text-red-400 gap-2 mb-2">
+            <MdErrorOutline />
+            <p className="text-xs">Last Name is too short</p>
+          </div>
+        ) : null}
         <TextInput
           id="lname"
           type="text"
-          placeholder="last name"
-          required
+          name="lname"
+          color={errors?.lname && submitting ? "failure" : "gray"}
+          placeholder="Last Name"
           theme={customInputTheme}
           icon={RiProfileFill}
-          onChange={changeEmail}
+          onChange={handleChange}
         />
       </div>
       <div>
+        {errors?.email ? (
+          <div className="flex text-red-400 gap-2 mb-2">
+            <MdErrorOutline />
+            <p className="text-xs">Email is not valid</p>
+          </div>
+        ) : null}
         <TextInput
           id="email1"
           type="email"
-          placeholder="email"
-          required
+          name="email"
+          placeholder="Email"
           theme={customInputTheme}
+          color={errors?.email && submitting ? "failure" : "gray"}
           icon={HiMail}
-          onChange={changeEmail}
+          onChange={handleChange}
         />
       </div>
       <div>
+        {errors?.password ? (
+          <div className="flex text-red-400 gap-2 mb-2">
+            <MdErrorOutline />
+
+            <p className="text-xs">Password is too short</p>
+          </div>
+        ) : null}
         <TextInput
-          id="password1"
+          id="password"
           type="password"
-          required
+          name="password"
           theme={customInputTheme}
-          placeholder="password"
+          placeholder="Password"
+          color={errors?.password && submitting ? "failure" : "gray"}
           icon={RiLockPasswordFill}
-          onChange={changePassword}
+          onChange={handleChange}
         />
       </div>
       <div className="flex items-center gap-2">
@@ -127,7 +211,7 @@ export default function SignupForm() {
       <button className="bg-primary text-white text-xs rounded-lg px-6 py-3 font-semibold mt-2 md:mt-0">
         Sign up
       </button>
-      <p className="text-xs text-center">or login with</p>
+      <p className="text-xs text-center">or signup with</p>
       <div className="flex justify-center items-center gap-6">
         <FontAwesomeIcon icon={faFacebook} className="text-[2.5rem]" />
         <FontAwesomeIcon icon={faGoogle} className="text-[2.5rem]" />

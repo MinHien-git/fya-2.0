@@ -7,6 +7,7 @@ import { FaArrowRight } from "react-icons/fa6";
 import { IoIosArrowForward } from "react-icons/io";
 import usePostProject from "../../hooks/usePostProjectPopup";
 import PostProjectModal from "../PostProjectPopup/PostProjectPopup";
+import { Button } from "@material-tailwind/react";
 
 export default function NavigationBar() {
   const [isToggle, setIsToggle] = useState(false);
@@ -90,13 +91,15 @@ export default function NavigationBar() {
                   </a>
                 </div>
               </div>
-              <button
-                className="middle none center rounded-md py-2 px-10 font-sans text-sm font-bold text-white shadow-md shadow-primary-500/20 transition-all hover:shadow-lg hover:shadow-pink-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none bg-primary hidden lg:inline-block mr-2"
-                data-ripple-light="true"
+              <Button
+                size="md"
+                className="bg-primary text-white max-w-[12rem] w-full hidden md:block"
+                placeholder={undefined}
                 onClick={toggle}
               >
                 Post your Project
-              </button>
+              </Button>
+
               <div className="flex lg:hidden">
                 <button
                   className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:bg-gray-700 focus:text-white transition duration-150 ease-in-out"
@@ -329,13 +332,14 @@ export default function NavigationBar() {
               </Link>
 
               <div className="mt-4 block px-3 rounded-md  font-semibold   focus:outline-none focus:text-white focus:bg-gray-700 transition duration-150 ease-in-out">
-                <button
-                  className="middle center rounded-md py-2 px-10 font-sans text-sm font-bold text-white shadow-md shadow-primary-500/20 transition-all hover:shadow-lg hover:shadow-pink-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none bg-primary lg:inline-block mr-2 w-full"
-                  data-ripple-light="true"
+                <Button
+                  size="md"
+                  className="bg-primary text-white w-full md:hidden block"
+                  placeholder={undefined}
                   onClick={toggle}
                 >
                   Post your Project
-                </button>
+                </Button>
               </div>
             </div>
           </div>

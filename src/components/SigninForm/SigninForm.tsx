@@ -11,6 +11,9 @@ import { RiLockPasswordFill, RiProfileFill } from "react-icons/ri";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFacebook, faGoogle } from "@fortawesome/free-brands-svg-icons";
+import { ISignInData, Signin } from "../../api/lib/authentication";
+import { MdErrorOutline } from "react-icons/md";
+import Cookies from "js-cookie";
 
 const customInputTheme: CustomFlowbiteTheme["textInput"] = {
   base: "flex",
@@ -37,7 +40,7 @@ const customInputTheme: CustomFlowbiteTheme["textInput"] = {
         gray: "bg-gray-50 border-primary border-2 text-gray-900 focus:border-cyan-500 focus:ring-cyan-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-cyan-500 dark:focus:ring-cyan-500",
         info: "border-cyan-500 bg-cyan-50 text-cyan-900 placeholder-cyan-700 focus:border-cyan-500 focus:ring-cyan-500 dark:border-cyan-400 dark:bg-cyan-100 dark:focus:border-cyan-500 dark:focus:ring-cyan-500",
         failure:
-          "border-red-500 bg-red-50 text-red-900 placeholder-red-700 focus:border-red-500 focus:ring-red-500 dark:border-red-400 dark:bg-red-100 dark:focus:border-red-500 dark:focus:ring-red-500",
+          "border-red-500 bg-red-50 text-red-900 border border-2  placeholder-red-700 focus:border-red-500 focus:ring-red-500 dark:border-red-400 dark:bg-red-100 dark:focus:border-red-500 dark:focus:ring-red-500",
         warning:
           "border-yellow-500 bg-yellow-50 text-yellow-900 placeholder-yellow-700 focus:border-yellow-500 focus:ring-yellow-500 dark:border-yellow-400 dark:bg-yellow-100 dark:focus:border-yellow-500 dark:focus:ring-yellow-500",
         success:
@@ -59,41 +62,105 @@ const customInputTheme: CustomFlowbiteTheme["textInput"] = {
     },
   },
 };
-
+interface ISignInError {
+  email?: string;
+  password?: string;
+}
 export default function SigninForm() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [user, setUser] = useState<ISignInData>({
+    email: "",
+    password: "",
+  });
 
-  const changeEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setEmail(e.target.value);
+  const [errors, setErrors] = useState<ISignInError>({});
+  const [submitting, setSubmitting] = useState(false);
+
+  const validateValues = (inputValues) => {
+    let errors: ISignInError = {};
+    if (inputValues.email.length < 10) {
+      errors.email = "Email is not valid";
+    } else {
+      delete errors["email"];
+    }
+    if (inputValues.password.length < 5) {
+      errors.password = "Password is too short";
+    } else {
+      delete errors["password"];
+    }
+
+    return errors;
   };
 
-  const changePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setPassword(e.target.value);
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setUser({ ...user, [e.target.name]: e.target.value });
+    if (submitting) {
+      setErrors(validateValues(user));
+    }
+  };
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setErrors(validateValues(user));
+    setSubmitting(true);
+    if (Object.keys(errors).length === 0 && submitting) {
+      await finishSubmit();
+    }
+  };
+
+  const finishSubmit = async () => {
+    let result = await Signin(user);
+    console.log(result);
+    if (result) {
+      let { refreshtoken, accesstoken } = result.data.data;
+      console.log(refreshtoken + " " + accesstoken);
+      Cookies.set("at", accesstoken, {
+        expires: 2,
+        secure: true,
+      });
+      Cookies.set("rft", refreshtoken, {
+        expires: 7,
+        secure: true,
+      });
+    }
   };
 
   return (
-    <form className="flex flex-col gap-4 mb-5">
+    <form className="flex flex-col gap-4 mb-5" onSubmit={handleSubmit}>
       <div>
+        {errors?.email ? (
+          <div className="flex text-red-400 gap-2 mb-2">
+            <MdErrorOutline />
+            <p className="text-xs">Email is not valid</p>
+          </div>
+        ) : null}
         <TextInput
           id="email1"
           type="email"
-          placeholder="email"
-          required
+          name="email"
+          placeholder="Email"
           theme={customInputTheme}
+          color={errors?.email && submitting ? "failure" : "gray"}
           icon={HiMail}
-          onChange={changeEmail}
+          onChange={handleChange}
         />
       </div>
       <div>
+        {errors?.password ? (
+          <div className="flex text-red-400 gap-2 mb-2">
+            <MdErrorOutline />
+
+            <p className="text-xs">Password is too short</p>
+          </div>
+        ) : null}
         <TextInput
-          id="password1"
+          id="password"
           type="password"
-          required
+          name="password"
           theme={customInputTheme}
-          placeholder="password"
+          placeholder="Password"
+          color={errors?.password && submitting ? "failure" : "gray"}
           icon={RiLockPasswordFill}
-          onChange={changePassword}
+          onChange={handleChange}
         />
       </div>
       <div className="flex justify-between">

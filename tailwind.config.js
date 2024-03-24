@@ -33,8 +33,8 @@ module.exports = withMT({
         "4/1": "4 / 1",
       },
       fontFamily: {
-        title: ["Montserrat"],
-        header: ["Poppins"],
+        title: ["DM Sans", ...defaultTheme.fontFamily.sans],
+        header: ["DM Sans", ...defaultTheme.fontFamily.sans],
         sans: ["Inter", ...defaultTheme.fontFamily.sans],
       },
     },

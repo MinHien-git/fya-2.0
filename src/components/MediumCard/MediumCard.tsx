@@ -1,3 +1,4 @@
+import { Button, IconButton } from "@material-tailwind/react";
 import { FiBookmark } from "react-icons/fi";
 
 interface IMediumCard {
@@ -47,15 +48,16 @@ export default function MediumCard({ name, click }: IMediumCard) {
         </div>
 
         <div className="flex w-5/6 gap-1 my-2">
-          <button
-            className="bg-secondary w-5/6 font-semibold rounded-md text-xs"
-            onClick={click}
+          <Button
+            size="md"
+            className="bg-secondary text-black max-w-[12rem] w-full"
+            placeholder={undefined}
           >
             Contact
-          </button>
-          <button className="bg-slate-200 w-1/6 aspect-square rounded-md flex justify-center items-center">
-            <FiBookmark className="text-primary" />
-          </button>
+          </Button>
+          <IconButton placeholder={undefined}>
+            <i className="fa-regular fa-bookmark"></i>
+          </IconButton>
         </div>
       </div>
     </div>

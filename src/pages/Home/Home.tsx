@@ -8,6 +8,7 @@ import {
   Menu,
   Button,
   Input,
+  Typography,
 } from "@material-tailwind/react";
 import { motion } from "framer-motion";
 let data = [
@@ -31,14 +32,22 @@ export default function Home() {
       >
         <section className="w-full border-[1px] border-border bg-light_gray max-w-7xl py-5 px-8  lg:px-16 my-5 rounded-[3rem] md:mx-auto h-auto md:flex md:gap-2 md:px-4 lg:items-center md:justify-between md:min-h-[80vh]">
           <div className="py-5 md:w-3/5 lg:w-3/5 lg:h-1/2">
-            <h1 className="text-4xl pb-2 font-bold text-primary lg:text-5xl font-header">
+            <Typography
+              placeholder={undefined}
+              variant="h1"
+              className="text-primary font-header font-bold"
+            >
               Find
               <span className="text-secondary"> Your Ideal</span> Agencies
-            </h1>
-            <p className="font-semibold pt-2 text-primary opacity-55">
+            </Typography>
+            <Typography
+              variant="h6"
+              placeholder={undefined}
+              className="font-semibold pt-2 text-primary opacity-55"
+            >
               Through personalized recommendation, made from the description of
               your needs, with the helps from AI
-            </p>
+            </Typography>
 
             <div className="items-center px-0 rounded-lg pt-3 pb-2 lg:flex-nowrap w-full relative flex lg:w-[75%]">
               <Menu placement="bottom-start">
@@ -89,18 +98,40 @@ export default function Home() {
                   className: "min-w-0",
                 }}
               />
-              <button className="ml-4 hidden md:block bg-primary text-white text-xs rounded-lg px-6 py-3 font-semibold mt-2 md:mt-0 w-full max-w-[10rem]">
+              {/* <button className="ml-4 hidden md:block bg-primary text-white text-xs rounded-lg px-6 py-3 font-semibold mt-2 md:mt-0 w-full max-w-[10rem]">
                 Search Agencies
-              </button>
+              </button> */}
+              <Button
+                size="md"
+                className="hidden md:block bg-primary text-white max-w-[30rem] ml-4 w-full"
+                placeholder={undefined}
+              >
+                Search Agencies
+              </Button>
             </div>
-            <button className="bg-primary text-white text-xs rounded-lg px-6 py-3 font-semibold mt-2 md:mt-0 md:hidden w-[10rem]">
+
+            <Button
+              size="md"
+              className="bg-primary text-white max-w-[12rem] w-full md:hidden mt-2"
+              placeholder={undefined}
+            >
               Search Agencies
-            </button>
+            </Button>
             <div className="md:flex  lg:mt-5">
-              <p className="mx-2 my-2 font-light">or</p>
-              <button className="bg-secondary text-white text-xs rounded-lg px-6 py-3 font-semibold mx-auto md:mx-2 w-[10rem]">
+              <Typography
+                variant="small"
+                placeholder={undefined}
+                className="mx-2 my-2"
+              >
+                or
+              </Typography>
+              <Button
+                size="md"
+                className="bg-secondary text-white max-w-[12rem] w-full"
+                placeholder={undefined}
+              >
                 Post your Project
-              </button>
+              </Button>
             </div>
           </div>
           <div className="hidden md:inline-block md:w-2/5 lg:w-2/5 aspect-square">
@@ -119,9 +150,13 @@ export default function Home() {
       >
         <section className="w-full border-[1px] border-border bg-light_gray max-w-7xl px-2 sm:px-4 lg:px-12 my-5 rounded-[3rem] md:mx-auto">
           <div className="py-5 pb-10">
-            <h2 className="text-[2rem] py-2 font-bold text-center md:text-[2rem] font-title">
-              Agencies of the week
-            </h2>
+            <Typography
+              variant="h2"
+              placeholder={undefined}
+              className="text-center font-title pt-4"
+            >
+              Top <span className="text-secondary">Agencies</span> of the week
+            </Typography>
             <div className="flex justify-center md:justify-start mt-5 flex-wrap gap-4 md:flex-nowrap md:w-full max-w-5xl mx-auto">
               <Carousel
                 placeholder={undefined}
@@ -251,10 +286,14 @@ export default function Home() {
       >
         <section className="w-full border-[1px] border-border bg-light_gray max-w-7xl px-2 sm:px-4 lg:px-12 my-5 rounded-[3rem] md:mx-auto flex flex-col justify-center items-center">
           <div className="py-5 w-10/12 md:w-full pb-10">
-            <h2 className="text-[2rem] py-2 font-bold text-center font-title">
+            <Typography
+              variant="h2"
+              placeholder={undefined}
+              className="font-bold text-center pt-4 "
+            >
               What We can Do For{" "}
               <span className="text-secondary"> You & Your Business</span>
-            </h2>
+            </Typography>
             <p className="text-text text-center">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce at
               sapien eu ipsum ornare{" "}
@@ -404,17 +443,30 @@ export default function Home() {
         transition={{ ease: "easeOut", duration: 0.5 }}
       >
         <section className="w-full max-w-7xl px-2 sm:px-4 lg:px-8 my-5 md:mx-auto grid">
-          <h2 className="text-[2rem] py-2 font-bold text-center font-title">
+          <Typography
+            variant="h2"
+            placeholder={undefined}
+            className="pt-4 text-center font-title"
+          >
             Let us join your business journey!
-          </h2>
-          <div className="flex items-center gap-4 justify-center">
-            <button className="bg-primary text-white text-xs rounded-lg px-6 py-3 font-semibold mt-2">
+          </Typography>
+          <div className="flex items-center gap-4 justify-center my-4">
+            <Button
+              size="md"
+              className="bg-primary text-white capitalize"
+              placeholder={undefined}
+            >
               Search Agencies
-            </button>
+            </Button>
             <p>or</p>
-            <button className="text-primary bg-tertiary text-xs rounded-lg px-6 py-3 font-semibold mt-2">
+
+            <Button
+              size="md"
+              className="text-primary bg-tertiary capitalize"
+              placeholder={undefined}
+            >
               Post your Project now!
-            </button>
+            </Button>
           </div>
         </section>
       </motion.div>
@@ -425,9 +477,13 @@ export default function Home() {
       >
         <section className="w-full border-[1px] border-border bg-light_gray max-w-7xl px-2 sm:px-4 lg:px-12 my-5 rounded-[3rem] md:mx-auto flex flex-col justify-center items-center">
           <div className="py-5 w-10/12 md:w-full pb-10">
-            <h2 className="text-[2rem] py-2 font-bold text-center font-title">
+            <Typography
+              variant="h2"
+              placeholder={undefined}
+              className="pt-4 text-center font-title"
+            >
               Join the community of agencies
-            </h2>
+            </Typography>
             <p className="text-text text-center">
               if you are a small agencies and wanna grow your business larger?
             </p>
@@ -523,17 +579,30 @@ export default function Home() {
         transition={{ ease: "easeOut", duration: 0.5 }}
       >
         <section className="w-full max-w-7xl px-2 sm:px-4 lg:px-8 my-5 md:mx-auto grid">
-          <h2 className="text-[2rem] py-2 font-bold text-center font-title">
+          <Typography
+            variant="h2"
+            placeholder={undefined}
+            className="pt-4 text-center font-title"
+          >
             Let us grow with your agency business
-          </h2>
-          <div className="flex items-center gap-4 justify-center">
-            <button className="bg-primary text-white text-xs rounded-lg px-6 py-3 font-semibold mt-2">
+          </Typography>
+          <div className="flex items-center gap-4 justify-center my-4">
+            <Button
+              size="md"
+              className="bg-primary text-white capitalize"
+              placeholder={undefined}
+            >
               Search Agencies
-            </button>
+            </Button>
             <p>or</p>
-            <button className="text-primary bg-tertiary text-xs rounded-lg px-6 py-3 font-semibold mt-2">
+
+            <Button
+              size="md"
+              className="text-primary bg-tertiary capitalize"
+              placeholder={undefined}
+            >
               Post your Project now!
-            </button>
+            </Button>
           </div>
         </section>
       </motion.div>
@@ -544,9 +613,13 @@ export default function Home() {
       >
         <section className="w-full border-[1px] border-border bg-light_gray max-w-7xl px-2 sm:px-4 lg:px-12 my-5 rounded-[3rem] md:mx-auto flex flex-col justify-center items-center">
           <div className="py-5 w-10/12 md:w-full pb-10">
-            <h2 className="text-[2rem] py-2 font-bold text-center font-title">
+            <Typography
+              variant="h2"
+              placeholder={undefined}
+              className="pt-4 text-center font-title"
+            >
               Join the community of agencies
-            </h2>
+            </Typography>
             <p className="text-text text-center">
               if you are a small agencies and wanna grow your business larger?
             </p>
