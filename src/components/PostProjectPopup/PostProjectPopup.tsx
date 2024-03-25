@@ -13,6 +13,7 @@ import {
   createContext,
   useCallback,
   useContext,
+  useEffect,
   useRef,
   useState,
 } from "react";
@@ -20,11 +21,64 @@ import { createPortal } from "react-dom";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa6";
 import { IoCloseSharp } from "react-icons/io5";
 import { motion } from "framer-motion";
+import { stringSimilarity } from "string-similarity-js";
 interface IProjectPopupProps {
   isOpen: boolean;
   toggle: () => void;
 }
 
+const speakingLanguages = [
+  "English",
+  "Spanish",
+  "Mandarin Chinese",
+  "Hindi",
+  "French",
+  "Standard Arabic",
+  "Bengali",
+  "Russian",
+  "Portuguese",
+  "Indonesian",
+  "Urdu",
+  "German",
+  "Japanese",
+  "Swahili",
+  "Telugu",
+  "Marathi",
+  "Turkish",
+  "Tamil",
+  "Vietnamese",
+  "Korean",
+  "Italian",
+  "Yoruba",
+  "Thai",
+  "Gujarati",
+  "Javanese",
+  "Filipino (Tagalog)",
+  "Persian (Farsi)",
+  "Punjabi",
+  "Wu Chinese",
+  "Bhojpuri",
+  "Hausa",
+  "Arabic (Egyptian)",
+  "Dutch",
+  "Burmese",
+  "Polish",
+  "Ukrainian",
+  "Pashto",
+  "Swedish",
+  "Sindhi",
+  "Sariki",
+  "Romanian",
+  "Dholuo",
+  "Amharic",
+  "Oromo",
+  "Igbo",
+  "Azerbaijani",
+  "Greek",
+  "Czech",
+  "Quechua",
+  "Kinyarwanda",
+];
 export default function PostProjectModal({
   isOpen,
   toggle,
@@ -117,7 +171,7 @@ function StepOne({ moveNext }: IStep) {
         alt="logo"
         className="w-[4rem] mb-6"
       />
-      <p className="text-center mb-6">
+      <p className="text-center mb-6 self-start">
         To understand your needs, we will first ask you a few{" "}
         <span className="font-bold">questions </span>
         before <span className="font-bold">matching </span>your company with
@@ -142,31 +196,37 @@ function StepTwo({ moveNext, movePrevious }: IStep) {
       transition={{ ease: "easeOut", duration: 0.2 }}
       className="w-full flex flex-col items-center gap-4 h-full "
     >
-      <p className="font-bold">
+      <p className="font-bold self-start">
         What <span className="text-secondary font-bold">services </span> and{" "}
         <span className="text-secondary font-bold">skills </span>
         you are looking for:
       </p>
-      <Input
-        crossOrigin={undefined}
-        type="email"
-        placeholder="Select service"
-        className="!border !border-gray-300 bg-white text-gray-900 shadow-lg shadow-gray-900/5 ring-4 ring-transparent placeholder:text-gray-500 placeholder:opacity-100 focus:!border-gray-900 focus:!border-t-gray-900 focus:ring-gray-900/10"
-        labelProps={{
-          className: "hidden",
-        }}
-        containerProps={{ className: "min-w-[100px]" }}
-      />
-      <Input
-        crossOrigin={undefined}
-        type="email"
-        placeholder="Select skills"
-        className="!border !border-gray-300 bg-white text-gray-900 shadow-lg shadow-gray-900/5 ring-4 ring-transparent placeholder:text-gray-500 placeholder:opacity-100 focus:!border-gray-900 focus:!border-t-gray-900 focus:ring-gray-900/10"
-        labelProps={{
-          className: "hidden",
-        }}
-        containerProps={{ className: "min-w-[100px]" }}
-      />
+      <div className="w-full grid">
+        <Input
+          crossOrigin={undefined}
+          type="email"
+          placeholder="Select services"
+          className="!border !border-gray-300 bg-white text-gray-900 shadow-lg shadow-gray-900/5 ring-4 ring-transparent placeholder:text-gray-500 placeholder:opacity-100 focus:!border-gray-900 focus:!border-t-gray-900 focus:ring-gray-900/10"
+          labelProps={{
+            className: "hidden",
+          }}
+          containerProps={{ className: "min-w-[100px]" }}
+        />
+        <div className="w-full h-[6rem] border-dashed border-2 border-t-0 rounded-lg"></div>
+      </div>
+      <div className="w-full grid">
+        <Input
+          crossOrigin={undefined}
+          type="email"
+          placeholder="Select skills"
+          className="!border !border-gray-300 bg-white text-gray-900 shadow-lg shadow-gray-900/5 ring-4 ring-transparent placeholder:text-gray-500 placeholder:opacity-100 focus:!border-gray-900 focus:!border-t-gray-900 focus:ring-gray-900/10"
+          labelProps={{
+            className: "hidden",
+          }}
+          containerProps={{ className: "min-w-[100px]" }}
+        />
+        <div className="w-full h-[6rem] border-dashed border-2 border-t-0 rounded-lg"></div>
+      </div>
       <div className="flex justify-between w-full mt-auto pt-4">
         <Button
           className="flex bg-gray-400 min-w-[8rem] items-center justify-center"
@@ -195,7 +255,7 @@ function StepThree({ moveNext, movePrevious }: IStep) {
       transition={{ ease: "easeOut", duration: 0.2 }}
       className="w-full flex flex-col items-center gap-4 h-full "
     >
-      <p className="font-bold">
+      <p className="font-bold self-start">
         Which <span className="text-secondary font-bold">areas </span> do you
         want your providers to be active in?
       </p>
@@ -239,6 +299,38 @@ function StepThree({ moveNext, movePrevious }: IStep) {
   );
 }
 function StepFour({ moveNext, movePrevious }: IStep) {
+  const [languages, setLanguage] = useState<Array<string>>(speakingLanguages);
+  const [focus, setFocus] = useState(false);
+  const [currentSearch, setCurrentSearch] = useState("");
+  const [currentLanguage, setCurrentLanguage] = useState<Array<string>>([]);
+  let inteval: any = null;
+  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setCurrentSearch(e.target.value);
+  };
+
+  const SelectLanguage = (e) => {
+    console.log(e.target.name);
+  };
+
+  useEffect(() => {
+    console.log(currentSearch);
+    const delayDebounceFn = setTimeout(() => {
+      if (currentSearch) {
+        setLanguage(
+          speakingLanguages.filter(
+            (i) =>
+              stringSimilarity(i, currentSearch) > 0.8 ||
+              i.toLowerCase().includes(currentSearch.toLowerCase())
+          )
+        );
+      } else {
+        setLanguage(speakingLanguages);
+      }
+    }, 200);
+
+    return () => clearTimeout(delayDebounceFn);
+  }, [currentSearch]);
+
   return (
     <motion.div
       initial={{ opacity: 0, x: 20 }}
@@ -246,20 +338,61 @@ function StepFour({ moveNext, movePrevious }: IStep) {
       transition={{ ease: "easeOut", duration: 0.2 }}
       className="w-full flex flex-col items-center gap-4 h-full "
     >
-      <p className="font-bold">
+      <p className="font-bold self-start">
         In which <span className="text-secondary font-bold">language(s) </span>{" "}
         do you want to use with your agencies?
       </p>
-      <Input
-        crossOrigin={undefined}
-        type="email"
-        placeholder="Select language"
-        className="!border !border-gray-300 bg-white text-gray-900 shadow-lg shadow-gray-900/5 ring-4 ring-transparent placeholder:text-gray-500 placeholder:opacity-100 focus:!border-gray-900 focus:!border-t-gray-900 focus:ring-gray-900/10"
-        labelProps={{
-          className: "hidden",
-        }}
-        containerProps={{ className: "min-w-[100px]" }}
-      />
+      <div className="w-full grid">
+        <div className="w-full h-[2rem] relative">
+          <Input
+            crossOrigin={undefined}
+            type="email"
+            placeholder="Select Languages"
+            className="!border !border-gray-300 bg-white text-gray-900 shadow-lg shadow-gray-900/5 ring-4 ring-transparent placeholder:text-gray-500 placeholder:opacity-100 focus:!border-gray-900 focus:!border-t-gray-900 focus:ring-gray-900/10"
+            labelProps={{
+              className: "hidden",
+            }}
+            value={currentSearch}
+            containerProps={{ className: "min-w-[100px]" }}
+            onFocus={() => {
+              clearTimeout(inteval);
+              setFocus(true);
+            }}
+            onBlur={() => {
+              inteval = setTimeout(function () {
+                setFocus(false);
+              }, 500);
+            }}
+            onChange={handleSearch}
+          />
+          {focus ? (
+            <ul className="absolute  py-3 bg-white w-full shadow-lg rounded-b-xl h-auto max-h-[7rem] overflow-y-auto gap-2">
+              {languages.map((i) => (
+                <li
+                  className="px-3 w-full py-4 font-semibold text-xs cursor-pointer text-text hover:bg-gray-100 shadow-sm"
+                  onClick={() => {
+                    setCurrentLanguage([...currentLanguage, i]);
+                    console.log(i);
+                    setCurrentSearch("");
+                  }}
+                >
+                  {i}
+                </li>
+              ))}
+            </ul>
+          ) : null}
+        </div>
+        <ul className="w-full h-[6rem] border-dashed border-2 border-t-0 rounded-lg flex gap-2 pt-3 flex-wrap items-start px-2 overflow-y-auto py-3">
+          {currentLanguage.map((language) => (
+            <li
+              className="text-primary bg-tertiary w-auto text-xs h-auto px-2 py-2 rounded-md font-bold"
+              key={language}
+            >
+              {language}
+            </li>
+          ))}
+        </ul>
+      </div>
 
       <div className="flex justify-between w-full mt-auto pt-4">
         <Button
@@ -289,7 +422,7 @@ function StepFive({ moveNext, movePrevious }: IStep) {
       transition={{ ease: "easeOut", duration: 0.2 }}
       className="w-full flex flex-col items-center gap-4 h-full "
     >
-      <p className="font-bold">
+      <p className="font-bold self-start">
         What is the <span className="text-secondary font-bold">name </span>of
         your business?
       </p>
@@ -336,7 +469,7 @@ function StepSix({ moveNext, movePrevious }: IStep) {
       transition={{ ease: "easeOut", duration: 0.2 }}
       className="w-full flex flex-col items-center gap-4 h-full "
     >
-      <p className="font-bold">
+      <p className="font-bold self-start">
         What is the <span className="text-secondary font-bold">size </span> of
         your business?
       </p>
@@ -482,7 +615,7 @@ function StepSeven({ moveNext, movePrevious }: IStep) {
       transition={{ ease: "easeOut", duration: 0.2 }}
       className="w-full flex flex-col items-center gap-4 h-full "
     >
-      <p className="font-bold">
+      <p className="font-bold self-start">
         What is your company’s{" "}
         <span className="text-secondary font-bold">industry? </span>
       </p>
@@ -523,7 +656,7 @@ function StepEight({ moveNext, movePrevious }: IStep) {
       transition={{ ease: "easeOut", duration: 0.2 }}
       className="w-full flex flex-col items-center gap-4  h-full"
     >
-      <p className="font-bold">
+      <p className="font-bold self-start">
         Where is your company’s{" "}
         <span className="text-secondary font-bold">office? </span>
       </p>
@@ -570,7 +703,7 @@ function StepNine({ moveNext, movePrevious }: IStep) {
       transition={{ ease: "easeOut", duration: 0.2 }}
       className="w-full flex flex-col items-center gap-4 h-full"
     >
-      <p className="font-bold">
+      <p className="font-bold self-start">
         What is your <span className="text-secondary font-bold">position </span>{" "}
         of your <span className="text-secondary font-bold">company?</span>
       </p>
@@ -733,7 +866,7 @@ function StepTen({ moveNext, movePrevious }: IStep) {
       transition={{ ease: "easeOut", duration: 0.2 }}
       className="w-full flex flex-col items-center gap-4 h-full"
     >
-      <p className="font-bold">
+      <p className="font-bold self-start">
         What is your preferred{" "}
         <span className="text-secondary font-bold">budget range</span> and
         <span className="text-secondary font-bold"> project duration?</span>
@@ -784,13 +917,23 @@ function StepEleven({ moveNext, movePrevious }: IStep) {
       transition={{ ease: "easeOut", duration: 0.2 }}
       className="w-full flex flex-col items-center gap-4 h-full"
     >
-      <p className="font-bold">
-        What other
-        <span className="text-secondary font-bold"> details</span> that you want
-        your agency to know?
+      <p className="font-bold self-start">
+        How would you
+        <span className="text-secondary font-bold"> describe</span> your project
+        to your agency?
       </p>
-      <div className="w-full">
-        <Textarea label="Message" rows={8} />
+      <Input
+        crossOrigin={undefined}
+        type="email"
+        placeholder="Project title"
+        className="!border !border-gray-300 bg-white text-gray-900 shadow-lg shadow-gray-900/5 ring-4 ring-transparent placeholder:text-gray-500 placeholder:opacity-100 focus:!border-gray-900 focus:!border-t-gray-900 focus:ring-gray-900/10"
+        labelProps={{
+          className: "hidden",
+        }}
+        containerProps={{ className: "min-w-[100px]" }}
+      />
+      <div className="w-full mt-2">
+        <Textarea label="Description" rows={8} />
       </div>
       <div className="flex justify-between w-full mt-auto pt-4">
         <Button
