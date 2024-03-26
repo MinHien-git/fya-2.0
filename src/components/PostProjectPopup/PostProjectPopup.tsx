@@ -296,7 +296,7 @@ export default function PostProjectModal({
       )
     : null;
 }
-interface IStep {
+export interface IStep {
   moveNext?: () => void;
   movePrevious?: () => void;
 }
@@ -450,9 +450,9 @@ function StepTwo({ moveNext, movePrevious }: IStep) {
         <ul className="w-full h-[6rem] border-dashed border-2 border-t-0 rounded-lg flex gap-2 pt-3 flex-wrap items-start px-2 overflow-y-auto py-3">
           {currentServices.map((tag) => (
             <motion.li
-              initial={{ scale: 0 }}
-              whileInView={{ scale: 1 }}
-              transition={{ ease: "easeOut", duration: 0.2 }}
+              initial={{ scale: 0, opacity: 0 }}
+              whileInView={{ scale: 1, opacity: 1 }}
+              transition={{ ease: "easeOut", duration: 0.2, delay: 0.2 }}
               className="text-primary bg-tertiary w-auto text-xs h-auto px-2 py-2 rounded-md font-bold"
               key={tag}
               onClick={() => {
@@ -509,9 +509,9 @@ function StepTwo({ moveNext, movePrevious }: IStep) {
         <ul className="w-full h-[6rem] border-dashed border-2 border-t-0 rounded-lg flex gap-2 pt-3 flex-wrap items-start px-2 overflow-y-auto py-3">
           {currentSkills.map((tag) => (
             <motion.li
-              initial={{ scale: 0 }}
-              whileInView={{ scale: 1 }}
-              transition={{ ease: "easeOut", duration: 0.2 }}
+              initial={{ scale: 0, opacity: 0 }}
+              whileInView={{ scale: 1, opacity: 1 }}
+              transition={{ ease: "easeOut", duration: 0.2, delay: 0.2 }}
               className="bg-secondary text-text w-auto text-xs h-auto px-2 py-2 rounded-md font-bold"
               key={tag}
               onClick={() => {
@@ -693,7 +693,7 @@ function StepFour({ moveNext, movePrevious }: IStep) {
             <motion.li
               initial={{ scale: 0 }}
               whileInView={{ scale: 1 }}
-              transition={{ ease: "easeOut", duration: 0.2 }}
+              transition={{ ease: "easeOut", duration: 0.2, delay: 0.2 }}
               className="text-primary bg-tertiary w-auto text-xs h-auto px-2 py-2 rounded-md font-bold"
               key={language}
               onClick={() => {
