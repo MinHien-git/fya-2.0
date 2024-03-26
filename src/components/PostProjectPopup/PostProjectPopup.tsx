@@ -243,7 +243,7 @@ export default function PostProjectModal({
             className="w-[100vw] h-[100vh] fixed bg-gray-500/50 z-[10000] top-0 flex justify-center items-center"
           >
             <motion.div
-              className="relative bg-white w-[80%] flex flex-col justify-start items-center pt-14 pb-6 px-4 rounded-2xl gap-4 h-auto max-h-[50rem] max-w-[22rem] "
+              className="relative bg-white w-[80%] flex flex-col justify-start items-center pt-14 pb-6 px-4 rounded-2xl gap-4 max-h-[50rem] min-h-[20rem] h-auto max-w-[30rem] md:px-8"
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ ease: "easeOut", duration: 0.2 }}
@@ -316,7 +316,7 @@ function StepOne({ moveNext }: IStep) {
         agencies that fit.
       </p>
       <Button
-        className="flex bg-primary min-w-[8rem] items-center justify-center mt-auto mb-6"
+        className="flex bg-primary min-w-[8rem] items-center justify-center mt-auto"
         placeholder={undefined}
         onClick={moveNext}
       >
@@ -403,8 +403,8 @@ function StepTwo({ moveNext, movePrevious }: IStep) {
       className="w-full flex flex-col items-center gap-4 h-full "
     >
       <p className="font-bold self-start">
-        What <span className="text-secondary font-bold">services </span> and{" "}
-        <span className="text-secondary font-bold">skills </span>
+        Tell us What <span className="text-secondary font-bold">services </span>{" "}
+        and <span className="text-secondary font-bold">skills </span>
         you are looking for:
       </p>
       <div className="w-full h-[9rem] relative">
@@ -567,7 +567,7 @@ function StepThree({ moveNext, movePrevious }: IStep) {
         }}
         containerProps={{ className: "min-w-[100px]" }}
       />
-      <div className="flex items-center">
+      <div className="flex items-center self-start">
         <Checkbox
           defaultChecked
           placeholder={undefined}
@@ -577,7 +577,7 @@ function StepThree({ moveNext, movePrevious }: IStep) {
           My agencies must have at least one office in this location.
         </Label>
       </div>
-      <div className="flex justify-between w-full mt-auto pt-4 pt-4">
+      <div className="flex justify-between w-full mt-[3rem] pt-4">
         <Button
           className="flex bg-gray-400 min-w-[8rem] items-center justify-center"
           placeholder={undefined}
@@ -755,7 +755,7 @@ function StepFive({ moveNext, movePrevious }: IStep) {
         containerProps={{ className: "min-w-[100px]" }}
       />
 
-      <div className="flex justify-between w-full mt-auto pt-4">
+      <div className="flex justify-between w-full mt-[3rem] pt-4">
         <Button
           className="flex bg-gray-400 min-w-[8rem] items-center justify-center"
           placeholder={undefined}
@@ -942,7 +942,7 @@ function StepSeven({ moveNext, movePrevious }: IStep) {
         <Option>Material Tailwind Svelte</Option>
       </Select>
 
-      <div className="flex justify-between w-full mt-auto pt-4">
+      <div className="flex justify-between w-full mt-[5rem] pt-4">
         <Button
           className="flex bg-gray-400 min-w-[8rem] items-center justify-center"
           placeholder={undefined}
@@ -989,7 +989,7 @@ function StepEight({ moveNext, movePrevious }: IStep) {
         containerProps={{ className: "min-w-[100px]" }}
       />
 
-      <div className="flex justify-between w-full mt-auto pt-4">
+      <div className="flex justify-between w-full mt-[3rem] pt-4">
         <Button
           className="flex bg-gray-400 min-w-[8rem] items-center justify-center"
           placeholder={undefined}
@@ -1203,7 +1203,7 @@ function StepTen({ moveNext, movePrevious }: IStep) {
         <Option>Material Tailwind Angular</Option>
         <Option>Material Tailwind Svelte</Option>
       </Select>
-      <div className="flex justify-between w-full mt-auto pt-4">
+      <div className="flex justify-between w-full mt-[2rem] pt-4">
         <Button
           className="flex bg-gray-400 min-w-[8rem] items-center justify-center"
           placeholder={undefined}

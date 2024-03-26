@@ -32,6 +32,9 @@ module.exports = withMT({
         "4/3": "4 / 3",
         "4/1": "4 / 1",
       },
+      translate: {
+        200: "200%",
+      },
       fontFamily: {
         title: ["DM Sans", ...defaultTheme.fontFamily.sans],
         header: ["DM Sans", ...defaultTheme.fontFamily.sans],
