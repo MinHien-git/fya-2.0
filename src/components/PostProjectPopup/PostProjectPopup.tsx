@@ -40,6 +40,7 @@ import {
   setCompanyLocation,
   setLanguages,
 } from "../../features/projects/projectSplice";
+import { PostProject } from "../../api/lib/project";
 interface IProjectPopupProps {
   isOpen: boolean;
   toggle: () => void;
@@ -235,8 +236,9 @@ export default function PostProjectModal({
     SetStep(step - 1);
   };
 
-  const handleSubmit = () => {
-    console.log(project);
+  const handleSubmit = async () => {
+    let result = await PostProject(project);
+    console.log(result);
   };
   return isOpen
     ? createPortal(

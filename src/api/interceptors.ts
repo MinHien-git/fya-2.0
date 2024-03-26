@@ -13,7 +13,8 @@ const onRequest = (
 ): InternalAxiosRequestConfig => {
   const token = Cookies.get("at");
   if (token) {
-    config.headers!["Authorization"] = `Bearer ${token.access_token}`;
+    console.log(token);
+    config.headers!["Authorization"] = `Bearer ${token}`;
   }
   return config;
 };
