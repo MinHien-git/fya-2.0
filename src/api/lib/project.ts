@@ -1,5 +1,5 @@
 import api from "../axiosClient";
 
-export function PostProject(data: ISignInData) {
+export function PostProject(data) {
   return api.post("/project", data);
 }
