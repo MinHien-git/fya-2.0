@@ -69,7 +69,7 @@ export default function CreatePage() {
     },
     {
       label: "Add information",
-      content: <GeneralInformation />,
+      content: <GeneralInformation moveNext={() => setActiveTabIndex(2)} />,
     },
     {
       label: "Create an admin account",
@@ -80,7 +80,7 @@ export default function CreatePage() {
   return (
     <main className="w-full min-h-[50vh] p-2 h-auto">
       <section className="w-full border-[1px] py-8 border-primary bg-light_gray max-w-7xl px-8 lg:px-0 my-5 rounded-[3rem] md:mx-auto flex flex-col md:gap-2 md:px-0  min-h-[50vh] lg:min-h-[80vh] h-[100%] items-center">
-        <div className="bg-blue-gray-50 bg-opacity-60 rounded-[2rem] w-[70%] max-w-[40rem]">
+        <div className="bg-blue-gray-50 bg-opacity-60 rounded-[2rem] w-[70%] max-w-[40rem] mt-8">
           <div className="relative">
             <div className="flex space-x-3 w-full">
               {tabsData.map((tab, idx) => {
