@@ -1,3 +1,19 @@
+import { RiAdvertisementFill } from "react-icons/ri";
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faArrowUpFromBracket,
+  faArrowsLeftRightToLine,
+  faBell,
+  faCircleQuestion,
+  faList,
+  faMessage,
+  faQuestion,
+  faQuestionCircle,
+  faUser,
+} from "@fortawesome/free-solid-svg-icons";
+import { FaQuestionCircle } from "react-icons/fa";
+import { Link } from "react-router-dom";
 export default function AgencyNavigationBar() {
   return (
     <aside className="bg-dark_blue h-[100vh] max-w-[18rem] min-w-[15rem] rounded-b-xl">
@@ -14,31 +30,61 @@ export default function AgencyNavigationBar() {
         </header>
         <nav className="h-[90%] grid items-start pt-2">
           <ul className="grid gap-1">
-            <li className="pl-8 text-white w-full py-4 text-sm font-title">
-              Dashboard
+            <li className="pl-8 text-white w-full py-4 text-sm font-title font-bold hover:bg-yellow-50 hover:text-text">
+              <Link to="/management" className="flex items-center gap-4">
+                <FontAwesomeIcon icon={faList} />
+                <p>Dashboard</p>
+              </Link>
             </li>
-            <li className="pl-8 text-white w-full py-4 text-sm font-title">
-              Your Page
+            <li className="pl-8 text-white w-full py-4 text-sm font-title font-bold hover:bg-yellow-50 hover:text-text">
+              <Link to="/management" className="flex items-center gap-4">
+                <FontAwesomeIcon icon={faUser} />
+                <p>Your Page</p>
+              </Link>
             </li>
-            <li className="pl-8 text-white w-full py-4 text-sm font-title">
-              Notification
+            <li className="pl-8 text-white w-full py-4 text-sm font-title font-bold hover:bg-yellow-50 hover:text-text">
+              <Link
+                to="/management/general"
+                className="flex items-center gap-4"
+              >
+                <FontAwesomeIcon icon={faBell} />
+                <p> Notification</p>{" "}
+              </Link>
             </li>
-            <li className="pl-8 text-white w-full py-4 text-sm font-title">
-              Inbox
+            <li className="pl-8 text-white w-full py-4 text-sm font-title font-bold hover:bg-yellow-50 hover:text-text">
+              <Link to="/management" className="flex items-center gap-4">
+                <FontAwesomeIcon icon={faMessage} />
+                <p>Inbox</p>
+              </Link>
             </li>
-            <li className="pl-8 text-white w-full py-4 text-sm font-title">
-              Project Leads Extension
+            <li className="pl-8 text-white w-full py-4 text-sm font-title font-bold hover:bg-yellow-50 hover:text-text">
+              <Link
+                to="/management/project-leads-extension"
+                className="flex items-center gap-4"
+              >
+                <FontAwesomeIcon icon={faArrowsLeftRightToLine} />
+                <p> Project Leads Extension</p>
+              </Link>
             </li>
-            <li className="pl-8 text-white w-full py-4 text-sm font-title">
-              Advertising
+            <li className="pl-8 text-white w-full py-4 text-sm font-title font-bold flex items-center gap-4 hover:bg-yellow-50 hover:text-text">
+              <Link to="/management" className="flex items-center gap-4">
+                <RiAdvertisementFill />
+                <p> Advertising</p>
+              </Link>
             </li>
           </ul>
           <ul className="grid gap-1 mt-auto">
-            <li className="pl-8 text-white w-full py-4 mt-auto border-b-2 text-sm font-title">
-              Updates from Fya
+            <li className="pl-8 text-white w-full py-4 mt-auto border-b-2 text-sm font-title font-bold flex items-center gap-4 hover:bg-yellow-50 hover:text-text">
+              <Link to="/management" className="flex items-center gap-4">
+                {" "}
+                <FontAwesomeIcon icon={faArrowUpFromBracket} /> Updates from Fya
+              </Link>
             </li>
-            <li className="pl-8 text-white w-full py-4 mt-auto border-b-2 text-sm font-title">
-              Helps
+            <li className="pl-8 text-white w-full py-4 mt-auto border-b-2 text-sm font-title font-bold flex items-center gap-4 hover:bg-yellow-50 hover:text-text">
+              <Link to="/management" className="flex items-center gap-4">
+                {" "}
+                <FontAwesomeIcon icon={faCircleQuestion} /> Helps
+              </Link>
             </li>
             <li className="pl-8 text-white w-full py-6 mt-auto border-b-2 text-sm font-title">
               <div className="flex gap-2 items-center">

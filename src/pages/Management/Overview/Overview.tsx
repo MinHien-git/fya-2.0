@@ -1,10 +1,13 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import SecondaryNavigationBar from "../../../components/SecondaryNavigationBar/SecondaryNavigationBar";
+import { faList } from "@fortawesome/free-solid-svg-icons";
 
 export default function Overview() {
   return (
     <main className="w-full min-h-80 py-2 pt-0 flex flex-col gap-2 overflow-y-auto h-full mx-auto">
       <div className="w-full">
-        <div className="flex justify-center items-center h-[4rem] border-b-2">
+        <div className="flex justify-center items-center h-[4rem] border-b-2 gap-4">
+          <FontAwesomeIcon icon={faList} />
           <p className="font-title">Dashboard</p>
         </div>
       </div>
@@ -22,8 +25,12 @@ export default function Overview() {
             <p>
               Expand your reach with Advertising Features, generate business
               with Project Leads Extension, and much more!{" "}
-              <span className="text-primary underline">Learn more</span>{" "}
-              <span className="text-primary underline">Not now</span>
+              <span className="text-primary underline font-semibold">
+                Learn more
+              </span>{" "}
+              <span className="text-primary underline font-semibold">
+                Not now
+              </span>
             </p>
           </div>
           <div className="aspect-square rounded-full w-8 bg-slate-300"></div>

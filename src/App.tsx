@@ -85,7 +85,7 @@ function App() {
               />
               <Route path="review-invitation" element={<ReviewInvitaion />} />
               <Route path="services" element={<Services />} />
-              <Route path="overview" element={<Overview />} />
+              <Route path="" element={<Overview />} />
               <Route path="workspace" element={<WorkingSpace />} />
               <Route path="target" element={<WorkingSpaceTarget />} />
             </Route>

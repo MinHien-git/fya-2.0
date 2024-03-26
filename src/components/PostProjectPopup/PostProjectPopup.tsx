@@ -26,7 +26,7 @@ import { useLockBodyScroll } from "@uidotdev/usehooks";
 import { useSelector, useDispatch } from "react-redux";
 import {
   setServices as setReduxServices,
-  setSkills,
+  setSkills as setReduxSkills,
   setLocation,
   setLocalization,
   setCompanyName,
@@ -328,14 +328,20 @@ function StepOne({ moveNext }: IStep) {
 
 function StepTwo({ moveNext, movePrevious }: IStep) {
   const [services, setServices] = useState<Array<string>>(agencyServices);
-
-  const currentServices = useSelector(
-    (state: any) => state.project.currentServices
+  const [skills, setSkills] = useState<Array<string>>(
+    agencySkillTagsRequirements
   );
 
+  const currentServices = useSelector((state: any) => state.project.services);
+  const currentSkills = useSelector((state: any) => state.project.skills);
+
   const dispatch = useDispatch();
+
   const [focus, setFocus] = useState(false);
+  const [skillFocus, setSkillFocus] = useState(false);
+
   const [currentSearch, setCurrentSearch] = useState("");
+  const [skillSearch, setSkillSearch] = useState("");
 
   let inteval: any = null;
 
@@ -343,17 +349,16 @@ function StepTwo({ moveNext, movePrevious }: IStep) {
     setCurrentSearch(e.target.value);
   };
 
-  const SelectLanguage = (e) => {
-    console.log(e.target.name);
+  const handleSkillSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSkillSearch(e.target.value);
   };
 
   useEffect(() => {
     console.log(currentSearch);
     const delayDebounceFn = setTimeout(() => {
       if (currentSearch) {
-        console.log(currentServices);
         setServices(
-          speakingLanguages.filter(
+          agencyServices.filter(
             (i) =>
               (stringSimilarity(i, currentSearch) > 0.8 ||
                 i.toLowerCase().includes(currentSearch.toLowerCase())) &&
@@ -362,14 +367,33 @@ function StepTwo({ moveNext, movePrevious }: IStep) {
         );
       } else {
         console.log(currentServices);
-        setServices(
-          speakingLanguages.filter((i) => !currentServices.includes(i))
-        );
+        setServices(agencyServices.filter((i) => !currentServices.includes(i)));
       }
     }, 200);
 
     return () => clearTimeout(delayDebounceFn);
   }, [currentSearch, currentServices]);
+
+  useEffect(() => {
+    const delayDebounceFn = setTimeout(() => {
+      if (skillSearch) {
+        setSkills(
+          agencySkillTagsRequirements.filter(
+            (i) =>
+              (stringSimilarity(i, currentSearch) > 0.8 ||
+                i.toLowerCase().includes(skillSearch.toLowerCase())) &&
+              !currentSkills.includes(i)
+          )
+        );
+      } else {
+        setSkills(
+          agencySkillTagsRequirements.filter((i) => !currentSkills.includes(i))
+        );
+      }
+    }, 200);
+
+    return () => clearTimeout(delayDebounceFn);
+  }, [skillSearch, currentSkills]);
 
   return (
     <motion.div
@@ -383,7 +407,7 @@ function StepTwo({ moveNext, movePrevious }: IStep) {
         <span className="text-secondary font-bold">skills </span>
         you are looking for:
       </p>
-      <div className="w-full h-[2rem] relative">
+      <div className="w-full h-[9rem] relative">
         <Input
           crossOrigin={undefined}
           type="email"
@@ -392,6 +416,7 @@ function StepTwo({ moveNext, movePrevious }: IStep) {
           labelProps={{
             className: "hidden",
           }}
+          value={currentSearch}
           containerProps={{ className: "min-w-[100px]" }}
           onFocus={() => {
             clearTimeout(inteval);
@@ -411,7 +436,7 @@ function StepTwo({ moveNext, movePrevious }: IStep) {
                 className="px-3 w-full py-4 font-semibold text-xs cursor-pointer text-text hover:bg-gray-100 shadow-sm"
                 onClick={() => {
                   if (!currentServices.includes(i)) {
-                    dispatch(setLanguages([...currentServices, i]));
+                    dispatch(setReduxServices([...currentServices, i]));
                     console.log(i);
                     setCurrentSearch("");
                   }
@@ -423,38 +448,82 @@ function StepTwo({ moveNext, movePrevious }: IStep) {
           </ul>
         ) : null}
         <ul className="w-full h-[6rem] border-dashed border-2 border-t-0 rounded-lg flex gap-2 pt-3 flex-wrap items-start px-2 overflow-y-auto py-3">
-          {currentServices.map((language) => (
+          {currentServices.map((tag) => (
             <motion.li
               initial={{ scale: 0 }}
               whileInView={{ scale: 1 }}
               transition={{ ease: "easeOut", duration: 0.2 }}
               className="text-primary bg-tertiary w-auto text-xs h-auto px-2 py-2 rounded-md font-bold"
-              key={language}
+              key={tag}
               onClick={() => {
                 dispatch(
-                  setReduxServices(
-                    currentServices.filter((i) => i !== language)
-                  )
+                  setReduxServices(currentServices.filter((i) => i !== tag))
                 );
               }}
             >
-              {language}
+              {tag}
             </motion.li>
           ))}
         </ul>
       </div>
-      <div className="w-full grid">
+      <div className="w-full h-[9rem] relative">
         <Input
           crossOrigin={undefined}
           type="email"
-          placeholder="Select skills"
+          placeholder="Select services"
           className="!border !border-gray-300 bg-white text-gray-900 shadow-lg shadow-gray-900/5 ring-4 ring-transparent placeholder:text-gray-500 placeholder:opacity-100 focus:!border-gray-900 focus:!border-t-gray-900 focus:ring-gray-900/10"
           labelProps={{
             className: "hidden",
           }}
+          value={skillSearch}
           containerProps={{ className: "min-w-[100px]" }}
+          onFocus={() => {
+            clearTimeout(inteval);
+            setSkillFocus(true);
+          }}
+          onBlur={() => {
+            inteval = setTimeout(function () {
+              setSkillFocus(false);
+            }, 300);
+          }}
+          onChange={handleSkillSearch}
         />
-        <div className="w-full h-[6rem] border-dashed border-2 border-t-0 rounded-lg"></div>
+        {skillFocus ? (
+          <ul className="absolute  py-3 bg-white w-full shadow-lg rounded-b-xl h-auto max-h-[7rem] overflow-y-auto gap-2 z-10000">
+            {skills.map((i) => (
+              <li
+                className="px-3 w-full py-4 font-semibold text-xs cursor-pointer text-text hover:bg-gray-100 shadow-sm"
+                onClick={() => {
+                  if (!currentServices.includes(i)) {
+                    dispatch(setReduxSkills([...currentSkills, i]));
+                    console.log(i);
+                    setSkillSearch("");
+                  }
+                }}
+              >
+                {i}
+              </li>
+            ))}
+          </ul>
+        ) : null}
+        <ul className="w-full h-[6rem] border-dashed border-2 border-t-0 rounded-lg flex gap-2 pt-3 flex-wrap items-start px-2 overflow-y-auto py-3">
+          {currentSkills.map((tag) => (
+            <motion.li
+              initial={{ scale: 0 }}
+              whileInView={{ scale: 1 }}
+              transition={{ ease: "easeOut", duration: 0.2 }}
+              className="bg-secondary text-text w-auto text-xs h-auto px-2 py-2 rounded-md font-bold"
+              key={tag}
+              onClick={() => {
+                dispatch(
+                  setReduxSkills(currentSkills.filter((i) => i !== tag))
+                );
+              }}
+            >
+              {tag}
+            </motion.li>
+          ))}
+        </ul>
       </div>
       <div className="flex justify-between w-full mt-auto pt-4">
         <Button
@@ -540,10 +609,6 @@ function StepFour({ moveNext, movePrevious }: IStep) {
 
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     setCurrentSearch(e.target.value);
-  };
-
-  const SelectLanguage = (e) => {
-    console.log(e.target.name);
   };
 
   useEffect(() => {
@@ -916,7 +981,7 @@ function StepEight({ moveNext, movePrevious }: IStep) {
       <Input
         crossOrigin={undefined}
         type="email"
-        placeholder="Select service"
+        placeholder="Company location"
         className="!border !border-gray-300 bg-white text-gray-900 shadow-lg shadow-gray-900/5 ring-4 ring-transparent placeholder:text-gray-500 placeholder:opacity-100 focus:!border-gray-900 focus:!border-t-gray-900 focus:ring-gray-900/10"
         labelProps={{
           className: "hidden",
