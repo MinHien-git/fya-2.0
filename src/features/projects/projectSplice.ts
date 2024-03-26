@@ -10,6 +10,7 @@ export const userSlice = createSlice({
     localization: true,
     companyName: "",
     companySize: "",
+    companylocation: "",
     industry: "",
     position: "",
     bugetRange: "",
@@ -32,7 +33,10 @@ export const userSlice = createSlice({
       state.localization = action.payload;
     },
     setCompanyName: (state, action) => {
-      state.localization = action.payload;
+      state.companyName = action.payload;
+    },
+    setCompanyLocation: (state, action) => {
+      state.companylocation = action.payload;
     },
     setCompanySize: (state, action) => {
       state.companySize = action.payload;
@@ -76,6 +80,7 @@ export const {
   setProjectTitle,
   setProjectDescription,
   setLanguages,
+  setCompanyLocation,
 } = userSlice.actions;
 
 export default userSlice.reducer;

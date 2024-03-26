@@ -37,6 +37,7 @@ import {
   setProjectDuration,
   setProjectTitle,
   setProjectDescription,
+  setCompanyLocation,
   setLanguages,
 } from "../../features/projects/projectSplice";
 interface IProjectPopupProps {
@@ -224,7 +225,7 @@ export default function PostProjectModal({
   toggle,
 }: IProjectPopupProps) {
   const [step, SetStep] = useState(0);
-
+  const project = useSelector((state: any) => state.project);
   useLockBodyScroll();
 
   const handleNext = (): void => {
@@ -232,6 +233,10 @@ export default function PostProjectModal({
   };
   const handlePrevious = () => {
     SetStep(step - 1);
+  };
+
+  const handleSubmit = () => {
+    console.log(project);
   };
   return isOpen
     ? createPortal(
@@ -285,7 +290,7 @@ export default function PostProjectModal({
                 <StepTen movePrevious={handlePrevious} moveNext={handleNext} />
               ) : step === 10 ? (
                 <StepEleven
-                  moveNext={handleNext}
+                  moveNext={handleSubmit}
                   movePrevious={handlePrevious}
                 />
               ) : null}
@@ -546,6 +551,11 @@ function StepTwo({ moveNext, movePrevious }: IStep) {
 }
 
 function StepThree({ moveNext, movePrevious }: IStep) {
+  const location = useSelector((state: any) => state.project.location);
+  const localization = useSelector((state: any) => state.project.localization);
+  const dispatch = useDispatch();
+  const [checked, setChecked] = useState(localization);
+
   return (
     <motion.div
       initial={{ opacity: 0, x: 20 }}
@@ -565,6 +575,8 @@ function StepThree({ moveNext, movePrevious }: IStep) {
         labelProps={{
           className: "hidden",
         }}
+        value={location}
+        onChange={(e) => dispatch(setLocation(e.target.value))}
         containerProps={{ className: "min-w-[100px]" }}
       />
       <div className="flex items-center self-start">
@@ -572,6 +584,11 @@ function StepThree({ moveNext, movePrevious }: IStep) {
           defaultChecked
           placeholder={undefined}
           crossOrigin={undefined}
+          checked={checked}
+          onChange={(e) => {
+            dispatch(setLocalization(!e.target.checked));
+            setChecked(e.target.checked);
+          }}
         />
         <Label htmlFor="check" className="text-xs">
           My agencies must have at least one office in this location.
@@ -729,6 +746,9 @@ function StepFour({ moveNext, movePrevious }: IStep) {
 }
 
 function StepFive({ moveNext, movePrevious }: IStep) {
+  const companyName = useSelector((state: any) => state.project.companyName);
+  const dispatch = useDispatch();
+
   return (
     <motion.div
       initial={{ opacity: 0, x: 20 }}
@@ -752,6 +772,8 @@ function StepFive({ moveNext, movePrevious }: IStep) {
         labelProps={{
           className: "hidden",
         }}
+        value={companyName}
+        onChange={(e) => dispatch(setCompanyName(e.target.value))}
         containerProps={{ className: "min-w-[100px]" }}
       />
 
@@ -776,6 +798,13 @@ function StepFive({ moveNext, movePrevious }: IStep) {
 }
 
 function StepSix({ moveNext, movePrevious }: IStep) {
+  const companySize = useSelector((state: any) => state.project.companySize);
+
+  const dispatch = useDispatch();
+  const onChangeCompanySize = (e) => {
+    dispatch(setCompanySize(e.target.value));
+  };
+
   return (
     <motion.div
       initial={{ opacity: 0, x: 20 }}
@@ -800,7 +829,10 @@ function StepSix({ moveNext, movePrevious }: IStep) {
               1 person
             </Typography>
           }
+          onChange={onChangeCompanySize}
           className="text-xs"
+          value="1 person"
+          checked={companySize === "1 person"}
         />
         <Radio
           crossOrigin={undefined}
@@ -815,6 +847,9 @@ function StepSix({ moveNext, movePrevious }: IStep) {
             </Typography>
           }
           className="text-xs"
+          value="2-10 people"
+          onChange={onChangeCompanySize}
+          checked={companySize === "2-10 people"}
         />
         <Radio
           crossOrigin={undefined}
@@ -828,7 +863,10 @@ function StepSix({ moveNext, movePrevious }: IStep) {
               11-50 people
             </Typography>
           }
+          value="11-50 people"
           className="text-xs"
+          onChange={onChangeCompanySize}
+          checked={companySize === "11-50 people"}
         />
         <Radio
           crossOrigin={undefined}
@@ -842,7 +880,10 @@ function StepSix({ moveNext, movePrevious }: IStep) {
               51-100 people
             </Typography>
           }
+          value="51-100 people"
           className="text-xs"
+          onChange={onChangeCompanySize}
+          checked={companySize === "51-100 people"}
         />
         <Radio
           crossOrigin={undefined}
@@ -856,7 +897,10 @@ function StepSix({ moveNext, movePrevious }: IStep) {
               101-500 people
             </Typography>
           }
+          value="101-500 people"
           className="text-xs"
+          onChange={onChangeCompanySize}
+          checked={companySize === "101-500 people"}
         />
         <Radio
           crossOrigin={undefined}
@@ -870,7 +914,10 @@ function StepSix({ moveNext, movePrevious }: IStep) {
               501-1000 people
             </Typography>
           }
+          checked={companySize === "501-1000 people"}
+          value="501-1000 people"
           className="text-xs"
+          onChange={onChangeCompanySize}
         />
         <Radio
           crossOrigin={undefined}
@@ -884,7 +931,10 @@ function StepSix({ moveNext, movePrevious }: IStep) {
               1001-5000 people
             </Typography>
           }
+          value="1001-5000 people"
           className="text-xs"
+          onChange={onChangeCompanySize}
+          checked={companySize === "1001-5000 people"}
         />
         <Radio
           crossOrigin={undefined}
@@ -898,7 +948,10 @@ function StepSix({ moveNext, movePrevious }: IStep) {
               More than 5000 people
             </Typography>
           }
+          value="More than 5000 people"
           className="text-xs"
+          onChange={onChangeCompanySize}
+          checked={companySize === "More than 5000 people"}
         />
       </div>
       <div className="flex justify-between w-full mt-auto pt-4">
@@ -922,6 +975,11 @@ function StepSix({ moveNext, movePrevious }: IStep) {
 }
 
 function StepSeven({ moveNext, movePrevious }: IStep) {
+  const industry = useSelector((state: any) => state.project.industry);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    console.log(industry);
+  }, [industry]);
   return (
     <motion.div
       initial={{ opacity: 0, x: 20 }}
@@ -934,12 +992,20 @@ function StepSeven({ moveNext, movePrevious }: IStep) {
         <span className="text-secondary font-bold">industry? </span>
       </p>
 
-      <Select placeholder={undefined} label="Select Version">
-        <Option>Material Tailwind HTML</Option>
-        <Option>Material Tailwind React</Option>
-        <Option>Material Tailwind Vue</Option>
-        <Option>Material Tailwind Angular</Option>
-        <Option>Material Tailwind Svelte</Option>
+      <Select
+        placeholder={undefined}
+        label="Select Version"
+        onChange={(v) => {
+          dispatch(setIndustry(v));
+        }}
+        value={industry}
+        defaultValue={industry}
+      >
+        <Option value="Marketing">Marketing</Option>
+        <Option value="Information Technology">Information Technology</Option>
+        <Option value="Finance">Finance</Option>
+        <Option value="Graphic design">Graphic design</Option>
+        <Option value="Manufacture">Manufacture</Option>
       </Select>
 
       <div className="flex justify-between w-full mt-[5rem] pt-4">
@@ -963,6 +1029,10 @@ function StepSeven({ moveNext, movePrevious }: IStep) {
 }
 
 function StepEight({ moveNext, movePrevious }: IStep) {
+  const companyLocation = useSelector(
+    (state: any) => state.project.companylocation
+  );
+  const dispatch = useDispatch();
   return (
     <motion.div
       initial={{ opacity: 0, x: 20 }}
@@ -986,6 +1056,8 @@ function StepEight({ moveNext, movePrevious }: IStep) {
         labelProps={{
           className: "hidden",
         }}
+        value={companyLocation}
+        onChange={(e) => dispatch(setCompanyLocation(e.target.value))}
         containerProps={{ className: "min-w-[100px]" }}
       />
 
@@ -1010,6 +1082,12 @@ function StepEight({ moveNext, movePrevious }: IStep) {
 }
 
 function StepNine({ moveNext, movePrevious }: IStep) {
+  const position = useSelector((state: any) => state.project.position);
+
+  const dispatch = useDispatch();
+  const onChangeCompanySize = (e) => {
+    dispatch(setPosition(e.target.value));
+  };
   return (
     <motion.div
       initial={{ opacity: 0, x: 20 }}
@@ -1035,6 +1113,9 @@ function StepNine({ moveNext, movePrevious }: IStep) {
             </Typography>
           }
           className="text-xs"
+          onChange={onChangeCompanySize}
+          value="CEO / Business Owner"
+          checked={position === "CEO / Business Owner"}
         />
         <Radio
           crossOrigin={undefined}
@@ -1048,7 +1129,10 @@ function StepNine({ moveNext, movePrevious }: IStep) {
               CMO / Marketing Director
             </Typography>
           }
+          value="CMO / Marketing Director"
           className="text-xs"
+          onChange={onChangeCompanySize}
+          checked={position === "CMO / Marketing Director"}
         />
         <Radio
           crossOrigin={undefined}
@@ -1062,7 +1146,10 @@ function StepNine({ moveNext, movePrevious }: IStep) {
               Marketing Manager / Brand Manager
             </Typography>
           }
+          onChange={onChangeCompanySize}
+          checked={position === "Marketing Manager / Brand Manager"}
           className="text-xs"
+          value="Marketing Manager / Brand Manager"
         />
         <Radio
           crossOrigin={undefined}
@@ -1076,7 +1163,10 @@ function StepNine({ moveNext, movePrevious }: IStep) {
               Consultant
             </Typography>
           }
+          onChange={onChangeCompanySize}
+          checked={position === "Consultant"}
           className="text-xs"
+          value="Consultant"
         />
         <Radio
           crossOrigin={undefined}
@@ -1091,6 +1181,9 @@ function StepNine({ moveNext, movePrevious }: IStep) {
             </Typography>
           }
           className="text-xs"
+          onChange={onChangeCompanySize}
+          checked={position === "Procurement Manager / Purchasing Manager"}
+          value="Procurement Manager / Purchasing Manager"
         />
         <Radio
           crossOrigin={undefined}
@@ -1105,6 +1198,8 @@ function StepNine({ moveNext, movePrevious }: IStep) {
             </Typography>
           }
           className="text-xs"
+          onChange={onChangeCompanySize}
+          checked={position === "Marketing Executive / Sales Executive"}
         />
         <Radio
           crossOrigin={undefined}
@@ -1119,6 +1214,9 @@ function StepNine({ moveNext, movePrevious }: IStep) {
             </Typography>
           }
           className="text-xs"
+          onChange={onChangeCompanySize}
+          value="Sales Representative / Business Developer"
+          checked={position === "Sales Representative / Business Developer"}
         />
         <Radio
           crossOrigin={undefined}
@@ -1133,6 +1231,9 @@ function StepNine({ moveNext, movePrevious }: IStep) {
             </Typography>
           }
           className="text-xs"
+          onChange={onChangeCompanySize}
+          checked={position === "Intern"}
+          value="Intern"
         />
         <Radio
           crossOrigin={undefined}
@@ -1173,6 +1274,11 @@ function StepNine({ moveNext, movePrevious }: IStep) {
 }
 
 function StepTen({ moveNext, movePrevious }: IStep) {
+  const budget = useSelector((state: any) => state.project.bugetRange);
+  const duration = useSelector((state: any) => state.project.projectDuration);
+
+  const dispatch = useDispatch();
+
   return (
     <motion.div
       initial={{ opacity: 0, x: 20 }}
@@ -1189,19 +1295,41 @@ function StepTen({ moveNext, movePrevious }: IStep) {
         This information will only be used to select agencies that fit for you.
         You are not obligated to follow this budget range and project duration.
       </p>
-      <Select label="Select budget range" placeholder={undefined}>
-        <Option>Material Tailwind HTML</Option>
-        <Option>Material Tailwind React</Option>
-        <Option>Material Tailwind Vue</Option>
-        <Option>Material Tailwind Angular</Option>
-        <Option>Material Tailwind Svelte</Option>
+      <Select
+        label="Select budget range"
+        placeholder={undefined}
+        onChange={(v) => {
+          dispatch(setBugetRange(v));
+        }}
+        value={budget}
+        defaultValue={budget}
+      >
+        <Option value="1.000.000-5.000.000 VNĐ">1.000.000-5.000.000 VNĐ</Option>
+        <Option value="6.000.000-10.000.000 VNĐ">
+          6.000.000-10.000.000 VNĐ
+        </Option>
+        <Option value="10.000.000-15.000.000 VNĐ">
+          10.000.000-15.000.000 VNĐ
+        </Option>
+        <Option value="11.000.000-25.000.000 VNĐ">
+          11.000.000-25.000.000 VNĐ
+        </Option>
+        <Option value="25.000.000++">25.000.000++</Option>
       </Select>
-      <Select label="Select project duration" placeholder={undefined}>
-        <Option>Material Tailwind HTML</Option>
-        <Option>Material Tailwind React</Option>
-        <Option>Material Tailwind Vue</Option>
-        <Option>Material Tailwind Angular</Option>
-        <Option>Material Tailwind Svelte</Option>
+      <Select
+        label="Select project duration"
+        placeholder={undefined}
+        onChange={(v) => {
+          dispatch(setProjectDuration(v));
+        }}
+        value={duration}
+        defaultValue={duration}
+      >
+        <Option value="1-3 Days">1-3 Days</Option>
+        <Option value="1 Weeks">1 Weeks</Option>
+        <Option value="2-3 Weeks">2-3 Weeks</Option>
+        <Option value="1 Month">1 Month</Option>
+        <Option value="2-3 Month">2-3 Month</Option>
       </Select>
       <div className="flex justify-between w-full mt-[2rem] pt-4">
         <Button
@@ -1224,6 +1352,13 @@ function StepTen({ moveNext, movePrevious }: IStep) {
 }
 
 function StepEleven({ moveNext, movePrevious }: IStep) {
+  const title = useSelector((state: any) => state.project.projectTitle);
+  const description = useSelector(
+    (state: any) => state.project.projectDescription
+  );
+
+  const dispatch = useDispatch();
+
   return (
     <motion.div
       initial={{ opacity: 0, x: 20 }}
@@ -1244,10 +1379,21 @@ function StepEleven({ moveNext, movePrevious }: IStep) {
         labelProps={{
           className: "hidden",
         }}
+        value={title}
+        onChange={(e) => {
+          dispatch(setProjectTitle(e.target.value));
+        }}
         containerProps={{ className: "min-w-[100px]" }}
       />
       <div className="w-full mt-2">
-        <Textarea label="Description" rows={8} />
+        <Textarea
+          value={description}
+          label="Description"
+          rows={8}
+          onChange={(e) => {
+            dispatch(setProjectDescription(e.target.value));
+          }}
+        />
       </div>
       <div className="flex justify-between w-full mt-auto pt-4">
         <Button
