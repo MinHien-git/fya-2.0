@@ -349,7 +349,7 @@ export default function NavigationBar() {
           </div>
         </div>
       </nav>
-      <PostProjectModal isOpen={isOpen} toggle={toggle} />
+      {isOpen && <PostProjectModal isOpen={isOpen} toggle={toggle} />}
     </header>
   );
 }

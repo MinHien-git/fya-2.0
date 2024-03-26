@@ -10,6 +10,7 @@ import {
   Input,
   Typography,
 } from "@material-tailwind/react";
+import { useDocumentTitle } from "@uidotdev/usehooks";
 import { motion } from "framer-motion";
 let data = [
   {
@@ -23,6 +24,7 @@ let data = [
   },
 ];
 export default function Home() {
+  useDocumentTitle("Home");
   return (
     <main className="w-full min-h-80 p-2">
       <motion.div

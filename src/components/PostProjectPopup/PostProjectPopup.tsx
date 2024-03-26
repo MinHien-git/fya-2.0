@@ -22,6 +22,23 @@ import { FaArrowLeft, FaArrowRight } from "react-icons/fa6";
 import { IoCloseSharp } from "react-icons/io5";
 import { motion } from "framer-motion";
 import { stringSimilarity } from "string-similarity-js";
+import { useLockBodyScroll } from "@uidotdev/usehooks";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  setServices as setReduxServices,
+  setSkills,
+  setLocation,
+  setLocalization,
+  setCompanyName,
+  setCompanySize,
+  setIndustry,
+  setPosition,
+  setBugetRange,
+  setProjectDuration,
+  setProjectTitle,
+  setProjectDescription,
+  setLanguages,
+} from "../../features/projects/projectSplice";
 interface IProjectPopupProps {
   isOpen: boolean;
   toggle: () => void;
@@ -79,11 +96,136 @@ const speakingLanguages = [
   "Quechua",
   "Kinyarwanda",
 ];
+const agencySkillTagsRequirements = [
+  "Adobe Creative Suite",
+  "UI/UX Design",
+  "Responsive Web Design",
+  "Sketch",
+  "Figma",
+  "Typography",
+  "Brand Identity",
+  "Motion Graphics",
+  "Video Editing",
+  "Photography",
+  "Copywriting",
+  "SEO",
+  "SEM",
+  "PPC",
+  "Social Media Management",
+  "Content Strategy",
+  "Analytics",
+  "Market Research",
+  "Strategic Thinking",
+  "Marketing Strategy",
+  "Event Planning",
+  "Public Relations",
+  "Client Servicing",
+  "Project Management",
+  "Agile",
+  "Scrum",
+  "Product Management",
+  "User Research",
+  "Wireframing",
+  "Prototyping",
+  "Front-end Development",
+  "Back-end Development",
+  "Full-stack Development",
+  "Mobile App Development",
+  "Augmented Reality",
+  "Virtual Reality",
+  "Game Development",
+  "Database Management",
+  "Data Analysis",
+  "Data Visualization",
+  "Problem-solving",
+  "Communication",
+  "Teamwork",
+  "Adaptability",
+  "Creativity",
+  "Multitasking",
+  "Organizational Skills",
+  "Time Management",
+  "Attention to Detail",
+];
+
+const agencyServices = [
+  "Advertising",
+  "Public Relations",
+  "Marketing",
+  "Digital Marketing",
+  "Social Media Management",
+  "Content Marketing",
+  "SEO (Search Engine Optimization)",
+  "SEM (Search Engine Marketing)",
+  "PPC (Pay-Per-Click) Management",
+  "Email Marketing",
+  "Influencer Marketing",
+  "Brand Strategy",
+  "Creative Design",
+  "Branding",
+  "Market Research",
+  "Media Buying",
+  "Event Management",
+  "Experiential Marketing",
+  "Video Production",
+  "Photography",
+  "Copywriting",
+  "Web Design",
+  "Web Development",
+  "E-commerce Development",
+  "Mobile App Development",
+  "AR (Augmented Reality) Development",
+  "VR (Virtual Reality) Development",
+  "UI/UX Design",
+  "Software Development",
+  "Game Development",
+  "CRM (Customer Relationship Management)",
+  "ERP (Enterprise Resource Planning)",
+  "Consulting",
+  "Management Consulting",
+  "Financial Consulting",
+  "HR (Human Resources) Consulting",
+  "IT Consulting",
+  "Legal Consulting",
+  "Supply Chain Consulting",
+  "Training & Development",
+  "Executive Coaching",
+  "Leadership Development",
+  "Sales Training",
+  "Customer Service Training",
+  "Technical Training",
+  "Cybersecurity Consulting",
+  "Cloud Computing Services",
+  "Data Analytics",
+  "Market Entry Services",
+  "International Expansion Consulting",
+  "Trade Show Management",
+  "Localization Services",
+  "Translation Services",
+];
+
+export interface IProject {
+  services?: string[];
+  skills?: string[];
+  location?: string;
+  languages?: string[];
+  localization?: boolean;
+  companyName?: string;
+  companySize?: string;
+  industry?: string;
+  position?: string;
+  bugetRange?: string;
+  projectDuration?: string;
+  projectTitle?: string;
+  projectDescription?: string;
+}
 export default function PostProjectModal({
   isOpen,
   toggle,
 }: IProjectPopupProps) {
   const [step, SetStep] = useState(0);
+
+  useLockBodyScroll();
 
   const handleNext = (): void => {
     SetStep(step + 1);
@@ -166,11 +308,7 @@ function StepOne({ moveNext }: IStep) {
       transition={{ ease: "easeOut", duration: 0.2 }}
       className="w-full flex flex-col items-center gap-4 h-full "
     >
-      <img
-        src={"/static/images/Logo_BG.svg"}
-        alt="logo"
-        className="w-[4rem] mb-6"
-      />
+      <img src={"/static/images/Logo_BG.svg"} alt="logo" className="w-[4rem]" />
       <p className="text-center mb-6 self-start">
         To understand your needs, we will first ask you a few{" "}
         <span className="font-bold">questions </span>
@@ -189,6 +327,50 @@ function StepOne({ moveNext }: IStep) {
 }
 
 function StepTwo({ moveNext, movePrevious }: IStep) {
+  const [services, setServices] = useState<Array<string>>(agencyServices);
+
+  const currentServices = useSelector(
+    (state: any) => state.project.currentServices
+  );
+
+  const dispatch = useDispatch();
+  const [focus, setFocus] = useState(false);
+  const [currentSearch, setCurrentSearch] = useState("");
+
+  let inteval: any = null;
+
+  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setCurrentSearch(e.target.value);
+  };
+
+  const SelectLanguage = (e) => {
+    console.log(e.target.name);
+  };
+
+  useEffect(() => {
+    console.log(currentSearch);
+    const delayDebounceFn = setTimeout(() => {
+      if (currentSearch) {
+        console.log(currentServices);
+        setServices(
+          speakingLanguages.filter(
+            (i) =>
+              (stringSimilarity(i, currentSearch) > 0.8 ||
+                i.toLowerCase().includes(currentSearch.toLowerCase())) &&
+              !currentServices.includes(i)
+          )
+        );
+      } else {
+        console.log(currentServices);
+        setServices(
+          speakingLanguages.filter((i) => !currentServices.includes(i))
+        );
+      }
+    }, 200);
+
+    return () => clearTimeout(delayDebounceFn);
+  }, [currentSearch, currentServices]);
+
   return (
     <motion.div
       initial={{ opacity: 0, x: 20 }}
@@ -201,7 +383,7 @@ function StepTwo({ moveNext, movePrevious }: IStep) {
         <span className="text-secondary font-bold">skills </span>
         you are looking for:
       </p>
-      <div className="w-full grid">
+      <div className="w-full h-[2rem] relative">
         <Input
           crossOrigin={undefined}
           type="email"
@@ -211,8 +393,55 @@ function StepTwo({ moveNext, movePrevious }: IStep) {
             className: "hidden",
           }}
           containerProps={{ className: "min-w-[100px]" }}
+          onFocus={() => {
+            clearTimeout(inteval);
+            setFocus(true);
+          }}
+          onBlur={() => {
+            inteval = setTimeout(function () {
+              setFocus(false);
+            }, 300);
+          }}
+          onChange={handleSearch}
         />
-        <div className="w-full h-[6rem] border-dashed border-2 border-t-0 rounded-lg"></div>
+        {focus ? (
+          <ul className="absolute  py-3 bg-white w-full shadow-lg rounded-b-xl h-auto max-h-[7rem] overflow-y-auto gap-2 z-10000">
+            {services.map((i) => (
+              <li
+                className="px-3 w-full py-4 font-semibold text-xs cursor-pointer text-text hover:bg-gray-100 shadow-sm"
+                onClick={() => {
+                  if (!currentServices.includes(i)) {
+                    dispatch(setLanguages([...currentServices, i]));
+                    console.log(i);
+                    setCurrentSearch("");
+                  }
+                }}
+              >
+                {i}
+              </li>
+            ))}
+          </ul>
+        ) : null}
+        <ul className="w-full h-[6rem] border-dashed border-2 border-t-0 rounded-lg flex gap-2 pt-3 flex-wrap items-start px-2 overflow-y-auto py-3">
+          {currentServices.map((language) => (
+            <motion.li
+              initial={{ scale: 0 }}
+              whileInView={{ scale: 1 }}
+              transition={{ ease: "easeOut", duration: 0.2 }}
+              className="text-primary bg-tertiary w-auto text-xs h-auto px-2 py-2 rounded-md font-bold"
+              key={language}
+              onClick={() => {
+                dispatch(
+                  setReduxServices(
+                    currentServices.filter((i) => i !== language)
+                  )
+                );
+              }}
+            >
+              {language}
+            </motion.li>
+          ))}
+        </ul>
       </div>
       <div className="w-full grid">
         <Input
@@ -300,10 +529,15 @@ function StepThree({ moveNext, movePrevious }: IStep) {
 }
 function StepFour({ moveNext, movePrevious }: IStep) {
   const [languages, setLanguage] = useState<Array<string>>(speakingLanguages);
+
+  const currentLanguage = useSelector((state: any) => state.project.languages);
+
+  const dispatch = useDispatch();
   const [focus, setFocus] = useState(false);
   const [currentSearch, setCurrentSearch] = useState("");
-  const [currentLanguage, setCurrentLanguage] = useState<Array<string>>([]);
+
   let inteval: any = null;
+
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     setCurrentSearch(e.target.value);
   };
@@ -316,20 +550,25 @@ function StepFour({ moveNext, movePrevious }: IStep) {
     console.log(currentSearch);
     const delayDebounceFn = setTimeout(() => {
       if (currentSearch) {
+        console.log(currentLanguage);
         setLanguage(
           speakingLanguages.filter(
             (i) =>
-              stringSimilarity(i, currentSearch) > 0.8 ||
-              i.toLowerCase().includes(currentSearch.toLowerCase())
+              (stringSimilarity(i, currentSearch) > 0.8 ||
+                i.toLowerCase().includes(currentSearch.toLowerCase())) &&
+              !currentLanguage.includes(i)
           )
         );
       } else {
-        setLanguage(speakingLanguages);
+        console.log(currentLanguage);
+        setLanguage(
+          speakingLanguages.filter((i) => !currentLanguage.includes(i))
+        );
       }
     }, 200);
 
     return () => clearTimeout(delayDebounceFn);
-  }, [currentSearch]);
+  }, [currentSearch, currentLanguage]);
 
   return (
     <motion.div
@@ -361,19 +600,21 @@ function StepFour({ moveNext, movePrevious }: IStep) {
             onBlur={() => {
               inteval = setTimeout(function () {
                 setFocus(false);
-              }, 500);
+              }, 300);
             }}
             onChange={handleSearch}
           />
           {focus ? (
-            <ul className="absolute  py-3 bg-white w-full shadow-lg rounded-b-xl h-auto max-h-[7rem] overflow-y-auto gap-2">
+            <ul className="absolute  py-3 bg-white w-full shadow-lg rounded-b-xl h-auto max-h-[7rem] overflow-y-auto gap-2 z-10000">
               {languages.map((i) => (
                 <li
                   className="px-3 w-full py-4 font-semibold text-xs cursor-pointer text-text hover:bg-gray-100 shadow-sm"
                   onClick={() => {
-                    setCurrentLanguage([...currentLanguage, i]);
-                    console.log(i);
-                    setCurrentSearch("");
+                    if (!currentLanguage.includes(i)) {
+                      dispatch(setLanguages([...currentLanguage, i]));
+                      console.log(i);
+                      setCurrentSearch("");
+                    }
                   }}
                 >
                   {i}
@@ -384,12 +625,20 @@ function StepFour({ moveNext, movePrevious }: IStep) {
         </div>
         <ul className="w-full h-[6rem] border-dashed border-2 border-t-0 rounded-lg flex gap-2 pt-3 flex-wrap items-start px-2 overflow-y-auto py-3">
           {currentLanguage.map((language) => (
-            <li
+            <motion.li
+              initial={{ scale: 0 }}
+              whileInView={{ scale: 1 }}
+              transition={{ ease: "easeOut", duration: 0.2 }}
               className="text-primary bg-tertiary w-auto text-xs h-auto px-2 py-2 rounded-md font-bold"
               key={language}
+              onClick={() => {
+                dispatch(
+                  setLanguages(currentLanguage.filter((i) => i !== language))
+                );
+              }}
             >
               {language}
-            </li>
+            </motion.li>
           ))}
         </ul>
       </div>
