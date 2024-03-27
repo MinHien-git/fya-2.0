@@ -11,6 +11,7 @@ import {
 } from "@material-tailwind/react";
 import { FileInput, Label, TextInput } from "flowbite-react";
 import { useState } from "react";
+// @ts-ignore
 import { useCountries } from "use-react-countries";
 
 export default function EditProfile() {
