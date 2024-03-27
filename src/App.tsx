@@ -35,6 +35,10 @@ import usePostProject from "./hooks/usePostProjectPopup";
 import PostProjectModal from "./components/PostProjectPopup/PostProjectPopup";
 import { Provider } from "react-redux";
 import store from "./store/store";
+import ClientManagementLayout from "./layouts/ClientLayout/AgencyManagementLayout";
+import ClientOverview from "./pages/Client/Overview/ClientOverview";
+import EditProfile from "./pages/Client/EditProfile/EditProfile";
+import ManageProject from "./pages/Client/ManageProjects/ManageProjects";
 function App() {
   const { isOpen, toggle } = usePostProject();
 
@@ -88,6 +92,11 @@ function App() {
               <Route path="" element={<Overview />} />
               <Route path="workspace" element={<WorkingSpace />} />
               <Route path="target" element={<WorkingSpaceTarget />} />
+            </Route>
+            <Route path="/client/" element={<ClientManagementLayout />}>
+              <Route path="" element={<ClientOverview />} />
+              <Route path="edit-profile" element={<EditProfile />} />
+              <Route path="manage-project" element={<ManageProject />} />
             </Route>
           </Routes>
         </BrowserRouter>
