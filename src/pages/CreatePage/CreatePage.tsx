@@ -15,6 +15,8 @@ import {
   TabsHeader,
   TabsBody,
   Tab,
+  Select,
+  Option,
   TabPanel,
   Typography,
   Checkbox,
@@ -25,23 +27,19 @@ import { FaArrowLeft, FaArrowRight } from "react-icons/fa6";
 import { IStep } from "../../components/PostProjectPopup/PostProjectPopup";
 import clsx from "clsx";
 import { motion } from "framer-motion";
-// const data = [
-//   {
-//     label: "Select your company",
-//     value: 0,
-//     desc: <SelectCompany moveNext={() => handleChange(1)} />,
-//   },
-//   {
-//     label: "Add information",
-//     value: 1,
-//     desc: "testing",
-//   },
-//   {
-//     label: "Create an admin account",
-//     value: 2,
-//     desc: "testing",
-//   },
-// ];
+import { useDispatch, useSelector } from "react-redux";
+import stringSimilarity from "string-similarity-js";
+import {
+  setLanguages,
+  setCompanyName,
+  setDescription,
+  setAddress,
+  setFoundedDate,
+  setWebsite,
+  setEmailAddress,
+  setPhoneNumer,
+  setTeamMember,
+} from "../../features/pages/pageSplice";
 export default function CreatePage() {
   const [activeTabIndex, setActiveTabIndex] = useState(0);
   const [tabUnderlineWidth, setTabUnderlineWidth] = useState(0);
@@ -114,6 +112,10 @@ export default function CreatePage() {
 }
 
 export function SelectCompany({ moveNext }: IStep) {
+  const company_name = useSelector((state: any) => state.page.company_name);
+
+  const dispatch = useDispatch();
+
   return (
     <motion.div
       className="flex justify-center items-center w-full h-full"
@@ -134,6 +136,8 @@ export function SelectCompany({ moveNext }: IStep) {
             placeholder={undefined}
             crossOrigin={undefined}
             size="lg"
+            value={company_name}
+            onChange={(e) => dispatch(setCompanyName(e.target.value))}
           />
         </div>
         <Button
@@ -148,8 +152,101 @@ export function SelectCompany({ moveNext }: IStep) {
     </motion.div>
   );
 }
-
+const speakingLanguages = [
+  "English",
+  "Spanish",
+  "Mandarin Chinese",
+  "Hindi",
+  "French",
+  "Standard Arabic",
+  "Bengali",
+  "Russian",
+  "Portuguese",
+  "Indonesian",
+  "Urdu",
+  "German",
+  "Japanese",
+  "Swahili",
+  "Telugu",
+  "Marathi",
+  "Turkish",
+  "Tamil",
+  "Vietnamese",
+  "Korean",
+  "Italian",
+  "Yoruba",
+  "Thai",
+  "Gujarati",
+  "Javanese",
+  "Filipino (Tagalog)",
+  "Persian (Farsi)",
+  "Punjabi",
+  "Wu Chinese",
+  "Bhojpuri",
+  "Hausa",
+  "Arabic (Egyptian)",
+  "Dutch",
+  "Burmese",
+  "Polish",
+  "Ukrainian",
+  "Pashto",
+  "Swedish",
+  "Sindhi",
+  "Sariki",
+  "Romanian",
+  "Dholuo",
+  "Amharic",
+  "Oromo",
+  "Igbo",
+  "Azerbaijani",
+  "Greek",
+  "Czech",
+  "Quechua",
+  "Kinyarwanda",
+];
 export function GeneralInformation({ moveNext }: IStep) {
+  const [languages, setLanguage] = useState<Array<string>>(speakingLanguages);
+  const [currentSearch, setCurrentSearch] = useState("");
+  const currentLanguage = useSelector((state: any) => state.page.languages);
+  const description = useSelector((state: any) => state.page.description);
+  const team_members = useSelector((state: any) => state.page.team_members);
+  const address = useSelector((state: any) => state.page.address);
+  const founded_date = useSelector((state: any) => state.page.founded_date);
+  const website = useSelector((state: any) => state.page.website);
+  const email_address = useSelector((state: any) => state.page.email_address);
+  const phone_number = useSelector((state: any) => state.page.phone_number);
+
+  const dispatch = useDispatch();
+  const [focus, setFocus] = useState(false);
+
+  let inteval: any = null;
+
+  useEffect(() => {
+    console.log(currentSearch);
+    const delayDebounceFn = setTimeout(() => {
+      if (currentSearch) {
+        console.log(currentLanguage);
+        setLanguage(
+          speakingLanguages.filter(
+            (i) =>
+              (stringSimilarity(i, currentSearch) > 0.8 ||
+                i.toLowerCase().includes(currentSearch.toLowerCase())) &&
+              !currentLanguage.includes(i)
+          )
+        );
+      } else {
+        console.log(currentLanguage);
+        setLanguage(
+          speakingLanguages.filter((i) => !currentLanguage.includes(i))
+        );
+      }
+    }, 200);
+  });
+
+  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setCurrentSearch(e.target.value);
+  };
+
   return (
     <motion.div
       className="flex justify-center items-center w-full h-full"
@@ -169,40 +266,113 @@ export function GeneralInformation({ moveNext }: IStep) {
             <div className="flex flex-col mt-4 gap-4">
               <div>
                 <div className="mb-2 block">
-                  <Label htmlFor="email2" value="Agency name" />
+                  <Label htmlFor="website" value="Agency website" />
                 </div>
                 <TextInput
-                  id="email2"
-                  type="email"
-                  placeholder="name@flowbite.com"
+                  id="website"
+                  type="text"
+                  placeholder="www.example.com"
                   required
                   shadow
+                  value={website}
+                  onChange={(e) => dispatch(setWebsite(e.target.value))}
                 />
               </div>
-              <div className="flex gap-4">
-                <div>
+              <div className="flex gap-4 h-[10rem] ">
+                <div className="h-[10rem] w-1/2">
                   <div className="mb-2 block">
-                    <Label htmlFor="email2" value="Language(s) available" />
+                    <Label htmlFor="website" value="Languages" />
                   </div>
-                  <TextInput
-                    id="email2"
-                    type="email"
-                    placeholder="name@flowbite.com"
-                    required
-                    shadow
-                  />
+                  <div className="w-full h-[2rem] relative">
+                    <Input
+                      crossOrigin={undefined}
+                      type="email"
+                      placeholder="Select Languages"
+                      className="!border !border-gray-300 bg-white text-gray-900 shadow-lg shadow-gray-900/5 ring-4 ring-transparent placeholder:text-gray-500 placeholder:opacity-100 focus:!border-gray-900 focus:!border-t-gray-900 focus:ring-gray-900/10"
+                      labelProps={{
+                        className: "hidden",
+                      }}
+                      value={currentSearch}
+                      containerProps={{ className: "min-w-[100px]" }}
+                      onFocus={() => {
+                        clearTimeout(inteval);
+                        setFocus(true);
+                      }}
+                      onBlur={() => {
+                        inteval = setTimeout(function () {
+                          setFocus(false);
+                        }, 300);
+                      }}
+                      onChange={handleSearch}
+                    />
+                    {focus ? (
+                      <ul className="absolute  py-3 bg-white w-full shadow-lg rounded-b-xl h-auto max-h-[7rem] overflow-y-auto gap-2 z-10000">
+                        {languages.map((i) => (
+                          <li
+                            className="px-3 w-full py-4 font-semibold text-xs cursor-pointer text-text hover:bg-gray-100 shadow-sm"
+                            onClick={() => {
+                              if (!currentLanguage.includes(i)) {
+                                dispatch(setLanguages([...currentLanguage, i]));
+                                console.log(i);
+                                setCurrentSearch("");
+                              }
+                            }}
+                          >
+                            {i}
+                          </li>
+                        ))}
+                      </ul>
+                    ) : null}
+                    <ul className="w-full h-[6rem] border-dashed border-2 border-t-0 rounded-lg flex gap-2 pt-3 flex-wrap items-start px-2 overflow-y-auto py-3">
+                      {currentLanguage.map((language) => (
+                        <motion.li
+                          initial={{ scale: 0 }}
+                          whileInView={{ scale: 1 }}
+                          transition={{
+                            ease: "easeOut",
+                            duration: 0.2,
+                            delay: 0.2,
+                          }}
+                          className="text-primary bg-tertiary w-auto text-xs h-auto px-2 py-2 rounded-md font-bold"
+                          key={language}
+                          onClick={() => {
+                            dispatch(
+                              setLanguages(
+                                currentLanguage.filter((i) => i !== language)
+                              )
+                            );
+                          }}
+                        >
+                          {language}
+                        </motion.li>
+                      ))}
+                    </ul>
+                  </div>
                 </div>
-                <div>
+                <div className="w-1/2">
                   <div className="mb-2 block">
                     <Label htmlFor="email2" value="Number of members" />
                   </div>
-                  <TextInput
-                    id="email2"
-                    type="email"
-                    placeholder="name@flowbite.com"
-                    required
-                    shadow
-                  />
+                  <Select
+                    placeholder={undefined}
+                    label="Company Size"
+                    onChange={(v) => {
+                      dispatch(setTeamMember(v));
+                    }}
+                    value={team_members}
+                    defaultValue={team_members}
+                  >
+                    <Option value="1 person">1 person</Option>
+                    <Option value="2-10 people">2-10 people</Option>
+                    <Option value="11-50 people">11-50 people</Option>
+                    <Option value="51-100 people">51-100 people</Option>
+                    <Option value="101-500 people">101-500 people</Option>
+                    <Option value="101-500 people">501-1000 people</Option>
+                    <Option value="101-500 people">1001-5000 people</Option>
+                    <Option value="101-500 people">
+                      More than 5000 people
+                    </Option>
+                  </Select>
                 </div>
               </div>
               <div className="max-w-md">
@@ -222,18 +392,25 @@ export function GeneralInformation({ moveNext }: IStep) {
                   placeholder=""
                   required
                   rows={4}
+                  value={description}
+                  onChange={(e) => dispatch(setDescription(e.target.value))}
                 />
               </div>
               <div>
                 <div className="mb-2 block">
-                  <Label htmlFor="email2" value="Has been in business since:" />
+                  <Label
+                    htmlFor="founded"
+                    value="Has been in business since:"
+                  />
                 </div>
                 <TextInput
-                  id="email2"
-                  type="email"
-                  placeholder="name@flowbite.com"
+                  id="founded"
+                  type="date"
+                  placeholder="dd/mm/yyyy"
                   required
                   shadow
+                  value={founded_date}
+                  onChange={(e) => dispatch(setFoundedDate(e.target.value))}
                 />
               </div>
             </div>
@@ -245,7 +422,7 @@ export function GeneralInformation({ moveNext }: IStep) {
             <div className="flex flex-col gap-7">
               <div>
                 <div className="mb-2 block">
-                  <Label htmlFor="email2" value="Agency address" />
+                  <Label htmlFor="address" value="Agency address" />
                   <Typography
                     variant="small"
                     className="text-xs"
@@ -257,16 +434,18 @@ export function GeneralInformation({ moveNext }: IStep) {
                   </Typography>
                 </div>
                 <TextInput
-                  id="email2"
-                  type="email"
-                  placeholder="name@flowbite.com"
+                  id="address"
+                  type="text"
+                  value={address}
+                  onChange={(e) => dispatch(setAddress(e.target.value))}
+                  placeholder="street, city"
                   required
                   shadow
                 />
               </div>
               <div>
                 <div className="mb-2 block">
-                  <Label htmlFor="email2" value="Agency email address" />
+                  <Label htmlFor="email" value="Agency email address" />
                   <Typography
                     variant="small"
                     className="text-xs"
@@ -279,8 +458,10 @@ export function GeneralInformation({ moveNext }: IStep) {
                   </Typography>
                 </div>
                 <TextInput
-                  id="email2"
+                  id="email"
                   type="email"
+                  value={email_address}
+                  onChange={(e) => dispatch(setEmailAddress(e.target.value))}
                   placeholder="name@flowbite.com"
                   required
                   shadow
@@ -288,7 +469,7 @@ export function GeneralInformation({ moveNext }: IStep) {
               </div>
               <div>
                 <div className="mb-2 block">
-                  <Label htmlFor="email2" value="Agency phone number" />
+                  <Label htmlFor="phoneNumber" value="Agency phone number" />
                   <Typography
                     variant="small"
                     className="text-xs"
@@ -300,9 +481,11 @@ export function GeneralInformation({ moveNext }: IStep) {
                   </Typography>
                 </div>
                 <TextInput
-                  id="email2"
-                  type="email"
-                  placeholder="name@flowbite.com"
+                  id="phoneNumber"
+                  type="phone"
+                  placeholder="123 346 7890"
+                  value={phone_number}
+                  onChange={(e) => dispatch(setPhoneNumer(e.target.value))}
                   required
                   shadow
                 />
@@ -324,6 +507,9 @@ export function GeneralInformation({ moveNext }: IStep) {
 }
 
 export function ConfirmAdminAccount({ moveNext }: IStep) {
+  const company_name = useSelector((state: any) => state.page.company_name);
+  const website = useSelector((state: any) => state.page.website);
+
   return (
     <motion.div
       className="flex justify-center items-center w-full h-full"
@@ -342,10 +528,10 @@ export function ConfirmAdminAccount({ moveNext }: IStep) {
         <div className="bg-white shadow-lg flex flex-col items-center py-4 rounded-2xl w-56 gap-4">
           <div className="aspect-square bg-primary w-[6rem] rounded-full shadow-lg"></div>
           <Typography variant="h5" placeholder={undefined}>
-            Agency Name
+            {company_name}
           </Typography>
           <Typography variant="paragraph" placeholder={undefined}>
-            https://sample.com
+            {website}
           </Typography>
         </div>
         <div className="flex">
