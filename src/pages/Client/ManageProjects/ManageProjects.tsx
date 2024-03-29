@@ -69,7 +69,7 @@ export default function ManageProject() {
         ) : activeTabIndex === 2 ? (
           <SentProject />
         ) : (
-          <RecieveProposal />
+          <CompleteProposal />
         )}
       </div>
     </main>
@@ -150,7 +150,7 @@ function SentProject() {
       </Table>
       {toggle ? (
         <div className="w-[100vw] h-[100vh] bg-blue-gray-500/50 absolute top-0 left-0 flex justify-center items-center">
-          <div className="bg-white shadow-lg min-h-[60rem] rounded-2xl min-w-[70rem] flex flex-col items-center py-10 max-w-[72rem] relative z-[1000]">
+          <div className="bg-white shadow-lg rounded-2xl min-w-[70rem] flex flex-col items-center py-10 max-w-[72rem] relative z-[1000] h-[80vh] max-h-[60rem]">
             <div
               className="absolute top-2 right-2 bg-gray-200 rounded-full p-2"
               onClick={() => setToggle(false)}
@@ -164,7 +164,7 @@ function SentProject() {
             >
               Your project brief
             </Typography>
-            <div className="flex w-full px-10  mt-6  gap-2 items-start">
+            <div className="flex w-full px-10  mt-6  gap-2 items-start overflow-y-auto">
               <div className="w-1/2 shadow-lg rounded-xl px-6 py-8 flex flex-col gap-4 border">
                 <Typography
                   variant="h4"
@@ -190,7 +190,7 @@ function SentProject() {
                   <span className="font-normal">[Role Name]</span>
                 </Typography>
               </div>
-              <div className="w-1/2 shadow-lg rounded-xl px-6 py-8 flex flex-col gap-4 border">
+              <div className="w-1/2 shadow-lg rounded-xl px-6 py-8 flex flex-col gap-4 border h-fit">
                 <Typography
                   variant="h4"
                   placeholder={undefined}
@@ -366,9 +366,9 @@ function RecieveProposal() {
       </Table>
       {toggle ? (
         <div className="w-[100vw] h-[100vh] bg-blue-gray-500/50 absolute top-0 left-0 flex justify-center items-center z-[1000]">
-          <div className="bg-white shadow-lg min-h-[60rem] rounded-2xl min-w-[70rem] flex flex-col items-center py-10 max-w-[72rem] relative">
+          <div className="bg-white shadow-lg rounded-2xl min-w-[70rem] flex flex-col items-center py-10 max-w-[72rem] relative h-[80vh] max-h-[60rem]">
             <div
-              className="absolute top-2 right-2 bg-gray-200 rounded-full p-2"
+              className="absolute top-2 right-2 bg-gray-200 rounded-full p-2 "
               onClick={() => setToggle(false)}
             >
               <IoCloseSharp className="w-6 h-6" />
@@ -380,7 +380,7 @@ function RecieveProposal() {
             >
               Agency Name’s proposal for your project
             </Typography>
-            <div className="flex w-full px-10  mt-6  gap-2">
+            <div className="flex w-full px-10  mt-6  gap-2 overflow-y-auto">
               <div className="w-1/2 flex flex-col gap-4 ">
                 <div className="grid w-full shadow-lg px-6 py-8 border rounded-xl gap-4">
                   <Typography
@@ -405,7 +405,7 @@ function RecieveProposal() {
                     See Agency Page
                   </Link>
                 </div>
-                <div className="grid w-full shadow-lg px-6 py-8 border rounded-xl gap-4">
+                <div className="grid w-full shadow-lg px-6 py-8 border rounded-xl gap-4 h-fit">
                   <Typography
                     variant="h4"
                     placeholder={undefined}
@@ -446,7 +446,260 @@ function RecieveProposal() {
                   </Button>
                 </div>
               </div>
-              <div className="w-1/2 shadow-lg rounded-xl px-6 py-8 flex flex-col gap-4 border">
+              <div className="w-1/2 shadow-lg rounded-xl px-6 py-8 flex flex-col gap-4 border h-fit">
+                <Typography
+                  variant="h4"
+                  placeholder={undefined}
+                  className="capitalize"
+                >
+                  Proposal for your project
+                </Typography>
+                <Typography variant="small" placeholder={undefined}>
+                  [Lorem ipsum dolor sit amet, consectetur adipiscing elit.]
+                </Typography>
+                <div>
+                  <div className="mb-2 block">
+                    <Label
+                      htmlFor="email2"
+                      value="Services wanted:"
+                      className="font-bold"
+                    />
+                  </div>
+                  <div className="w-full h-[4rem] border rounded-lg"></div>
+                </div>
+                <div>
+                  <div className="mb-2 block">
+                    <Label
+                      htmlFor="email2"
+                      value="Skills required:"
+                      className="font-bold"
+                    />
+                  </div>
+                  <div className="w-full h-[4rem] border rounded-lg"></div>
+                </div>
+                <p>
+                  <span className="font-bold">Proposed price:</span> $xxxx -
+                  $xxxx
+                </p>
+
+                <p>
+                  <span className="font-bold">Proposed duration: </span> x - x
+                  months
+                </p>
+
+                <div className="grid w-full">
+                  <p>
+                    <span className="font-bold">Proposal:</span>
+                  </p>
+                  <p>
+                    "Sed ut perspiciatis unde omnis iste natus error sit
+                    voluptatem accusantium doloremque laudantium, totam rem
+                    aperiam, eaque ipsa quae ab illo inventore veritatis et
+                    quasi architecto beatae vitae dicta sunt explicabo. Nemo
+                    enim ipsam voluptatem quia voluptas sit aspernatur aut odit
+                    aut fugit, sed quia consequuntur magni dolores eos qui
+                    ratione voluptatem sequi nesciunt. Neque porro quisquam est,
+                    qui dolorem ipsum quia dolor sit amet, consectetur, adipisci
+                    velit, sed quia non numquam eius modi...
+                  </p>
+                </div>
+                <div className="grid w-full">
+                  <p>
+                    <span className="font-bold">Attachments:</span>
+                  </p>
+                  <div className="flex flex-col gap-2 overflow-y-auto">
+                    <div className="border h-12 rounded-lg"></div>
+                    <div className="border h-12 rounded-lg"></div>
+                    <div className="border h-12 rounded-lg"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      ) : null}
+    </div>
+  );
+}
+const COMPLETE_HEAD: string[] = [
+  "Project name",
+  "Price",
+  "Agency’s name",
+  "Duration",
+  "Budget",
+  "Contacts",
+  "Status",
+  "Date",
+];
+
+const COMPLETE_ROWS = [
+  {
+    name: "[Project Name]",
+    price: "1000$",
+    agency: "[Agency Name]",
+    duration: "2021-01-01",
+    budget: "Lorem ipsum dolor sit amet, consectetur adipiscing elit...",
+    contacts: "1234567890",
+    rating: "English",
+    date: "2021-01-01",
+  },
+  {
+    name: "[Project Name]",
+    price: "1000$",
+    agency: "[Agency Name]",
+    duration: "2021-01-01",
+    budget: "Lorem ipsum dolor sit amet, consectetur adipiscing elit...",
+    contacts: "1234567890",
+    rating: "English",
+    date: "2021-01-01",
+  },
+  {
+    name: "[Project Name]",
+    price: "1000$",
+    agency: "[Agency Name]",
+    duration: "2021-01-01",
+    budget: "Lorem ipsum dolor sit amet, consectetur adipiscing elit...",
+    contacts: "1234567890",
+    rating: "English",
+    date: "2021-01-01",
+  },
+];
+function CompleteProposal() {
+  const [toggle, setToggle] = useState(false);
+  return (
+    <div className="overflow-x-auto">
+      <Table hoverable>
+        <Table.Head>
+          {COMPLETE_HEAD.map((i) => (
+            <Table.HeadCell className="capitalize">{i}</Table.HeadCell>
+          ))}
+        </Table.Head>
+        <Table.Body className="divide-y">
+          {COMPLETE_ROWS.map(
+            ({
+              name,
+              agency,
+              budget,
+              duration,
+              price,
+              contacts,
+              rating,
+              date,
+            }) => (
+              <Table.Row
+                className="bg-white dark:border-gray-700 dark:bg-gray-800"
+                onClick={() => setToggle(true)}
+              >
+                <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white text-xs py-8 ">
+                  {name}
+                </Table.Cell>
+                <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white text-xs py-8 ">
+                  {price}
+                </Table.Cell>
+                <Table.Cell className="text-xs">{agency}</Table.Cell>
+                <Table.Cell className="text-xs">{duration}</Table.Cell>
+                <Table.Cell className="text-xs">{budget}</Table.Cell>
+                <Table.Cell className="text-xs">{contacts}</Table.Cell>
+                <Table.Cell className="text-xs">{rating}</Table.Cell>
+                <Table.Cell className="text-xs">{date}</Table.Cell>
+              </Table.Row>
+            )
+          )}
+        </Table.Body>
+      </Table>
+      {toggle ? (
+        <div className="w-[100vw] h-[100vh] bg-blue-gray-500/50 absolute top-0 left-0 flex justify-center items-center z-[1000]">
+          <div className="bg-white shadow-lg rounded-2xl min-w-[70rem] flex flex-col items-center py-10 max-w-[72rem] relative h-[80vh] max-h-[60rem]">
+            <div
+              className="absolute top-2 right-2 bg-gray-200 rounded-full p-2"
+              onClick={() => setToggle(false)}
+            >
+              <IoCloseSharp className="w-6 h-6" />
+            </div>
+            <Typography
+              variant="h2"
+              placeholder={undefined}
+              className="capitalize"
+            >
+              Completed Agency Name’s project
+            </Typography>
+            <div className="flex w-full px-10  mt-6  gap-2 overflow-y-auto h-fit">
+              <div className="w-1/2 flex flex-col gap-4 ">
+                <div className="grid w-full shadow-lg px-6 py-8 border rounded-xl gap-4">
+                  <Typography
+                    variant="h4"
+                    placeholder={undefined}
+                    className="capitalize"
+                  >
+                    Agency detail
+                  </Typography>
+                  <Typography variant="h6" placeholder={undefined}>
+                    Name: <span className="font-normal">[Name]</span>
+                  </Typography>
+                  <Typography variant="h6" placeholder={undefined}>
+                    Office address:{" "}
+                    <span className="font-normal">[Address]</span>
+                  </Typography>
+                  <Typography variant="h6" placeholder={undefined}>
+                    Rating: <span className="font-normal">0.0/5.0</span>
+                  </Typography>
+
+                  <Link to="/" className="text-primary underline font-bold">
+                    See Agency Page
+                  </Link>
+                </div>
+                <div className="grid w-full shadow-lg px-6 py-8 border rounded-xl gap-4">
+                  <Typography
+                    variant="h4"
+                    placeholder={undefined}
+                    className="capitalize"
+                  >
+                    Your company detail:
+                  </Typography>
+                  <Typography variant="h6" placeholder={undefined}>
+                    Contact person: <span className="font-normal">[Name]</span>
+                  </Typography>
+                  <Typography variant="small" placeholder={undefined}>
+                    [Name] is your contact person and will get in touch with you
+                    shortly.
+                  </Typography>
+                  <Typography variant="h6" placeholder={undefined}>
+                    Phone number:{" "}
+                    <span className="font-normal">+84123456789</span>
+                  </Typography>
+                  <Typography variant="h6" placeholder={undefined}>
+                    Email address
+                    <span className="font-normal">sample@sample.com</span>
+                  </Typography>
+                </div>
+                <div className="grid w-full shadow-lg px-6 py-8 border rounded-xl gap-4">
+                  <Typography
+                    variant="h4"
+                    placeholder={undefined}
+                    className="capitalize"
+                  >
+                    Your rating and feedback:
+                  </Typography>
+                  <Typography variant="h6" placeholder={undefined}>
+                    Contact person: <span className="font-normal">[Name]</span>
+                  </Typography>
+                  <Typography variant="h6" placeholder={undefined}>
+                    Rating: <span className="font-normal">0.0/5.0</span>
+                  </Typography>
+                  <Typography variant="h6" placeholder={undefined}>
+                    Feedback:{" "}
+                    <span className="font-normal">No feedback yet.</span>
+                  </Typography>
+                  <Button
+                    placeholder={undefined}
+                    className="flex text-text min-w-[8rem] items-center justify-center bg-secondary w-1/2"
+                    size="md"
+                  >
+                    Send feedback
+                  </Button>
+                </div>
+              </div>
+              <div className="w-1/2 shadow-lg rounded-xl px-6 py-8 flex flex-col gap-4 border h-fit">
                 <Typography
                   variant="h4"
                   placeholder={undefined}
