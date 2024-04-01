@@ -39,6 +39,7 @@ import ClientManagementLayout from "./layouts/ClientLayout/AgencyManagementLayou
 import ClientOverview from "./pages/Client/Overview/ClientOverview";
 import EditProfile from "./pages/Client/EditProfile/EditProfile";
 import ManageProject from "./pages/Client/ManageProjects/ManageProjects";
+import YourPage from "./pages/Management/YourPage/YourPage";
 function App() {
   const { isOpen, toggle } = usePostProject();
 
@@ -77,6 +78,7 @@ function App() {
                 element={<AdvertisingFeatures />}
               />
               <Route path="awards" element={<Awards />} />
+              <Route path="yourpage" element={<YourPage />} />
               <Route path="company" element={<Company />} />
               <Route path="contact" element={<Contact />} />
               <Route path="edit-service" element={<EditService />} />

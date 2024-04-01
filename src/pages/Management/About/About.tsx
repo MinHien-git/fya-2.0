@@ -1,9 +1,9 @@
+import { Button } from "@material-tailwind/react";
 import SecondaryNavigationBar from "../../../components/SecondaryNavigationBar/SecondaryNavigationBar";
 
 export default function About() {
   return (
-    <main className="w-full min-h-80 py-2 pt-0 flex flex-col gap-2 overflow-y-auto h-full mx-auto">
-      <SecondaryNavigationBar />
+    <>
       <section className="max-w-7xl w-[90%] pb-10 rounded-xl border-2 mt-10 mx-auto flex-col px-12">
         <h2 className="font-title text-[1.875rem] text-center font-bold pt-5">
           General information
@@ -48,7 +48,7 @@ export default function About() {
               </label>
               <input
                 type="text"
-                id="services"
+                id="language"
                 className="border-[1px] p-2 rounded-md"
               />
             </div>
@@ -140,15 +140,23 @@ export default function About() {
             </div>
           </div>
         </section>
-        <section className="w-1/3 rounded-xl mt-10 mx-auto px-6">
-          <button className="bg-primary text-white w-full rounded-md py-2 font-semibold mt-2 font-title text-[1.125rem]">
+        <section className="w-1/3 rounded-xl mt-10 mx-auto px-6 grid gap-4">
+          <Button
+            size="lg"
+            className="bg-primary text-white w-full"
+            placeholder={undefined}
+          >
             Save changes
-          </button>
-          <button className="bg-tertiary text-primary w-full rounded-md  py-2 font-semibold mt-2 text-[1.125rem]">
+          </Button>
+          <Button
+            size="lg"
+            className="bg-tertiary text-primary w-full"
+            placeholder={undefined}
+          >
             Cancel
-          </button>
+          </Button>
         </section>
       </section>
-    </main>
+    </>
   );
 }

@@ -2,8 +2,7 @@ import SecondaryNavigationBar from "../../../components/SecondaryNavigationBar/S
 
 export default function Services() {
   return (
-    <main className="w-full min-h-80 py-2 pt-0 flex flex-col gap-2 overflow-y-auto h-full mx-auto">
-      <SecondaryNavigationBar />
+    <>
       <section className="max-w-7xl w-[90%] pb-10 rounded-xl border-2 mt-10 mx-auto flex-col px-12">
         <h2 className="font-title text-[1.875rem] text-center font-bold pt-5">
           Service & Skills Tags
@@ -88,6 +87,6 @@ export default function Services() {
           </div>
         </section>
       </section>
-    </main>
+    </>
   );
 }
