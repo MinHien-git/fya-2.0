@@ -9,6 +9,10 @@ import { Link } from "react-router-dom";
 import About from "../About/About";
 import Services from "../Services/Services";
 import Company from "../Company/Company";
+import Portfolio from "../Portfolio/Portfolio";
+import Awards from "../Awards/Awards";
+import ReviewInvitaion from "../ReviewInvitation/ReviewInvitation";
+import Contact from "../Contact/Contact";
 
 const tabsData = [
   "About",
@@ -80,14 +84,15 @@ export default function YourPage() {
           <Services />
         ) : activeTabIndex === 2 ? (
           <Company />
+        ) : activeTabIndex === 3 ? (
+          <Portfolio />
+        ) : activeTabIndex === 4 ? (
+          <Awards />
+        ) : activeTabIndex === 5 ? (
+          <ReviewInvitaion />
+        ) : activeTabIndex === 6 ? (
+          <Contact />
         ) : null}
-        {/* // ) : activeTabIndex === 1 ? (
-        //   <RecieveProposal />
-        // ) : activeTabIndex === 2 ? (
-        //   <SentProject />
-        // ) : (
-        //   <CompleteProposal />
-        // )} */}
       </div>
     </main>
   );

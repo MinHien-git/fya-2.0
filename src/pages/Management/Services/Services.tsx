@@ -3,7 +3,7 @@ import SecondaryNavigationBar from "../../../components/SecondaryNavigationBar/S
 export default function Services() {
   return (
     <>
-      <section className="max-w-7xl w-[90%] pb-10 rounded-xl border-2 mt-10 mx-auto flex-col px-12">
+      <section className=" mt-5 mx-auto h-[80vh] flex flex-col px-12 gap-2">
         <h2 className="font-title text-[1.875rem] text-center font-bold pt-5">
           Service & Skills Tags
         </h2>
@@ -13,8 +13,10 @@ export default function Services() {
           services. The order in which you arrange your services and skills will
           have an impact on the projects we match you with.
         </p>
-        <section className="grid w-full gap-5 mt-6">
-          <p> The arrangement of your works will be displayed on your Page.</p>
+        <p className="text-gray-400 text-xs mt-4 font-bold">
+          The arrangement of your awards will be displayed on your Page.
+        </p>
+        <section className="grid w-full gap-5 mt-6 overflow-y-auto">
           <div className="font-sans flex border-2 rounded-[10px] w-full py-6 px-8  h-[6.25rem] items-center shadow-md shadow-primary-500/20">
             <ul className="flex w-full items-center h-full">
               <li className="h-[3.125rem] flex">

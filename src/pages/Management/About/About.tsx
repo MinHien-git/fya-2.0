@@ -3,7 +3,7 @@ import SecondaryNavigationBar from "../../../components/SecondaryNavigationBar/S
 
 export default function About() {
   return (
-    <>
+    <div className="mt-5 mx-auto h-[80vh] flex flex-col px-12 gap-2 overflow-y-auto">
       <section className="max-w-7xl w-[90%] pb-10 rounded-xl border-2 mt-10 mx-auto flex-col px-12">
         <h2 className="font-title text-[1.875rem] text-center font-bold pt-5">
           General information
@@ -157,6 +157,6 @@ export default function About() {
           </Button>
         </section>
       </section>
-    </>
+    </div>
   );
 }

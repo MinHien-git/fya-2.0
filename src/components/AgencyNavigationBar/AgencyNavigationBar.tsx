@@ -46,7 +46,7 @@ export default function AgencyNavigationBar() {
             </li>
             <li className="pl-8 text-white w-full py-4 text-sm font-title font-bold hover:bg-yellow-50 hover:text-text">
               <Link
-                to="/management/general"
+                to="/management/notification"
                 className="flex items-center gap-4"
               >
                 <FontAwesomeIcon icon={faBell} />
@@ -66,6 +66,15 @@ export default function AgencyNavigationBar() {
               >
                 <FontAwesomeIcon icon={faArrowsLeftRightToLine} />
                 <p> Project Leads Extension</p>
+              </Link>
+            </li>
+            <li className="pl-16 text-white w-full py-4 text-sm font-title font-bold hover:bg-yellow-50 hover:text-text">
+              <Link
+                to="/management/project-leads-extension/targeting"
+                className="flex items-center gap-4"
+              >
+                <FontAwesomeIcon icon={faArrowsLeftRightToLine} />
+                <p>Targeting</p>
               </Link>
             </li>
             <li className="pl-8 text-white w-full py-4 text-sm font-title font-bold flex items-center gap-4 hover:bg-yellow-50 hover:text-text">

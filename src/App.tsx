@@ -32,7 +32,6 @@ import AuthenticationPage from "./pages/AuthenticationPage/AuthenticationPage";
 import PageCreateNavigation from "./pages/PageCreateNavigation/PageCreateNavigation";
 import CreatePage from "./pages/CreatePage/CreatePage";
 import usePostProject from "./hooks/usePostProjectPopup";
-import PostProjectModal from "./components/PostProjectPopup/PostProjectPopup";
 import { Provider } from "react-redux";
 import store from "./store/store";
 import ClientManagementLayout from "./layouts/ClientLayout/AgencyManagementLayout";
@@ -40,6 +39,10 @@ import ClientOverview from "./pages/Client/Overview/ClientOverview";
 import EditProfile from "./pages/Client/EditProfile/EditProfile";
 import ManageProject from "./pages/Client/ManageProjects/ManageProjects";
 import YourPage from "./pages/Management/YourPage/YourPage";
+import Notifications from "./pages/Management/Notification/Notification";
+import ProjectManager from "./pages/Management/ProjectManager/ProjectManager";
+import Targeting from "./pages/Management/Targeting/targeting";
+
 function App() {
   const { isOpen, toggle } = usePostProject();
 
@@ -72,22 +75,16 @@ function App() {
               <Route path="create-page" element={<CreatePage />} />
             </Route>
             <Route path="/management/" element={<AgencyManagementLayout />}>
-              <Route path="about" element={<About />} />
-              <Route
-                path="advertising-features"
-                element={<AdvertisingFeatures />}
-              />
-              <Route path="awards" element={<Awards />} />
               <Route path="yourpage" element={<YourPage />} />
-              <Route path="company" element={<Company />} />
-              <Route path="contact" element={<Contact />} />
-              <Route path="edit-service" element={<EditService />} />
-              <Route path="general" element={<General />} />
+              <Route path="notification" element={<Notifications />} />
               <Route path="manage-portfolio" element={<ManagePortfolio />} />
-              <Route path="portfolio" element={<Portfolio />} />
               <Route
-                path="project-leads-extension"
-                element={<ProjectLeadsExtension />}
+                path="project-leads-extension/"
+                element={<ProjectManager />}
+              />
+              <Route
+                path="project-leads-extension/targeting"
+                element={<Targeting />}
               />
               <Route path="review-invitation" element={<ReviewInvitaion />} />
               <Route path="services" element={<Services />} />
