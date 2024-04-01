@@ -54,7 +54,7 @@ export default function AgencyNavigationBar() {
               </Link>
             </li>
             <li className="pl-8 text-white w-full py-4 text-sm font-title font-bold hover:bg-yellow-50 hover:text-text">
-              <Link to="/management" className="flex items-center gap-4">
+              <Link to="/management/inbox" className="flex items-center gap-4">
                 <FontAwesomeIcon icon={faMessage} />
                 <p>Inbox</p>
               </Link>
@@ -86,7 +86,7 @@ export default function AgencyNavigationBar() {
           </ul>
           <ul className="grid gap-1 mt-auto">
             <li className="pl-8 text-white w-full py-4 mt-auto border-b-2 text-sm font-title font-bold flex items-center gap-4 hover:bg-yellow-50 hover:text-text">
-              <Link to="/management" className="flex items-center gap-4">
+              <Link to="/subscription" className="flex items-center gap-4">
                 {" "}
                 <FontAwesomeIcon icon={faArrowUpFromBracket} /> Updates from Fya
               </Link>

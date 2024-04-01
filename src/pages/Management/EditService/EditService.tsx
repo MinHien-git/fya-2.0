@@ -1,14 +1,19 @@
-import SecondaryNavigationBar from "../../../components/SecondaryNavigationBar/SecondaryNavigationBar";
+export interface ITab {
+  moveNext: () => void;
+  id?: string;
+}
 
-export default function EditService() {
+export default function EditService({ moveNext }: ITab) {
   return (
-    <main className="w-full min-h-80 py-2 pt-0 flex flex-col gap-2 overflow-y-auto h-full mx-auto">
-      <SecondaryNavigationBar />
-      <section className="max-w-7xl w-[90%] min-h-[70vh] rounded-xl border-2 mt-10 mx-auto flex-col px-6 pb-10">
+    <>
+      <section className="max-w-7xl w-[90%] h-[80vh] rounded-xl border-2 mt-10 mx-auto flex-col px-6 pb-10 overflow-y-auto">
         <div className="flex w-full px-10 mt-14 gap-6">
           <ul className="flex w-[50%] gap-3">
-            <li className="w-8 aspect-square rounded-md bg-slate-300"></li>
-            <li className="bg-slate-300 px-6 rounded-md text-blue-500 py-1 text-sm flex items-center font-bold">
+            <li
+              className="w-8 aspect-square rounded-md bg-slate-300 cursor-pointer"
+              onClick={moveNext}
+            ></li>
+            <li className="bg-slate-300 px-6 rounded-md text-blue-500 py-1 text-sm flex items-center font-bold cursor-pointer">
               Edit
             </li>
           </ul>
@@ -247,6 +252,6 @@ export default function EditService() {
           </div>
         </div>
       </section>
-    </main>
+    </>
   );
 }

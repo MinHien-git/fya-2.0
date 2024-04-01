@@ -1,13 +1,16 @@
 import SecondaryNavigationBar from "../../../components/SecondaryNavigationBar/SecondaryNavigationBar";
+import { ITab } from "../EditService/EditService";
 
-export default function ManagePortfolio() {
+export default function ManagePortfolio({ moveNext }: ITab) {
   return (
-    <main className="w-full min-h-80 py-2 pt-0 flex flex-col gap-2 overflow-y-auto h-full mx-auto">
-      <SecondaryNavigationBar />
+    <div className="h-[80vh] overflow-y-auto">
       <section className="max-w-7xl w-[90%] rounded-xl border-2 mt-10 mx-auto flex-col px-6 pb-10">
         <div className="flex w-full px-10 mt-14 gap-6">
           <ul className="flex w-[50%] gap-3">
-            <li className="w-8 aspect-square rounded-md bg-slate-300"></li>
+            <li
+              className="w-8 aspect-square rounded-md bg-slate-300 cursor-pointer"
+              onClick={moveNext}
+            ></li>
             <li className="bg-slate-300 px-6 rounded-md text-blue-500 py-1 text-sm flex items-center font-bold">
               Edit
             </li>
@@ -409,6 +412,6 @@ export default function ManagePortfolio() {
           </div>
         </div>
       </section>
-    </main>
+    </div>
   );
 }

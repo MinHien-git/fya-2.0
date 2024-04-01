@@ -11,13 +11,7 @@ import AgencyPageIntroduction from "./pages/AgencyPageIntroduction/AgencyPageInt
 import EditService from "./pages/Management/EditService/EditService";
 import GuestLayout from "./layouts/GuestLayout/GuestLayout";
 import AgencyManagementLayout from "./layouts/AgencyManagementLayout/AgencyManagementLayout";
-import Portfolio from "./pages/Management/Portfolio/Portfolio";
-import About from "./pages/Management/About/About";
-import AdvertisingFeatures from "./pages/Management/AdvertisingFeatures/AdvertisingFeatures";
-import Awards from "./pages/Management/Awards/Awards";
-import Company from "./pages/Management/Company/Company";
-import General from "./pages/Management/General/General";
-import ManagePortfolio from "./pages/Management/ManagePortfolio/ManagePortfolio";
+
 import ReviewInvitaion from "./pages/Management/ReviewInvitation/ReviewInvitation";
 import Services from "./pages/Management/Services/Services";
 import ProjectLeadsExtension from "./pages/Management/ProjectLeadsExtension/ProjectLeadsExtension";
@@ -42,6 +36,9 @@ import YourPage from "./pages/Management/YourPage/YourPage";
 import Notifications from "./pages/Management/Notification/Notification";
 import ProjectManager from "./pages/Management/ProjectManager/ProjectManager";
 import Targeting from "./pages/Management/Targeting/targeting";
+import ContructionPage from "./pages/UpcomingPage/UpcomingPage";
+import Page404 from "./pages/404Page/Page404";
+import ScrollToTop from "./components/ScrollToTop/ScrollToTop";
 
 function App() {
   const { isOpen, toggle } = usePostProject();
@@ -50,6 +47,7 @@ function App() {
     <>
       <Provider store={store}>
         <BrowserRouter>
+          <ScrollToTop />
           <Routes>
             <Route path="/" element={<GuestLayout />}>
               <Route path="/" element={<Home />} />
@@ -73,11 +71,11 @@ function App() {
                 element={<PageCreateNavigation />}
               />
               <Route path="create-page" element={<CreatePage />} />
+              <Route path="*" element={<Page404 />} />
             </Route>
             <Route path="/management/" element={<AgencyManagementLayout />}>
               <Route path="yourpage" element={<YourPage />} />
               <Route path="notification" element={<Notifications />} />
-              <Route path="manage-portfolio" element={<ManagePortfolio />} />
               <Route
                 path="project-leads-extension/"
                 element={<ProjectManager />}
@@ -87,15 +85,19 @@ function App() {
                 element={<Targeting />}
               />
               <Route path="review-invitation" element={<ReviewInvitaion />} />
-              <Route path="services" element={<Services />} />
+              {/* <Route path="yourpage/service" element={<EditService />} /> */}
               <Route path="" element={<Overview />} />
+              <Route path="inbox" element={<ContructionPage />} />
               <Route path="workspace" element={<WorkingSpace />} />
               <Route path="target" element={<WorkingSpaceTarget />} />
+              <Route path="*" element={<Page404 />} />
             </Route>
             <Route path="/client/" element={<ClientManagementLayout />}>
               <Route path="" element={<ClientOverview />} />
               <Route path="edit-profile" element={<EditProfile />} />
               <Route path="manage-project" element={<ManageProject />} />
+              <Route path="inbox" element={<ContructionPage />} />
+              <Route path="*" element={<Page404 />} />
             </Route>
           </Routes>
         </BrowserRouter>
