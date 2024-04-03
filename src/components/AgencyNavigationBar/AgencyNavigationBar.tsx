@@ -78,7 +78,10 @@ export default function AgencyNavigationBar() {
               </Link>
             </li>
             <li className="pl-8 text-white w-full py-4 text-sm font-title font-bold flex items-center gap-4 hover:bg-yellow-50 hover:text-text">
-              <Link to="/management" className="flex items-center gap-4">
+              <Link
+                to="/management/advertising"
+                className="flex items-center gap-4"
+              >
                 <RiAdvertisementFill />
                 <p> Advertising</p>
               </Link>

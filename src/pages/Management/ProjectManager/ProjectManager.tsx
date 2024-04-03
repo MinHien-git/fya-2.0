@@ -76,7 +76,7 @@ export default function ProjectManager() {
         ) : activeTabIndex === 2 ? (
           <RecieveProposal />
         ) : (
-          <CompleteProposal />
+          <RecieveProposal />
         )}
       </div>
     </main>
@@ -329,6 +329,27 @@ function SentProject() {
                     <TextInput placeholder="Type price..." id="price" />
                   </div>
                 </div>
+                <div className="flex gap-4 mt-4 justify-end mt-auto">
+                  <Button
+                    placeholder={undefined}
+                    className="bg-tertiary text-primary"
+                    onClick={() => setToggle(false)}
+                  >
+                    Cancel
+                  </Button>
+                  <Button
+                    placeholder={undefined}
+                    className="bg-red-400 text-red-100"
+                  >
+                    Reject Project
+                  </Button>
+                  <Button
+                    placeholder={undefined}
+                    className="bg-primary text-white"
+                  >
+                    Submit
+                  </Button>
+                </div>
               </div>
               <div className="w-1/2">
                 <div className="w-fullshadow-lg rounded-xl px-6 py-8 flex flex-col gap-4 border h-fit">
@@ -393,26 +414,6 @@ function SentProject() {
                     </Typography>
                   </div>
                 </div>
-                <div className="flex gap-4 mt-4 justify-end">
-                  <Button
-                    placeholder={undefined}
-                    className="bg-tertiary text-primary"
-                  >
-                    Cancel
-                  </Button>
-                  <Button
-                    placeholder={undefined}
-                    className="bg-red-400 text-red-100"
-                  >
-                    Reject Project
-                  </Button>
-                  <Button
-                    placeholder={undefined}
-                    className="bg-primary text-white"
-                  >
-                    Submit
-                  </Button>
-                </div>
               </div>
             </div>
           </div>
@@ -471,220 +472,11 @@ function RecieveProposal() {
         </Table.Body>
       </Table>
       {toggle ? (
-        <div className="w-[100vw] h-[100vh] bg-blue-gray-500/50 absolute top-0 left-0 flex justify-center items-center z-[1000]">
-          <div className="bg-white shadow-lg rounded-2xl min-w-[70rem] flex flex-col items-center py-10 max-w-[72rem] relative h-[80vh] max-h-[60rem]">
-            <div
-              className="absolute top-2 right-2 bg-gray-200 rounded-full p-2 "
-              onClick={() => setToggle(false)}
-            >
-              <IoCloseSharp className="w-6 h-6" />
-            </div>
-            <Typography
-              variant="h2"
-              placeholder={undefined}
-              className="capitalize"
-            >
-              Client Name’s project
-            </Typography>
-            <div className="flex w-full px-10  mt-6  gap-2 overflow-y-auto">
-              <div className="w-1/2 flex flex-col gap-4 ">
-                <div className="grid w-full shadow-lg px-6 py-8 border rounded-xl gap-4">
-                  <Typography
-                    variant="h4"
-                    placeholder={undefined}
-                    className="capitalize"
-                  >
-                    Client’s detail:
-                  </Typography>
-                  <Typography variant="h6" placeholder={undefined}>
-                    Name: <span className="font-normal">[Name]</span>
-                  </Typography>
-                  <Typography variant="h6" placeholder={undefined}>
-                    Office address:{" "}
-                    <span className="font-normal">[Address]</span>
-                  </Typography>
-                  <Typography variant="h6" placeholder={undefined}>
-                    Rating: <span className="font-normal">0.0/5.0</span>
-                  </Typography>
-
-                  <Link to="/" className="text-primary underline font-bold">
-                    See Client Name’s Review and Feedback
-                  </Link>
-                </div>
-                <div className="grid w-full shadow-lg px-6 py-8 border rounded-xl gap-4 h-fit">
-                  <Typography
-                    variant="h4"
-                    placeholder={undefined}
-                    className="capitalize"
-                  >
-                    Your company detail:
-                  </Typography>
-                  <Typography variant="h6" placeholder={undefined}>
-                    Company name: <span className="font-normal">[Name]</span>
-                  </Typography>
-                  <Typography variant="h6" placeholder={undefined}>
-                    Office address:{" "}
-                    <span className="font-normal">[Address]</span>
-                  </Typography>
-                  <Typography variant="h6" placeholder={undefined}>
-                    Team size:{" "}
-                    <span className="font-normal"> xx-yy people</span>
-                  </Typography>
-                  <Typography variant="h6" placeholder={undefined}>
-                    Industry:{" "}
-                    <span className="font-normal"> [Industry Name]</span>
-                  </Typography>
-                  <Typography variant="h6" placeholder={undefined}>
-                    Your role in the company:{" "}
-                    <span className="font-normal"> [Role Name]</span>
-                  </Typography>
-                </div>
-                <div className="grid w-full shadow-lg px-6 py-8 border rounded-xl gap-4 h-fit">
-                  <Typography
-                    variant="h4"
-                    placeholder={undefined}
-                    className="capitalize"
-                  >
-                    Your rating and feedback:
-                  </Typography>
-                  <Typography variant="h6" placeholder={undefined}>
-                    Rating: <span className="font-normal">0.0/5.0</span>
-                  </Typography>
-                  <Typography variant="h6" placeholder={undefined}>
-                    Feedback:{" "}
-                    <span className="font-normal">No feedback yet.</span>
-                  </Typography>
-                  <Button
-                    placeholder={undefined}
-                    className="text-text bg-secondary"
-                  >
-                    Send feedback
-                  </Button>
-                </div>
-              </div>
-              <div className="w-1/2 shadow-lg rounded-xl px-6 py-8 flex flex-col gap-4 border h-fit">
-                <Typography
-                  variant="h4"
-                  placeholder={undefined}
-                  className="capitalize"
-                >
-                  Your proposal for the project:
-                </Typography>
-                <Typography variant="small" placeholder={undefined}>
-                  [Lorem ipsum dolor sit amet, consectetur adipiscing elit.]
-                </Typography>
-                <div>
-                  <div className="mb-2 block">
-                    <Label
-                      htmlFor="email2"
-                      value="Services wanted:"
-                      className="font-bold"
-                    />
-                  </div>
-                  <div className="w-full h-[4rem] border rounded-lg"></div>
-                </div>
-                <div>
-                  <div className="mb-2 block">
-                    <Label
-                      htmlFor="email2"
-                      value="Skills required:"
-                      className="font-bold"
-                    />
-                  </div>
-                  <div className="w-full h-[4rem] border rounded-lg"></div>
-                </div>
-                <p>
-                  <span className="font-bold">Proposed price:</span> $xxxx -
-                  $xxxx
-                </p>
-                <p>
-                  <span className="font-bold">Client’s email: </span>{" "}
-                  sample@sample.com
-                </p>
-
-                <p>
-                  <span className="font-bold">Proposed duration: </span> x - x
-                  months
-                </p>
-
-                <div className="grid w-full">
-                  <p>
-                    <span className="font-bold">Proposal:</span>
-                  </p>
-                  <p>
-                    "Sed ut perspiciatis unde omnis iste natus error sit
-                    voluptatem accusantium doloremque laudantium, totam rem
-                    aperiam, eaque ipsa quae ab illo inventore veritatis et
-                    quasi architecto beatae vitae dicta sunt explicabo. Nemo
-                    enim ipsam voluptatem quia voluptas sit aspernatur aut odit
-                    aut fugit, sed quia consequuntur magni dolores eos qui
-                    ratione voluptatem sequi nesciunt. Neque porro quisquam est,
-                    qui dolorem ipsum quia dolor sit amet, consectetur, adipisci
-                    velit, sed quia non numquam eius modi...
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      ) : null}
-    </div>
-  );
-}
-
-function CompleteProposal() {
-  const [toggle, setToggle] = useState(false);
-  const [index, SetIndex] = useState(0);
-  useEffect(() => {
-    SetIndex(0);
-  }, [toggle]);
-  return (
-    <div className="overflow-x-auto">
-      <Table hoverable>
-        <Table.Head>
-          {TABLE_HEAD.map((i) => (
-            <Table.HeadCell className="capitalize">{i}</Table.HeadCell>
-          ))}
-        </Table.Head>
-        <Table.Body className="divide-y">
-          {TABLE_ROWS.map(
-            ({
-              name,
-              price,
-              clientName,
-              companyName,
-              budget,
-              contacts,
-              stage,
-              status,
-              date,
-            }) => (
-              <Table.Row
-                className="bg-white dark:border-gray-700 dark:bg-gray-800"
-                onClick={() => setToggle(true)}
-              >
-                <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white text-xs py-8 ">
-                  {name}
-                </Table.Cell>
-                <Table.Cell className="text-xs">{price}</Table.Cell>
-                <Table.Cell className="text-xs">{clientName}</Table.Cell>
-                <Table.Cell className="text-xs">{companyName}</Table.Cell>
-                <Table.Cell className="text-xs">{budget}</Table.Cell>
-                <Table.Cell className="text-xs">{contacts}</Table.Cell>
-                <Table.Cell className="text-xs">{stage}</Table.Cell>
-                <Table.Cell className="text-xs">{status}</Table.Cell>
-                <Table.Cell className="text-xs">{date}</Table.Cell>
-              </Table.Row>
-            )
-          )}
-        </Table.Body>
-      </Table>
-      {toggle ? (
         index === 0 ? (
           <div className="w-[100vw] h-[100vh] bg-blue-gray-500/50 absolute top-0 left-0 flex justify-center items-center z-[1000]">
             <div className="bg-white shadow-lg rounded-2xl min-w-[70rem] flex flex-col items-center py-10 max-w-[72rem] relative h-[80vh] max-h-[60rem]">
               <div
-                className="absolute top-2 right-2 bg-gray-200 rounded-full p-2"
+                className="absolute top-2 right-2 bg-gray-200 rounded-full p-2 "
                 onClick={() => setToggle(false)}
               >
                 <IoCloseSharp className="w-6 h-6" />
@@ -694,9 +486,9 @@ function CompleteProposal() {
                 placeholder={undefined}
                 className="capitalize"
               >
-                Completed Agency Name’s project
+                Client Name’s project
               </Typography>
-              <div className="flex w-full px-10  mt-6  gap-2 overflow-y-auto h-fit">
+              <div className="flex w-full px-10  mt-6  gap-2 overflow-y-auto">
                 <div className="w-1/2 flex flex-col gap-4 ">
                   <div className="grid w-full shadow-lg px-6 py-8 border rounded-xl gap-4">
                     <Typography
@@ -704,7 +496,7 @@ function CompleteProposal() {
                       placeholder={undefined}
                       className="capitalize"
                     >
-                      Agency detail
+                      Client’s detail:
                     </Typography>
                     <Typography variant="h6" placeholder={undefined}>
                       Name: <span className="font-normal">[Name]</span>
@@ -718,10 +510,10 @@ function CompleteProposal() {
                     </Typography>
 
                     <Link to="/" className="text-primary underline font-bold">
-                      See Agency Page
+                      See Client Name’s Review and Feedback
                     </Link>
                   </div>
-                  <div className="grid w-full shadow-lg px-6 py-8 border rounded-xl gap-4">
+                  <div className="grid w-full shadow-lg px-6 py-8 border rounded-xl gap-4 h-fit">
                     <Typography
                       variant="h4"
                       placeholder={undefined}
@@ -730,33 +522,32 @@ function CompleteProposal() {
                       Your company detail:
                     </Typography>
                     <Typography variant="h6" placeholder={undefined}>
-                      Contact person:{" "}
-                      <span className="font-normal">[Name]</span>
-                    </Typography>
-                    <Typography variant="small" placeholder={undefined}>
-                      [Name] is your contact person and will get in touch with
-                      you shortly.
+                      Company name: <span className="font-normal">[Name]</span>
                     </Typography>
                     <Typography variant="h6" placeholder={undefined}>
-                      Phone number:{" "}
-                      <span className="font-normal">+84123456789</span>
+                      Office address:{" "}
+                      <span className="font-normal">[Address]</span>
                     </Typography>
                     <Typography variant="h6" placeholder={undefined}>
-                      Email address
-                      <span className="font-normal">sample@sample.com</span>
+                      Team size:{" "}
+                      <span className="font-normal"> xx-yy people</span>
+                    </Typography>
+                    <Typography variant="h6" placeholder={undefined}>
+                      Industry:{" "}
+                      <span className="font-normal"> [Industry Name]</span>
+                    </Typography>
+                    <Typography variant="h6" placeholder={undefined}>
+                      Your role in the company:{" "}
+                      <span className="font-normal"> [Role Name]</span>
                     </Typography>
                   </div>
-                  <div className="grid w-full shadow-lg px-6 py-8 border rounded-xl gap-4">
+                  <div className="grid w-full shadow-lg px-6 py-8 border rounded-xl gap-4 h-fit">
                     <Typography
                       variant="h4"
                       placeholder={undefined}
                       className="capitalize"
                     >
                       Your rating and feedback:
-                    </Typography>
-                    <Typography variant="h6" placeholder={undefined}>
-                      Contact person:{" "}
-                      <span className="font-normal">[Name]</span>
                     </Typography>
                     <Typography variant="h6" placeholder={undefined}>
                       Rating: <span className="font-normal">0.0/5.0</span>
@@ -781,7 +572,7 @@ function CompleteProposal() {
                     placeholder={undefined}
                     className="capitalize"
                   >
-                    Proposal for your project
+                    Your proposal for the project:
                   </Typography>
                   <Typography variant="small" placeholder={undefined}>
                     [Lorem ipsum dolor sit amet, consectetur adipiscing elit.]
@@ -810,6 +601,10 @@ function CompleteProposal() {
                     <span className="font-bold">Proposed price:</span> $xxxx -
                     $xxxx
                   </p>
+                  <p>
+                    <span className="font-bold">Client’s email: </span>{" "}
+                    sample@sample.com
+                  </p>
 
                   <p>
                     <span className="font-bold">Proposed duration: </span> x - x
@@ -833,16 +628,6 @@ function CompleteProposal() {
                       modi...
                     </p>
                   </div>
-                  <div className="grid w-full">
-                    <p>
-                      <span className="font-bold">Attachments:</span>
-                    </p>
-                    <div className="flex flex-col gap-2 overflow-y-auto">
-                      <div className="border h-12 rounded-lg"></div>
-                      <div className="border h-12 rounded-lg"></div>
-                      <div className="border h-12 rounded-lg"></div>
-                    </div>
-                  </div>
                 </div>
               </div>
             </div>
@@ -861,7 +646,7 @@ function CompleteProposal() {
                 placeholder={undefined}
                 className="capitalize"
               >
-                Review & Feedback for Agency Name’s project
+                Review & Feedback for Client Name’s project
               </Typography>
               <div className="flex w-full px-10  mt-6  gap-2 overflow-y-auto h-fit">
                 <div className="w-1/2 flex flex-col gap-4 ">
@@ -891,13 +676,39 @@ function CompleteProposal() {
                     >
                       Services provided
                     </Typography>
+                    <ul className="flex flex-wrap gap-2">
+                      <li className="text-white bg-primary h-[2rem] font-bold px-4 text-xs flex justify-center items-center rounded-md">
+                        Service 1
+                      </li>
+                      <li className="text-white bg-primary h-[2rem] font-bold px-4 text-xs flex justify-center items-center rounded-md">
+                        Service 2
+                      </li>
+                      <li className="text-white bg-primary h-[2rem] font-bold px-4 text-xs flex justify-center items-center rounded-md">
+                        Service 3
+                      </li>
+                      <li className="text-white bg-primary h-[2rem] font-bold px-4 text-xs flex justify-center items-center rounded-md">
+                        Service 3 Service 3
+                      </li>
+                      <li className="text-white bg-primary h-[2rem] font-bold px-4 text-xs flex justify-center items-center rounded-md">
+                        Service 3 Service 3
+                      </li>
+                    </ul>
+                  </div>
+                  <div className="grid w-full shadow-lg px-6 py-8 border rounded-xl gap-4">
+                    <Typography
+                      variant="h4"
+                      placeholder={undefined}
+                      className="capitalize"
+                    >
+                      Rate your client
+                    </Typography>
                     <div>
                       <Typography
                         variant="h6"
                         placeholder={undefined}
                         className="text-primary"
                       >
-                        Service Name 1
+                        Punctuality:
                       </Typography>
                       <Rating placeholder={undefined} />
 
@@ -906,16 +717,7 @@ function CompleteProposal() {
                         placeholder={undefined}
                         className="text-primary"
                       >
-                        Service Name 2
-                      </Typography>
-                      <Rating placeholder={undefined} />
-
-                      <Typography
-                        variant="h6"
-                        placeholder={undefined}
-                        className="text-primary"
-                      >
-                        Service Name 3
+                        Work Ethics:
                       </Typography>
                       <Rating placeholder={undefined} />
                     </div>
@@ -931,8 +733,9 @@ function CompleteProposal() {
                     </Button>
                     <Button
                       placeholder={undefined}
-                      className="flex text-tertiary min-w-[8rem] items-center justify-center bg-secondary w-1/2 text-text"
-                      size="lg"
+                      className="flex text-text min-w-[8rem] items-center justify-center bg-secondary w-1/2"
+                      size="md"
+                      onClick={() => SetIndex(1)}
                     >
                       Send feedback
                     </Button>
@@ -977,7 +780,7 @@ function CompleteProposal() {
                       placeholder={undefined}
                       className="capitalize"
                     >
-                      Your comment on Agency Name’s work:
+                      Your comment on your collaboration with Client Name:
                     </Typography>
                     <Textarea
                       placeholder={undefined}

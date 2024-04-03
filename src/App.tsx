@@ -84,6 +84,7 @@ function App() {
                 path="project-leads-extension/targeting"
                 element={<Targeting />}
               />
+              <Route path="advertising" element={<ContructionPage />} />
               <Route path="review-invitation" element={<ReviewInvitaion />} />
               {/* <Route path="yourpage/service" element={<EditService />} /> */}
               <Route path="" element={<Overview />} />
