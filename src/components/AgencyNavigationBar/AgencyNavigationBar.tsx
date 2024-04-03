@@ -12,7 +12,9 @@ import {
   faQuestionCircle,
   faUser,
 } from "@fortawesome/free-solid-svg-icons";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
+import { useState } from "react";
+import clsx from "clsx";
 export default function AgencyNavigationBar() {
   return (
     <aside className="bg-dark_blue h-[100vh] max-w-[18rem] min-w-[15rem] rounded-b-xl">
@@ -29,76 +31,144 @@ export default function AgencyNavigationBar() {
         </header>
         <nav className="h-[90%] grid items-start pt-2">
           <ul className="grid gap-1">
-            <li className="pl-8 text-white w-full py-4 text-sm font-title font-bold hover:bg-yellow-50 hover:text-text">
-              <Link to="/management" className="flex items-center gap-4">
+            <li className="text-white   w-full  text-sm font-title font-bold hover:bg-yellow-50 hover:text-text">
+              <NavLink
+                to="/management/"
+                className={({ isActive, isPending }) =>
+                  [
+                    isPending ? "" : isActive ? "text-text bg-yellow-50" : "",
+                    "flex items-center gap-4 h-full w-full py-4 pl-8",
+                  ].join(" ")
+                }
+                end
+              >
                 <FontAwesomeIcon icon={faList} />
                 <p>Dashboard</p>
-              </Link>
+              </NavLink>
             </li>
-            <li className="pl-8 text-white w-full py-4 text-sm font-title font-bold hover:bg-yellow-50 hover:text-text">
-              <Link
+            <li className="text-white   w-full  text-sm font-title font-bold hover:bg-yellow-50 hover:text-text">
+              <NavLink
                 to="/management/yourpage"
-                className="flex items-center gap-4"
+                className={({ isActive, isPending }) =>
+                  [
+                    isPending
+                      ? "text-text bg-yellow-50"
+                      : isActive
+                      ? "text-text bg-yellow-50"
+                      : "",
+                    "flex items-center gap-4 h-full w-full py-4 pl-8",
+                  ].join(" ")
+                }
               >
                 <FontAwesomeIcon icon={faUser} />
                 <p>Your Page</p>
-              </Link>
+              </NavLink>
             </li>
-            <li className="pl-8 text-white w-full py-4 text-sm font-title font-bold hover:bg-yellow-50 hover:text-text">
-              <Link
+            <li className="text-white   w-full  text-sm font-title font-bold hover:bg-yellow-50 hover:text-text">
+              <NavLink
                 to="/management/notification"
-                className="flex items-center gap-4"
+                className={({ isActive, isPending }) =>
+                  [
+                    isPending
+                      ? "text-text bg-yellow-50"
+                      : isActive
+                      ? "text-text bg-yellow-50"
+                      : "",
+                    "flex items-center gap-4 h-full w-full py-4 pl-8",
+                  ].join(" ")
+                }
               >
                 <FontAwesomeIcon icon={faBell} />
-                <p> Notification</p>{" "}
-              </Link>
+                <p>Notification</p>
+              </NavLink>
             </li>
-            <li className="pl-8 text-white w-full py-4 text-sm font-title font-bold hover:bg-yellow-50 hover:text-text">
-              <Link to="/management/inbox" className="flex items-center gap-4">
+            <li className="text-white   w-full  text-sm font-title font-bold hover:bg-yellow-50 hover:text-text">
+              <NavLink
+                to="/management/inbox"
+                className={({ isActive, isPending }) =>
+                  [
+                    isPending
+                      ? "text-text bg-yellow-50"
+                      : isActive
+                      ? "text-text bg-yellow-50"
+                      : "",
+                    "flex items-center gap-4 h-full w-full py-4 pl-8",
+                  ].join(" ")
+                }
+              >
                 <FontAwesomeIcon icon={faMessage} />
                 <p>Inbox</p>
-              </Link>
+              </NavLink>
             </li>
-            <li className="pl-8 text-white w-full py-4 text-sm font-title font-bold hover:bg-yellow-50 hover:text-text">
-              <Link
+            <li className="text-white   w-full  text-sm font-title font-bold hover:bg-yellow-50 hover:text-text">
+              <NavLink
                 to="/management/project-leads-extension"
-                className="flex items-center gap-4"
+                className={({ isActive, isPending }) =>
+                  [
+                    isPending
+                      ? "text-text bg-yellow-50"
+                      : isActive
+                      ? "text-text bg-yellow-50"
+                      : "",
+                    "flex items-center gap-4 h-full w-full py-4 pl-8",
+                  ].join(" ")
+                }
+                end
               >
                 <FontAwesomeIcon icon={faArrowsLeftRightToLine} />
                 <p> Project Leads Extension</p>
-              </Link>
+              </NavLink>
             </li>
-            <li className="pl-16 text-white w-full py-4 text-sm font-title font-bold hover:bg-yellow-50 hover:text-text">
-              <Link
+            <li className="text-white  w-full  text-sm font-title font-bold hover:bg-yellow-50 hover:text-text">
+              <NavLink
                 to="/management/project-leads-extension/targeting"
-                className="flex items-center gap-4"
+                className={({ isActive, isPending }) =>
+                  [
+                    isPending
+                      ? "text-text bg-yellow-50"
+                      : isActive
+                      ? "text-text bg-yellow-50"
+                      : "",
+                    "flex items-center gap-4 h-full w-full py-4 pl-14",
+                  ].join(" ")
+                }
+                end
               >
                 <FontAwesomeIcon icon={faArrowsLeftRightToLine} />
                 <p>Targeting</p>
-              </Link>
+              </NavLink>
             </li>
-            <li className="pl-8 text-white w-full py-4 text-sm font-title font-bold flex items-center gap-4 hover:bg-yellow-50 hover:text-text">
-              <Link
+            <li className="text-white   w-full  text-sm font-title font-bold hover:bg-yellow-50 hover:text-text">
+              <NavLink
                 to="/management/advertising"
-                className="flex items-center gap-4"
+                className={({ isActive, isPending }) =>
+                  [
+                    isPending
+                      ? "text-text bg-yellow-50"
+                      : isActive
+                      ? "text-text bg-yellow-50"
+                      : "",
+                    "flex items-center gap-4 h-full w-full py-4 pl-8",
+                  ].join(" ")
+                }
               >
                 <RiAdvertisementFill />
                 <p> Advertising</p>
-              </Link>
+              </NavLink>
             </li>
           </ul>
           <ul className="grid gap-1 mt-auto">
             <li className="pl-8 text-white w-full py-4 mt-auto border-b-2 text-sm font-title font-bold flex items-center gap-4 hover:bg-yellow-50 hover:text-text">
-              <Link to="/subscription" className="flex items-center gap-4">
+              <NavLink to="/subscription" className="flex items-center gap-4">
                 {" "}
                 <FontAwesomeIcon icon={faArrowUpFromBracket} /> Updates from Fya
-              </Link>
+              </NavLink>
             </li>
             <li className="pl-8 text-white w-full py-4 mt-auto border-b-2 text-sm font-title font-bold flex items-center gap-4 hover:bg-yellow-50 hover:text-text">
-              <Link to="/management" className="flex items-center gap-4">
+              <NavLink to="/management" className="flex items-center gap-4">
                 {" "}
                 <FontAwesomeIcon icon={faCircleQuestion} /> Helps
-              </Link>
+              </NavLink>
             </li>
             <li className="pl-8 text-white w-full py-6 mt-auto border-b-2 text-sm font-title">
               <div className="flex gap-2 items-center">

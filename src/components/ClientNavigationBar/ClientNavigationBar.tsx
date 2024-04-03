@@ -12,7 +12,7 @@ import {
   faQuestionCircle,
   faUser,
 } from "@fortawesome/free-solid-svg-icons";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 export default function ClientNavigationBar() {
   return (
     <aside className="bg-dark_blue h-[100vh] max-w-[18rem] min-w-[15rem] rounded-b-xl">
@@ -29,41 +29,80 @@ export default function ClientNavigationBar() {
         </header>
         <nav className="h-[90%] grid items-start pt-2">
           <ul className="grid gap-1">
-            <li className="pl-8 text-white w-full py-4 text-sm font-title font-bold hover:bg-yellow-50 hover:text-text transition-all">
-              <Link to="/client/" className="flex items-center gap-4">
+            <li className="text-white   w-full  text-sm font-title font-bold hover:bg-yellow-50 hover:text-text">
+              <NavLink
+                to="/client/"
+                className={({ isActive, isPending }) =>
+                  [
+                    isPending ? "" : isActive ? "text-text bg-yellow-50" : "",
+                    "flex items-center gap-4 h-full w-full py-4 pl-8",
+                  ].join(" ")
+                }
+                end
+              >
                 <FontAwesomeIcon icon={faList} />
                 <p>Dashboard</p>
-              </Link>
+              </NavLink>
             </li>
-            <li className="pl-8 text-white w-full py-4 text-sm font-title font-bold hover:bg-yellow-50 hover:text-text transition-all">
-              <Link
+            <li className="text-white   w-full  text-sm font-title font-bold hover:bg-yellow-50 hover:text-text">
+              <NavLink
                 to="/client/edit-profile"
-                className="flex items-center gap-4"
+                className={({ isActive, isPending }) =>
+                  [
+                    isPending ? "" : isActive ? "text-text bg-yellow-50" : "",
+                    "flex items-center gap-4 h-full w-full py-4 pl-8",
+                  ].join(" ")
+                }
+                end
               >
                 <FontAwesomeIcon icon={faUser} />
                 <p>Edit Info</p>
-              </Link>
+              </NavLink>
             </li>
-            <li className="pl-8 text-white w-full py-4 text-sm font-title font-bold hover:bg-yellow-50 hover:text-text transition-all">
-              <Link to="/client/" className="flex items-center gap-4">
+            <li className="text-white   w-full  text-sm font-title font-bold hover:bg-yellow-50 hover:text-text">
+              <NavLink
+                to="/client/notification"
+                className={({ isActive, isPending }) =>
+                  [
+                    isPending ? "" : isActive ? "text-text bg-yellow-50" : "",
+                    "flex items-center gap-4 h-full w-full py-4 pl-8",
+                  ].join(" ")
+                }
+                end
+              >
                 <FontAwesomeIcon icon={faBell} />
-                <p> Notification</p>{" "}
-              </Link>
+                <p> Notification</p>
+              </NavLink>
             </li>
-            <li className="pl-8 text-white w-full py-4 text-sm font-title font-bold hover:bg-yellow-50 hover:text-text transition-all">
-              <Link to="/client/inbox" className="flex items-center gap-4">
+            <li className="text-white   w-full  text-sm font-title font-bold hover:bg-yellow-50 hover:text-text">
+              <NavLink
+                to="/client/inbox"
+                className={({ isActive, isPending }) =>
+                  [
+                    isPending ? "" : isActive ? "text-text bg-yellow-50" : "",
+                    "flex items-center gap-4 h-full w-full py-4 pl-8",
+                  ].join(" ")
+                }
+                end
+              >
                 <FontAwesomeIcon icon={faMessage} />
                 <p>Inbox</p>
-              </Link>
+              </NavLink>
             </li>
-            <li className="pl-8 text-white w-full py-4 text-sm font-title font-bold hover:bg-yellow-50 hover:text-text transition-all">
-              <Link
+            <li className="text-white   w-full  text-sm font-title font-bold hover:bg-yellow-50 hover:text-text">
+              <NavLink
                 to="/client/manage-project"
-                className="flex items-center gap-4"
+                className={({ isActive, isPending }) =>
+                  [
+                    isPending ? "" : isActive ? "text-text bg-yellow-50" : "",
+                    "flex items-center gap-4 h-full w-full py-4 pl-8",
+                  ].join(" ")
+                }
+                end
               >
                 <FontAwesomeIcon icon={faArrowsLeftRightToLine} />
                 <p>Manage your Projects</p>
-              </Link>
+              </NavLink>
             </li>
           </ul>
           <ul className="grid gap-1 mt-auto">
