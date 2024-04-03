@@ -299,7 +299,7 @@ export default function NavigationBar() {
         placeholder={undefined}
       >
         <div className="flex items-center justify-between text-blue-gray-900 max-w-7xl mx-auto">
-          <img src="/static/images/Logo.svg" alt="logo" className="w-20" />
+          <img src="/static/images/logo.svg" alt="logo" className="w-20" />
           <div className="flex items-center gap-4">
             <div className="mr-4 hidden lg:block">{navList}</div>
             <Menu
