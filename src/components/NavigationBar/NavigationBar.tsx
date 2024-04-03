@@ -1,18 +1,42 @@
-import { useEffect, useState } from "react";
+import { createElement, useEffect, useState } from "react";
 import clsx from "clsx";
 import { Fragment } from "react";
-import { Menu, Transition } from "@headlessui/react";
 import { Link } from "react-router-dom";
 import { FaArrowRight } from "react-icons/fa6";
 import { IoIosArrowForward } from "react-icons/io";
 import usePostProject from "../../hooks/usePostProjectPopup";
 import PostProjectModal from "../PostProjectPopup/PostProjectPopup";
-import { Button } from "@material-tailwind/react";
+import {
+  Navbar,
+  MobileNav,
+  Typography,
+  Button,
+  IconButton,
+  Card,
+  MenuHandler,
+  MenuList,
+  Avatar,
+  Input,
+  MenuItem,
+  Menu,
+} from "@material-tailwind/react";
+import {
+  CubeTransparentIcon,
+  UserCircleIcon,
+  CodeBracketSquareIcon,
+  Square3Stack3DIcon,
+  ChevronDownIcon,
+  Cog6ToothIcon,
+  InboxArrowDownIcon,
+  LifebuoyIcon,
+  PowerIcon,
+  RocketLaunchIcon,
+  Bars2Icon,
+} from "@heroicons/react/24/solid";
 import Cookies from "js-cookie";
 import { Signout } from "../../api/lib/authentication";
 import { useSelector, useDispatch } from "react-redux";
 import { setUser as setReduxUser } from "../../features/users/userSplice";
-import { Label, TextInput } from "flowbite-react";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { HiSearch } from "react-icons/hi";
 interface IUser {
@@ -21,11 +45,155 @@ interface IUser {
   fname?: string;
   lname?: string;
 }
+const profileMenuItems = [
+  {
+    label: "My Profile",
+    icon: UserCircleIcon,
+  },
+  {
+    label: "Edit Profile",
+    icon: Cog6ToothIcon,
+  },
+  {
+    label: "Inbox",
+    icon: InboxArrowDownIcon,
+  },
+  {
+    label: "Help",
+    icon: LifebuoyIcon,
+  },
+  {
+    label: "Sign Out",
+    icon: PowerIcon,
+  },
+];
+function ProfileMenu() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const closeMenu = () => setIsMenuOpen(false);
+
+  return (
+    <Menu
+      allowHover
+      open={isMenuOpen}
+      handler={setIsMenuOpen}
+      placement="bottom-end"
+    >
+      <MenuHandler placeholder={undefined}>
+        <Button
+          placeholder={undefined}
+          variant="text"
+          color="blue-gray"
+          className="flex items-center gap-1 rounded-full py-0.5 pr-2 pl-0.5 lg:ml-auto"
+        >
+          <Avatar
+            placeholder={undefined}
+            variant="circular"
+            size="sm"
+            alt="tania andrew"
+            className="border border-gray-900 p-0.5"
+            src="/static/images/profile.png"
+          />
+          <ChevronDownIcon
+            strokeWidth={2.5}
+            className={`h-3 w-3 transition-transform ${
+              isMenuOpen ? "rotate-180" : ""
+            }`}
+          />
+        </Button>
+      </MenuHandler>
+      <MenuList className="p-1" placeholder="">
+        {profileMenuItems.map(({ label, icon }, key) => {
+          const isLastItem = key === profileMenuItems.length - 1;
+          return (
+            <MenuItem
+              placeholder={undefined}
+              key={label}
+              onClick={closeMenu}
+              className={`flex items-center gap-2 rounded ${
+                isLastItem
+                  ? "hover:bg-red-500/10 focus:bg-red-500/10 active:bg-red-500/10"
+                  : ""
+              }`}
+            >
+              {createElement(icon, {
+                className: `h-4 w-4 ${isLastItem ? "text-red-500" : ""}`,
+                strokeWidth: 2,
+              })}
+              <Typography
+                as="span"
+                variant="small"
+                className="font-normal"
+                color={isLastItem ? "red" : "inherit"}
+                placeholder={undefined}
+              >
+                {label}
+              </Typography>
+            </MenuItem>
+          );
+        })}
+      </MenuList>
+    </Menu>
+  );
+}
+
+// nav list menu
+const customerMenuItems = [
+  {
+    title: "Post your Project",
+    description:
+      "Learn how to use @material-tailwind/react, packed with rich components for React.",
+  },
+  {
+    title: "Create your free Brand Page",
+    description:
+      "A complete set of UI Elements for building faster websites in less time.",
+  },
+];
+
+const agencyMenuItems = [
+  {
+    title: "Create your free Agency Page",
+    description:
+      "Learn how to use @material-tailwind/html, packed with rich components and widgets.",
+  },
+  {
+    title: "Subscription",
+    description:
+      "Learn how to use @material-tailwind/react, packed with rich components for React.",
+  },
+];
+
+const discoverMenuItems = [
+  {
+    title: "PR & Event",
+  },
+  {
+    title: "Media",
+  },
+  {
+    title: "Market Research",
+  },
+];
+
 export default function NavigationBar() {
   const [isToggle, setIsToggle] = useState(false);
   const { isOpen, toggle } = usePostProject();
   const userSelector = useSelector((state: any) => state.user.value);
   const dispatch = useDispatch();
+  const [isAgencyOpen, setIsAgencyOpen] = useState(false);
+  const [isDiscoverOpen, setIsDiscoverOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const [openNav, setOpenNav] = useState(false);
+
+  useEffect(() => {
+    window.addEventListener(
+      "resize",
+      () => window.innerWidth >= 960 && setOpenNav(false)
+    );
+  }, []);
+
   useEffect(() => {
     if (localStorage.getItem("user")) {
       var u = JSON.parse(localStorage.getItem("user") || "{}");
@@ -45,294 +213,270 @@ export default function NavigationBar() {
     }
   };
 
-  useEffect(() => {}, []);
+  const agencyItems = agencyMenuItems.map(({ title, description }) => (
+    <Link to="#" key={title}>
+      <MenuItem placeholder={undefined}>
+        <Typography
+          variant="h6"
+          color="blue-gray"
+          className="mb-1"
+          placeholder={undefined}
+        >
+          {title}
+        </Typography>
+        <Typography
+          variant="small"
+          color="gray"
+          className="font-normal"
+          placeholder={undefined}
+        >
+          {description}
+        </Typography>
+      </MenuItem>
+    </Link>
+  ));
+
+  const discoverItems = discoverMenuItems.map(({ title }) => (
+    <Link to="#" key={title}>
+      <MenuItem placeholder={undefined}>
+        <Typography
+          variant="paragraph"
+          color="blue-gray"
+          className="mb-1 text-primary font-medium text-sm"
+          placeholder={undefined}
+        >
+          {title}
+        </Typography>
+      </MenuItem>
+    </Link>
+  ));
+
+  const customerItems = customerMenuItems.map(({ title, description }) => (
+    <Link to="#" key={title}>
+      <MenuItem placeholder={undefined}>
+        <Typography
+          variant="h6"
+          color="blue-gray"
+          className="mb-1"
+          placeholder={undefined}
+        >
+          {title}
+        </Typography>
+        <Typography
+          variant="small"
+          color="gray"
+          className="font-normal"
+          placeholder={undefined}
+        >
+          {description}
+        </Typography>
+      </MenuItem>
+    </Link>
+  ));
+
+  const navList = (
+    <ul className="mt-2 mb-4 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
+      <Typography
+        as="li"
+        color="blue-gray"
+        className="p-1 font-normal"
+        placeholder={undefined}
+      >
+        <Link
+          to="#"
+          className="flex font-medium items-center px-4 text-blue-gray-900"
+        >
+          About
+        </Link>
+      </Typography>
+    </ul>
+  );
+
   return (
-    <header className="font-sans w-full">
-      <nav className="z-0 relative">
-        <div className="relative z-10 shadow">
-          <div className="max-w-7xl mx-auto px-2 sm:px-0 lg:px-0">
-            <div className="relative flex items-center justify-between h-16 gap-8 md:px-4">
-              <div className="flex items-center px-2 lg:px-0">
-                <a className="flex-shrink-0 flex " href="/#">
-                  <span className="block lg:hidden font-bold text-center">
-                    <img
-                      src="/static/images/logo.svg"
-                      className="w-20"
-                      alt="logo"
-                    />
-                  </span>
-                  <span className="hidden lg:block w-auto font-bold text-center">
-                    <img
-                      src={"/static/images/logo.svg"}
-                      className="w-20"
-                      alt="logo"
-                    />
-                  </span>
-                </a>
-              </div>
-              <div className="flex-1 flex justify-center lg:ml-6 lg:w-[10rem]">
-                <div className="max-w-lg w-full lg:max-w-xs">
-                  <form method="get" action="#" className="relative z-50">
-                    <TextInput
-                      id="email4"
-                      type="email"
-                      icon={HiSearch}
-                      placeholder="Search services here"
-                      required
-                    />
-                  </form>
-                </div>
-              </div>
-              <div className="hidden lg:block lg:ml-2">
-                <div className="flex gap-5">
-                  <a
-                    href="/#"
-                    className="ml-4 px-3 py-2 rounded-md text-sm leading-5 text-gray-800 font-semibold hover:bg-yellow-500  hover:text-white transition duration-150 ease-in-out cursor-pointer focus:outline-none focus:text-white focus:bg-gray-700 "
-                  >
-                    About{" "}
-                  </a>
-                  <a
-                    href="/#"
-                    className="ml-4 px-3 py-2 rounded-md text-sm leading-5 text-gray-800 font-semibold hover:bg-yellow-500 hover:text-white transition duration-150 ease-in-out cursor-pointer focus:outline-none focus:text-white focus:bg-gray-700 "
-                  >
-                    Find Agencies{" "}
-                  </a>
-                  <a
-                    href="/#"
-                    className="ml-4 px-3 py-2 rounded-md text-sm leading-5 text-gray-800 font-semibold hover:bg-yellow-500 hover:text-white transition duration-150 ease-in-out cursor-pointer focus:outline-none focus:text-white focus:bg-gray-700 "
-                  >
-                    Get Customers{" "}
-                  </a>
-                </div>
-              </div>
-              <Button
-                size="md"
-                className="bg-primary text-white max-w-[12rem] w-full hidden md:block"
-                placeholder={undefined}
-                onClick={toggle}
-              >
-                Post your Project
-              </Button>
-
-              <div className="flex lg:hidden">
-                <button
-                  className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:bg-gray-700 focus:text-white transition duration-150 ease-in-out"
-                  aria-label="Main menu"
-                  aria-expanded="false"
-                  onClick={() => {
-                    setIsToggle(!isToggle);
-                  }}
-                >
-                  <svg
-                    className="block h-6 w-6"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M4 6h16M4 12h16M4 18h16"
-                    ></path>
-                  </svg>
-                  <svg
-                    className="hidden h-6 w-6"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M6 18L18 6M6 6l12 12"
-                    ></path>
-                  </svg>
-                </button>
-              </div>
-              <Menu
-                as="div"
-                className="relative text-left hidden lg:inline-block aspect-square w-9"
-                style={{ height: "36px" }}
-              >
-                <Menu.Button className="inline-flex justify-center gap-x-1.5 bg-white aspect-square w-9 text-sm font-semibold text-gray-900 shadow-sm ring-1 rounded-full ring-inset ring-gray-300 hover:bg-gray-50"></Menu.Button>
-
-                <Transition
-                  as={Fragment}
-                  enter="transition ease-out duration-100"
-                  enterFrom="transform opacity-0 scale-95"
-                  enterTo="transform opacity-100 scale-100"
-                  leave="transition ease-in duration-75"
-                  leaveFrom="transform opacity-100 scale-100"
-                  leaveTo="transform opacity-0 scale-95"
-                >
-                  <Menu.Items className="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none ">
-                    <div className="py-1">
-                      {userSelector ? (
-                        <>
-                          <Menu.Item>
-                            {({ active }) => (
-                              <a
-                                href="/managepage"
-                                className={clsx(
-                                  active
-                                    ? "bg-gray-100 text-gray-900"
-                                    : "text-gray-700",
-                                  "block px-4 py-4 text-sm"
-                                )}
-                              >
-                                <div className="flex justify-between items-center font-bold">
-                                  <p>Welcome, {userSelector?.lname}</p>
-                                  <FaArrowRight />
-                                </div>
-                              </a>
-                            )}
-                          </Menu.Item>
-                          <Menu.Item>
-                            {({ active }) => (
-                              <a
-                                href="/managepage"
-                                className={clsx(
-                                  active
-                                    ? "bg-gray-100 text-gray-900"
-                                    : "text-gray-700",
-                                  "block px-4 py-4 text-sm"
-                                )}
-                              >
-                                <div className="flex justify-between items-center font-bold">
-                                  <p>Dashboard</p>
-                                  <FaArrowRight />
-                                </div>
-                              </a>
-                            )}
-                          </Menu.Item>
-                          <Menu.Item>
-                            {({ active }) => (
-                              <a
-                                href="/page-navigation"
-                                className={clsx(
-                                  active
-                                    ? "bg-gray-100 text-gray-900"
-                                    : "text-gray-700",
-                                  "block px-4 py-4 text-sm"
-                                )}
-                              >
-                                <div className="flex justify-between items-center font-bold">
-                                  <p>Create Page</p>
-                                  <FaArrowRight />
-                                </div>
-                              </a>
-                            )}
-                          </Menu.Item>
-                          <Menu.Item>
-                            {({ active }) => (
-                              <form
-                                onSubmit={handleSubmit}
-                                className={clsx(
-                                  active ? "bg-gray-100 " : "text-gray-700",
-                                  "block px-4 py-4 text-sm text-red-500 font-bold"
-                                )}
-                              >
-                                <button className="flex justify-between items-center font-bold w-full">
-                                  <p>Log out</p>
-                                  <FaArrowRight />
-                                </button>
-                              </form>
-                            )}
-                          </Menu.Item>
-                        </>
-                      ) : (
-                        <>
-                          <Menu.Item>
-                            {({ active }) => (
-                              <Link
-                                to="/auth"
-                                className={clsx(
-                                  active ? "bg-gray-100" : "text-gray-700",
-                                  "block px-4 py-4 text-sm"
-                                )}
-                              >
-                                <div className="flex justify-between items-center font-bold text-primary">
-                                  <p>Sign in/Sign up</p>
-                                  <FaArrowRight />
-                                </div>
-                              </Link>
-                            )}
-                          </Menu.Item>
-                        </>
-                      )}
-                    </div>
-                  </Menu.Items>
-                </Transition>
-              </Menu>
-            </div>
-          </div>
-          <div className={clsx(isToggle ? "block" : "hidden", "lg:hidden")}>
-            <div className="px-2 pt-2 pb-3">
-              <Link
-                to="/#"
-                className="mt-1 block px-3 py-4 rounded-md  font-semibold  hover:bg-yellow-500 focus:outline-none focus:text-white focus:bg-gray-700 transition duration-150 ease-in-out"
-              >
-                <div className="flex justify-between items-center">
-                  <p>About</p>
-                  <IoIosArrowForward />
-                </div>
-              </Link>
-              <Link
-                to="/#"
-                className="mt-1 block px-3 py-4 rounded-md font-semibold hover:bg-yellow-500 focus:outline-none focus:text-white focus:bg-gray-700 transition duration-150 ease-in-out"
-              >
-                <div className="flex justify-between items-center">
-                  <p>Find Agencies</p>
-                  <IoIosArrowForward />
-                </div>
-              </Link>
-              <Link
-                to="/#"
-                className="mt-1 block px-3 py-4 rounded-md font-semibold hover:bg-yellow-500 focus:outline-none focus:text-white focus:bg-gray-700 transition duration-150 ease-in-out"
-              >
-                <div className="flex justify-between items-center">
-                  <p>Get Customers</p>
-                  <IoIosArrowForward />
-                </div>
-              </Link>
-              <Link
-                to="/page-navigation"
-                className="mt-1 block px-3 py-4 rounded-md font-semibold hover:bg-yellow-500 focus:outline-none focus:text-white focus:bg-gray-700 transition duration-150 ease-in-out"
-              >
-                <div className="flex justify-between items-center">
-                  <p>Manage Page</p>
-                  <IoIosArrowForward />
-                </div>
-              </Link>
-              <Link
-                to="/auth"
-                className="mt-1 block px-3 py-4 rounded-md font-semibold hover:bg-yellow-500 focus:outline-none focus:text-white focus:bg-gray-700 transition duration-150 ease-in-out"
-              >
-                <div className="flex justify-between items-center">
-                  <p>Sign in/Sign up</p>
-                  <IoIosArrowForward />
-                </div>
-              </Link>
-
-              <div className="mt-4 block px-3 rounded-md  font-semibold   focus:outline-none focus:text-white focus:bg-gray-700 transition duration-150 ease-in-out">
-                <Button
-                  size="md"
-                  className="bg-primary text-white w-full md:hidden block"
+    <>
+      <Navbar
+        className="sticky top-0 z-10 h-max max-w-full rounded-none px-4 py-2 lg:px-8 lg:py-4 "
+        placeholder={undefined}
+      >
+        <div className="flex items-center justify-between text-blue-gray-900 max-w-7xl mx-auto">
+          <img src="/static/images/Logo.svg" alt="logo" className="w-20" />
+          <div className="flex items-center gap-4">
+            <div className="mr-4 hidden lg:block">{navList}</div>
+            <Menu
+              allowHover
+              open={isAgencyOpen}
+              handler={setIsAgencyOpen}
+              placement="bottom-start"
+            >
+              <MenuHandler>
+                <Typography
                   placeholder={undefined}
-                  onClick={toggle}
+                  as="a"
+                  href="#"
+                  variant="small"
+                  className="font-normal"
                 >
-                  Post your Project
-                </Button>
-              </div>
+                  <MenuItem
+                    className="hidden items-center gap-2 font-medium text-blue-gray-900 lg:flex lg:rounded-full"
+                    placeholder={undefined}
+                  >
+                    <Square3Stack3DIcon className="h-[18px] w-[18px] text-blue-gray-500" />{" "}
+                    Find Agencies{" "}
+                    <ChevronDownIcon
+                      strokeWidth={2}
+                      className={`h-3 w-3 transition-transform ${
+                        isMenuOpen ? "rotate-180" : ""
+                      }`}
+                    />
+                  </MenuItem>
+                </Typography>
+              </MenuHandler>
+              <MenuList
+                className="hidden w-[20rem] grid-cols-7 gap-3 overflow-visible lg:grid"
+                placeholder={undefined}
+              >
+                <ul className="col-span-7 flex w-full flex-col gap-1">
+                  {agencyItems}
+                </ul>
+              </MenuList>
+            </Menu>
+
+            <Menu
+              allowHover
+              open={isMenuOpen}
+              handler={setIsMenuOpen}
+              placement="bottom-start"
+            >
+              <MenuHandler>
+                <Typography
+                  placeholder={undefined}
+                  as="a"
+                  href="#"
+                  variant="small"
+                  className="font-normal"
+                >
+                  <MenuItem
+                    className="hidden items-center gap-2 font-medium text-blue-gray-900 lg:flex lg:rounded-full"
+                    placeholder={undefined}
+                  >
+                    <Square3Stack3DIcon className="h-[18px] w-[18px] text-blue-gray-500" />{" "}
+                    Get Customers{" "}
+                    <ChevronDownIcon
+                      strokeWidth={2}
+                      className={`h-3 w-3 transition-transform ${
+                        isMenuOpen ? "rotate-180" : ""
+                      }`}
+                    />
+                  </MenuItem>
+                </Typography>
+              </MenuHandler>
+              <MenuList
+                className="hidden w-[36rem] grid-cols-7 gap-3 overflow-visible lg:grid"
+                placeholder={undefined}
+              >
+                <MenuList
+                  className="hidden w-[20rem] grid-cols-7 gap-3 overflow-visible lg:grid"
+                  placeholder={undefined}
+                >
+                  {/* Discover */}
+                  <Menu
+                    allowHover
+                    open={isDiscoverOpen}
+                    handler={setIsDiscoverOpen}
+                    placement="right-start"
+                  >
+                    <MenuHandler>
+                      <MenuItem placeholder={undefined} className="col-span-7">
+                        <Typography
+                          variant="h6"
+                          color="blue-gray"
+                          className="mb-1 "
+                          placeholder={undefined}
+                        >
+                          Discover
+                        </Typography>
+                        <Typography
+                          variant="small"
+                          color="gray"
+                          className="font-normal"
+                          placeholder={undefined}
+                        >
+                          Learn how to use @material-tailwind/html, packed with
+                          rich components and widgets.
+                        </Typography>
+                      </MenuItem>
+                    </MenuHandler>
+                    <MenuList
+                      className="hidden w-[12rem] grid-cols-7 gap-3 overflow-visible lg:grid"
+                      placeholder={undefined}
+                    >
+                      <ul className="col-span-7 flex w-full flex-col gap-1">
+                        {discoverItems}
+                      </ul>
+                    </MenuList>
+                  </Menu>
+                  <ul className="col-span-7 flex w-full flex-col gap-1">
+                    {customerItems}
+                  </ul>
+                </MenuList>
+              </MenuList>
+            </Menu>
+
+            <div className="relative flex w-full gap-2 md:w-max">
+              <Input
+                type="search"
+                label={"Services (e.g Digital Marketing)"}
+                placeholder=""
+                crossOrigin={undefined}
+                className="pr-20"
+                containerProps={{
+                  className: "min-w-[288px]",
+                }}
+              />
+              <Button
+                size="sm"
+                className="!absolute right-1 top-1 rounded bg-primary text-white"
+                placeholder={undefined}
+              >
+                Search
+              </Button>
             </div>
+            <Button
+              size="md"
+              className="bg-primary text-white block"
+              placeholder={undefined}
+              onClick={toggle}
+            >
+              Post your Project
+            </Button>
+            <ProfileMenu />
           </div>
         </div>
-      </nav>
+        <MobileNav open={openNav}>
+          {navList}
+          <div className="flex items-center gap-x-1">
+            <Button
+              fullWidth
+              variant="text"
+              size="sm"
+              className=""
+              placeholder={undefined}
+            >
+              <span>Log In</span>
+            </Button>
+            <Button
+              fullWidth
+              variant="gradient"
+              size="sm"
+              className=""
+              placeholder={undefined}
+            >
+              <span>Sign in</span>
+            </Button>
+          </div>
+        </MobileNav>
+      </Navbar>
       {isOpen && <PostProjectModal isOpen={isOpen} toggle={toggle} />}
-    </header>
+    </>
   );
 }

@@ -1,6 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import SecondaryNavigationBar from "../../../components/SecondaryNavigationBar/SecondaryNavigationBar";
 import { faList } from "@fortawesome/free-solid-svg-icons";
+import { Button } from "@material-tailwind/react";
 
 export default function Overview() {
   return (
@@ -16,18 +17,19 @@ export default function Overview() {
       </section>
 
       <section className="max-w-7xl w-full mx-auto">
-        <div className="border-[1px] border-secondary mx-12 rounded-2xl flex items-center justify-between px-6 py-3">
+        <div className="border-[1px] border-secondary mx-12 rounded-2xl flex items-center justify-between px-6 py-3 shadow-lg">
           <div className="grid">
             <h5 className="font-title font-bold">
               Unlock <span className="text-secondary">FyaPro</span> for
               Exclusive Business Perks
             </h5>
-            <p>
+            <p className="text-sm">
               Expand your reach with Advertising Features, generate business
               with Project Leads Extension, and much more!{" "}
-              <span className="text-primary underline font-semibold">
+              <span className="text-primary underline font-semibold mr-3">
                 Learn more
-              </span>{" "}
+              </span>
+              {"  "}
               <span className="text-primary underline font-semibold">
                 Not now
               </span>
@@ -38,13 +40,16 @@ export default function Overview() {
       </section>
       <section className="max-w-7xl w-full mx-auto px-12 flex mt-1 gap-3">
         <div className="w-[50%] grid gap-3">
-          <div className="w-full pb-10 rounded-xl border-2 mx-auto flex-col px-6 py-6">
+          <div className="w-full pb-10 rounded-xl border-2 mx-auto flex-col px-6 py-6 shadow-xl">
             <div className="flex items-center gap-4">
-              <div className="aspect-square bg-secondary w-12 rounded-lg"></div>
-              <div className="">Advertising</div>
-              <button className="bg-slate-200 rounded-md py-2 font-bold px-6 font-title text-primary ml-auto text-sm">
+              <div className="aspect-square bg-secondary w-10 rounded-lg"></div>
+              <div className="font-bold">Advertising</div>
+              <Button
+                placeholder={undefined}
+                className="bg-slate-200  text-primary ml-auto"
+              >
                 See full data
-              </button>
+              </Button>
             </div>
             <ul className="flex h-[6rem] justify-between gap-4 border-b-2 pt-2 pb-4 mt-4">
               <li>
@@ -65,13 +70,16 @@ export default function Overview() {
               </li>
             </ul>
           </div>
-          <div className="w-full pb-10 rounded-xl border-2 mx-auto flex-col px-6 py-6">
+          <div className="w-full pb-10 rounded-xl border-2 mx-auto flex-col px-6 py-6 shadow-xl">
             <div className="flex items-center gap-4">
-              <div className="aspect-square bg-primary w-12 rounded-lg"></div>
-              <div className="">Project Leads</div>
-              <button className="bg-slate-200 rounded-md py-2 font-bold px-6 font-title text-primary ml-auto text-sm">
+              <div className="aspect-square bg-primary w-10 rounded-lg"></div>
+              <div className="font-bold">Project Leads</div>
+              <Button
+                placeholder={undefined}
+                className="bg-slate-200  text-primary ml-auto"
+              >
                 See full data
-              </button>
+              </Button>
             </div>
             <ul className="flex h-[6rem] justify-between gap-4 border-b-2 pt-2 pb-4 mt-4">
               <li>
@@ -94,9 +102,9 @@ export default function Overview() {
             </ul>
           </div>
         </div>
-        <div className="w-[50%] pb-10 rounded-xl border-2 mx-auto flex-col px-12">
+        <div className="w-[50%] pb-10 rounded-xl border-2 mx-auto flex-col px-6 shadow-lg">
           <div className="flex items-center gap-2 mt-6">
-            <div className="aspect-square w-6 bg-primary rounded-md"></div>{" "}
+            <div className="aspect-square w-10 bg-primary rounded-md"></div>{" "}
             <h2>Complete your Agency Page</h2>
           </div>
         </div>
