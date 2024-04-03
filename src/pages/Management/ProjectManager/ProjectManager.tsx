@@ -1,10 +1,17 @@
 import { faArrowsLeftRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Checkbox, Label, Table } from "flowbite-react";
+import { Checkbox, FileInput, Label, Table, TextInput } from "flowbite-react";
 import { IoCloseSharp } from "react-icons/io5";
 import clsx from "clsx";
 import { useEffect, useRef, useState } from "react";
-import { Button, Rating, Textarea, Typography } from "@material-tailwind/react";
+import {
+  Button,
+  Option,
+  Rating,
+  Textarea,
+  Typography,
+  Select,
+} from "@material-tailwind/react";
 import { Link } from "react-router-dom";
 const tabsData = ["New", "Open", "Won", "Archived"];
 export default function ProjectManager() {
@@ -65,9 +72,9 @@ export default function ProjectManager() {
         {activeTabIndex === 0 ? (
           <SentProject />
         ) : activeTabIndex === 1 ? (
-          <RecieveProposal />
-        ) : activeTabIndex === 2 ? (
           <SentProject />
+        ) : activeTabIndex === 2 ? (
+          <RecieveProposal />
         ) : (
           <CompleteProposal />
         )}
@@ -182,112 +189,229 @@ function SentProject() {
               placeholder={undefined}
               className="capitalize"
             >
-              Your project brief
+              Submit a proposal to this project
             </Typography>
             <div className="flex w-full px-10  mt-6  gap-2 items-start overflow-y-auto">
-              <div className="w-1/2 shadow-lg rounded-xl px-6 py-8 flex flex-col gap-4 border">
-                <Typography
-                  variant="h4"
-                  placeholder={undefined}
-                  className="capitalize"
-                >
-                  Your company detail
-                </Typography>
-                <Typography variant="h6" placeholder={undefined}>
-                  Name: <span className="font-normal">[Name]</span>
-                </Typography>
-                <Typography variant="h6" placeholder={undefined}>
-                  Office address: <span className="font-normal">[Address]</span>
-                </Typography>
-                <Typography variant="h6" placeholder={undefined}>
-                  Team size: <span className="font-normal">xx-yy people</span>
-                </Typography>
-                <Typography variant="h6" placeholder={undefined}>
-                  Industry: <span className="font-normal">[Industry Name]</span>
-                </Typography>
-                <Typography variant="h6" placeholder={undefined}>
-                  Your role in the company:{" "}
-                  <span className="font-normal">[Role Name]</span>
-                </Typography>
+              <div className="w-1/2 flex flex-col gap-4 ">
+                <div className="w-full shadow-lg border rounded-xl px-6 py-8 flex flex-col gap-4">
+                  <Typography
+                    variant="h4"
+                    placeholder={undefined}
+                    className="capitalize"
+                  >
+                    Project submission information:
+                  </Typography>
+                  <Typography variant="h6" placeholder={undefined}>
+                    Submitting a proposal for this project will cost $123
+                  </Typography>
+                  <Typography variant="h6" placeholder={undefined}>
+                    After submitting this proposal, your FyaMatch balance will
+                    be $123.
+                  </Typography>
+                </div>
+                <div className="w-full shadow-lg border rounded-xl px-6 py-8 flex flex-col gap-4">
+                  <Typography
+                    variant="h4"
+                    placeholder={undefined}
+                    className="capitalize"
+                  >
+                    Client’s company detail:
+                  </Typography>
+                  <Typography variant="h6" placeholder={undefined}>
+                    Name:{" "}
+                    <span className="text-text font-normal">
+                      {" "}
+                      Hidden until Accepted
+                    </span>
+                  </Typography>
+                  <Typography variant="h6" placeholder={undefined}>
+                    Office address:
+                    <span className="text-text font-normal">
+                      Hidden until Accepted
+                    </span>
+                  </Typography>
+                  <Typography variant="h6" placeholder={undefined}>
+                    Team size:
+                    <span className="text-text font-normal"> xx-yy people</span>
+                  </Typography>
+                  <Typography variant="h6" placeholder={undefined}>
+                    Industry:{" "}
+                    <span className="text-text font-normal">
+                      {" "}
+                      [Industry Name]
+                    </span>
+                  </Typography>
+                </div>
+                <div className="w-full shadow-lg border rounded-xl px-6 py-8 flex flex-col gap-4">
+                  <Typography
+                    variant="h4"
+                    placeholder={undefined}
+                    className="capitalize"
+                  >
+                    Your Proposal for this Project
+                  </Typography>
+                  <div className="block">
+                    <Label
+                      htmlFor="comment"
+                      value="Proposal description:"
+                      className="font-bold"
+                    />
+                  </div>
+                  <Textarea id="comment" required rows={4} />
+                  <div className="block">
+                    <Label
+                      htmlFor="comment"
+                      value="Attachments (optional):"
+                      className="font-bold"
+                    />
+                  </div>
+                  <div className="flex w-full items-center justify-center">
+                    <Label
+                      htmlFor="dropzone-file"
+                      className="flex h-64 w-full cursor-pointer flex-col items-center justify-center rounded-lg border-2 border-dashed border-gray-300 bg-gray-50 hover:bg-gray-100 dark:border-gray-600 dark:bg-gray-700 dark:hover:border-gray-500 dark:hover:bg-gray-600"
+                    >
+                      <div className="flex flex-col items-center justify-center pb-6 pt-5">
+                        <svg
+                          className="mb-4 h-8 w-8 text-gray-500 dark:text-gray-400"
+                          aria-hidden="true"
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="none"
+                          viewBox="0 0 20 16"
+                        >
+                          <path
+                            stroke="currentColor"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth="2"
+                            d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"
+                          />
+                        </svg>
+                        <p className="mb-2 text-sm text-gray-500 dark:text-gray-400">
+                          <span className="font-semibold">Click to upload</span>{" "}
+                          or drag and drop
+                        </p>
+                        <p className="text-xs text-gray-500 dark:text-gray-400">
+                          SVG, PNG, JPG or GIF (MAX. 800x400px)
+                        </p>
+                      </div>
+                      <FileInput id="dropzone-file" className="hidden" />
+                    </Label>
+                  </div>
+                  <Typography variant="small" placeholder={undefined}>
+                    Attach up to 10 files that showcase your agency’s expertise
+                    and skills. Max file size: 25MB each.
+                  </Typography>
+                  <div className="w-full">
+                    <div className="mb-2 block">
+                      <Label
+                        htmlFor="email3"
+                        value="Proposed duration for this project:"
+                      />
+                    </div>
+                    <Select
+                      label="Select project duration"
+                      placeholder={undefined}
+                    >
+                      <Option>Material Tailwind HTML</Option>
+                      <Option>Material Tailwind React</Option>
+                      <Option>Material Tailwind Vue</Option>
+                      <Option>Material Tailwind Angular</Option>
+                      <Option>Material Tailwind Svelte</Option>
+                    </Select>
+                  </div>
+                  <div className="w-full">
+                    <div className="mb-2 block">
+                      <Label
+                        htmlFor="price"
+                        value="Proposed price for this project:"
+                      />
+                    </div>
+                    <TextInput placeholder="Type price..." id="price" />
+                  </div>
+                </div>
               </div>
-              <div className="w-1/2 shadow-lg rounded-xl px-6 py-8 flex flex-col gap-4 border h-fit">
-                <Typography
-                  variant="h4"
-                  placeholder={undefined}
-                  className="capitalize"
-                >
-                  Proposal for your project
-                </Typography>
-                <Typography variant="small" placeholder={undefined}>
-                  [Lorem ipsum dolor sit amet, consectetur adipiscing elit.]
-                </Typography>
-                <div>
-                  <div className="mb-2 block">
-                    <Label
-                      htmlFor="email2"
-                      value="Services wanted:"
-                      className="font-bold"
-                    />
+              <div className="w-1/2">
+                <div className="w-fullshadow-lg rounded-xl px-6 py-8 flex flex-col gap-4 border h-fit">
+                  <Typography
+                    variant="h4"
+                    placeholder={undefined}
+                    className="capitalize"
+                  >
+                    Project detail:
+                  </Typography>
+                  <Typography variant="small" placeholder={undefined}>
+                    [Lorem ipsum dolor sit amet, consectetur adipiscing elit.]
+                  </Typography>
+                  <div>
+                    <div className="mb-2 block">
+                      <Label
+                        htmlFor="email2"
+                        value="Services wanted:"
+                        className="font-bold"
+                      />
+                    </div>
+                    <div className="w-full h-[4rem] border rounded-lg"></div>
                   </div>
-                  <div className="w-full h-[4rem] border rounded-lg"></div>
-                </div>
-                <div>
-                  <div className="mb-2 block">
-                    <Label
-                      htmlFor="email2"
-                      value="Skills required:"
-                      className="font-bold"
-                    />
+                  <div>
+                    <div className="mb-2 block">
+                      <Label
+                        htmlFor="email2"
+                        value="Skills required:"
+                        className="font-bold"
+                      />
+                    </div>
+                    <div className="w-full h-[4rem] border rounded-lg"></div>
                   </div>
-                  <div className="w-full h-[4rem] border rounded-lg"></div>
-                </div>
-                <div className="flex justify-between gap-4">
-                  <div className="w-1/2 grid gap-4">
-                    <p>
-                      <span className="font-bold">Budget range:</span> $xxxx -
-                      $xxxx
-                    </p>
-                    <p>
-                      <span className="font-bold">Project duration:</span> $xxxx
-                      - $xxxx
-                    </p>
-                  </div>
-                  <div className="w-1/2">
-                    <p>
-                      <span className="font-bold">Language(s):</span>{" "}
-                      [Language], [Language]
-                    </p>
-                  </div>
-                </div>
-                <p>
-                  <span className="font-bold">
-                    Searching for agencies in areas of:
-                  </span>
-                  [Location]
-                </p>
-                <div className="flex justify-between">
                   <p>
-                    <span className="font-bold">Phone:</span> +84123456789
+                    <span className="font-bold">Budget range:</span> $xxxx -
+                    $xxxx
                   </p>
                   <p>
-                    <span className="font-bold">Email:</span> sample@sample.com
+                    <span className="font-bold">Project duration:</span> x - x
+                    months
                   </p>
+
+                  <div className="grid w-full">
+                    <Typography variant="h6" placeholder={undefined}>
+                      <span className="font-bold">Project brief:</span>
+                    </Typography>
+                    <Typography
+                      variant="paragraph"
+                      placeholder={undefined}
+                      className="mt-2"
+                    >
+                      "Sed ut perspiciatis unde omnis iste natus error sit
+                      voluptatem accusantium doloremque laudantium, totam rem
+                      aperiam, eaque ipsa quae ab illo inventore veritatis et
+                      quasi architecto beatae vitae dicta sunt explicabo. Nemo
+                      enim ipsam voluptatem quia voluptas sit aspernatur aut
+                      odit aut fugit, sed quia consequuntur magni dolores eos
+                      qui ratione voluptatem sequi nesciunt. Neque porro
+                      quisquam est, qui dolorem ipsum quia dolor sit amet,
+                      consectetur, adipisci velit, sed quia non numquam eius
+                      modi...
+                    </Typography>
+                  </div>
                 </div>
-                <div className="grid w-full">
-                  <p>
-                    <span className="font-bold">Project Detail:</span>
-                  </p>
-                  <p>
-                    "Sed ut perspiciatis unde omnis iste natus error sit
-                    voluptatem accusantium doloremque laudantium, totam rem
-                    aperiam, eaque ipsa quae ab illo inventore veritatis et
-                    quasi architecto beatae vitae dicta sunt explicabo. Nemo
-                    enim ipsam voluptatem quia voluptas sit aspernatur aut odit
-                    aut fugit, sed quia consequuntur magni dolores eos qui
-                    ratione voluptatem sequi nesciunt. Neque porro quisquam est,
-                    qui dolorem ipsum quia dolor sit amet, consectetur, adipisci
-                    velit, sed quia non numquam eius modi...
-                  </p>
+                <div className="flex gap-4 mt-4 justify-end">
+                  <Button
+                    placeholder={undefined}
+                    className="bg-tertiary text-primary"
+                  >
+                    Cancel
+                  </Button>
+                  <Button
+                    placeholder={undefined}
+                    className="bg-red-400 text-red-100"
+                  >
+                    Reject Project
+                  </Button>
+                  <Button
+                    placeholder={undefined}
+                    className="bg-primary text-white"
+                  >
+                    Submit
+                  </Button>
                 </div>
               </div>
             </div>
@@ -300,6 +424,11 @@ function SentProject() {
 
 function RecieveProposal() {
   const [toggle, setToggle] = useState(false);
+  const [index, SetIndex] = useState(0);
+  useEffect(() => {
+    SetIndex(0);
+  }, [toggle]);
+
   return (
     <div className="overflow-x-auto">
       <Table hoverable>
@@ -355,7 +484,7 @@ function RecieveProposal() {
               placeholder={undefined}
               className="capitalize"
             >
-              Agency Name’s proposal for your project
+              Client Name’s project
             </Typography>
             <div className="flex w-full px-10  mt-6  gap-2 overflow-y-auto">
               <div className="w-1/2 flex flex-col gap-4 ">
@@ -365,7 +494,7 @@ function RecieveProposal() {
                     placeholder={undefined}
                     className="capitalize"
                   >
-                    Agency detail
+                    Client’s detail:
                   </Typography>
                   <Typography variant="h6" placeholder={undefined}>
                     Name: <span className="font-normal">[Name]</span>
@@ -379,7 +508,7 @@ function RecieveProposal() {
                   </Typography>
 
                   <Link to="/" className="text-primary underline font-bold">
-                    See Agency Page
+                    See Client Name’s Review and Feedback
                   </Link>
                 </div>
                 <div className="grid w-full shadow-lg px-6 py-8 border rounded-xl gap-4 h-fit">
@@ -388,38 +517,48 @@ function RecieveProposal() {
                     placeholder={undefined}
                     className="capitalize"
                   >
-                    Agency contact
+                    Your company detail:
                   </Typography>
                   <Typography variant="h6" placeholder={undefined}>
-                    Contact person: <span className="font-normal">[Name]</span>
-                  </Typography>
-                  <Typography variant="small" placeholder={undefined}>
-                    [Name] is your contact person and will get in touch with you
-                    shortly.
+                    Company name: <span className="font-normal">[Name]</span>
                   </Typography>
                   <Typography variant="h6" placeholder={undefined}>
-                    Phone number:{" "}
-                    <span className="font-normal">+84123456789</span>
+                    Office address:{" "}
+                    <span className="font-normal">[Address]</span>
                   </Typography>
                   <Typography variant="h6" placeholder={undefined}>
-                    Email address
-                    <span className="font-normal">sample@sample.com</span>
+                    Team size:{" "}
+                    <span className="font-normal"> xx-yy people</span>
+                  </Typography>
+                  <Typography variant="h6" placeholder={undefined}>
+                    Industry:{" "}
+                    <span className="font-normal"> [Industry Name]</span>
+                  </Typography>
+                  <Typography variant="h6" placeholder={undefined}>
+                    Your role in the company:{" "}
+                    <span className="font-normal"> [Role Name]</span>
                   </Typography>
                 </div>
-                <div className="flex w-full justify-between py-8 gap-4 mt-auto">
+                <div className="grid w-full shadow-lg px-6 py-8 border rounded-xl gap-4 h-fit">
+                  <Typography
+                    variant="h4"
+                    placeholder={undefined}
+                    className="capitalize"
+                  >
+                    Your rating and feedback:
+                  </Typography>
+                  <Typography variant="h6" placeholder={undefined}>
+                    Rating: <span className="font-normal">0.0/5.0</span>
+                  </Typography>
+                  <Typography variant="h6" placeholder={undefined}>
+                    Feedback:{" "}
+                    <span className="font-normal">No feedback yet.</span>
+                  </Typography>
                   <Button
                     placeholder={undefined}
-                    className="flex bg-red-300 text-red-700 min-w-[8rem] items-center justify-center w-1/2"
-                    size="lg"
+                    className="text-text bg-secondary"
                   >
-                    Reject proposal
-                  </Button>
-                  <Button
-                    placeholder={undefined}
-                    className="flex text-tertiary min-w-[8rem] items-center justify-center bg-primary w-1/2"
-                    size="lg"
-                  >
-                    Accept proposal
+                    Send feedback
                   </Button>
                 </div>
               </div>
@@ -429,7 +568,7 @@ function RecieveProposal() {
                   placeholder={undefined}
                   className="capitalize"
                 >
-                  Proposal for your project
+                  Your proposal for the project:
                 </Typography>
                 <Typography variant="small" placeholder={undefined}>
                   [Lorem ipsum dolor sit amet, consectetur adipiscing elit.]
@@ -458,6 +597,10 @@ function RecieveProposal() {
                   <span className="font-bold">Proposed price:</span> $xxxx -
                   $xxxx
                 </p>
+                <p>
+                  <span className="font-bold">Client’s email: </span>{" "}
+                  sample@sample.com
+                </p>
 
                 <p>
                   <span className="font-bold">Proposed duration: </span> x - x
@@ -479,16 +622,6 @@ function RecieveProposal() {
                     qui dolorem ipsum quia dolor sit amet, consectetur, adipisci
                     velit, sed quia non numquam eius modi...
                   </p>
-                </div>
-                <div className="grid w-full">
-                  <p>
-                    <span className="font-bold">Attachments:</span>
-                  </p>
-                  <div className="flex flex-col gap-2 overflow-y-auto">
-                    <div className="border h-12 rounded-lg"></div>
-                    <div className="border h-12 rounded-lg"></div>
-                    <div className="border h-12 rounded-lg"></div>
-                  </div>
                 </div>
               </div>
             </div>
