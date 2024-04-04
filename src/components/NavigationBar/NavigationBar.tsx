@@ -19,6 +19,7 @@ import {
   Input,
   MenuItem,
   Menu,
+  Collapse,
 } from "@material-tailwind/react";
 import {
   CubeTransparentIcon,
@@ -67,73 +68,147 @@ const profileMenuItems = [
     icon: PowerIcon,
   },
 ];
+
+const notLoginMenuItems = [
+  {
+    label: "Sign in/Sign up",
+    icon: UserCircleIcon,
+  },
+];
+
 function ProfileMenu() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const userSelector = useSelector((state: any) => state.user.value);
+  const dispatch = useDispatch();
 
+  useEffect(() => {
+    if (localStorage.getItem("user")) {
+      var u = JSON.parse(localStorage.getItem("user") || "{}");
+      dispatch(setReduxUser(u));
+      console.log(userSelector);
+    }
+  }, []);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    let result = await Signout(Cookies.get("rft"));
+
+    if (result.status === 204) {
+      localStorage.removeItem("user");
+      dispatch(setReduxUser(null));
+      window.location.reload();
+    }
+  };
   const closeMenu = () => setIsMenuOpen(false);
 
   return (
-    <Menu
-      allowHover
-      open={isMenuOpen}
-      handler={setIsMenuOpen}
-      placement="bottom-end"
-    >
-      <MenuHandler placeholder={undefined}>
-        <Button
-          placeholder={undefined}
-          variant="text"
-          color="blue-gray"
-          className="flex items-center gap-1 rounded-full py-0.5 pr-2 pl-0.5 lg:ml-auto"
-        >
-          <Avatar
+    <div className="lg:block hidden">
+      <Menu
+        allowHover
+        open={isMenuOpen}
+        handler={setIsMenuOpen}
+        placement="bottom-end"
+      >
+        <MenuHandler placeholder={undefined}>
+          <Button
             placeholder={undefined}
-            variant="circular"
-            size="sm"
-            alt="tania andrew"
-            className="border border-gray-900 p-0.5"
-            src="/static/images/profile.png"
-          />
-          <ChevronDownIcon
-            strokeWidth={2.5}
-            className={`h-3 w-3 transition-transform ${
-              isMenuOpen ? "rotate-180" : ""
-            }`}
-          />
-        </Button>
-      </MenuHandler>
-      <MenuList className="p-1" placeholder="">
-        {profileMenuItems.map(({ label, icon }, key) => {
-          const isLastItem = key === profileMenuItems.length - 1;
-          return (
-            <MenuItem
+            variant="text"
+            color="blue-gray"
+            className="flex items-center gap-1 rounded-full py-0.5 pr-2 pl-0.5 lg:ml-auto"
+          >
+            <Avatar
               placeholder={undefined}
-              key={label}
-              onClick={closeMenu}
-              className={`flex items-center gap-2 rounded ${
-                isLastItem
-                  ? "hover:bg-red-500/10 focus:bg-red-500/10 active:bg-red-500/10"
-                  : ""
+              variant="circular"
+              size="sm"
+              alt="tania andrew"
+              className="border border-gray-900 p-0.5"
+              src="/static/images/profile.png"
+            />
+            <ChevronDownIcon
+              strokeWidth={2.5}
+              className={`h-3 w-3 transition-transform ${
+                isMenuOpen ? "rotate-180" : ""
               }`}
-            >
-              {createElement(icon, {
-                className: `h-4 w-4 ${isLastItem ? "text-red-500" : ""}`,
-                strokeWidth: 2,
+            />
+          </Button>
+        </MenuHandler>
+        <MenuList className="p-1" placeholder="">
+          {userSelector
+            ? profileMenuItems.map(({ label, icon }, key) => {
+                const isLastItem = key === profileMenuItems.length - 1;
+                return !isLastItem ? (
+                  <MenuItem
+                    placeholder={undefined}
+                    key={label}
+                    className={`flex items-center gap-2 rounded justify-start`}
+                  >
+                    {createElement(icon, {
+                      className: `h-4 w-4 ${isLastItem ? "text-red-500" : ""}`,
+                      strokeWidth: 2,
+                    })}
+                    <Typography
+                      as="span"
+                      variant="small"
+                      className="font-bold"
+                      color={isLastItem ? "red" : "inherit"}
+                      placeholder={undefined}
+                    >
+                      {label}
+                    </Typography>
+                  </MenuItem>
+                ) : (
+                  <MenuItem
+                    key={label}
+                    placeholder={undefined}
+                    className={`flex items-center gap-2 rounded hover:bg-red-500/10 focus:bg-red-500/10 active:bg-red-500/10`}
+                    onClick={handleSubmit}
+                  >
+                    {createElement(icon, {
+                      className: `h-4 w-4 ${isLastItem ? "text-red-500" : ""}`,
+                      strokeWidth: 2,
+                    })}
+                    <Typography
+                      as="span"
+                      variant="small"
+                      className="font-bold"
+                      color={isLastItem ? "red" : "inherit"}
+                      placeholder={undefined}
+                    >
+                      {label}
+                    </Typography>
+                  </MenuItem>
+                );
+              })
+            : notLoginMenuItems.map(({ label, icon }, key) => {
+                const isLastItem = key === notLoginMenuItems.length - 1;
+                return (
+                  <MenuItem
+                    placeholder={undefined}
+                    key={label}
+                    onClick={closeMenu}
+                    className={`flex items-center gap-2 rounded justify-start ${
+                      isLastItem
+                        ? "hover:bg-primary/10 focus:bg-primary/10 active:bg-primary/10"
+                        : ""
+                    }`}
+                  >
+                    {createElement(icon, {
+                      className: `h-4 w-4 ${isLastItem ? "text-primary" : ""}`,
+                      strokeWidth: 2,
+                    })}
+                    <Typography
+                      as="span"
+                      variant="small"
+                      className="font-bold text-primary"
+                      placeholder={undefined}
+                    >
+                      {label}
+                    </Typography>
+                  </MenuItem>
+                );
               })}
-              <Typography
-                as="span"
-                variant="small"
-                className="font-normal"
-                color={isLastItem ? "red" : "inherit"}
-                placeholder={undefined}
-              >
-                {label}
-              </Typography>
-            </MenuItem>
-          );
-        })}
-      </MenuList>
-    </Menu>
+        </MenuList>
+      </Menu>
+    </div>
   );
 }
 
@@ -177,41 +252,20 @@ const discoverMenuItems = [
 ];
 
 export default function NavigationBar() {
-  const [isToggle, setIsToggle] = useState(false);
   const { isOpen, toggle } = usePostProject();
-  const userSelector = useSelector((state: any) => state.user.value);
-  const dispatch = useDispatch();
+
   const [isAgencyOpen, setIsAgencyOpen] = useState(false);
   const [isDiscoverOpen, setIsDiscoverOpen] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const [openNav, setOpenNav] = useState(false);
-
+  const toggleOpen = () => setOpenNav((cur) => !cur);
   useEffect(() => {
     window.addEventListener(
       "resize",
       () => window.innerWidth >= 960 && setOpenNav(false)
     );
   }, []);
-
-  useEffect(() => {
-    if (localStorage.getItem("user")) {
-      var u = JSON.parse(localStorage.getItem("user") || "{}");
-      dispatch(setReduxUser(u));
-      console.log(userSelector);
-    }
-  }, []);
-
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    let result = await Signout(Cookies.get("rft"));
-
-    if (result.status === 204) {
-      localStorage.removeItem("user");
-      dispatch(setReduxUser(null));
-      window.location.reload();
-    }
-  };
 
   const agencyItems = agencyMenuItems.map(({ title, description }) => (
     <Link to="#" key={title}>
@@ -422,7 +476,7 @@ export default function NavigationBar() {
               </MenuList>
             </Menu>
 
-            <div className="relative flex w-full gap-2 md:w-max">
+            <div className="relative flex w-full gap-2 md:w-max hidden lg:block">
               <Input
                 type="search"
                 label={"Services (e.g Digital Marketing)"}
@@ -443,7 +497,7 @@ export default function NavigationBar() {
             </div>
             <Button
               size="md"
-              className="bg-primary text-white block"
+              className="bg-primary text-white hidden lg:block"
               placeholder={undefined}
               onClick={toggle}
             >
@@ -451,31 +505,77 @@ export default function NavigationBar() {
             </Button>
             <ProfileMenu />
           </div>
+          <IconButton
+            onClick={toggleOpen}
+            placeholder={undefined}
+            className="block lg:hidden"
+          >
+            <i className="fa-solid fa-bars"></i>
+          </IconButton>
         </div>
-        <MobileNav open={openNav}>
-          {navList}
-          <div className="flex items-center gap-x-1">
-            <Button
-              fullWidth
-              variant="text"
-              size="sm"
-              className=""
+        <Collapse
+          open={openNav}
+          className="flex gap-4 flex-col lg:hidden my-4 rounded-b-lg"
+        >
+          <Typography
+            placeholder={undefined}
+            className="text-text font-medium hover:bg-gray-500/10 px-4 py-2 rounded-md hover:text-primary"
+          >
+            Discover
+          </Typography>
+          <div className="ml-4 flex flex-col gap-2 border-l-4">
+            <Typography
               placeholder={undefined}
+              className="text-text font-medium hover:bg-gray-500/10 px-8 py-2 rounded-md hover:text-primary"
             >
-              <span>Log In</span>
-            </Button>
-            <Button
-              fullWidth
-              variant="gradient"
-              size="sm"
-              className=""
+              PR & Event
+            </Typography>
+            <Typography
               placeholder={undefined}
+              className="text-text font-medium hover:bg-gray-500/10 px-8 py-2 rounded-md hover:text-primary"
             >
-              <span>Sign in</span>
-            </Button>
+              Media
+            </Typography>
+            <Typography
+              placeholder={undefined}
+              className="text-text font-medium hover:bg-gray-500/10 px-8 py-2 rounded-md hover:text-primary"
+            >
+              Market Research
+            </Typography>
           </div>
-        </MobileNav>
+          <Typography
+            placeholder={undefined}
+            className="text-text font-medium hover:bg-gray-500/10 px-4 py-2 rounded-md hover:text-primary"
+          >
+            Post your Project
+          </Typography>
+          <Typography
+            placeholder={undefined}
+            className="text-text font-medium hover:bg-gray-500/10 px-4 py-2 rounded-md hover:text-primary"
+          >
+            Create your free Brand Page
+          </Typography>
+          <Typography
+            placeholder={undefined}
+            className="text-text font-medium hover:bg-gray-500/10 px-4 py-2 rounded-md hover:text-primary"
+          >
+            Create your free Agency Page
+          </Typography>
+          <Typography
+            placeholder={undefined}
+            className="text-text font-medium hover:bg-gray-500/10 px-4 py-2 rounded-md hover:text-primary"
+          >
+            Subscription
+          </Typography>
+          <Typography
+            placeholder={undefined}
+            className="text-primary font-medium hover:bg-primary/10 px-4 py-2 rounded-md hover:text-primary"
+          >
+            Signin/Signup
+          </Typography>
+        </Collapse>
       </Navbar>
+
       {isOpen && <PostProjectModal isOpen={isOpen} toggle={toggle} />}
     </>
   );
