@@ -39,6 +39,7 @@ import Targeting from "./pages/Management/Targeting/targeting";
 import ContructionPage from "./pages/UpcomingPage/UpcomingPage";
 import Page404 from "./pages/404Page/Page404";
 import ScrollToTop from "./components/ScrollToTop/ScrollToTop";
+import AdvertisingFeature from "./pages/AdvertisingFeature/AdvertisingFeature";
 
 function App() {
   const { isOpen, toggle } = usePostProject();
@@ -65,6 +66,10 @@ function App() {
               <Route
                 path="match-making-introduction"
                 element={<MatchMakingIntroduction />}
+              />
+              <Route
+                path="advertising-features"
+                element={<AdvertisingFeature />}
               />
               <Route
                 path="page-navigation"

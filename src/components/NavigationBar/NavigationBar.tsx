@@ -437,7 +437,7 @@ export default function NavigationBar() {
                 </Typography>
               </MenuHandler>
               <MenuList
-                className="hidden w-[36rem] grid-cols-7 gap-3 overflow-visible lg:grid"
+                className="hidden w-[20rem] grid-cols-7 gap-3 overflow-visible lg:grid"
                 placeholder={undefined}
               >
                 <MenuList
