@@ -49,18 +49,22 @@ interface IUser {
 const profileMenuItems = [
   {
     label: "My Profile",
+    url: "/profile",
     icon: UserCircleIcon,
   },
   {
-    label: "Edit Profile",
+    label: "Management",
+    url: "/management",
     icon: Cog6ToothIcon,
   },
   {
-    label: "Inbox",
+    label: "Manage Page",
+    url: "/create-page",
     icon: InboxArrowDownIcon,
   },
   {
     label: "Help",
+    url: "/help",
     icon: LifebuoyIcon,
   },
   {
@@ -73,6 +77,7 @@ const notLoginMenuItems = [
   {
     label: "Sign in/Sign up",
     icon: UserCircleIcon,
+    url: "auth",
   },
 ];
 
@@ -178,7 +183,7 @@ function ProfileMenu() {
                   </MenuItem>
                 );
               })
-            : notLoginMenuItems.map(({ label, icon }, key) => {
+            : notLoginMenuItems.map(({ label, icon, url }, key) => {
                 const isLastItem = key === notLoginMenuItems.length - 1;
                 return (
                   <MenuItem
@@ -191,18 +196,25 @@ function ProfileMenu() {
                         : ""
                     }`}
                   >
-                    {createElement(icon, {
-                      className: `h-4 w-4 ${isLastItem ? "text-primary" : ""}`,
-                      strokeWidth: 2,
-                    })}
-                    <Typography
-                      as="span"
-                      variant="small"
-                      className="font-bold text-primary"
-                      placeholder={undefined}
+                    <Link
+                      to={url}
+                      className="w-full h-full flex gap-2 justify-start items-center py-2 pl-2 pr-12"
                     >
-                      {label}
-                    </Typography>
+                      {createElement(icon, {
+                        className: `h-4 w-4 ${
+                          isLastItem ? "text-primary" : ""
+                        }`,
+                        strokeWidth: 2,
+                      })}
+                      <Typography
+                        as="span"
+                        variant="small"
+                        className="font-bold text-primary"
+                        placeholder={undefined}
+                      >
+                        {label}
+                      </Typography>
+                    </Link>
                   </MenuItem>
                 );
               })}
@@ -496,7 +508,7 @@ export default function NavigationBar() {
               </Button>
             </div>
             <Button
-              size="md"
+              size="lg"
               className="bg-primary text-white hidden lg:block"
               placeholder={undefined}
               onClick={toggle}

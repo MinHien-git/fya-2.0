@@ -28,7 +28,7 @@ import CreatePage from "./pages/CreatePage/CreatePage";
 import usePostProject from "./hooks/usePostProjectPopup";
 import { Provider } from "react-redux";
 import store from "./store/store";
-import ClientManagementLayout from "./layouts/ClientLayout/AgencyManagementLayout";
+import ClientManagementLayout from "./layouts/ClientLayout/ClientManagementLayout";
 import ClientOverview from "./pages/Client/Overview/ClientOverview";
 import EditProfile from "./pages/Client/EditProfile/EditProfile";
 import ManageProject from "./pages/Client/ManageProjects/ManageProjects";
@@ -85,6 +85,7 @@ function App() {
                 element={<Targeting />}
               />
               <Route path="advertising" element={<ContructionPage />} />
+              <Route path="helps" element={<ContructionPage />} />
               <Route path="review-invitation" element={<ReviewInvitaion />} />
               {/* <Route path="yourpage/service" element={<EditService />} /> */}
               <Route path="" element={<Overview />} />
@@ -98,6 +99,7 @@ function App() {
               <Route path="edit-profile" element={<EditProfile />} />
               <Route path="manage-project" element={<ManageProject />} />
               <Route path="inbox" element={<ContructionPage />} />
+              <Route path="helps" element={<ContructionPage />} />
               <Route path="*" element={<Page404 />} />
             </Route>
           </Routes>
