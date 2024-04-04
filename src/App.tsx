@@ -66,10 +66,7 @@ function App() {
                 path="match-making-introduction"
                 element={<MatchMakingIntroduction />}
               />
-              <Route
-                path="page-navigation"
-                element={<PageCreateNavigation />}
-              />
+              <Route path="a" element={<PageCreateNavigation />} />
               <Route path="create-page" element={<CreatePage />} />
               <Route path="*" element={<Page404 />} />
             </Route>

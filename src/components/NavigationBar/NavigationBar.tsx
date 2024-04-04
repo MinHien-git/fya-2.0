@@ -73,6 +73,7 @@ const notLoginMenuItems = [
   {
     label: "Sign in/Sign up",
     icon: UserCircleIcon,
+    url: "/auth",
   },
 ];
 
@@ -178,7 +179,7 @@ function ProfileMenu() {
                   </MenuItem>
                 );
               })
-            : notLoginMenuItems.map(({ label, icon }, key) => {
+            : notLoginMenuItems.map(({ label, icon, url }, key) => {
                 const isLastItem = key === notLoginMenuItems.length - 1;
                 return (
                   <MenuItem
@@ -191,18 +192,25 @@ function ProfileMenu() {
                         : ""
                     }`}
                   >
-                    {createElement(icon, {
-                      className: `h-4 w-4 ${isLastItem ? "text-primary" : ""}`,
-                      strokeWidth: 2,
-                    })}
-                    <Typography
-                      as="span"
-                      variant="small"
-                      className="font-bold text-primary"
-                      placeholder={undefined}
+                    <Link
+                      to={url}
+                      className="flex items-center gap-2 rounded justify-start "
                     >
-                      {label}
-                    </Typography>
+                      {createElement(icon, {
+                        className: `h-4 w-4 ${
+                          isLastItem ? "text-primary" : ""
+                        }`,
+                        strokeWidth: 2,
+                      })}
+                      <Typography
+                        as="span"
+                        variant="small"
+                        className="font-bold text-primary"
+                        placeholder={undefined}
+                      >
+                        {label}
+                      </Typography>
+                    </Link>
                   </MenuItem>
                 );
               })}
@@ -213,7 +221,7 @@ function ProfileMenu() {
 }
 
 // nav list menu
-const customerMenuItems = [
+const agencyMenuItems = [
   {
     title: "Post your Project",
     description:
@@ -221,12 +229,11 @@ const customerMenuItems = [
   },
   {
     title: "Create your free Brand Page",
-    description:
-      "A complete set of UI Elements for building faster websites in less time.",
+    description: "Coming soon!",
   },
 ];
 
-const agencyMenuItems = [
+const customerMenuItems = [
   {
     title: "Create your free Agency Page",
     description:
@@ -242,12 +249,15 @@ const agencyMenuItems = [
 const discoverMenuItems = [
   {
     title: "PR & Event",
+    url: "top-agencies",
   },
   {
     title: "Media",
+    url: "top-agencies",
   },
   {
     title: "Market Research",
+    url: "top-agencies",
   },
 ];
 
@@ -257,7 +267,7 @@ export default function NavigationBar() {
   const [isAgencyOpen, setIsAgencyOpen] = useState(false);
   const [isDiscoverOpen, setIsDiscoverOpen] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
+  const userSelector = useSelector((state: any) => state.user.value);
   const [openNav, setOpenNav] = useState(false);
   const toggleOpen = () => setOpenNav((cur) => !cur);
   useEffect(() => {
@@ -290,8 +300,8 @@ export default function NavigationBar() {
     </Link>
   ));
 
-  const discoverItems = discoverMenuItems.map(({ title }) => (
-    <Link to="#" key={title}>
+  const discoverItems = discoverMenuItems.map(({ title, url }) => (
+    <Link to={url} key={title}>
       <MenuItem placeholder={undefined}>
         <Typography
           variant="paragraph"
@@ -328,23 +338,23 @@ export default function NavigationBar() {
     </Link>
   ));
 
-  const navList = (
-    <ul className="mt-2 mb-4 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
-      <Typography
-        as="li"
-        color="blue-gray"
-        className="p-1 font-normal"
-        placeholder={undefined}
-      >
-        <Link
-          to="#"
-          className="flex font-medium items-center px-4 text-blue-gray-900"
-        >
-          About
-        </Link>
-      </Typography>
-    </ul>
-  );
+  // const navList = (
+  //   <ul className="mt-2 mb-4 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
+  //     <Typography
+  //       as="li"
+  //       color="blue-gray"
+  //       className="p-1 font-normal"
+  //       placeholder={undefined}
+  //     >
+  //       <Link
+  //         to="#"
+  //         className="flex font-medium items-center px-4 text-blue-gray-900"
+  //       >
+  //         About
+  //       </Link>
+  //     </Typography>
+  //   </ul>
+  // );
 
   return (
     <>
@@ -353,9 +363,11 @@ export default function NavigationBar() {
         placeholder={undefined}
       >
         <div className="flex items-center justify-between text-blue-gray-900 max-w-7xl mx-auto">
-          <img src="/static/images/logo.svg" alt="logo" className="w-20" />
+          <Link to="">
+            <img src="/static/images/logo.svg" alt="logo" className="w-20" />
+          </Link>
           <div className="flex items-center gap-4">
-            <div className="mr-4 hidden lg:block">{navList}</div>
+            {/* <div className="mr-4 hidden lg:block">{navList}</div> */}
             <Menu
               allowHover
               open={isAgencyOpen}
@@ -389,6 +401,43 @@ export default function NavigationBar() {
                 className="hidden w-[20rem] grid-cols-7 gap-3 overflow-visible lg:grid"
                 placeholder={undefined}
               >
+                {/* Discover */}
+                <Menu
+                  allowHover
+                  open={isDiscoverOpen}
+                  handler={setIsDiscoverOpen}
+                  placement="right-start"
+                >
+                  <MenuHandler>
+                    <MenuItem placeholder={undefined} className="col-span-7">
+                      <Typography
+                        variant="h6"
+                        color="blue-gray"
+                        className="mb-1 "
+                        placeholder={undefined}
+                      >
+                        Discover
+                      </Typography>
+                      <Typography
+                        variant="small"
+                        color="gray"
+                        className="font-normal"
+                        placeholder={undefined}
+                      >
+                        Learn how to use @material-tailwind/html, packed with
+                        rich components and widgets.
+                      </Typography>
+                    </MenuItem>
+                  </MenuHandler>
+                  <MenuList
+                    className="hidden w-[12rem] grid-cols-7 gap-3 overflow-visible lg:grid"
+                    placeholder={undefined}
+                  >
+                    <ul className="col-span-7 flex w-full flex-col gap-1">
+                      {discoverItems}
+                    </ul>
+                  </MenuList>
+                </Menu>
                 <ul className="col-span-7 flex w-full flex-col gap-1">
                   {agencyItems}
                 </ul>
@@ -425,50 +474,13 @@ export default function NavigationBar() {
                 </Typography>
               </MenuHandler>
               <MenuList
-                className="hidden w-[36rem] grid-cols-7 gap-3 overflow-visible lg:grid"
+                className="hidden w-[20rem] grid-cols-7 gap-3 overflow-visible lg:grid"
                 placeholder={undefined}
               >
                 <MenuList
                   className="hidden w-[20rem] grid-cols-7 gap-3 overflow-visible lg:grid"
                   placeholder={undefined}
                 >
-                  {/* Discover */}
-                  <Menu
-                    allowHover
-                    open={isDiscoverOpen}
-                    handler={setIsDiscoverOpen}
-                    placement="right-start"
-                  >
-                    <MenuHandler>
-                      <MenuItem placeholder={undefined} className="col-span-7">
-                        <Typography
-                          variant="h6"
-                          color="blue-gray"
-                          className="mb-1 "
-                          placeholder={undefined}
-                        >
-                          Discover
-                        </Typography>
-                        <Typography
-                          variant="small"
-                          color="gray"
-                          className="font-normal"
-                          placeholder={undefined}
-                        >
-                          Learn how to use @material-tailwind/html, packed with
-                          rich components and widgets.
-                        </Typography>
-                      </MenuItem>
-                    </MenuHandler>
-                    <MenuList
-                      className="hidden w-[12rem] grid-cols-7 gap-3 overflow-visible lg:grid"
-                      placeholder={undefined}
-                    >
-                      <ul className="col-span-7 flex w-full flex-col gap-1">
-                        {discoverItems}
-                      </ul>
-                    </MenuList>
-                  </Menu>
                   <ul className="col-span-7 flex w-full flex-col gap-1">
                     {customerItems}
                   </ul>
@@ -515,64 +527,73 @@ export default function NavigationBar() {
         </div>
         <Collapse
           open={openNav}
-          className="flex gap-4 flex-col lg:hidden my-4 rounded-b-lg"
+          className="flex flex-col lg:hidden my-4 rounded-b-lg"
         >
           <Typography
             placeholder={undefined}
-            className="text-text font-medium hover:bg-gray-500/10 px-4 py-2 rounded-md hover:text-primary"
+            className="text-text font-semibold hover:bg-gray-500/10 px-4 py-4 rounded-md hover:text-primary"
           >
             Discover
           </Typography>
           <div className="ml-4 flex flex-col gap-2 border-l-4">
             <Typography
               placeholder={undefined}
-              className="text-text font-medium hover:bg-gray-500/10 px-8 py-2 rounded-md hover:text-primary"
+              className="text-text font-semibold hover:bg-gray-500/10 px-8 py-4 rounded-md hover:text-primary"
             >
-              PR & Event
+              <Link to="top-agencies">PR & Event</Link>
             </Typography>
             <Typography
               placeholder={undefined}
-              className="text-text font-medium hover:bg-gray-500/10 px-8 py-2 rounded-md hover:text-primary"
+              className="text-text font-semibold hover:bg-gray-500/10 px-8 py-4 rounded-md hover:text-primary"
             >
-              Media
+              <Link to="top-agencies">Media</Link>
             </Typography>
             <Typography
               placeholder={undefined}
-              className="text-text font-medium hover:bg-gray-500/10 px-8 py-2 rounded-md hover:text-primary"
+              className="text-text font-semibold hover:bg-gray-500/10 px-8 py-4 rounded-md hover:text-primary"
             >
-              Market Research
+              <Link to="top-agencies">Market Research</Link>
             </Typography>
           </div>
           <Typography
             placeholder={undefined}
-            className="text-text font-medium hover:bg-gray-500/10 px-4 py-2 rounded-md hover:text-primary"
+            className="text-text font-semibold hover:bg-gray-500/10 px-4 py-4 rounded-md hover:text-primary"
           >
             Post your Project
           </Typography>
           <Typography
             placeholder={undefined}
-            className="text-text font-medium hover:bg-gray-500/10 px-4 py-2 rounded-md hover:text-primary"
+            className="text-text font-semibold hover:bg-gray-500/10 px-4 py-4 rounded-md hover:text-primary"
           >
             Create your free Brand Page
           </Typography>
           <Typography
             placeholder={undefined}
-            className="text-text font-medium hover:bg-gray-500/10 px-4 py-2 rounded-md hover:text-primary"
+            className="text-text font-semibold hover:bg-gray-500/10 px-4 py-4 rounded-md hover:text-primary"
           >
             Create your free Agency Page
           </Typography>
           <Typography
             placeholder={undefined}
-            className="text-text font-medium hover:bg-gray-500/10 px-4 py-2 rounded-md hover:text-primary"
+            className="text-text font-semibold hover:bg-gray-500/10 px-4 py-4 rounded-md hover:text-primary"
           >
             Subscription
           </Typography>
-          <Typography
-            placeholder={undefined}
-            className="text-primary font-medium hover:bg-primary/10 px-4 py-2 rounded-md hover:text-primary"
-          >
-            Signin/Signup
-          </Typography>
+          {!userSelector ? (
+            <Typography
+              placeholder={undefined}
+              className="text-primary font-semibold hover:bg-primary/10 px-4 py-4 rounded-md hover:text-primary"
+            >
+              <Link to="auth">Signin/Signup</Link>
+            </Typography>
+          ) : (
+            <Typography
+              placeholder={undefined}
+              className="text-red-500 font-semibold hover:bg-red-500/10 px-4 py-4 rounded-md"
+            >
+              Sign out
+            </Typography>
+          )}
         </Collapse>
       </Navbar>
 

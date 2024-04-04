@@ -2,7 +2,7 @@ import { FaFacebook, FaInstagram, FaLinkedin } from "react-icons/fa";
 import { BsTwitterX, BsThreads } from "react-icons/bs";
 export default function Footer() {
   return (
-    <footer className="w-full bg-tertiary border-2 max-w-7xl py-5 px-8 sm:px-12 lg:px-16 my-5 rounded-[3rem] md:mx-auto mb-10">
+    <footer className="w-full bg-tertiary shadow-xl shadow-primary/50 max-w-7xl py-5 px-8 sm:px-12 lg:px-16 my-5 rounded-[3rem] md:mx-auto mb-10">
       <div className="pt-5 pb-8">
         <div className="flex flex-col lg:flex-row lg:items-center gap-5 lg:justify-around">
           <div className="grid gap-3 lg:w-1/2">

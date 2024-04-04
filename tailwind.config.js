@@ -32,6 +32,9 @@ module.exports = withMT({
         "4/3": "4 / 3",
         "4/1": "4 / 1",
       },
+      boxShadow: {
+        "3xl": "0px 7px 29px 0px rgba(0, 0, 0, 0.3)",
+      },
       translate: {
         200: "200%",
       },

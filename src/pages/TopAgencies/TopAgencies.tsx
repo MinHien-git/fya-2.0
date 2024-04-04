@@ -1,3 +1,5 @@
+import { Button } from "@material-tailwind/react";
+
 export default function TopAgencies() {
   return (
     <main className="w-full min-h-80 py-2 pt-0 flex flex-col gap-2 overflow-y-auto h-full mx-auto px-2 sm:px-4 lg:px-0">
@@ -7,14 +9,19 @@ export default function TopAgencies() {
             Top <span className="text-secondary"> [Service]</span> Agencies in{" "}
             <span className="text-secondary">[Country]</span>
           </h1>
-          <p className="text-white text-center mt-4">
-            Dont know where to start?
+          <p className="text-white/70 text-center mt-4">
+            Don't know where to start?
           </p>
-          <button className="bg-secondary text-text font-bold text-xs rounded-lg px-8 py-3 mx-auto md:w-fit ">
-            Create your free Agency Page now!
-          </button>
-          <p className="text-white text-center">
-            Just invest 5 minutes, and it won't cost you a thing!
+          <Button
+            className="bg-secondary text-text w-fit mx-auto normal-case"
+            placeholder={undefined}
+          >
+            Find me an agency that fit
+          </Button>
+          <p className="text-white/70 text-center">
+            Take <span className="text-secondary font-semibold">5 minutes</span>
+            , <span className="text-secondary font-semibold">free</span> of{" "}
+            <span className="text-secondary font-semibold">charge!</span>
           </p>
         </div>
       </section>

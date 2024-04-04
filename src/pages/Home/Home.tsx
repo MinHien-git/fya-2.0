@@ -32,8 +32,8 @@ export default function Home() {
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ ease: "easeOut", duration: 0.5 }}
       >
-        <section className="w-full border-[1px] border-border bg-light_gray max-w-7xl py-5 px-8  lg:px-16 my-5 rounded-[3rem] md:mx-auto h-auto md:flex md:gap-2 md:px-4 lg:items-center md:justify-between md:min-h-[80vh]">
-          <div className="py-5 md:w-3/5 lg:w-3/5 lg:h-1/2">
+        <section className="w-full shadow-2xl shadow-primary/25 bg-light_gray max-w-7xl py-5 px-8  lg:px-16 my-5 rounded-[3rem] md:mx-auto h-auto md:flex md:gap-2 md:px-4 lg:items-center md:justify-between md:min-h-[80vh]">
+          <div className="py-5 md:w-3/5 lg:w-1/2 lg:h-1/2">
             <Typography
               placeholder={undefined}
               variant="h1"
@@ -45,13 +45,13 @@ export default function Home() {
             <Typography
               variant="h6"
               placeholder={undefined}
-              className="font-semibold pt-2 text-primary opacity-55"
+              className="font-semibold pt-2 text-primary opacity-55 max-w-[50ch]"
             >
               Through personalized recommendation, made from the description of
               your needs, with the helps from AI
             </Typography>
 
-            <div className="items-center px-0 rounded-lg pt-3 pb-2 lg:flex-nowrap w-full relative flex lg:w-[75%]">
+            <div className="items-center px-0 rounded-lg pt-3 pb-2 lg:flex-nowrap w-full relative flex lg:w-[85%]">
               <Menu placement="bottom-start">
                 <MenuHandler>
                   <Button
@@ -105,7 +105,7 @@ export default function Home() {
               </button> */}
               <Button
                 size="md"
-                className="hidden md:block bg-primary text-white max-w-[30rem] ml-4 w-full"
+                className="hidden md:block bg-primary text-white max-w-[30rem] ml-4 w-[20rem]"
                 placeholder={undefined}
               >
                 Search Agencies
@@ -136,11 +136,14 @@ export default function Home() {
               </Button>
             </div>
           </div>
-          <div className="hidden md:inline-block md:w-2/5 lg:w-2/5 aspect-square">
-            <div className="flex w-full h-full items-center justify-center">
-              <div className="bg-gray-200 w-1/12 h-3/5 rounded-l-lg"></div>
-              <div className="bg-tertiary w-10/12 rounded-lg aspect-square max-h-full"></div>
-              <div className="bg-gray-200 w-1/12  h-3/5 rounded-r-lg"></div>
+
+          <div className="hidden md:inline-block md:w-3/5 lg:w-1/2">
+            <div className="flex w-full h-full items-center justify-center ">
+              <img
+                className=" w-full rounded-lg max-w-[40vw]"
+                src="/static/images/LandingPage.svg"
+                alt="meeting"
+              />
             </div>
           </div>
         </section>
@@ -150,8 +153,8 @@ export default function Home() {
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ ease: "easeOut", duration: 0.5 }}
       >
-        <section className="w-full border-[1px] border-border bg-light_gray max-w-7xl px-2 sm:px-4 lg:px-12 my-5 rounded-[3rem] md:mx-auto">
-          <div className="py-5 pb-10">
+        <section className="w-full shadow-2xl shadow-primary/25 bg-light_gray max-w-7xl py-5 px-8  lg:px-16 my-5 rounded-[3rem] md:mx-auto h-auto md:flex md:gap-2 md:px-4 lg:items-center md:justify-between md:min-h-[80vh]">
+          <div className="py-5 pb-10 mx-auto">
             <Typography
               variant="h2"
               placeholder={undefined}
@@ -286,7 +289,7 @@ export default function Home() {
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ ease: "easeOut", duration: 0.5 }}
       >
-        <section className="w-full border-[1px] border-border bg-light_gray max-w-7xl px-2 sm:px-4 lg:px-12 my-5 rounded-[3rem] md:mx-auto flex flex-col justify-center items-center">
+        <section className="w-full shadow-2xl shadow-primary/25 bg-light_gray max-w-7xl py-5 px-8  lg:px-16 my-5 rounded-[3rem] md:mx-auto h-auto md:flex md:gap-2 md:px-4 lg:items-center md:justify-between md:min-h-[80vh]">
           <div className="py-5 w-10/12 md:w-full pb-10">
             <Typography
               variant="h2"
@@ -302,7 +305,7 @@ export default function Home() {
             </p>
             <div className="h-full w-full flex justify-center md:justify-start mt-5 flex-wrap gap-4 md:flex-nowrap md:w-[80%] max-w-5xl mx-auto">
               <motion.div
-                className="flex flex-col h-auto w-full p-6 bg-tertiary border border-gray-200 rounded-2xl shadow md:w-1/3 aspect-[11/12] drop-shadow-md"
+                className="flex flex-col h-auto  shadow-3xl shadow-primary/20  w-full p-6 bg-tertiary rounded-2xl md:w-1/3 aspect-[11/12]"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ ease: "easeOut", duration: 1 }}
@@ -350,7 +353,7 @@ export default function Home() {
                 </Button>
               </motion.div>
               <motion.div
-                className="flex flex-col h-auto w-full p-6 bg-secondary border border-gray-200 rounded-2xl shadow md:w-1/3 aspect-[11/12] drop-shadow-md"
+                className="flex flex-col h-auto  shadow-3xl shadow-secondary  w-full p-6 bg-secondary rounded-2xl md:w-1/3 aspect-[11/12]"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ ease: "easeOut", duration: 1.5 }}
@@ -398,7 +401,7 @@ export default function Home() {
                 </Button>
               </motion.div>
               <motion.div
-                className="flex flex-col h-auto w-full p-6 bg-tertiary border border-gray-200 rounded-2xl shadow md:w-1/3 aspect-[11/12] drop-shadow-md"
+                className="flex flex-col h-auto  shadow-3xl shadow-primary/20  w-full p-6 bg-tertiary rounded-2xl md:w-1/3 aspect-[11/12]"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ ease: "easeOut", duration: 2 }}
@@ -493,7 +496,7 @@ export default function Home() {
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ ease: "easeOut", duration: 0.5 }}
       >
-        <section className="w-full border-[1px] border-border bg-light_gray max-w-7xl px-2 sm:px-4 lg:px-12 my-5 rounded-[3rem] md:mx-auto flex flex-col justify-center items-center">
+        <section className="w-full shadow-2xl shadow-primary/25 bg-light_gray max-w-7xl py-5 px-8  lg:px-16 my-5 rounded-[3rem] md:mx-auto h-auto md:flex md:gap-2 md:px-4 lg:items-center md:justify-between md:min-h-[80vh]">
           <div className="py-5 w-10/12 md:w-full pb-10">
             <Typography
               variant="h2"
@@ -510,7 +513,7 @@ export default function Home() {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ ease: "easeOut", duration: 1 }}
-                className="flex flex-col h-auto w-full p-6 bg-tertiary border border-gray-200 rounded-2xl shadow md:w-1/3 aspect-[11/12] drop-shadow-md"
+                className="flex flex-col h-auto  shadow-3xl shadow-primary/20  w-full p-6 bg-tertiary rounded-2xl md:w-1/3 aspect-[11/12]"
               >
                 <div className="w-12 bg-primary aspect-square self-center justify-self-center rounded-md mb-4 flex items-center justify-center">
                   <img src="/static/images/flash.png" alt="flash" />
@@ -557,7 +560,7 @@ export default function Home() {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ ease: "easeOut", duration: 1.5 }}
-                className="flex flex-col h-auto w-full p-6 bg-secondary border border-gray-200 rounded-2xl shadow md:w-1/3 aspect-[11/12] drop-shadow-md"
+                className="flex flex-col h-auto  shadow-3xl shadow-secondary  w-full p-6 bg-secondary rounded-2xl md:w-1/3 aspect-[11/12]"
               >
                 <div className="w-12 bg-white aspect-square self-center justify-self-center rounded-md mb-4 flex items-center justify-center">
                   <img src="/static/images/bell.png" alt="bell" />
@@ -604,7 +607,7 @@ export default function Home() {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ ease: "easeOut", duration: 2 }}
-                className="flex flex-col h-auto w-full p-6 bg-tertiary border border-gray-200 rounded-2xl shadow md:w-1/3 aspect-[11/12] drop-shadow-md"
+                className="flex flex-col h-auto  shadow-3xl shadow-primary/20  w-full p-6 bg-tertiary rounded-2xl md:w-1/3 aspect-[11/12]"
               >
                 <div className="w-12 bg-primary aspect-square self-center justify-self-center rounded-md mb-4 flex items-center justify-center">
                   <img src="/static/images/power.png" alt="power" />
@@ -674,7 +677,7 @@ export default function Home() {
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ ease: "easeOut", duration: 0.5 }}
       >
-        <section className="w-full border-[1px] border-border bg-light_gray max-w-7xl px-2 sm:px-4 lg:px-12 my-5 rounded-[3rem] md:mx-auto flex flex-col justify-center items-center">
+        <section className="w-full shadow-2xl shadow-primary/25 bg-light_gray max-w-7xl py-5 px-8  lg:px-16 my-5 rounded-[3rem] md:mx-auto h-auto md:flex md:gap-2 md:px-4 lg:items-center md:justify-between md:min-h-[80vh]">
           <div className="py-5 w-10/12 md:w-full pb-10">
             <Typography
               variant="h2"
@@ -688,7 +691,7 @@ export default function Home() {
             </p>
             <div className="h-full w-full flex justify-center md:justify-start mt-5 flex-wrap gap-4 md:flex-nowrap md:w-[80%] max-w-5xl mx-auto">
               <motion.div
-                className="bg-tertiary flex flex-col h-auto sm:h-[32rem] md:h-auto w-full p-6 border border-gray-200 rounded-2xl shadow md:w-1/3 drop-shadow-md"
+                className="flex flex-col h-auto  shadow-3xl shadow-primary/20  w-full p-6 bg-tertiary rounded-2xl md:w-1/3 aspect-[11/12]"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ ease: "easeOut", duration: 1 }}
@@ -713,7 +716,7 @@ export default function Home() {
                 </Typography>
               </motion.div>
               <motion.div
-                className="flex flex-col h-auto sm:h-[32rem] md:h-auto w-full p-6 bg-secondary border border-gray-200 rounded-2xl shadow md:w-1/3 drop-shadow-md"
+                className="flex flex-col h-auto  shadow-3xl shadow-secondary  w-full p-6 bg-secondary rounded-2xl md:w-1/3 aspect-[11/12]"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ ease: "easeOut", duration: 1.5 }}
@@ -741,7 +744,7 @@ export default function Home() {
                 </Typography>
               </motion.div>
               <motion.div
-                className="bg-tertiary flex flex-col h-auto sm:h-[32rem] md:h-auto w-full p-6 border border-gray-200 rounded-2xl shadow md:w-1/3 drop-shadow-md"
+                className="flex flex-col h-auto  shadow-3xl shadow-primary/20  w-full p-6 bg-tertiary rounded-2xl md:w-1/3 aspect-[11/12]"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ ease: "easeOut", duration: 2 }}

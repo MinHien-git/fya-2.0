@@ -1,3 +1,5 @@
+import { Button } from "@material-tailwind/react";
+
 export default function AgencyPageIntroduction() {
   return (
     <main className="w-full min-h-80 py-2 pt-0">
@@ -8,9 +10,12 @@ export default function AgencyPageIntroduction() {
             <span className="text-secondary">Fya's</span> free{" "}
             <span className="text-secondary">Agency Page</span>
           </h1>
-          <button className="bg-secondary text-text font-bold text-xs rounded-lg px-8 py-3 mx-auto mt-2 sm:mt-5 md:w-fit ">
+          <Button
+            className="bg-secondary text-text md:w-fit mx-auto capitalize"
+            placeholder={undefined}
+          >
             Create your free Agency Page now!
-          </button>
+          </Button>
         </div>
       </section>
 

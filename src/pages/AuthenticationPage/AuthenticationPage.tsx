@@ -86,41 +86,43 @@ export default function AuthenticationPage() {
 
   return (
     <main className="w-full min-h-[50vh] p-2 h-auto">
-      <section className="w-full border-[1px] border-primary bg-light_gray max-w-7xl px-8 lg:px-0 my-5 rounded-[3rem] md:mx-auto md:flex md:gap-2 md:px-0  md:justify-between min-h-[50vh] h-[100%]">
-        <div className="md:w-[50%] lg:aspect-[4/5] mt-12 md:mt-0 flex flex-col md:bg-sand rounded-[3rem] md:border-2 md:border-secondary md:items-center md:pt-16 gap-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ ease: "easeOut", duration: 0.2 }}
-          >
-            <img
-              src={"/static/images/Logo_BG.svg"}
-              alt="logo"
-              className="w-[4rem] md:w-[6rem] mb-6"
-            />
-          </motion.div>
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ ease: "easeOut", duration: 0.2, delay: 0.2 }}
-            className="md:w-[80%]"
-          >
-            <h1 className="text-4xl pb-2 font-bold text-primary lg:text-5xl font-header md:w-[100%]">
-              <span className="text-secondary">Sign up</span> or{" "}
-              <span className="text-secondary">Sign in</span> to your account to
-              continue!
-            </h1>
-          </motion.div>
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ ease: "easeOut", duration: 0.2, delay: 0.3 }}
-            className="md:w-[80%]"
-          >
-            <p className="font-semibold pt-2 text-primary opacity-55 md:w-[100%]">
-              Manage all your activities on Fya with your account.
-            </p>
-          </motion.div>
+      <section className="w-full border-[1px] shadow-3xl shadow-primary/35 bg-light_gray max-w-7xl px-8 lg:px-0 my-5 rounded-[3rem] md:mx-auto md:flex md:gap-2 md:px-0  md:justify-between min-h-[50vh] h-[100%]">
+        <div className="md:w-[50%] lg:aspect-[4/5] mt-12 md:mt-0 flex flex-col md:bg-sand rounded-[3rem] shadow-3xl shadow-secondary md:items-center gap-4">
+          <div className="h-full flex flex-col justify-center items-center gap-4  pb-[8rem]">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ ease: "easeOut", duration: 0.2 }}
+            >
+              <img
+                src={"/static/images/Logo_BG.svg"}
+                alt="logo"
+                className="w-[4rem] md:w-[6rem] mb-6"
+              />
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ ease: "easeOut", duration: 0.2, delay: 0.2 }}
+              className="md:w-[80%]"
+            >
+              <h1 className="text-4xl pb-2 font-bold text-primary lg:text-5xl font-header md:w-[100%]">
+                <span className="text-secondary">Sign up</span> or{" "}
+                <span className="text-secondary">Sign in</span> to your account
+                to continue!
+              </h1>
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ ease: "easeOut", duration: 0.2, delay: 0.3 }}
+              className="md:w-[80%]"
+            >
+              <p className="font-semibold pt-2 text-primary opacity-55 md:w-[100%]">
+                Manage all your activities on Fya with your account.
+              </p>
+            </motion.div>
+          </div>
         </div>
         <div className="md:w-[50%] mt-12 md:mt-0 flex flex-col">
           <motion.div
@@ -129,7 +131,7 @@ export default function AuthenticationPage() {
             transition={{ ease: "easeOut", duration: 0.2, delay: 0.3 }}
             className="w-[100%]  lg:px-12 flex h-[100%]  items-center justify-center"
           >
-            <div className="w-[100%] lg:my-8 py-8 md:bg-white md:px-8 lg:px-12 flex flex-col rounded-[2rem] mx-auto max-w-[24rem] h-auto">
+            <div className="w-[100%] lg:my-8 py-8 shadow-3xl shadow-tertiary md:bg-white md:px-8 lg:px-12 flex flex-col rounded-[2rem] mx-auto max-w-[24rem] h-auto">
               <Tabs value="Signin" className="w-[100%] my-6">
                 <TabsHeader
                   indicatorProps={{ id: "tabs-header-indicator" }}
