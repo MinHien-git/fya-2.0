@@ -23,11 +23,46 @@ export default function EditProfile() {
     <main className="w-full min-h-80 py-2 pt-0 flex flex-col gap-2 overflow-y-auto h-full mx-auto">
       <div className="w-full">
         <div className="flex justify-center items-center h-[4rem] border-b-2 gap-4">
-          <FontAwesomeIcon icon={faUser} />
+          <svg
+            width="22"
+            height="22"
+            viewBox="0 0 22 22"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              opacity="0.4"
+              d="M11.1226 11.78C11.0526 11.77 10.9626 11.77 10.8826 11.78C9.12265 11.72 7.72266 10.28 7.72266 8.50996C7.72266 6.69997 9.18265 5.22998 11.0026 5.22998C12.8126 5.22998 14.2826 6.69997 14.2826 8.50996C14.2726 10.28 12.8826 11.72 11.1226 11.78Z"
+              stroke="#000"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              opacity="0.34"
+              d="M17.7417 18.38C15.9617 20.01 13.6017 21 11.0017 21C8.4017 21 6.04171 20.01 4.26172 18.38C4.36172 17.44 4.96171 16.52 6.03171 15.8001C8.77169 13.9801 13.2517 13.9801 15.9717 15.8001C17.0417 16.52 17.6417 17.44 17.7417 18.38Z"
+              stroke="#000"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M10.9999 20.9999C16.5227 20.9999 20.9999 16.5227 20.9999 10.9999C20.9999 5.47713 16.5227 1 10.9999 1C5.47713 1 1 5.47713 1 10.9999C1 16.5227 5.47713 20.9999 10.9999 20.9999Z"
+              stroke="#000"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+
           <p className="font-title">Edit Info</p>
         </div>
       </div>
-
+      <section className="max-w-7xl w-full mx-auto flex-col px-12">
+        <h1 className="font-title text-[3.25rem] font-bold pt-5">
+          Edit Profile
+        </h1>
+      </section>
       <section className="max-w-7xl w-full mx-auto px-12 flex mt-1 gap-3">
         <div className="w-[50%] grid gap-3">
           <div className="w-full pb-10 rounded-xl border-2 mx-auto flex-col px-6 py-6 shadow-lg">
@@ -63,7 +98,7 @@ export default function EditProfile() {
                 >
                   <div className="flex flex-col items-center justify-center pb-6 pt-5">
                     <svg
-                      className="mb-4 h-8 w-8 text-gray-500 dark:text-gray-400"
+                      className="h-8 w-8 text-gray-500 dark:text-gray-400"
                       aria-hidden="true"
                       xmlns="http://www.w3.org/2000/svg"
                       fill="none"

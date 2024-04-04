@@ -49,18 +49,22 @@ interface IUser {
 const profileMenuItems = [
   {
     label: "My Profile",
+    url: "/profile",
     icon: UserCircleIcon,
   },
   {
-    label: "Edit Profile",
+    label: "Management",
+    url: "/management",
     icon: Cog6ToothIcon,
   },
   {
-    label: "Inbox",
+    label: "Manage Page",
+    url: "/create-page",
     icon: InboxArrowDownIcon,
   },
   {
     label: "Help",
+    url: "/help",
     icon: LifebuoyIcon,
   },
   {
@@ -194,7 +198,7 @@ function ProfileMenu() {
                   >
                     <Link
                       to={url}
-                      className="flex items-center gap-2 rounded justify-start "
+                      className="w-full h-full flex gap-2 justify-start items-center py-2 pl-2 pr-12"
                     >
                       {createElement(icon, {
                         className: `h-4 w-4 ${
@@ -508,7 +512,7 @@ export default function NavigationBar() {
               </Button>
             </div>
             <Button
-              size="md"
+              size="lg"
               className="bg-primary text-white hidden lg:block"
               placeholder={undefined}
               onClick={toggle}
