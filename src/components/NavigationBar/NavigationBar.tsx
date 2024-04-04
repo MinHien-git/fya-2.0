@@ -505,7 +505,7 @@ export default function NavigationBar() {
               />
               <Button
                 size="sm"
-                className="!absolute right-1 top-1 rounded bg-primary text-white"
+                className="!absolute right-1 top-1 rounded bg-primary text-white normal-case"
                 placeholder={undefined}
               >
                 Search
@@ -513,7 +513,7 @@ export default function NavigationBar() {
             </div>
             <Button
               size="lg"
-              className="bg-primary text-white hidden lg:block"
+              className="bg-primary text-white hidden lg:block normal-case"
               placeholder={undefined}
               onClick={toggle}
             >

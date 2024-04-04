@@ -24,9 +24,9 @@ export default function AdvertisingFeature() {
         </div>
       </section>
       <section className="w-full border-t-2 border-b-2 border-secondary pb-5 rounded-3xl md:mx-auto mt-5 min-h-[50vh] px-3 flex flex-col items-center mx-auto">
-        <article className="h-auto py-5 border-b-2 border-secondary  w-full md:h-[40rem] md:flex md:items-center md:justify-start">
-          <div className="flex mx-auto w-full max-w-7xl items-center">
-            <div className="border-[1px] border-secondary px-10 py-5 rounded-xl shadow-md w-full md:w-[25rem] lg:w-[40%] h-[10rem] grid place-content-center">
+        <article className="h-auto py-5 border-b-2 border-secondary  w-full md:h-fit min-h-[40rem] md:flex md:items-center md:justify-start">
+          <div className="flex flex-col lg:flex-row mx-auto w-full max-w-7xl items-center gap-16">
+            <div className="border-[1px] border-secondary px-10 py-5 rounded-xl shadow-md w-full md:w-[25rem] lg:w-[40%] min-h-[10rem] grid place-content-center">
               <h5 className="text-2xl font-title mb-2">
                 Step into the
                 <span className="text-secondary font-semibold">
@@ -44,29 +44,29 @@ export default function AdvertisingFeature() {
             </div>
           </div>
         </article>
-        <article className="h-auto py-5 border-b-2 border-secondary w-full md:h-[40rem] md:flex md:items-center md:justify-end">
-          <div className="flex max-w-7xl mx-auto w-full md:items-center md:justify-end">
+        <article className="h-auto py-5 border-b-2 border-secondary w-full md:h-fit min-h-[40rem] md:flex md:items-center md:justify-end">
+          <div className="flex flex-col lg:flex-row mx-auto w-full max-w-7xl items-center gap-16">
             <div className="h-full">
               <img src="/static/images/adhere.png" alt="advertise" />
             </div>
-            <div className="border-[1px] border-secondary px-10 py-5 rounded-xl shadow-md w-full md:w-[25rem] lg:w-[40%] h-[10rem] grid place-content-center">
-              <h5 className="text-2xl font-title mb-2 text-right">
+            <div className="border-[1px] border-secondary px-10 py-5 rounded-xl shadow-md w-full md:w-[25rem] lg:w-[40%] min-h-[10rem] grid place-content-center">
+              <h5 className="text-2xl font-title mb-2 lg:text-right">
                 Front page
                 <span className="text-secondary font-semibold ">
                   {" "}
                   Prominence
                 </span>
               </h5>
-              <p className="text-right">
+              <p className="lg:text-right">
                 Boost agency visibility on Fya's front page through display ads,
                 exclusive to FyaPro members.
               </p>
             </div>
           </div>
         </article>
-        <article className="h-auto py-5 border-b-2 border-secondary w-full md:h-[40rem] md:flex md:items-center md:justify-start">
-          <div className="flex max-w-7xl mx-auto w-full md:items-center md:justify-start">
-            <div className="border-[1px] border-secondary px-10 py-5 rounded-xl shadow-md w-full md:w-[25rem] lg:w-[40%] h-[10rem] grid place-content-center">
+        <article className="h-auto py-5 border-b-2 border-secondary w-full md:h-fit min-h-[40rem] md:flex md:items-center md:justify-start">
+          <div className="flex flex-col lg:flex-row mx-auto w-full max-w-7xl items-center gap-16">
+            <div className="border-[1px] border-secondary px-10 py-5 rounded-xl shadow-md w-full md:w-[25rem] lg:w-[40%] min-h-[10rem] grid place-content-center">
               <h5 className="text-2xl font-title mb-2">
                 Search engine’s
                 <span className="text-secondary font-semibold "> Priority</span>
@@ -76,31 +76,31 @@ export default function AdvertisingFeature() {
                 available for fully automated search engines like Google).
               </p>
             </div>
-            <div className="h-[35rem]">
+            <div className="h-full">
               <img src="/static/images/agencyCard.png" alt="advertise" />
             </div>
           </div>
         </article>
-        <article className="h-auto py-5 border-b-2 border-secondary w-full md:h-[40rem] md:flex md:items-center md:justify-end">
-          <div className="flex max-w-7xl mx-auto w-full md:items-center md:justify-end">
-            <div className="h-[30rem]">
+        <article className="h-auto py-5 border-b-2 border-secondary w-full md:h-fit min-h-[40rem] md:flex md:items-center md:justify-end">
+          <div className="flex flex-col lg:flex-row mx-auto w-full max-w-7xl items-center gap-16">
+            <div className="h-full">
               <img src="/static/images/computer.png" alt="advertise" />
             </div>
-            <div className="border-[1px] border-secondary px-10 py-5 rounded-xl shadow-md w-full md:w-[25rem] lg:w-[40%] h-[10rem] grid place-content-center">
-              <h5 className="text-2xl font-title mb-2 text-right">
+            <div className="border-[1px] border-secondary px-10 py-5 rounded-xl shadow-md w-full md:w-[25rem] lg:w-[40%] min-h-[10rem] grid place-content-center">
+              <h5 className="text-2xl font-title mb-2 lg:text-right">
                 Ads Insight
                 <span className="text-secondary font-semibold "> Tracker</span>
               </h5>
-              <p className="text-right">
+              <p className="lg:text-right">
                 Analyze, adapt, and excel in your ad campaigns with real-time
                 monitoring tool.
               </p>
             </div>
           </div>
         </article>
-        <article className="h-auto py-5 w-full md:h-[40rem] md:flex md:items-center md:justify-start">
-          <div className="flex max-w-7xl mx-auto w-full">
-            <div className="border-[1px] border-secondary px-10 py-5 rounded-xl shadow-md w-full md:w-[25rem] lg:w-[40%] h-[10rem] grid place-content-center">
+        <article className="h-auto py-5 w-full md:h-fit min-h-[40rem] md:flex md:items-center md:justify-start">
+          <div className="flex flex-col lg:flex-row mx-auto w-full max-w-7xl items-center gap-16">
+            <div className="border-[1px] border-secondary px-10 py-5 rounded-xl shadow-md w-full md:w-[25rem] lg:w-[40%] min-h-[10rem] grid place-content-center">
               <h5 className="text-2xl font-title mb-2">
                 <span className="text-secondary font-semibold">
                   Pay-Per-Click
@@ -112,7 +112,7 @@ export default function AdvertisingFeature() {
                 payment model. Only pay for the results. Start from $0.12/click.
               </p>
             </div>
-            <div className="h-[30rem] flex ml-auto">
+            <div className="h-full flex ml-auto">
               <img src="/static/images/addemo.png" alt="advertise" />
             </div>
           </div>

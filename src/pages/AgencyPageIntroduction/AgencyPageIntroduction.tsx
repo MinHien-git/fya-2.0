@@ -319,7 +319,7 @@ export default function AgencyPageIntroduction() {
             <div className="relative bg-white pt-8 pb-5 w-full rounded-b-2xl px-5 border-2 md:rounded-none md:rounded-r-2xl grid text-right gap-2 md:my-auto">
               <div className="absolute w-12 aspect-square bg-primary top-[-1.5rem] left-1/2 -translate-x-1/2 rounded-md"></div>
               <h5 className="text-center text-xl font-medium text-black pb-4">
-                Project Leads Extension
+                Leads Extension
               </h5>
               <p className="text-black text-sx">Connect directly to clients.</p>
               <p className="text-black font-thin text-sx">

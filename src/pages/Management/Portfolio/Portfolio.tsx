@@ -18,10 +18,7 @@ export default function Portfolio() {
             collection of past work. As a results, this help you to enhance your
             search ranking and increase your chances of securing high-value
             projects using the
-            <span className="text-primary font-bold">
-              {" "}
-              Project Leads Extension.
-            </span>
+            <span className="text-primary font-bold"> Leads Extension.</span>
           </p>
           <p className="text-gray-400 text-xs mt-4 font-bold">
             The arrangement of your awards will be displayed on your Page.

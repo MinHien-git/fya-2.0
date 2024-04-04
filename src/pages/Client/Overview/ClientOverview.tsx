@@ -45,7 +45,7 @@ export default function ClientOverview() {
             </h5>
             <p className="text-sm">
               Expand your reach with Advertising Features, generate business
-              with Project Leads Extension, and much more!{" "}
+              with Leads Extension, and much more!{" "}
               <span className="text-primary underline font-semibold mr-3">
                 Learn more
               </span>
@@ -88,7 +88,7 @@ export default function ClientOverview() {
                 </svg>
               </div>
               <Typography placeholder={undefined} variant="h6" className="">
-                Project Leads
+                Projects
               </Typography>
               <Button
                 placeholder={undefined}
@@ -98,7 +98,7 @@ export default function ClientOverview() {
               </Button>
             </div>
             <ul className="flex h-[6rem] justify-between gap-4 border-b-2 pt-2 pb-4 mt-4">
-              <li>
+              <li className="pl-4">
                 <div className="text-xs invisible">Appear in</div>
                 <div className="text-3xl font-bold">0</div>
                 <div className="text-xs">new lead(s) this week</div>
@@ -110,7 +110,7 @@ export default function ClientOverview() {
                 <div className="text-xs">new project(s) this week</div>
               </li>
               <li className="h-full bg-gray-200 w-[2px]"></li>
-              <li>
+              <li className="pr-4">
                 <div className="text-xs">Projects won:</div>
                 <div className="text-3xl font-bold">0</div>
                 <div className="text-xs">in the last 30 days</div>

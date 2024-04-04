@@ -105,7 +105,7 @@ export default function Home() {
               </button> */}
               <Button
                 size="md"
-                className="hidden md:block bg-primary text-white max-w-[30rem] ml-4 w-[20rem]"
+                className="hidden md:block bg-primary text-white max-w-[30rem] ml-4 w-[20rem] normal-case"
                 placeholder={undefined}
               >
                 Search Agencies
@@ -129,7 +129,7 @@ export default function Home() {
               </Typography>
               <Button
                 size="md"
-                className="bg-secondary text-white max-w-[12rem] w-full"
+                className="bg-secondary text-white max-w-[12rem] w-full normal-case"
                 placeholder={undefined}
               >
                 Post your Project

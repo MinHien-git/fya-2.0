@@ -213,7 +213,7 @@ export default function AgencyNavigationBar() {
                   />
                 </svg>
 
-                <p> Project Leads Extension</p>
+                <p>Project Leads</p>
               </NavLink>
             </li>
             <li className="text-white  w-full  text-sm font-title font-bold hover:bg-yellow-50 hover:text-text">
