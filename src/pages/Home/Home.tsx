@@ -12,6 +12,8 @@ import {
 } from "@material-tailwind/react";
 import { useDocumentTitle } from "@uidotdev/usehooks";
 import { motion } from "framer-motion";
+import PostProjectModal from "../../components/PostProjectPopup/PostProjectPopup";
+import usePostProject from "../../hooks/usePostProjectPopup";
 let data = [
   {
     label: "service 1",
@@ -24,9 +26,11 @@ let data = [
   },
 ];
 export default function Home() {
+  const { isOpen, toggle } = usePostProject();
   useDocumentTitle("Home");
   return (
     <main className="w-full min-h-80 p-2">
+      {isOpen && <PostProjectModal isOpen={isOpen} toggle={toggle} />}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -131,6 +135,7 @@ export default function Home() {
                 size="md"
                 className="bg-secondary text-white max-w-[12rem] w-full normal-case"
                 placeholder={undefined}
+                onClick={toggle}
               >
                 Post your Project
               </Button>
@@ -380,6 +385,7 @@ export default function Home() {
                 <Button
                   size="sm"
                   placeholder={undefined}
+                  onClick={toggle}
                   className="text-primary bg-white  flex justify-center px-3 py-2 text-xs font-medium mt-auto capitalize"
                 >
                   Post your Project now!
@@ -485,6 +491,7 @@ export default function Home() {
               size="md"
               className="text-primary bg-tertiary capitalize"
               placeholder={undefined}
+              onClick={toggle}
             >
               Post your Project now!
             </Button>
@@ -666,6 +673,7 @@ export default function Home() {
               size="md"
               className="text-primary bg-tertiary capitalize"
               placeholder={undefined}
+              onClick={toggle}
             >
               Post your Project now!
             </Button>

@@ -227,11 +227,6 @@ function ProfileMenu() {
 // nav list menu
 const agencyMenuItems = [
   {
-    title: "Post your Project",
-    description:
-      "Learn how to use @material-tailwind/react, packed with rich components for React.",
-  },
-  {
     title: "Create your free Brand Page",
     description: "Coming soon!",
   },
@@ -363,7 +358,7 @@ export default function NavigationBar() {
   return (
     <>
       <Navbar
-        className="sticky top-0 z-10 h-max max-w-full rounded-none px-4 py-2 lg:px-8 lg:py-4 "
+        className="sticky top-0 z-[100] h-max max-w-full rounded-none px-4 py-2 lg:px-8 lg:py-4 "
         placeholder={undefined}
       >
         <div className="flex items-center justify-between text-blue-gray-900 max-w-7xl mx-auto">
@@ -444,6 +439,25 @@ export default function NavigationBar() {
                 </Menu>
                 <ul className="col-span-7 flex w-full flex-col gap-1">
                   {agencyItems}
+                  <MenuItem placeholder={undefined} onClick={toggle}>
+                    <Typography
+                      variant="h6"
+                      color="blue-gray"
+                      className="mb-1"
+                      placeholder={undefined}
+                    >
+                      Post Your Project
+                    </Typography>
+                    <Typography
+                      variant="small"
+                      color="gray"
+                      className="font-normal"
+                      placeholder={undefined}
+                    >
+                      Learn how to use @material-tailwind/react, packed with
+                      rich components for React.
+                    </Typography>
+                  </MenuItem>
                 </ul>
               </MenuList>
             </Menu>

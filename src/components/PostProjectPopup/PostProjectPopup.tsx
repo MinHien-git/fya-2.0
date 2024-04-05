@@ -250,7 +250,7 @@ export default function PostProjectModal({
             className="w-[100vw] h-[100vh] fixed bg-gray-500/50 z-[10000] top-0 flex justify-center items-center"
           >
             <motion.div
-              className="relative bg-white w-[80%] flex flex-col justify-start items-center pt-14 pb-6 px-4 rounded-2xl gap-4 max-h-[50rem] min-h-[20rem] h-auto max-w-[30rem] md:px-8"
+              className="relative bg-white shadow-3xl shadow-primary/50 w-[80%] flex flex-col justify-start items-center pt-14 pb-6 px-4 rounded-2xl gap-4 h-fit max-w-[30rem] md:px-8"
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ ease: "easeOut", duration: 0.2 }}
@@ -313,17 +313,28 @@ function StepOne({ moveNext }: IStep) {
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ ease: "easeOut", duration: 0.2 }}
-      className="w-full flex flex-col items-center gap-4 h-full "
+      className="w-full h-full flex flex-col items-center gap-4 "
     >
-      <img src={"/static/images/Logo_BG.svg"} alt="logo" className="w-[4rem]" />
-      <p className="text-center mb-6 self-start">
-        To understand your needs, we will first ask you a few{" "}
-        <span className="font-bold">questions </span>
-        before <span className="font-bold">matching </span>your company with
-        agencies that fit.
-      </p>
+      <div className="w-full min-h-[40vh] flex flex-col items-center gap-12 ">
+        <img
+          src={"/static/images/Logo_BG.svg"}
+          alt="logo"
+          className="w-[6rem]"
+        />
+        <Typography
+          variant="h5"
+          placeholder={undefined}
+          className="text-center mb-6 self-start"
+        >
+          To understand your needs, we will first ask you a few{" "}
+          <span className="font-bold text-primary">questions </span>
+          before <span className="font-bold text-primary">matching </span>your
+          company with agencies that fit.
+        </Typography>
+      </div>
       <Button
-        className="flex bg-primary min-w-[8rem] items-center justify-center mt-auto"
+        className="flex bg-primary w-[10rem] items-center justify-center mt-auto"
+        size="lg"
         placeholder={undefined}
         onClick={moveNext}
       >
@@ -409,139 +420,150 @@ function StepTwo({ moveNext, movePrevious }: IStep) {
       transition={{ ease: "easeOut", duration: 0.2 }}
       className="w-full flex flex-col items-center gap-4 h-full "
     >
-      <p className="font-bold self-start">
-        Tell us What <span className="text-secondary font-bold">services </span>{" "}
-        and <span className="text-secondary font-bold">skills </span>
-        you are looking for:
-      </p>
-      <div className="w-full h-[9rem] relative">
-        <Input
-          crossOrigin={undefined}
-          type="email"
-          placeholder="Select services"
-          className="!border !border-gray-300 bg-white text-gray-900 shadow-lg shadow-gray-900/5 ring-4 ring-transparent placeholder:text-gray-500 placeholder:opacity-100 focus:!border-gray-900 focus:!border-t-gray-900 focus:ring-gray-900/10"
-          labelProps={{
-            className: "hidden",
-          }}
-          value={currentSearch}
-          containerProps={{ className: "min-w-[100px]" }}
-          onFocus={() => {
-            clearTimeout(inteval);
-            setFocus(true);
-          }}
-          onBlur={() => {
-            inteval = setTimeout(function () {
-              setFocus(false);
-            }, 300);
-          }}
-          onChange={handleSearch}
-        />
-        {focus ? (
-          <ul className="absolute  py-3 bg-white w-full shadow-lg rounded-b-xl h-auto max-h-[7rem] overflow-y-auto gap-2 z-10000">
-            {services.map((i) => (
-              <li
-                className="px-3 w-full py-4 font-semibold text-xs cursor-pointer text-text hover:bg-gray-100 shadow-sm"
+      <div className="w-full min-h-[40vh] flex flex-col items-center gap-4 ">
+        <Typography
+          variant="h5"
+          placeholder={undefined}
+          className="text-left self-start"
+        >
+          Tell us What{" "}
+          <span className="text-secondary font-bold">services </span> and{" "}
+          <span className="text-secondary font-bold">skills </span>
+          you are looking for:
+        </Typography>
+        <div className="w-full h-[9rem] relative">
+          <Input
+            crossOrigin={undefined}
+            size="lg"
+            type="email"
+            placeholder="Select services"
+            className="!border !border-gray-300 bg-white text-gray-900 shadow-lg shadow-gray-900/5 ring-4 ring-transparent placeholder:text-gray-500 placeholder:opacity-100 focus:!border-gray-900 focus:!border-t-gray-900 focus:ring-gray-900/10"
+            labelProps={{
+              className: "hidden",
+            }}
+            value={currentSearch}
+            containerProps={{ className: "min-w-[100px]" }}
+            onFocus={() => {
+              clearTimeout(inteval);
+              setFocus(true);
+            }}
+            onBlur={() => {
+              inteval = setTimeout(function () {
+                setFocus(false);
+              }, 300);
+            }}
+            onChange={handleSearch}
+          />
+          {focus ? (
+            <ul className="absolute  py-3 bg-white w-full shadow-lg rounded-b-xl h-auto max-h-[7rem] overflow-y-auto gap-2 z-10000">
+              {services.map((i) => (
+                <li
+                  className="px-3 w-full py-4 font-semibold text-xs cursor-pointer text-text hover:bg-gray-100 shadow-sm"
+                  onClick={() => {
+                    if (!currentServices.includes(i)) {
+                      dispatch(setReduxServices([...currentServices, i]));
+                      console.log(i);
+                      setCurrentSearch("");
+                    }
+                  }}
+                >
+                  {i}
+                </li>
+              ))}
+            </ul>
+          ) : null}
+          <ul className="w-full h-[6rem] border-dashed border-2 border-t-0 rounded-lg flex gap-2 pt-3 flex-wrap items-start px-2 overflow-y-auto py-3">
+            {currentServices.map((tag) => (
+              <motion.li
+                initial={{ scale: 0, opacity: 0 }}
+                whileInView={{ scale: 1, opacity: 1 }}
+                transition={{ ease: "easeOut", duration: 0.2, delay: 0.2 }}
+                className="text-primary bg-tertiary w-auto text-xs h-auto px-2 py-2 rounded-md font-bold"
+                key={tag}
                 onClick={() => {
-                  if (!currentServices.includes(i)) {
-                    dispatch(setReduxServices([...currentServices, i]));
-                    console.log(i);
-                    setCurrentSearch("");
-                  }
+                  dispatch(
+                    setReduxServices(currentServices.filter((i) => i !== tag))
+                  );
                 }}
               >
-                {i}
-              </li>
+                {tag}
+              </motion.li>
             ))}
           </ul>
-        ) : null}
-        <ul className="w-full h-[6rem] border-dashed border-2 border-t-0 rounded-lg flex gap-2 pt-3 flex-wrap items-start px-2 overflow-y-auto py-3">
-          {currentServices.map((tag) => (
-            <motion.li
-              initial={{ scale: 0, opacity: 0 }}
-              whileInView={{ scale: 1, opacity: 1 }}
-              transition={{ ease: "easeOut", duration: 0.2, delay: 0.2 }}
-              className="text-primary bg-tertiary w-auto text-xs h-auto px-2 py-2 rounded-md font-bold"
-              key={tag}
-              onClick={() => {
-                dispatch(
-                  setReduxServices(currentServices.filter((i) => i !== tag))
-                );
-              }}
-            >
-              {tag}
-            </motion.li>
-          ))}
-        </ul>
-      </div>
-      <div className="w-full h-[9rem] relative">
-        <Input
-          crossOrigin={undefined}
-          type="email"
-          placeholder="Select services"
-          className="!border !border-gray-300 bg-white text-gray-900 shadow-lg shadow-gray-900/5 ring-4 ring-transparent placeholder:text-gray-500 placeholder:opacity-100 focus:!border-gray-900 focus:!border-t-gray-900 focus:ring-gray-900/10"
-          labelProps={{
-            className: "hidden",
-          }}
-          value={skillSearch}
-          containerProps={{ className: "min-w-[100px]" }}
-          onFocus={() => {
-            clearTimeout(inteval);
-            setSkillFocus(true);
-          }}
-          onBlur={() => {
-            inteval = setTimeout(function () {
-              setSkillFocus(false);
-            }, 300);
-          }}
-          onChange={handleSkillSearch}
-        />
-        {skillFocus ? (
-          <ul className="absolute  py-3 bg-white w-full shadow-lg rounded-b-xl h-auto max-h-[7rem] overflow-y-auto gap-2 z-10000">
-            {skills.map((i) => (
-              <li
-                className="px-3 w-full py-4 font-semibold text-xs cursor-pointer text-text hover:bg-gray-100 shadow-sm"
+        </div>
+        <div className="w-full h-[9rem] relative">
+          <Input
+            crossOrigin={undefined}
+            type="email"
+            size="lg"
+            placeholder="Select services"
+            className="!border !border-gray-300 bg-white text-gray-900 shadow-lg shadow-gray-900/5 ring-4 ring-transparent placeholder:text-gray-500 placeholder:opacity-100 focus:!border-gray-900 focus:!border-t-gray-900 focus:ring-gray-900/10"
+            labelProps={{
+              className: "hidden",
+            }}
+            value={skillSearch}
+            containerProps={{ className: "min-w-[100px]" }}
+            onFocus={() => {
+              clearTimeout(inteval);
+              setSkillFocus(true);
+            }}
+            onBlur={() => {
+              inteval = setTimeout(function () {
+                setSkillFocus(false);
+              }, 300);
+            }}
+            onChange={handleSkillSearch}
+          />
+          {skillFocus ? (
+            <ul className="absolute  py-3 bg-white w-full shadow-lg rounded-b-xl h-auto max-h-[7rem] overflow-y-auto gap-2 z-10000">
+              {skills.map((i) => (
+                <li
+                  className="px-3 w-full py-4 font-semibold text-xs cursor-pointer text-text hover:bg-gray-100 shadow-sm"
+                  onClick={() => {
+                    if (!currentServices.includes(i)) {
+                      dispatch(setReduxSkills([...currentSkills, i]));
+                      console.log(i);
+                      setSkillSearch("");
+                    }
+                  }}
+                >
+                  {i}
+                </li>
+              ))}
+            </ul>
+          ) : null}
+          <ul className="w-full h-[6rem] border-dashed border-2 border-t-0 rounded-lg flex gap-2 pt-3 flex-wrap items-start px-2 overflow-y-auto py-3">
+            {currentSkills.map((tag) => (
+              <motion.li
+                initial={{ scale: 0, opacity: 0 }}
+                whileInView={{ scale: 1, opacity: 1 }}
+                transition={{ ease: "easeOut", duration: 0.2, delay: 0.2 }}
+                className="bg-secondary text-text w-auto text-xs h-auto px-2 py-2 rounded-md font-bold"
+                key={tag}
                 onClick={() => {
-                  if (!currentServices.includes(i)) {
-                    dispatch(setReduxSkills([...currentSkills, i]));
-                    console.log(i);
-                    setSkillSearch("");
-                  }
+                  dispatch(
+                    setReduxSkills(currentSkills.filter((i) => i !== tag))
+                  );
                 }}
               >
-                {i}
-              </li>
+                {tag}
+              </motion.li>
             ))}
           </ul>
-        ) : null}
-        <ul className="w-full h-[6rem] border-dashed border-2 border-t-0 rounded-lg flex gap-2 pt-3 flex-wrap items-start px-2 overflow-y-auto py-3">
-          {currentSkills.map((tag) => (
-            <motion.li
-              initial={{ scale: 0, opacity: 0 }}
-              whileInView={{ scale: 1, opacity: 1 }}
-              transition={{ ease: "easeOut", duration: 0.2, delay: 0.2 }}
-              className="bg-secondary text-text w-auto text-xs h-auto px-2 py-2 rounded-md font-bold"
-              key={tag}
-              onClick={() => {
-                dispatch(
-                  setReduxSkills(currentSkills.filter((i) => i !== tag))
-                );
-              }}
-            >
-              {tag}
-            </motion.li>
-          ))}
-        </ul>
+        </div>
       </div>
       <div className="flex justify-between w-full mt-auto pt-4">
         <Button
-          className="flex bg-gray-400 min-w-[8rem] items-center justify-center"
+          className="flex bg-gray-400 w-[10rem] items-center justify-center"
+          size="lg"
           placeholder={undefined}
           onClick={movePrevious}
         >
           <FaArrowLeft /> Previous
         </Button>
         <Button
-          className="flex bg-primary min-w-[8rem] items-center justify-center"
+          className="flex bg-primary w-[10rem] items-center justify-center"
+          size="lg"
           placeholder={undefined}
           onClick={moveNext}
         >
@@ -565,47 +587,54 @@ function StepThree({ moveNext, movePrevious }: IStep) {
       transition={{ ease: "easeOut", duration: 0.2 }}
       className="w-full flex flex-col items-center gap-4 h-full "
     >
-      <p className="font-bold self-start">
-        Which <span className="text-secondary font-bold">areas </span> do you
-        want your providers to be active in?
-      </p>
-      <Input
-        crossOrigin={undefined}
-        type="email"
-        placeholder="Find a location (city, region or country)"
-        className="!border !border-gray-300 bg-white text-gray-900 shadow-lg shadow-gray-900/5 ring-4 ring-transparent placeholder:text-gray-500 placeholder:opacity-100 focus:!border-gray-900 focus:!border-t-gray-900 focus:ring-gray-900/10"
-        labelProps={{
-          className: "hidden",
-        }}
-        value={location}
-        onChange={(e) => dispatch(setLocation(e.target.value))}
-        containerProps={{ className: "min-w-[100px]" }}
-      />
-      <div className="flex items-center self-start">
-        <Checkbox
-          defaultChecked
+      <div className="w-full min-h-[40vh] flex flex-col items-center gap-4 ">
+        <Typography
+          variant="h5"
           placeholder={undefined}
+          className="text-left self-start"
+        >
+          Which <span className="text-secondary font-bold">areas </span> do you
+          want your providers to be active in?
+        </Typography>
+        <Input
           crossOrigin={undefined}
-          checked={checked}
-          onChange={(e) => {
-            dispatch(setLocalization(!e.target.checked));
-            setChecked(e.target.checked);
+          type="email"
+          size="lg"
+          placeholder="Find a location (city, region or country)"
+          className="!border !border-gray-300 bg-white text-gray-900 shadow-lg shadow-gray-900/5 ring-4 ring-transparent placeholder:text-gray-500 placeholder:opacity-100 focus:!border-gray-900 focus:!border-t-gray-900 focus:ring-gray-900/10"
+          labelProps={{
+            className: "hidden",
           }}
+          value={location}
+          onChange={(e) => dispatch(setLocation(e.target.value))}
+          containerProps={{ className: "min-w-[100px]" }}
         />
-        <Label htmlFor="check" className="text-xs">
-          My agencies must have at least one office in this location.
-        </Label>
+        <div className="flex items-center self-start">
+          <Checkbox
+            defaultChecked
+            placeholder={undefined}
+            crossOrigin={undefined}
+            checked={checked}
+            onChange={(e) => {
+              dispatch(setLocalization(!e.target.checked));
+              setChecked(e.target.checked);
+            }}
+          />
+          <Label htmlFor="check" className="text-xs">
+            My agencies must have at least one office in this location.
+          </Label>
+        </div>
       </div>
-      <div className="flex justify-between w-full mt-[3rem] pt-4">
+      <div className="flex justify-between w-full mt-auto pt-4">
         <Button
-          className="flex bg-gray-400 min-w-[8rem] items-center justify-center"
+          className="flex bg-gray-400 w-[10rem] items-center justify-center"
           placeholder={undefined}
           onClick={movePrevious}
         >
           <FaArrowLeft /> Previous
         </Button>
         <Button
-          className="flex bg-primary min-w-[8rem] items-center justify-center"
+          className="flex bg-primary w-[10rem] items-center justify-center"
           placeholder={undefined}
           onClick={moveNext}
         >
@@ -661,82 +690,90 @@ function StepFour({ moveNext, movePrevious }: IStep) {
       transition={{ ease: "easeOut", duration: 0.2 }}
       className="w-full flex flex-col items-center gap-4 h-full "
     >
-      <p className="font-bold self-start">
-        In which <span className="text-secondary font-bold">language(s) </span>{" "}
-        do you want to use with your agencies?
-      </p>
-      <div className="w-full grid">
-        <div className="w-full h-[2rem] relative">
-          <Input
-            crossOrigin={undefined}
-            type="email"
-            placeholder="Select Languages"
-            className="!border !border-gray-300 bg-white text-gray-900 shadow-lg shadow-gray-900/5 ring-4 ring-transparent placeholder:text-gray-500 placeholder:opacity-100 focus:!border-gray-900 focus:!border-t-gray-900 focus:ring-gray-900/10"
-            labelProps={{
-              className: "hidden",
-            }}
-            value={currentSearch}
-            containerProps={{ className: "min-w-[100px]" }}
-            onFocus={() => {
-              clearTimeout(inteval);
-              setFocus(true);
-            }}
-            onBlur={() => {
-              inteval = setTimeout(function () {
-                setFocus(false);
-              }, 300);
-            }}
-            onChange={handleSearch}
-          />
-          {focus ? (
-            <ul className="absolute  py-3 bg-white w-full shadow-lg rounded-b-xl h-auto max-h-[7rem] overflow-y-auto gap-2 z-10000">
-              {languages.map((i) => (
-                <li
-                  className="px-3 w-full py-4 font-semibold text-xs cursor-pointer text-text hover:bg-gray-100 shadow-sm"
-                  onClick={() => {
-                    if (!currentLanguage.includes(i)) {
-                      dispatch(setLanguages([...currentLanguage, i]));
-                      console.log(i);
-                      setCurrentSearch("");
-                    }
-                  }}
-                >
-                  {i}
-                </li>
-              ))}
-            </ul>
-          ) : null}
-        </div>
-        <ul className="w-full h-[6rem] border-dashed border-2 border-t-0 rounded-lg flex gap-2 pt-3 flex-wrap items-start px-2 overflow-y-auto py-3">
-          {currentLanguage.map((language) => (
-            <motion.li
-              initial={{ scale: 0 }}
-              whileInView={{ scale: 1 }}
-              transition={{ ease: "easeOut", duration: 0.2, delay: 0.2 }}
-              className="text-primary bg-tertiary w-auto text-xs h-auto px-2 py-2 rounded-md font-bold"
-              key={language}
-              onClick={() => {
-                dispatch(
-                  setLanguages(currentLanguage.filter((i) => i !== language))
-                );
+      <div className="w-full min-h-[40vh] flex flex-col items-center gap-4 ">
+        <Typography
+          variant="h5"
+          placeholder={undefined}
+          className="text-left self-start"
+        >
+          In which{" "}
+          <span className="text-secondary font-bold">language(s) </span> do you
+          want to use with your agencies?
+        </Typography>
+        <div className="w-full grid">
+          <div className="w-full h-[2rem] relative">
+            <Input
+              crossOrigin={undefined}
+              type="email"
+              size="lg"
+              placeholder="Select Languages"
+              className="!border !border-gray-300 bg-white text-gray-900 shadow-lg shadow-gray-900/5 ring-4 ring-transparent placeholder:text-gray-500 placeholder:opacity-100 focus:!border-gray-900 focus:!border-t-gray-900 focus:ring-gray-900/10"
+              labelProps={{
+                className: "hidden",
               }}
-            >
-              {language}
-            </motion.li>
-          ))}
-        </ul>
+              value={currentSearch}
+              containerProps={{ className: "min-w-[100px]" }}
+              onFocus={() => {
+                clearTimeout(inteval);
+                setFocus(true);
+              }}
+              onBlur={() => {
+                inteval = setTimeout(function () {
+                  setFocus(false);
+                }, 300);
+              }}
+              onChange={handleSearch}
+            />
+            {focus ? (
+              <ul className="absolute  py-3 bg-white w-full shadow-lg rounded-b-xl h-auto max-h-[7rem] overflow-y-auto gap-2 z-10000">
+                {languages.map((i) => (
+                  <li
+                    className="px-3 w-full py-4 font-semibold text-xs cursor-pointer text-text hover:bg-gray-100 shadow-sm"
+                    onClick={() => {
+                      if (!currentLanguage.includes(i)) {
+                        dispatch(setLanguages([...currentLanguage, i]));
+                        console.log(i);
+                        setCurrentSearch("");
+                      }
+                    }}
+                  >
+                    {i}
+                  </li>
+                ))}
+              </ul>
+            ) : null}
+          </div>
+          <ul className="w-full h-[6rem] border-dashed border-2 border-t-0 rounded-lg flex gap-2 pt-3 flex-wrap items-start px-2 overflow-y-auto py-3">
+            {currentLanguage.map((language) => (
+              <motion.li
+                initial={{ scale: 0 }}
+                whileInView={{ scale: 1 }}
+                transition={{ ease: "easeOut", duration: 0.2, delay: 0.2 }}
+                className="text-primary bg-tertiary w-auto text-xs h-auto px-2 py-2 rounded-md font-bold"
+                key={language}
+                onClick={() => {
+                  dispatch(
+                    setLanguages(currentLanguage.filter((i) => i !== language))
+                  );
+                }}
+              >
+                {language}
+              </motion.li>
+            ))}
+          </ul>
+        </div>
       </div>
 
       <div className="flex justify-between w-full mt-auto pt-4">
         <Button
-          className="flex bg-gray-400 min-w-[8rem] items-center justify-center"
+          className="flex bg-gray-400 w-[10rem] items-center justify-center"
           placeholder={undefined}
           onClick={movePrevious}
         >
           <FaArrowLeft /> Previous
         </Button>
         <Button
-          className="flex bg-primary min-w-[8rem] items-center justify-center"
+          className="flex bg-primary w-[10rem] items-center justify-center"
           placeholder={undefined}
           onClick={moveNext}
         >
@@ -758,37 +795,43 @@ function StepFive({ moveNext, movePrevious }: IStep) {
       transition={{ ease: "easeOut", duration: 0.2 }}
       className="w-full flex flex-col items-center gap-4 h-full "
     >
-      <p className="font-bold self-start">
-        What is the <span className="text-secondary font-bold">name </span>of
-        your business?
-      </p>
-      <p className="text-xs">
-        This information will only be shown to agencies once their project
-        proposal have been by accepted you via Post Your Project feature.{" "}
-      </p>
-      <Input
-        crossOrigin={undefined}
-        type="email"
-        placeholder="Your company name..."
-        className="!border !border-gray-300 bg-white text-gray-900 shadow-lg shadow-gray-900/5 ring-4 ring-transparent placeholder:text-gray-500 placeholder:opacity-100 focus:!border-gray-900 focus:!border-t-gray-900 focus:ring-gray-900/10"
-        labelProps={{
-          className: "hidden",
-        }}
-        value={companyName}
-        onChange={(e) => dispatch(setCompanyName(e.target.value))}
-        containerProps={{ className: "min-w-[100px]" }}
-      />
-
-      <div className="flex justify-between w-full mt-[3rem] pt-4">
+      <div className="w-full min-h-[40vh] flex flex-col items-center gap-4 ">
+        <Typography
+          variant="h5"
+          placeholder={undefined}
+          className="text-left self-start"
+        >
+          What is the <span className="text-secondary font-bold">name </span>of
+          your business?
+        </Typography>
+        <p className="text-xs">
+          This information will only be shown to agencies once their project
+          proposal have been by accepted you via Post Your Project feature.{" "}
+        </p>
+        <Input
+          crossOrigin={undefined}
+          type="email"
+          size="lg"
+          placeholder="Your company name..."
+          className="!border !border-gray-300 bg-white text-gray-900 shadow-lg shadow-gray-900/5 ring-4 ring-transparent placeholder:text-gray-500 placeholder:opacity-100 focus:!border-gray-900 focus:!border-t-gray-900 focus:ring-gray-900/10"
+          labelProps={{
+            className: "hidden",
+          }}
+          value={companyName}
+          onChange={(e) => dispatch(setCompanyName(e.target.value))}
+          containerProps={{ className: "min-w-[100px]" }}
+        />
+      </div>
+      <div className="flex justify-between w-full mt-auto pt-4">
         <Button
-          className="flex bg-gray-400 min-w-[8rem] items-center justify-center"
+          className="flex bg-gray-400 w-[10rem] items-center justify-center"
           placeholder={undefined}
           onClick={movePrevious}
         >
           <FaArrowLeft /> Previous
         </Button>
         <Button
-          className="flex bg-primary min-w-[8rem] items-center justify-center"
+          className="flex bg-primary w-[10rem] items-center justify-center  mt-auto"
           placeholder={undefined}
           onClick={moveNext}
         >
@@ -814,158 +857,164 @@ function StepSix({ moveNext, movePrevious }: IStep) {
       transition={{ ease: "easeOut", duration: 0.2 }}
       className="w-full flex flex-col items-center gap-4 h-full "
     >
-      <p className="font-bold self-start">
-        What is the <span className="text-secondary font-bold">size </span> of
-        your business?
-      </p>
-      <div className="grid gap-2 w-full">
-        <Radio
-          crossOrigin={undefined}
-          name="type"
-          label={
-            <Typography
-              placeholder={undefined}
-              color="blue-gray"
-              className="font-normal text-blue-gray-400 text-sm"
-            >
-              1 person
-            </Typography>
-          }
-          onChange={onChangeCompanySize}
-          className="text-xs"
-          value="1 person"
-          checked={companySize === "1 person"}
-        />
-        <Radio
-          crossOrigin={undefined}
-          name="type"
-          label={
-            <Typography
-              placeholder={undefined}
-              color="blue-gray"
-              className="font-normal text-blue-gray-400 text-sm"
-            >
-              2-10 people
-            </Typography>
-          }
-          className="text-xs"
-          value="2-10 people"
-          onChange={onChangeCompanySize}
-          checked={companySize === "2-10 people"}
-        />
-        <Radio
-          crossOrigin={undefined}
-          name="type"
-          label={
-            <Typography
-              placeholder={undefined}
-              color="blue-gray"
-              className="font-normal text-blue-gray-400 text-sm"
-            >
-              11-50 people
-            </Typography>
-          }
-          value="11-50 people"
-          className="text-xs"
-          onChange={onChangeCompanySize}
-          checked={companySize === "11-50 people"}
-        />
-        <Radio
-          crossOrigin={undefined}
-          name="type"
-          label={
-            <Typography
-              placeholder={undefined}
-              color="blue-gray"
-              className="font-normal text-blue-gray-400 text-sm"
-            >
-              51-100 people
-            </Typography>
-          }
-          value="51-100 people"
-          className="text-xs"
-          onChange={onChangeCompanySize}
-          checked={companySize === "51-100 people"}
-        />
-        <Radio
-          crossOrigin={undefined}
-          name="type"
-          label={
-            <Typography
-              placeholder={undefined}
-              color="blue-gray"
-              className="font-normal text-blue-gray-400 text-sm"
-            >
-              101-500 people
-            </Typography>
-          }
-          value="101-500 people"
-          className="text-xs"
-          onChange={onChangeCompanySize}
-          checked={companySize === "101-500 people"}
-        />
-        <Radio
-          crossOrigin={undefined}
-          name="type"
-          label={
-            <Typography
-              placeholder={undefined}
-              color="blue-gray"
-              className="font-normal text-blue-gray-400 text-sm"
-            >
-              501-1000 people
-            </Typography>
-          }
-          checked={companySize === "501-1000 people"}
-          value="501-1000 people"
-          className="text-xs"
-          onChange={onChangeCompanySize}
-        />
-        <Radio
-          crossOrigin={undefined}
-          name="type"
-          label={
-            <Typography
-              placeholder={undefined}
-              color="blue-gray"
-              className="font-normal text-blue-gray-400 text-sm"
-            >
-              1001-5000 people
-            </Typography>
-          }
-          value="1001-5000 people"
-          className="text-xs"
-          onChange={onChangeCompanySize}
-          checked={companySize === "1001-5000 people"}
-        />
-        <Radio
-          crossOrigin={undefined}
-          name="type"
-          label={
-            <Typography
-              placeholder={undefined}
-              color="blue-gray"
-              className="font-normal text-blue-gray-400 text-sm"
-            >
-              More than 5000 people
-            </Typography>
-          }
-          value="More than 5000 people"
-          className="text-xs"
-          onChange={onChangeCompanySize}
-          checked={companySize === "More than 5000 people"}
-        />
+      <div className="w-full min-h-[40vh] flex flex-col items-center gap-4 ">
+        <Typography
+          variant="h5"
+          placeholder={undefined}
+          className="text-left self-start"
+        >
+          What is the <span className="text-secondary font-bold">size </span> of
+          your business?
+        </Typography>
+        <div className="grid gap-2 w-full">
+          <Radio
+            crossOrigin={undefined}
+            name="type"
+            label={
+              <Typography
+                placeholder={undefined}
+                color="blue-gray"
+                className="font-normal text-blue-gray-400 text-sm"
+              >
+                1 person
+              </Typography>
+            }
+            onChange={onChangeCompanySize}
+            className="text-xs"
+            value="1 person"
+            checked={companySize === "1 person"}
+          />
+          <Radio
+            crossOrigin={undefined}
+            name="type"
+            label={
+              <Typography
+                placeholder={undefined}
+                color="blue-gray"
+                className="font-normal text-blue-gray-400 text-sm"
+              >
+                2-10 people
+              </Typography>
+            }
+            className="text-xs"
+            value="2-10 people"
+            onChange={onChangeCompanySize}
+            checked={companySize === "2-10 people"}
+          />
+          <Radio
+            crossOrigin={undefined}
+            name="type"
+            label={
+              <Typography
+                placeholder={undefined}
+                color="blue-gray"
+                className="font-normal text-blue-gray-400 text-sm"
+              >
+                11-50 people
+              </Typography>
+            }
+            value="11-50 people"
+            className="text-xs"
+            onChange={onChangeCompanySize}
+            checked={companySize === "11-50 people"}
+          />
+          <Radio
+            crossOrigin={undefined}
+            name="type"
+            label={
+              <Typography
+                placeholder={undefined}
+                color="blue-gray"
+                className="font-normal text-blue-gray-400 text-sm"
+              >
+                51-100 people
+              </Typography>
+            }
+            value="51-100 people"
+            className="text-xs"
+            onChange={onChangeCompanySize}
+            checked={companySize === "51-100 people"}
+          />
+          <Radio
+            crossOrigin={undefined}
+            name="type"
+            label={
+              <Typography
+                placeholder={undefined}
+                color="blue-gray"
+                className="font-normal text-blue-gray-400 text-sm"
+              >
+                101-500 people
+              </Typography>
+            }
+            value="101-500 people"
+            className="text-xs"
+            onChange={onChangeCompanySize}
+            checked={companySize === "101-500 people"}
+          />
+          <Radio
+            crossOrigin={undefined}
+            name="type"
+            label={
+              <Typography
+                placeholder={undefined}
+                color="blue-gray"
+                className="font-normal text-blue-gray-400 text-sm"
+              >
+                501-1000 people
+              </Typography>
+            }
+            checked={companySize === "501-1000 people"}
+            value="501-1000 people"
+            className="text-xs"
+            onChange={onChangeCompanySize}
+          />
+          <Radio
+            crossOrigin={undefined}
+            name="type"
+            label={
+              <Typography
+                placeholder={undefined}
+                color="blue-gray"
+                className="font-normal text-blue-gray-400 text-sm"
+              >
+                1001-5000 people
+              </Typography>
+            }
+            value="1001-5000 people"
+            className="text-xs"
+            onChange={onChangeCompanySize}
+            checked={companySize === "1001-5000 people"}
+          />
+          <Radio
+            crossOrigin={undefined}
+            name="type"
+            label={
+              <Typography
+                placeholder={undefined}
+                color="blue-gray"
+                className="font-normal text-blue-gray-400 text-sm"
+              >
+                More than 5000 people
+              </Typography>
+            }
+            value="More than 5000 people"
+            className="text-xs"
+            onChange={onChangeCompanySize}
+            checked={companySize === "More than 5000 people"}
+          />
+        </div>
       </div>
       <div className="flex justify-between w-full mt-auto pt-4">
         <Button
-          className="flex bg-gray-400 min-w-[8rem] items-center justify-center"
+          className="flex bg-gray-400 w-[10rem] items-center justify-center"
           placeholder={undefined}
           onClick={movePrevious}
         >
           <FaArrowLeft /> Previous
         </Button>
         <Button
-          className="flex bg-primary min-w-[8rem] items-center justify-center"
+          className="flex bg-primary w-[10rem] items-center justify-center"
           placeholder={undefined}
           onClick={moveNext}
         >
@@ -989,37 +1038,43 @@ function StepSeven({ moveNext, movePrevious }: IStep) {
       transition={{ ease: "easeOut", duration: 0.2 }}
       className="w-full flex flex-col items-center gap-4 h-full "
     >
-      <p className="font-bold self-start">
-        What is your company’s{" "}
-        <span className="text-secondary font-bold">industry? </span>
-      </p>
+      <div className="w-full min-h-[40vh] flex flex-col items-center gap-4 ">
+        <Typography
+          variant="h5"
+          placeholder={undefined}
+          className="text-left self-start"
+        >
+          What is your company’s{" "}
+          <span className="text-secondary font-bold">industry? </span>
+        </Typography>
 
-      <Select
-        placeholder={undefined}
-        label="Select Version"
-        onChange={(v) => {
-          dispatch(setIndustry(v));
-        }}
-        value={industry}
-        defaultValue={industry}
-      >
-        <Option value="Marketing">Marketing</Option>
-        <Option value="Information Technology">Information Technology</Option>
-        <Option value="Finance">Finance</Option>
-        <Option value="Graphic design">Graphic design</Option>
-        <Option value="Manufacture">Manufacture</Option>
-      </Select>
-
-      <div className="flex justify-between w-full mt-[5rem] pt-4">
+        <Select
+          size="lg"
+          placeholder={undefined}
+          label="Select Industry"
+          onChange={(v) => {
+            dispatch(setIndustry(v));
+          }}
+          value={industry}
+          defaultValue={industry}
+        >
+          <Option value="Marketing">Marketing</Option>
+          <Option value="Information Technology">Information Technology</Option>
+          <Option value="Finance">Finance</Option>
+          <Option value="Graphic design">Graphic design</Option>
+          <Option value="Manufacture">Manufacture</Option>
+        </Select>
+      </div>
+      <div className="flex justify-between w-full pt-4 mt-auto">
         <Button
-          className="flex bg-gray-400 min-w-[8rem] items-center justify-center"
+          className="flex bg-gray-400 w-[10rem] items-center justify-center"
           placeholder={undefined}
           onClick={movePrevious}
         >
           <FaArrowLeft /> Previous
         </Button>
         <Button
-          className="flex bg-primary min-w-[8rem] items-center justify-center"
+          className="flex bg-primary w-[10rem] items-center justify-center"
           placeholder={undefined}
           onClick={moveNext}
         >
@@ -1042,37 +1097,43 @@ function StepEight({ moveNext, movePrevious }: IStep) {
       transition={{ ease: "easeOut", duration: 0.2 }}
       className="w-full flex flex-col items-center gap-4  h-full"
     >
-      <p className="font-bold self-start">
-        Where is your company’s{" "}
-        <span className="text-secondary font-bold">office? </span>
-      </p>
-      <p className="text-xs">
-        This information will only be shown to agencies once their project
-        proposal have been by accepted you via Post Your Project feature.{" "}
-      </p>
-      <Input
-        crossOrigin={undefined}
-        type="email"
-        placeholder="Company location"
-        className="!border !border-gray-300 bg-white text-gray-900 shadow-lg shadow-gray-900/5 ring-4 ring-transparent placeholder:text-gray-500 placeholder:opacity-100 focus:!border-gray-900 focus:!border-t-gray-900 focus:ring-gray-900/10"
-        labelProps={{
-          className: "hidden",
-        }}
-        value={companyLocation}
-        onChange={(e) => dispatch(setCompanyLocation(e.target.value))}
-        containerProps={{ className: "min-w-[100px]" }}
-      />
-
-      <div className="flex justify-between w-full mt-[3rem] pt-4">
+      <div className="w-full min-h-[40vh] flex flex-col items-center gap-4 ">
+        <Typography
+          variant="h5"
+          placeholder={undefined}
+          className="text-left self-start"
+        >
+          Where is your company’s{" "}
+          <span className="text-secondary font-bold">office? </span>
+        </Typography>
+        <p className="text-xs">
+          This information will only be shown to agencies once their project
+          proposal have been by accepted you via Post Your Project feature.{" "}
+        </p>
+        <Input
+          crossOrigin={undefined}
+          type="email"
+          size="lg"
+          placeholder="Company location"
+          className="!border !border-gray-300 bg-white text-gray-900 shadow-lg shadow-gray-900/5 ring-4 ring-transparent placeholder:text-gray-500 placeholder:opacity-100 focus:!border-gray-900 focus:!border-t-gray-900 focus:ring-gray-900/10"
+          labelProps={{
+            className: "hidden",
+          }}
+          value={companyLocation}
+          onChange={(e) => dispatch(setCompanyLocation(e.target.value))}
+          containerProps={{ className: "min-w-[100px]" }}
+        />
+      </div>
+      <div className="flex justify-between w-full pt-4 mt-auto">
         <Button
-          className="flex bg-gray-400 min-w-[8rem] items-center justify-center"
+          className="flex bg-gray-400 w-[10rem] items-center justify-center"
           placeholder={undefined}
           onClick={movePrevious}
         >
           <FaArrowLeft /> Previous
         </Button>
         <Button
-          className="flex bg-primary min-w-[8rem] items-center justify-center"
+          className="flex bg-primary w-[10rem] items-center justify-center"
           placeholder={undefined}
           onClick={moveNext}
         >
@@ -1097,174 +1158,178 @@ function StepNine({ moveNext, movePrevious }: IStep) {
       transition={{ ease: "easeOut", duration: 0.2 }}
       className="w-full flex flex-col items-center gap-4 h-full"
     >
-      <p className="font-bold self-start">
-        What is your <span className="text-secondary font-bold">position </span>{" "}
-        of your <span className="text-secondary font-bold">company?</span>
-      </p>
-      <div className="grid gap-2 w-full">
-        <Radio
-          crossOrigin={undefined}
-          name="type"
-          label={
-            <Typography
-              placeholder={undefined}
-              color="blue-gray"
-              className="font-normal text-blue-gray-400 text-sm"
-            >
-              CEO / Business Owner
-            </Typography>
-          }
-          className="text-xs"
-          onChange={onChangeCompanySize}
-          value="CEO / Business Owner"
-          checked={position === "CEO / Business Owner"}
-        />
-        <Radio
-          crossOrigin={undefined}
-          name="type"
-          label={
-            <Typography
-              placeholder={undefined}
-              color="blue-gray"
-              className="font-normal text-blue-gray-400 text-sm"
-            >
-              CMO / Marketing Director
-            </Typography>
-          }
-          value="CMO / Marketing Director"
-          className="text-xs"
-          onChange={onChangeCompanySize}
-          checked={position === "CMO / Marketing Director"}
-        />
-        <Radio
-          crossOrigin={undefined}
-          name="type"
-          label={
-            <Typography
-              placeholder={undefined}
-              color="blue-gray"
-              className="font-normal text-blue-gray-400 text-sm"
-            >
-              Marketing Manager / Brand Manager
-            </Typography>
-          }
-          onChange={onChangeCompanySize}
-          checked={position === "Marketing Manager / Brand Manager"}
-          className="text-xs"
-          value="Marketing Manager / Brand Manager"
-        />
-        <Radio
-          crossOrigin={undefined}
-          name="type"
-          label={
-            <Typography
-              placeholder={undefined}
-              color="blue-gray"
-              className="font-normal text-blue-gray-400 text-sm"
-            >
-              Consultant
-            </Typography>
-          }
-          onChange={onChangeCompanySize}
-          checked={position === "Consultant"}
-          className="text-xs"
-          value="Consultant"
-        />
-        <Radio
-          crossOrigin={undefined}
-          name="type"
-          label={
-            <Typography
-              placeholder={undefined}
-              color="blue-gray"
-              className="font-normal text-blue-gray-400 text-sm"
-            >
-              Procurement Manager / Purchasing Manager
-            </Typography>
-          }
-          className="text-xs"
-          onChange={onChangeCompanySize}
-          checked={position === "Procurement Manager / Purchasing Manager"}
-          value="Procurement Manager / Purchasing Manager"
-        />
-        <Radio
-          crossOrigin={undefined}
-          name="type"
-          label={
-            <Typography
-              placeholder={undefined}
-              color="blue-gray"
-              className="font-normal text-blue-gray-400 text-sm"
-            >
-              Marketing Executive / Sales Executive
-            </Typography>
-          }
-          className="text-xs"
-          onChange={onChangeCompanySize}
-          checked={position === "Marketing Executive / Sales Executive"}
-        />
-        <Radio
-          crossOrigin={undefined}
-          name="type"
-          label={
-            <Typography
-              placeholder={undefined}
-              color="blue-gray"
-              className="font-normal text-blue-gray-400 text-sm"
-            >
-              Sales Representative / Business Developer
-            </Typography>
-          }
-          className="text-xs"
-          onChange={onChangeCompanySize}
-          value="Sales Representative / Business Developer"
-          checked={position === "Sales Representative / Business Developer"}
-        />
-        <Radio
-          crossOrigin={undefined}
-          name="type"
-          label={
-            <Typography
-              placeholder={undefined}
-              color="blue-gray"
-              className="font-normal text-blue-gray-400 text-sm"
-            >
-              Intern
-            </Typography>
-          }
-          className="text-xs"
-          onChange={onChangeCompanySize}
-          checked={position === "Intern"}
-          value="Intern"
-        />
-        <Radio
-          crossOrigin={undefined}
-          name="type"
-          label={
-            <Input
-              crossOrigin={undefined}
-              type="email"
-              placeholder="Other"
-              className="!border !border-gray-300 bg-white text-gray-900 shadow-lg shadow-gray-900/5 ring-4 ring-transparent placeholder:text-gray-500 placeholder:opacity-100 focus:!border-gray-900 focus:!border-t-gray-900 focus:ring-gray-900/10"
-              labelProps={{
-                className: "hidden",
-              }}
-              containerProps={{ className: "min-w-[100px]" }}
-            />
-          }
-          className="text-xs"
-        />
+      <div className="w-full min-h-[40vh] flex flex-col items-center gap-4 ">
+        <Typography
+          variant="h5"
+          placeholder={undefined}
+          className="text-left self-start"
+        >
+          What is your{" "}
+          <span className="text-secondary font-bold">position </span> of your{" "}
+          <span className="text-secondary font-bold">company?</span>
+        </Typography>
+        <div className="grid gap-2 w-full">
+          <Radio
+            crossOrigin={undefined}
+            name="type"
+            label={
+              <Typography
+                placeholder={undefined}
+                color="blue-gray"
+                className="font-normal text-blue-gray-400 text-sm"
+              >
+                CEO / Business Owner
+              </Typography>
+            }
+            className="text-xs"
+            onChange={onChangeCompanySize}
+            value="CEO / Business Owner"
+            checked={position === "CEO / Business Owner"}
+          />
+          <Radio
+            crossOrigin={undefined}
+            name="type"
+            label={
+              <Typography
+                placeholder={undefined}
+                color="blue-gray"
+                className="font-normal text-blue-gray-400 text-sm"
+              >
+                CMO / Marketing Director
+              </Typography>
+            }
+            value="CMO / Marketing Director"
+            className="text-xs"
+            onChange={onChangeCompanySize}
+            checked={position === "CMO / Marketing Director"}
+          />
+          <Radio
+            crossOrigin={undefined}
+            name="type"
+            label={
+              <Typography
+                placeholder={undefined}
+                color="blue-gray"
+                className="font-normal text-blue-gray-400 text-sm"
+              >
+                Marketing Manager / Brand Manager
+              </Typography>
+            }
+            onChange={onChangeCompanySize}
+            checked={position === "Marketing Manager / Brand Manager"}
+            className="text-xs"
+            value="Marketing Manager / Brand Manager"
+          />
+          <Radio
+            crossOrigin={undefined}
+            name="type"
+            label={
+              <Typography
+                placeholder={undefined}
+                color="blue-gray"
+                className="font-normal text-blue-gray-400 text-sm"
+              >
+                Consultant
+              </Typography>
+            }
+            onChange={onChangeCompanySize}
+            checked={position === "Consultant"}
+            className="text-xs"
+            value="Consultant"
+          />
+          <Radio
+            crossOrigin={undefined}
+            name="type"
+            label={
+              <Typography
+                placeholder={undefined}
+                color="blue-gray"
+                className="font-normal text-blue-gray-400 text-sm"
+              >
+                Procurement Manager / Purchasing Manager
+              </Typography>
+            }
+            className="text-xs"
+            onChange={onChangeCompanySize}
+            checked={position === "Procurement Manager / Purchasing Manager"}
+            value="Procurement Manager / Purchasing Manager"
+          />
+          <Radio
+            crossOrigin={undefined}
+            name="type"
+            label={
+              <Typography
+                placeholder={undefined}
+                color="blue-gray"
+                className="font-normal text-blue-gray-400 text-sm"
+              >
+                Marketing Executive / Sales Executive
+              </Typography>
+            }
+            className="text-xs"
+            onChange={onChangeCompanySize}
+            checked={position === "Marketing Executive / Sales Executive"}
+          />
+          <Radio
+            crossOrigin={undefined}
+            name="type"
+            label={
+              <Typography
+                placeholder={undefined}
+                color="blue-gray"
+                className="font-normal text-blue-gray-400 text-sm"
+              >
+                Sales Representative / Business Developer
+              </Typography>
+            }
+            className="text-xs"
+            onChange={onChangeCompanySize}
+            value="Sales Representative / Business Developer"
+            checked={position === "Sales Representative / Business Developer"}
+          />
+          <Radio
+            crossOrigin={undefined}
+            name="type"
+            label={
+              <Typography placeholder={undefined} color="blue-gray">
+                Intern
+              </Typography>
+            }
+            className="text-xs"
+            onChange={onChangeCompanySize}
+            checked={position === "Intern"}
+            value="Intern"
+          />
+          <Radio
+            crossOrigin={undefined}
+            name="type"
+            label={
+              <Input
+                crossOrigin={undefined}
+                type="email"
+                size="lg"
+                placeholder="Other"
+                className="!border !border-gray-300 bg-white text-gray-900 shadow-lg shadow-gray-900/5 ring-4 ring-transparent placeholder:text-gray-500 placeholder:opacity-100 focus:!border-gray-900 focus:!border-t-gray-900 focus:ring-gray-900/10"
+                labelProps={{
+                  className: "hidden",
+                }}
+                containerProps={{ className: "min-w-[100px]" }}
+              />
+            }
+            className="text-xs"
+          />
+        </div>
       </div>
       <div className="flex justify-between w-full mt-auto pt-4">
         <Button
-          className="flex bg-gray-400 min-w-[8rem] items-center justify-center"
+          className="flex bg-gray-400 w-[10rem] items-center justify-center"
           placeholder={undefined}
           onClick={movePrevious}
         >
           <FaArrowLeft /> Previous
         </Button>
         <Button
-          className="flex bg-primary min-w-[8rem] items-center justify-center"
+          className="flex bg-primary w-[10rem] items-center justify-center"
           placeholder={undefined}
           onClick={moveNext}
         >
@@ -1288,61 +1353,72 @@ function StepTen({ moveNext, movePrevious }: IStep) {
       transition={{ ease: "easeOut", duration: 0.2 }}
       className="w-full flex flex-col items-center gap-4 h-full"
     >
-      <p className="font-bold self-start">
-        What is your preferred{" "}
-        <span className="text-secondary font-bold">budget range</span> and
-        <span className="text-secondary font-bold"> project duration?</span>
-      </p>
-      <p className="text-xs">
-        This information will only be used to select agencies that fit for you.
-        You are not obligated to follow this budget range and project duration.
-      </p>
-      <Select
-        label="Select budget range"
-        placeholder={undefined}
-        onChange={(v) => {
-          dispatch(setBugetRange(v));
-        }}
-        value={budget}
-        defaultValue={budget}
-      >
-        <Option value="1.000.000-5.000.000 VNĐ">1.000.000-5.000.000 VNĐ</Option>
-        <Option value="6.000.000-10.000.000 VNĐ">
-          6.000.000-10.000.000 VNĐ
-        </Option>
-        <Option value="10.000.000-15.000.000 VNĐ">
-          10.000.000-15.000.000 VNĐ
-        </Option>
-        <Option value="11.000.000-25.000.000 VNĐ">
-          11.000.000-25.000.000 VNĐ
-        </Option>
-        <Option value="25.000.000++">25.000.000++</Option>
-      </Select>
-      <Select
-        label="Select project duration"
-        placeholder={undefined}
-        onChange={(v) => {
-          dispatch(setProjectDuration(v));
-        }}
-        value={duration}
-        defaultValue={duration}
-      >
-        <Option value="1-3 Days">1-3 Days</Option>
-        <Option value="1 Weeks">1 Weeks</Option>
-        <Option value="2-3 Weeks">2-3 Weeks</Option>
-        <Option value="1 Month">1 Month</Option>
-        <Option value="2-3 Month">2-3 Month</Option>
-      </Select>
-      <div className="flex justify-between w-full mt-[2rem] pt-4">
+      <div className="w-full min-h-[40vh] flex flex-col items-center gap-4 ">
+        <Typography
+          variant="h5"
+          placeholder={undefined}
+          className="text-left self-start"
+        >
+          What is your preferred{" "}
+          <span className="text-secondary font-bold">budget range</span> and
+          <span className="text-secondary font-bold"> project duration?</span>
+        </Typography>
+        <p className="text-xs">
+          This information will only be used to select agencies that fit for
+          you. You are not obligated to follow this budget range and project
+          duration.
+        </p>
+        <Select
+          label="Select budget range"
+          placeholder={undefined}
+          size="lg"
+          onChange={(v) => {
+            dispatch(setBugetRange(v));
+          }}
+          value={budget}
+          defaultValue={budget}
+        >
+          <Option value="1.000.000-5.000.000 VNĐ">
+            1.000.000-5.000.000 VNĐ
+          </Option>
+          <Option value="6.000.000-10.000.000 VNĐ">
+            6.000.000-10.000.000 VNĐ
+          </Option>
+          <Option value="10.000.000-15.000.000 VNĐ">
+            10.000.000-15.000.000 VNĐ
+          </Option>
+          <Option value="11.000.000-25.000.000 VNĐ">
+            11.000.000-25.000.000 VNĐ
+          </Option>
+          <Option value="25.000.000++">25.000.000++</Option>
+        </Select>
+        <Select
+          size="lg"
+          label="Select project duration"
+          placeholder={undefined}
+          onChange={(v) => {
+            dispatch(setProjectDuration(v));
+          }}
+          value={duration}
+          defaultValue={duration}
+        >
+          <Option value="1-3 Days">1-3 Days</Option>
+          <Option value="1 Weeks">1 Weeks</Option>
+          <Option value="2-3 Weeks">2-3 Weeks</Option>
+          <Option value="1 Month">1 Month</Option>
+          <Option value="2-3 Month">2-3 Month</Option>
+        </Select>
+      </div>
+      <div className="flex justify-between w-full mt-auto pt-4">
         <Button
-          className="flex bg-gray-400 min-w-[8rem] items-center justify-center"
+          className="flex bg-gray-400 w-[10rem] items-center justify-center"
           placeholder={undefined}
           onClick={movePrevious}
         >
           <FaArrowLeft /> Previous
         </Button>
         <Button
-          className="flex bg-primary min-w-[8rem] items-center justify-center"
+          className="flex bg-primary w-[10rem] items-center justify-center"
           placeholder={undefined}
           onClick={moveNext}
         >
@@ -1368,45 +1444,52 @@ function StepEleven({ moveNext, movePrevious }: IStep) {
       transition={{ ease: "easeOut", duration: 0.2 }}
       className="w-full flex flex-col items-center gap-4 h-full"
     >
-      <p className="font-bold self-start">
-        How would you
-        <span className="text-secondary font-bold"> describe</span> your project
-        to your agency?
-      </p>
-      <Input
-        crossOrigin={undefined}
-        type="email"
-        placeholder="Project title"
-        className="!border !border-gray-300 bg-white text-gray-900 shadow-lg shadow-gray-900/5 ring-4 ring-transparent placeholder:text-gray-500 placeholder:opacity-100 focus:!border-gray-900 focus:!border-t-gray-900 focus:ring-gray-900/10"
-        labelProps={{
-          className: "hidden",
-        }}
-        value={title}
-        onChange={(e) => {
-          dispatch(setProjectTitle(e.target.value));
-        }}
-        containerProps={{ className: "min-w-[100px]" }}
-      />
-      <div className="w-full mt-2">
-        <Textarea
-          value={description}
-          label="Description"
-          rows={8}
-          onChange={(e) => {
-            dispatch(setProjectDescription(e.target.value));
+      <div className="w-full min-h-[40vh] flex flex-col items-center gap-4 ">
+        <Typography
+          variant="h5"
+          placeholder={undefined}
+          className="text-left self-start"
+        >
+          How would you
+          <span className="text-secondary font-bold"> describe</span> your
+          project to your agency?
+        </Typography>
+        <Input
+          crossOrigin={undefined}
+          type="email"
+          size="lg"
+          placeholder="Project title"
+          className="!border !border-gray-300 bg-white text-gray-900 shadow-lg shadow-gray-900/5 ring-4 ring-transparent placeholder:text-gray-500 placeholder:opacity-100 focus:!border-gray-900 focus:!border-t-gray-900 focus:ring-gray-900/10"
+          labelProps={{
+            className: "hidden",
           }}
+          value={title}
+          onChange={(e) => {
+            dispatch(setProjectTitle(e.target.value));
+          }}
+          containerProps={{ className: "min-w-[100px]" }}
         />
+        <div className="w-full mt-2">
+          <Textarea
+            value={description}
+            label="Description"
+            rows={8}
+            onChange={(e) => {
+              dispatch(setProjectDescription(e.target.value));
+            }}
+          />
+        </div>
       </div>
       <div className="flex justify-between w-full mt-auto pt-4">
         <Button
-          className="flex bg-gray-400 min-w-[8rem] items-center justify-center"
+          className="flex bg-gray-400 w-[10rem] items-center justify-center"
           placeholder={undefined}
           onClick={movePrevious}
         >
           <FaArrowLeft /> Previous
         </Button>
         <Button
-          className="flex bg-primary min-w-[8rem] items-center justify-center"
+          className="flex bg-primary w-[10rem] items-center justify-center"
           placeholder={undefined}
           onClick={moveNext}
         >

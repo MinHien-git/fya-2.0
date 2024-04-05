@@ -1,5 +1,4 @@
 import {
-  Button,
   Checkbox,
   Label,
   TextInput,
@@ -14,6 +13,7 @@ import { faFacebook, faGoogle } from "@fortawesome/free-brands-svg-icons";
 import { ISignUpData, Signup } from "../../api/lib/authentication";
 import { MdErrorOutline } from "react-icons/md";
 import clsx from "clsx";
+import { Button } from "@material-tailwind/react";
 const customInputTheme: CustomFlowbiteTheme["textInput"] = {
   base: "flex",
   addon:
@@ -208,9 +208,13 @@ export default function SignupForm() {
           I accept the Term of Use & Privacy Policy
         </Label>
       </div>
-      <button className="bg-primary text-white text-xs rounded-lg px-6 py-3 font-semibold mt-2 md:mt-0">
+      <Button
+        size="lg"
+        placeholder={undefined}
+        className="bg-primary text-white px-6 py-3 mt-2 capitalize"
+      >
         Sign up
-      </button>
+      </Button>
       <p className="text-xs text-center">or signup with</p>
       <div className="flex justify-center items-center gap-6">
         <FontAwesomeIcon icon={faFacebook} className="text-[2.5rem]" />

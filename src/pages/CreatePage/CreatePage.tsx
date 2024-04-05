@@ -86,7 +86,7 @@ export default function CreatePage() {
                   <button
                     key={idx}
                     ref={(el) => (tabsRef.current[idx] = el)}
-                    className="pt-2 pb-3  text-sm font-bold text-gray-900 z-[100] w-1/3"
+                    className="pt-2 pb-3  text-sm font-bold text-gray-900 z-[10] w-1/3"
                     onClick={() => setActiveTabIndex(idx)}
                   >
                     {tab.label}

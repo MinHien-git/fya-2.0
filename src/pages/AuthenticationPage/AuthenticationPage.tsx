@@ -136,9 +136,15 @@ export default function AuthenticationPage() {
                 <TabsHeader
                   indicatorProps={{ id: "tabs-header-indicator" }}
                   placeholder={undefined}
+                  className="font-bold"
                 >
                   {data.map(({ label, value }) => (
-                    <Tab key={value} value={value} placeholder={undefined}>
+                    <Tab
+                      key={value}
+                      value={value}
+                      placeholder={undefined}
+                      className="font-bold"
+                    >
                       {label}
                     </Tab>
                   ))}
@@ -152,7 +158,7 @@ export default function AuthenticationPage() {
                   }}
                 >
                   {data.map(({ value, desc }) => (
-                    <TabPanel key={value} value={value}>
+                    <TabPanel key={value} value={value} className="font-bold">
                       {desc}
                     </TabPanel>
                   ))}

@@ -1,5 +1,4 @@
 import {
-  Button,
   Checkbox,
   Label,
   TextInput,
@@ -18,6 +17,7 @@ import { useNavigate } from "react-router-dom";
 
 import { useSelector, useDispatch } from "react-redux";
 import { setUser as setReduxUser } from "../../features/users/userSplice";
+import { Button } from "@material-tailwind/react";
 
 const customInputTheme: CustomFlowbiteTheme["textInput"] = {
   base: "flex",
@@ -184,9 +184,13 @@ export default function SigninForm() {
           Forgot password
         </Link>
       </div>
-      <button className="bg-primary text-white text-xs rounded-lg px-6 py-3 font-semibold mt-2 md:mt-0">
+      <Button
+        placeholder={undefined}
+        size="lg"
+        className="bg-primary text-white  px-6 py-3 mt-2 capitalize"
+      >
         Sign in
-      </button>
+      </Button>
       <p className="text-xs text-center">or login with</p>
       <div className="flex justify-center items-center gap-6">
         <FontAwesomeIcon icon={faFacebook} className="text-[2.5rem]" />
