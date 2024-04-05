@@ -1,6 +1,6 @@
 export default function ContructionPage() {
   return (
-    <main className="w-full h-[70vh] flex justify-center items-center flex-col">
+    <main className="w-full h-fit flex justify-center items-center flex-col py-6">
       <img
         src="/static/images/Under construction-bro.svg"
         alt="Update feature"

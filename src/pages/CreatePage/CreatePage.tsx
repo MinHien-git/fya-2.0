@@ -40,13 +40,20 @@ import {
   setPhoneNumer,
   setTeamMember,
 } from "../../features/pages/pageSplice";
+import { PostProject } from "../../api/lib/project";
+import { PostCreatePage } from "../../api/lib/page";
 export default function CreatePage() {
   const [activeTabIndex, setActiveTabIndex] = useState(0);
   const [tabUnderlineWidth, setTabUnderlineWidth] = useState(0);
   const [tabUnderlineLeft, setTabUnderlineLeft] = useState(0);
+  const page = useSelector((state: any) => state.page);
 
   const tabsRef = useRef<any>([]);
 
+  const handleSubmit = async () => {
+    let result = await PostCreatePage(page);
+    console.log(result);
+  };
   useEffect(() => {
     function setTabPosition() {
       const currentTab: any = tabsRef.current[activeTabIndex];
@@ -71,13 +78,13 @@ export default function CreatePage() {
     },
     {
       label: "Create an admin account",
-      content: <ConfirmAdminAccount />,
+      content: <ConfirmAdminAccount moveNext={handleSubmit} />,
     },
   ];
 
   return (
     <main className="w-full min-h-[50vh] p-2 h-auto">
-      <section className="w-full border-[1px] py-8 border-primary bg-light_gray max-w-7xl px-8 lg:px-0 my-5 rounded-[3rem] md:mx-auto flex flex-col md:gap-2 md:px-0  min-h-[50vh] lg:min-h-[80vh] h-[100%] items-center">
+      <section className="w-full border-[1px] py-8 shadow-primary/35 shadow-3xl bg-light_gray max-w-7xl px-8 lg:px-0 my-5 rounded-[3rem] md:mx-auto flex flex-col md:gap-2 md:px-0  min-h-[50vh] lg:min-h-[80vh] h-[100%] items-center">
         <div className="bg-blue-gray-50 bg-opacity-60 rounded-[2rem] w-[70%] max-w-[40rem] mt-8">
           <div className="relative">
             <div className="flex space-x-3 w-full">
@@ -241,7 +248,7 @@ export function GeneralInformation({ moveNext }: IStep) {
         );
       }
     }, 200);
-  });
+  }, [currentSearch, currentLanguage]);
 
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     setCurrentSearch(e.target.value);
@@ -525,7 +532,7 @@ export function ConfirmAdminAccount({ moveNext }: IStep) {
         >
           Confirm your Admin role for this Agency Page
         </Typography>
-        <div className="bg-white shadow-lg flex flex-col items-center py-4 rounded-2xl w-56 gap-4">
+        <div className="bg-white shadow-primary/35 shadow-3xl flex flex-col items-center py-4 rounded-2xl w-56 gap-4">
           <div className="aspect-square bg-primary w-[6rem] rounded-full shadow-lg"></div>
           <Typography variant="h5" placeholder={undefined}>
             {company_name}

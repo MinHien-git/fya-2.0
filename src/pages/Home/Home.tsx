@@ -295,7 +295,7 @@ export default function Home() {
         transition={{ ease: "easeOut", duration: 0.5 }}
       >
         <section className="w-full shadow-2xl shadow-primary/25 bg-light_gray max-w-7xl py-5 px-8  lg:px-16 my-5 rounded-[3rem] md:mx-auto h-auto md:flex md:gap-2 md:px-4 lg:items-center md:justify-between md:min-h-[80vh]">
-          <div className="py-5 w-10/12 md:w-full pb-10">
+          <div className="py-5 md:w-full pb-10 mx-auto">
             <Typography
               variant="h2"
               placeholder={undefined}
@@ -504,7 +504,7 @@ export default function Home() {
         transition={{ ease: "easeOut", duration: 0.5 }}
       >
         <section className="w-full shadow-2xl shadow-primary/25 bg-light_gray max-w-7xl py-5 px-8  lg:px-16 my-5 rounded-[3rem] md:mx-auto h-auto md:flex md:gap-2 md:px-4 lg:items-center md:justify-between md:min-h-[80vh]">
-          <div className="py-5 w-10/12 md:w-full pb-10">
+          <div className="py-5 md:w-full pb-10">
             <Typography
               variant="h2"
               placeholder={undefined}
@@ -686,7 +686,7 @@ export default function Home() {
         transition={{ ease: "easeOut", duration: 0.5 }}
       >
         <section className="w-full shadow-2xl shadow-primary/25 bg-light_gray max-w-7xl py-5 px-8  lg:px-16 my-5 rounded-[3rem] md:mx-auto h-auto md:flex md:gap-2 md:px-4 lg:items-center md:justify-between md:min-h-[80vh]">
-          <div className="py-5 w-10/12 md:w-full pb-10">
+          <div className="py-5 md:w-full pb-10">
             <Typography
               variant="h2"
               placeholder={undefined}

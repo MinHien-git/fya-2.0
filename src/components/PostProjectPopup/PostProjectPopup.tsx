@@ -322,9 +322,9 @@ function StepOne({ moveNext }: IStep) {
           className="w-[6rem]"
         />
         <Typography
-          variant="h5"
+          variant="h4"
           placeholder={undefined}
-          className="text-center mb-6 self-start"
+          className="text-center mb-6 max-w-[21ch]"
         >
           To understand your needs, we will first ask you a few{" "}
           <span className="font-bold text-primary">questions </span>
@@ -422,11 +422,11 @@ function StepTwo({ moveNext, movePrevious }: IStep) {
     >
       <div className="w-full min-h-[40vh] flex flex-col items-center gap-4 ">
         <Typography
-          variant="h5"
+          variant="h4"
           placeholder={undefined}
           className="text-left self-start"
         >
-          Tell us What{" "}
+          Tell us what{" "}
           <span className="text-secondary font-bold">services </span> and{" "}
           <span className="text-secondary font-bold">skills </span>
           you are looking for:
@@ -589,7 +589,7 @@ function StepThree({ moveNext, movePrevious }: IStep) {
     >
       <div className="w-full min-h-[40vh] flex flex-col items-center gap-4 ">
         <Typography
-          variant="h5"
+          variant="h4"
           placeholder={undefined}
           className="text-left self-start"
         >
@@ -628,6 +628,7 @@ function StepThree({ moveNext, movePrevious }: IStep) {
       <div className="flex justify-between w-full mt-auto pt-4">
         <Button
           className="flex bg-gray-400 w-[10rem] items-center justify-center"
+          size="lg"
           placeholder={undefined}
           onClick={movePrevious}
         >
@@ -635,6 +636,7 @@ function StepThree({ moveNext, movePrevious }: IStep) {
         </Button>
         <Button
           className="flex bg-primary w-[10rem] items-center justify-center"
+          size="lg"
           placeholder={undefined}
           onClick={moveNext}
         >
@@ -692,7 +694,7 @@ function StepFour({ moveNext, movePrevious }: IStep) {
     >
       <div className="w-full min-h-[40vh] flex flex-col items-center gap-4 ">
         <Typography
-          variant="h5"
+          variant="h4"
           placeholder={undefined}
           className="text-left self-start"
         >
@@ -767,6 +769,7 @@ function StepFour({ moveNext, movePrevious }: IStep) {
       <div className="flex justify-between w-full mt-auto pt-4">
         <Button
           className="flex bg-gray-400 w-[10rem] items-center justify-center"
+          size="lg"
           placeholder={undefined}
           onClick={movePrevious}
         >
@@ -774,6 +777,7 @@ function StepFour({ moveNext, movePrevious }: IStep) {
         </Button>
         <Button
           className="flex bg-primary w-[10rem] items-center justify-center"
+          size="lg"
           placeholder={undefined}
           onClick={moveNext}
         >
@@ -797,7 +801,7 @@ function StepFive({ moveNext, movePrevious }: IStep) {
     >
       <div className="w-full min-h-[40vh] flex flex-col items-center gap-4 ">
         <Typography
-          variant="h5"
+          variant="h4"
           placeholder={undefined}
           className="text-left self-start"
         >
@@ -825,6 +829,7 @@ function StepFive({ moveNext, movePrevious }: IStep) {
       <div className="flex justify-between w-full mt-auto pt-4">
         <Button
           className="flex bg-gray-400 w-[10rem] items-center justify-center"
+          size="lg"
           placeholder={undefined}
           onClick={movePrevious}
         >
@@ -832,6 +837,7 @@ function StepFive({ moveNext, movePrevious }: IStep) {
         </Button>
         <Button
           className="flex bg-primary w-[10rem] items-center justify-center  mt-auto"
+          size="lg"
           placeholder={undefined}
           onClick={moveNext}
         >
@@ -859,7 +865,7 @@ function StepSix({ moveNext, movePrevious }: IStep) {
     >
       <div className="w-full min-h-[40vh] flex flex-col items-center gap-4 ">
         <Typography
-          variant="h5"
+          variant="h4"
           placeholder={undefined}
           className="text-left self-start"
         >
@@ -1008,6 +1014,7 @@ function StepSix({ moveNext, movePrevious }: IStep) {
       <div className="flex justify-between w-full mt-auto pt-4">
         <Button
           className="flex bg-gray-400 w-[10rem] items-center justify-center"
+          size="lg"
           placeholder={undefined}
           onClick={movePrevious}
         >
@@ -1015,6 +1022,7 @@ function StepSix({ moveNext, movePrevious }: IStep) {
         </Button>
         <Button
           className="flex bg-primary w-[10rem] items-center justify-center"
+          size="lg"
           placeholder={undefined}
           onClick={moveNext}
         >
@@ -1040,7 +1048,7 @@ function StepSeven({ moveNext, movePrevious }: IStep) {
     >
       <div className="w-full min-h-[40vh] flex flex-col items-center gap-4 ">
         <Typography
-          variant="h5"
+          variant="h4"
           placeholder={undefined}
           className="text-left self-start"
         >
@@ -1068,6 +1076,7 @@ function StepSeven({ moveNext, movePrevious }: IStep) {
       <div className="flex justify-between w-full pt-4 mt-auto">
         <Button
           className="flex bg-gray-400 w-[10rem] items-center justify-center"
+          size="lg"
           placeholder={undefined}
           onClick={movePrevious}
         >
@@ -1075,6 +1084,7 @@ function StepSeven({ moveNext, movePrevious }: IStep) {
         </Button>
         <Button
           className="flex bg-primary w-[10rem] items-center justify-center"
+          size="lg"
           placeholder={undefined}
           onClick={moveNext}
         >
@@ -1099,7 +1109,7 @@ function StepEight({ moveNext, movePrevious }: IStep) {
     >
       <div className="w-full min-h-[40vh] flex flex-col items-center gap-4 ">
         <Typography
-          variant="h5"
+          variant="h4"
           placeholder={undefined}
           className="text-left self-start"
         >
@@ -1127,6 +1137,7 @@ function StepEight({ moveNext, movePrevious }: IStep) {
       <div className="flex justify-between w-full pt-4 mt-auto">
         <Button
           className="flex bg-gray-400 w-[10rem] items-center justify-center"
+          size="lg"
           placeholder={undefined}
           onClick={movePrevious}
         >
@@ -1134,6 +1145,7 @@ function StepEight({ moveNext, movePrevious }: IStep) {
         </Button>
         <Button
           className="flex bg-primary w-[10rem] items-center justify-center"
+          size="lg"
           placeholder={undefined}
           onClick={moveNext}
         >
@@ -1160,7 +1172,7 @@ function StepNine({ moveNext, movePrevious }: IStep) {
     >
       <div className="w-full min-h-[40vh] flex flex-col items-center gap-4 ">
         <Typography
-          variant="h5"
+          variant="h4"
           placeholder={undefined}
           className="text-left self-start"
         >
@@ -1323,6 +1335,7 @@ function StepNine({ moveNext, movePrevious }: IStep) {
       <div className="flex justify-between w-full mt-auto pt-4">
         <Button
           className="flex bg-gray-400 w-[10rem] items-center justify-center"
+          size="lg"
           placeholder={undefined}
           onClick={movePrevious}
         >
@@ -1330,6 +1343,7 @@ function StepNine({ moveNext, movePrevious }: IStep) {
         </Button>
         <Button
           className="flex bg-primary w-[10rem] items-center justify-center"
+          size="lg"
           placeholder={undefined}
           onClick={moveNext}
         >
@@ -1355,7 +1369,7 @@ function StepTen({ moveNext, movePrevious }: IStep) {
     >
       <div className="w-full min-h-[40vh] flex flex-col items-center gap-4 ">
         <Typography
-          variant="h5"
+          variant="h4"
           placeholder={undefined}
           className="text-left self-start"
         >
@@ -1412,6 +1426,7 @@ function StepTen({ moveNext, movePrevious }: IStep) {
       <div className="flex justify-between w-full mt-auto pt-4">
         <Button
           className="flex bg-gray-400 w-[10rem] items-center justify-center"
+          size="lg"
           placeholder={undefined}
           onClick={movePrevious}
         >
@@ -1419,6 +1434,7 @@ function StepTen({ moveNext, movePrevious }: IStep) {
         </Button>
         <Button
           className="flex bg-primary w-[10rem] items-center justify-center"
+          size="lg"
           placeholder={undefined}
           onClick={moveNext}
         >
@@ -1446,7 +1462,7 @@ function StepEleven({ moveNext, movePrevious }: IStep) {
     >
       <div className="w-full min-h-[40vh] flex flex-col items-center gap-4 ">
         <Typography
-          variant="h5"
+          variant="h4"
           placeholder={undefined}
           className="text-left self-start"
         >
@@ -1493,7 +1509,7 @@ function StepEleven({ moveNext, movePrevious }: IStep) {
           placeholder={undefined}
           onClick={moveNext}
         >
-          Next <FaArrowRight />
+          Submit <FaArrowRight />
         </Button>
       </div>
     </motion.div>

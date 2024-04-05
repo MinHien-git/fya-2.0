@@ -48,18 +48,13 @@ interface IUser {
 }
 const profileMenuItems = [
   {
-    label: "My Profile",
-    url: "/profile",
-    icon: UserCircleIcon,
-  },
-  {
     label: "Management",
     url: "/management",
     icon: Cog6ToothIcon,
   },
   {
     label: "Manage Page",
-    url: "/create-page",
+    url: "/page-navigation",
     icon: InboxArrowDownIcon,
   },
   {
@@ -69,6 +64,7 @@ const profileMenuItems = [
   },
   {
     label: "Sign Out",
+    url: "/help",
     icon: PowerIcon,
   },
 ];
@@ -137,8 +133,28 @@ function ProfileMenu() {
           </Button>
         </MenuHandler>
         <MenuList className="p-1" placeholder="">
+          {userSelector ? (
+            <MenuItem
+              placeholder={undefined}
+              key={"welcome"}
+              className={`flex items-center gap-2 rounded justify-start`}
+            >
+              {createElement(UserCircleIcon, {
+                className: `h-4 w-4 `,
+                strokeWidth: 2,
+              })}
+              <Typography
+                as="span"
+                variant="small"
+                className="font-bold"
+                placeholder={undefined}
+              >
+                Welcome, {userSelector.lname}
+              </Typography>
+            </MenuItem>
+          ) : null}
           {userSelector
-            ? profileMenuItems.map(({ label, icon }, key) => {
+            ? profileMenuItems.map(({ label, icon, url }, key) => {
                 const isLastItem = key === profileMenuItems.length - 1;
                 return !isLastItem ? (
                   <MenuItem
@@ -146,19 +162,26 @@ function ProfileMenu() {
                     key={label}
                     className={`flex items-center gap-2 rounded justify-start`}
                   >
-                    {createElement(icon, {
-                      className: `h-4 w-4 ${isLastItem ? "text-red-500" : ""}`,
-                      strokeWidth: 2,
-                    })}
-                    <Typography
-                      as="span"
-                      variant="small"
-                      className="font-bold"
-                      color={isLastItem ? "red" : "inherit"}
-                      placeholder={undefined}
+                    <Link
+                      to={url}
+                      className={`w-full h-full flex items-center gap-2 rounded justify-start`}
                     >
-                      {label}
-                    </Typography>
+                      {createElement(icon, {
+                        className: `h-4 w-4 ${
+                          isLastItem ? "text-red-500" : ""
+                        }`,
+                        strokeWidth: 2,
+                      })}
+                      <Typography
+                        as="span"
+                        variant="small"
+                        className="font-bold"
+                        color={isLastItem ? "red" : "inherit"}
+                        placeholder={undefined}
+                      >
+                        {label}
+                      </Typography>
+                    </Link>
                   </MenuItem>
                 ) : (
                   <MenuItem
@@ -236,12 +259,13 @@ const customerMenuItems = [
   {
     title: "Create your free Agency Page",
     description:
-      "Learn how to use @material-tailwind/html, packed with rich components and widgets.",
+      "In only three easy steps, launch your professional appearance on Fya and draw in new clients!",
+    url: "/create-page",
   },
   {
     title: "Subscription",
-    description:
-      "Learn how to use @material-tailwind/react, packed with rich components for React.",
+    description: "Explore exclusive perks for your business with FyaPro!",
+    url: "/subscription",
   },
 ];
 
@@ -305,7 +329,7 @@ export default function NavigationBar() {
         <Typography
           variant="paragraph"
           color="blue-gray"
-          className="mb-1 text-primary font-medium text-sm"
+          className="mb-1 text-primary text-sm font-semibold"
           placeholder={undefined}
         >
           {title}
@@ -314,8 +338,8 @@ export default function NavigationBar() {
     </Link>
   ));
 
-  const customerItems = customerMenuItems.map(({ title, description }) => (
-    <Link to="#" key={title}>
+  const customerItems = customerMenuItems.map(({ title, description, url }) => (
+    <Link to={url} key={title}>
       <MenuItem placeholder={undefined}>
         <Typography
           variant="h6"
@@ -336,24 +360,6 @@ export default function NavigationBar() {
       </MenuItem>
     </Link>
   ));
-
-  // const navList = (
-  //   <ul className="mt-2 mb-4 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
-  //     <Typography
-  //       as="li"
-  //       color="blue-gray"
-  //       className="p-1 font-normal"
-  //       placeholder={undefined}
-  //     >
-  //       <Link
-  //         to="#"
-  //         className="flex font-medium items-center px-4 text-blue-gray-900"
-  //       >
-  //         About
-  //       </Link>
-  //     </Typography>
-  //   </ul>
-  // );
 
   return (
     <>
@@ -423,8 +429,8 @@ export default function NavigationBar() {
                         className="font-normal"
                         placeholder={undefined}
                       >
-                        Learn how to use @material-tailwind/html, packed with
-                        rich components and widgets.
+                        Explore top agencies in various services throughout all
+                        of our agency directories.
                       </Typography>
                     </MenuItem>
                   </MenuHandler>
@@ -454,8 +460,9 @@ export default function NavigationBar() {
                       className="font-normal"
                       placeholder={undefined}
                     >
-                      Learn how to use @material-tailwind/react, packed with
-                      rich components for React.
+                      Get recommendations for agencies that fit your
+                      requirements in just 48 hours! Fill out our form in 5
+                      minutes, free of charge!
                     </Typography>
                   </MenuItem>
                 </ul>

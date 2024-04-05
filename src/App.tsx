@@ -60,6 +60,8 @@ function App() {
                 path="/agencyIntroduction"
                 element={<AgencyPageIntroduction />}
               />
+              <Route path="help" element={<ContructionPage />} />
+
               <Route path="top-agencies" element={<TopAgencies />} />
               <Route path="auth" element={<AuthenticationPage />} />
               <Route path="subscription" element={<Subscription />} />
@@ -67,7 +69,6 @@ function App() {
                 path="match-making-introduction"
                 element={<MatchMakingIntroduction />}
               />
-              <Route path="a" element={<PageCreateNavigation />} />
               <Route
                 path="advertising-features"
                 element={<AdvertisingFeature />}

@@ -188,6 +188,7 @@ export default function SigninForm() {
         placeholder={undefined}
         size="lg"
         className="bg-primary text-white  px-6 py-3 mt-2 capitalize"
+        type="submit"
       >
         Sign in
       </Button>

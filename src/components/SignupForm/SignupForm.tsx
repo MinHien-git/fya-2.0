@@ -212,6 +212,7 @@ export default function SignupForm() {
         size="lg"
         placeholder={undefined}
         className="bg-primary text-white px-6 py-3 mt-2 capitalize"
+        type="submit"
       >
         Sign up
       </Button>
