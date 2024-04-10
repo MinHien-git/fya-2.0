@@ -18,6 +18,8 @@ import clsx from "clsx";
 import { useSelector } from "react-redux";
 export default function AgencyNavigationBar() {
   const userSelector = useSelector((state: any) => state.user.value);
+  const pageSelector = useSelector((state: any) => state.page);
+
   return (
     <aside className="bg-dark_blue h-[100vh] max-w-[18rem] min-w-[15rem] rounded-b-xl">
       <div className="flex flex-col justify-center w-full h-[100vh]">
@@ -318,20 +320,22 @@ export default function AgencyNavigationBar() {
               <div className="flex gap-2 items-center">
                 <div className="bg-white h-8 aspect-square rounded-full"></div>
                 <div className="grid">
-                  <p className="text-sm">Your Agency</p>{" "}
+                  <p className="text-sm">{pageSelector?.company_name}</p>{" "}
                   <a className="underline text-sm">See Agency Page</a>
                 </div>
               </div>
             </li>
-            <li className="pl-8 text-white w-full py-6 mt-auto">
-              <div className="flex gap-2 items-center">
-                <div className="bg-white h-8 aspect-square rounded-full"></div>
-                <div className="grid">
-                  <p className="text-sm font-title">
-                    {userSelector?.fname} {userSelector?.lname}{" "}
-                  </p>{" "}
+            <li className="pl-8 text-white w-full py-6 mt-auto hover:bg-yellow-50 group">
+              <Link to="/client">
+                <div className="flex gap-2 items-center ">
+                  <div className="bg-white h-8 aspect-square rounded-full group-hover:border-2 border-text"></div>
+                  <div className="grid">
+                    <p className="text-sm font-title group-hover:text-text font-bold">
+                      {userSelector?.fname} {userSelector?.lname}{" "}
+                    </p>{" "}
+                  </div>
                 </div>
-              </div>
+              </Link>
             </li>
           </ul>
         </nav>

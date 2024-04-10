@@ -1,4 +1,4 @@
-import { Button } from "@material-tailwind/react";
+import { Button, Option, Select } from "@material-tailwind/react";
 import SecondaryNavigationBar from "../../../components/SecondaryNavigationBar/SecondaryNavigationBar";
 import { FileInput, Label, Textarea, TextInput } from "flowbite-react";
 import { useEffect } from "react";
@@ -25,7 +25,8 @@ export default function About() {
       //dispatch(setPage(result));
     }
     getPage();
-  }, [pageSelector]);
+  }, []);
+  useEffect(() => {}, [userSelector]);
   return (
     <div className="mt-5 mx-auto h-[80vh] flex flex-col px-12 gap-2 overflow-y-auto">
       <section className="max-w-7xl w-[90%] pb-10 rounded-xl border-2 mt-10 mx-auto flex-col px-12">
@@ -47,7 +48,7 @@ export default function About() {
             value={pageSelector.company_name}
             required
           />
-          <div className="flex w-full mx-auto gap-10 items-end">
+          <div className="flex w-full mx-auto gap-10 items-start">
             <div className="grid w-1/2 mx-auto mt-2 gap-2">
               <div className="grid gap-2">
                 <Label
@@ -67,12 +68,12 @@ export default function About() {
                 required
               />
             </div>
-            <div className="grid w-1/2 mx-auto mt-2 gap-2">
+            <div className="grid w-1/2 mx-auto mt-2">
               <div className="grid gap-2">
                 <Label
                   htmlFor="agencyName"
                   value="Languages"
-                  className="font-semibold"
+                  className="font-semibold mb-2"
                 />
               </div>
               <TextInput
@@ -81,9 +82,16 @@ export default function About() {
                 placeholder="Languages"
                 required
               />
+              <ul className="w-full h-max-[5rem] flex items-start flex-wrap gap-2 border-2 border-t-0 border-dashed p-2 rounded-2xl">
+                {pageSelector.languages.map((language) => (
+                  <li className="bg-primary px-4 py-2 rounded-md text-white text-xs font-semibold">
+                    {language}
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
-          <div className="flex w-full mx-auto gap-10 items-end">
+          <div className="flex w-full mx-auto gap-10 items-end mt-4">
             <div className="w-1/2 flex gap-5 items-end">
               <div className="grid w-1/3 gap-2">
                 <div className="grid gap-2">
@@ -95,25 +103,38 @@ export default function About() {
                 </div>
                 <TextInput
                   id="Establish date"
-                  type="text"
+                  type="date"
                   placeholder="Establish date"
+                  value={new Date(pageSelector.founded_date)
+                    .toISOString()
+                    .substring(0, 10)}
                   required
                 />
               </div>
               <div className="grid w-2/3 gap-2">
                 <div className="grid gap-2">
-                  <Label
-                    htmlFor="agencyName"
-                    value="Number of team/company members"
-                    className="font-semibold"
-                  />
+                  <Label htmlFor="email2" value="Number of members" />
                 </div>
-                <TextInput
-                  id="agencyName"
-                  type="text"
-                  placeholder="Number of team"
-                  required
-                />
+                <Select
+                  placeholder={undefined}
+                  label="Company Size"
+                  value={pageSelector.team_members}
+                  defaultValue={pageSelector.team_members}
+                  size="lg"
+                  className="!border !border-gray-300 bg-white text-gray-900 shadow-lg shadow-gray-900/5 ring-4 ring-transparent placeholder:text-gray-500 placeholder:opacity-100 focus:!border-gray-900 focus:!border-t-gray-900 focus:ring-gray-900/10"
+                  labelProps={{
+                    className: "hidden",
+                  }}
+                >
+                  <Option value="1 person">1 person</Option>
+                  <Option value="2-10 people">2-10 people</Option>
+                  <Option value="11-50 people">11-50 people</Option>
+                  <Option value="51-100 people">51-100 people</Option>
+                  <Option value="101-500 people">101-500 people</Option>
+                  <Option value="101-500 people">501-1000 people</Option>
+                  <Option value="101-500 people">1001-5000 people</Option>
+                  <Option value="101-500 people">More than 5000 people</Option>
+                </Select>
               </div>
             </div>
             <div className="grid w-1/2 mx-auto">
@@ -150,6 +171,7 @@ export default function About() {
                 placeholder="Leave a comment..."
                 required
                 rows={4}
+                value={pageSelector.description}
               />
             </div>
           </div>

@@ -26,3 +26,7 @@ export function Signup(data: ISignUpData) {
 export function Signout(data: string) {
   return api.delete(`/logout/${data}`);
 }
+
+export function getUserInformation() {
+  return api.get("/getUserInformation");
+}

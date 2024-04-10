@@ -52,7 +52,7 @@ export const pageSlice = createSlice({
     },
 
     setPage: (state, action) => {
-      state = { ...action.payload };
+      return { ...action.payload };
     },
   },
 });

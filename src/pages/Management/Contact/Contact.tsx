@@ -1,4 +1,7 @@
+import { useSelector } from "react-redux";
+
 export default function Contact() {
+  const pageSelector = useSelector((state: any) => state.page);
   return (
     <div className="mt-5 mx-auto h-[80vh] flex flex-col px-12 gap-2 overflow-y-auto">
       <section className="max-w-7xl w-[90%] pb-10 rounded-xl border-2 mt-10 mx-auto flex-col px-6">
@@ -32,6 +35,7 @@ export default function Contact() {
                   type="text"
                   id="language"
                   className="border-[1px] p-2 rounded-md w-2/3"
+                  value={pageSelector?.phone_number}
                 />
               </div>
             </div>
@@ -51,6 +55,7 @@ export default function Contact() {
                 type="text"
                 id="language"
                 className="border-[1px] p-2 rounded-md"
+                value={pageSelector?.email_address}
               />
             </div>
           </div>

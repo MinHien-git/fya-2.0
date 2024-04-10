@@ -13,7 +13,10 @@ import {
   faUser,
 } from "@fortawesome/free-solid-svg-icons";
 import { Link, NavLink } from "react-router-dom";
+import { useSelector } from "react-redux";
 export default function ClientNavigationBar() {
+  const userSelector = useSelector((state: any) => state.user.value);
+
   return (
     <aside className="bg-dark_blue h-[100vh] max-w-[18rem] min-w-[15rem] rounded-b-xl">
       <div className="flex flex-col justify-center w-full h-[100vh]">
@@ -228,13 +231,17 @@ export default function ClientNavigationBar() {
               </Link>
             </li>
 
-            <li className="pl-8 text-white w-full py-6 mt-auto">
-              <div className="flex gap-2 items-center">
-                <div className="bg-white h-8 aspect-square rounded-full"></div>
-                <div className="grid">
-                  <p className="text-sm font-title">Personal Acc...</p>{" "}
+            <li className="pl-8 text-white w-full py-6 mt-auto hover:bg-yellow-50 group">
+              <Link to="/client">
+                <div className="flex gap-2 items-center ">
+                  <div className="bg-white h-8 aspect-square rounded-full group-hover:border-2 border-text"></div>
+                  <div className="grid">
+                    <p className="text-sm font-title group-hover:text-text font-bold">
+                      {userSelector?.fname} {userSelector?.lname}{" "}
+                    </p>{" "}
+                  </div>
                 </div>
-              </div>
+              </Link>
             </li>
           </ul>
         </nav>

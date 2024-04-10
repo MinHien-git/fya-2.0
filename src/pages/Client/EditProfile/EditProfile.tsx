@@ -10,13 +10,17 @@ import {
   MenuItem,
 } from "@material-tailwind/react";
 import { FileInput, Label, TextInput } from "flowbite-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 // @ts-ignore
 import { useCountries } from "use-react-countries";
 
 export default function EditProfile() {
   const { countries } = useCountries();
   const [country, setCountry] = useState(0);
+
+  const userSelector = useSelector((state: any) => state.user.value);
+  const dispatch = useDispatch();
 
   const { name, flags, countryCallingCode } = countries[country];
   return (
@@ -79,7 +83,8 @@ export default function EditProfile() {
                 <TextInput
                   id="email2"
                   type="email"
-                  placeholder="name@flowbite.com"
+                  placeholder={`${userSelector?.fname} ${userSelector?.lname}`}
+                  value={`${userSelector?.fname} ${userSelector?.lname}`}
                   required
                   shadow
                 />
@@ -213,6 +218,7 @@ export default function EditProfile() {
                 id="email2"
                 type="email"
                 placeholder="name@flowbite.com"
+                value={userSelector?.email}
                 required
                 shadow
               />
