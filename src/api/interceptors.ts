@@ -40,9 +40,16 @@ const onResponseError = async (
           token: rft,
         });
 
-        const { accesstoken } = rs.data.data;
+        const { accesstoken, refreshToken, user } = rs.data.data;
 
-        Cookies.set("at", accesstoken);
+        Cookies.set("at", accesstoken, {
+          expires: 2,
+          secure: true,
+        });
+        Cookies.set("rft", refreshToken, {
+          expires: 7,
+          secure: true,
+        });
 
         return;
       } catch (_error) {

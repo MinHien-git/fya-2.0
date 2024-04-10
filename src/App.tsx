@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Home from "./pages/Home/Home";
 import NavigationBar from "./components/NavigationBar/NavigationBar";
 import SaveList from "./pages/SaveList/SaveList";
@@ -40,78 +40,102 @@ import ContructionPage from "./pages/UpcomingPage/UpcomingPage";
 import Page404 from "./pages/404Page/Page404";
 import ScrollToTop from "./components/ScrollToTop/ScrollToTop";
 import AdvertisingFeature from "./pages/AdvertisingFeature/AdvertisingFeature";
+import Cookies from "js-cookie";
+import { useSelector, useDispatch } from "react-redux";
+import { setUser as setReduxUser } from "./features/users/userSplice";
+import { PostRefreshToken } from "./api/lib/token";
 
 function App() {
   const { isOpen, toggle } = usePostProject();
+  const userSelector = useSelector((state: any) => state.user.value);
+  const dispatch = useDispatch();
 
+  useEffect(() => {
+    const RefreshToken = async () => {
+      const rft = Cookies.get("rft");
+      if (rft) {
+        console.log(rft);
+        try {
+          let result = await PostRefreshToken({ token: rft });
+
+          if (result) {
+            let { user } = result.data;
+            if (user) {
+              dispatch(setReduxUser(user));
+            }
+          }
+        } catch (error) {
+          console.log(error);
+          Cookies.set("rft", null);
+        }
+      }
+    };
+    RefreshToken();
+    console.log(userSelector);
+  }, []);
   return (
     <>
-      <Provider store={store}>
-        <BrowserRouter>
-          <ScrollToTop />
-          <Routes>
-            <Route path="/" element={<GuestLayout />}>
-              <Route path="/" element={<Home />} />
-              <Route path="/agencypage" element={<AgencyPage />} />
-              <Route path="/brandpage" element={<BrandPage />} />
-              <Route path="/searchresult" element={<SearchResult />} />
-              <Route path="/saveList" element={<SaveList />} />
-              <Route
-                path="/agencyIntroduction"
-                element={<AgencyPageIntroduction />}
-              />
-              <Route path="help" element={<ContructionPage />} />
+      <BrowserRouter>
+        <ScrollToTop />
+        <Routes>
+          <Route path="/" element={<GuestLayout />}>
+            <Route path="/" element={<Home />} />
+            <Route path="/agencypage" element={<AgencyPage />} />
+            <Route path="/brandpage" element={<BrandPage />} />
+            <Route path="/searchresult" element={<SearchResult />} />
+            <Route path="/saveList" element={<SaveList />} />
+            <Route
+              path="/agencyIntroduction"
+              element={<AgencyPageIntroduction />}
+            />
+            <Route path="help" element={<ContructionPage />} />
 
-              <Route path="top-agencies" element={<TopAgencies />} />
-              <Route path="auth" element={<AuthenticationPage />} />
-              <Route path="subscription" element={<Subscription />} />
-              <Route
-                path="match-making-introduction"
-                element={<MatchMakingIntroduction />}
-              />
-              <Route
-                path="advertising-features"
-                element={<AdvertisingFeature />}
-              />
-              <Route
-                path="page-navigation"
-                element={<PageCreateNavigation />}
-              />
-              <Route path="create-page" element={<CreatePage />} />
-              <Route path="*" element={<Page404 />} />
-            </Route>
-            <Route path="/management/" element={<AgencyManagementLayout />}>
-              <Route path="yourpage" element={<YourPage />} />
-              <Route path="notification" element={<Notifications />} />
-              <Route
-                path="project-leads-extension/"
-                element={<ProjectManager />}
-              />
-              <Route
-                path="project-leads-extension/targeting"
-                element={<Targeting />}
-              />
-              <Route path="advertising" element={<ContructionPage />} />
-              <Route path="helps" element={<ContructionPage />} />
-              <Route path="review-invitation" element={<ReviewInvitaion />} />
-              {/* <Route path="yourpage/service" element={<EditService />} /> */}
-              <Route path="" element={<Overview />} />
-              <Route path="inbox" element={<ContructionPage />} />
-              <Route path="workspace" element={<WorkingSpace />} />
-              <Route path="target" element={<WorkingSpaceTarget />} />
-              <Route path="*" element={<Page404 />} />
-            </Route>
-            <Route path="/client/" element={<ClientManagementLayout />}>
-              <Route path="" element={<ClientOverview />} />
-              <Route path="edit-profile" element={<EditProfile />} />
-              <Route path="manage-project" element={<ManageProject />} />
-              <Route path="inbox" element={<ContructionPage />} />
-              <Route path="helps" element={<ContructionPage />} />
-              <Route path="*" element={<Page404 />} />
-            </Route>
-          </Routes>
-        </BrowserRouter>
-      </Provider>
+            <Route path="top-agencies" element={<TopAgencies />} />
+            <Route path="auth" element={<AuthenticationPage />} />
+            <Route path="subscription" element={<Subscription />} />
+            <Route
+              path="match-making-introduction"
+              element={<MatchMakingIntroduction />}
+            />
+            <Route
+              path="advertising-features"
+              element={<AdvertisingFeature />}
+            />
+            <Route path="page-navigation" element={<PageCreateNavigation />} />
+            <Route path="create-page" element={<CreatePage />} />
+            <Route path="*" element={<Page404 />} />
+          </Route>
+          <Route path="/management/" element={<AgencyManagementLayout />}>
+            <Route path="yourpage" element={<YourPage />} />
+            <Route path="notification" element={<Notifications />} />
+            <Route
+              path="project-leads-extension/"
+              element={<ProjectManager />}
+            />
+            <Route
+              path="project-leads-extension/targeting"
+              element={<Targeting />}
+            />
+            <Route path="advertising" element={<ContructionPage />} />
+            <Route path="helps" element={<ContructionPage />} />
+            <Route path="review-invitation" element={<ReviewInvitaion />} />
+            {/* <Route path="yourpage/service" element={<EditService />} /> */}
+            <Route path="" element={<Overview />} />
+            <Route path="inbox" element={<ContructionPage />} />
+            <Route path="workspace" element={<WorkingSpace />} />
+            <Route path="target" element={<WorkingSpaceTarget />} />
+            <Route path="*" element={<Page404 />} />
+          </Route>
+          <Route path="/client/" element={<ClientManagementLayout />}>
+            <Route path="" element={<ClientOverview />} />
+            <Route path="edit-profile" element={<EditProfile />} />
+            <Route path="manage-project" element={<ManageProject />} />
+            <Route path="inbox" element={<ContructionPage />} />
+            <Route path="helps" element={<ContructionPage />} />
+            <Route path="*" element={<Page404 />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
     </>
   );
 }

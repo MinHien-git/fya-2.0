@@ -18,13 +18,13 @@ export default function ClientNavigationBar() {
     <aside className="bg-dark_blue h-[100vh] max-w-[18rem] min-w-[15rem] rounded-b-xl">
       <div className="flex flex-col justify-center w-full h-[100vh]">
         <header className="flex flex-col gap-3 w-full h-fit">
-          <span className="w-full flex flex-col items-center">
+          <Link to="/" className="w-full flex flex-col items-center">
             <img
               src="/static/images/Logo2.svg"
               alt="logo"
               className="w-[3.5rem] mt-1"
             />
-          </span>
+          </Link>
           <hr className="w-full" />
         </header>
         <nav className="h-[90%] grid items-start pt-2">

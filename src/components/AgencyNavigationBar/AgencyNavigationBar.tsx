@@ -15,18 +15,20 @@ import {
 import { Link, NavLink } from "react-router-dom";
 import { useState } from "react";
 import clsx from "clsx";
+import { useSelector } from "react-redux";
 export default function AgencyNavigationBar() {
+  const userSelector = useSelector((state: any) => state.user.value);
   return (
     <aside className="bg-dark_blue h-[100vh] max-w-[18rem] min-w-[15rem] rounded-b-xl">
       <div className="flex flex-col justify-center w-full h-[100vh]">
         <header className="flex flex-col gap-3 w-full h-fit">
-          <span className="w-full flex flex-col items-center">
+          <Link to="/" className="w-full flex flex-col items-center">
             <img
               src="/static/images/Logo2.svg"
               alt="logo"
               className="w-[3.5rem] mt-1"
             />
-          </span>
+          </Link>
           <hr className="w-full" />
         </header>
         <nav className="h-[90%] grid items-start pt-2">
@@ -325,7 +327,9 @@ export default function AgencyNavigationBar() {
               <div className="flex gap-2 items-center">
                 <div className="bg-white h-8 aspect-square rounded-full"></div>
                 <div className="grid">
-                  <p className="text-sm font-title">Personal Acc...</p>{" "}
+                  <p className="text-sm font-title">
+                    {userSelector?.fname} {userSelector?.lname}{" "}
+                  </p>{" "}
                 </div>
               </div>
             </li>

@@ -14,7 +14,6 @@ import { ISignInData, Signin } from "../../api/lib/authentication";
 import { MdErrorOutline } from "react-icons/md";
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
-
 import { useSelector, useDispatch } from "react-redux";
 import { setUser as setReduxUser } from "../../features/users/userSplice";
 import { Button } from "@material-tailwind/react";
@@ -118,19 +117,21 @@ export default function SigninForm() {
     let result = await Signin(user);
     console.log(result);
     if (result.status === 200) {
-      let { refreshToken, accesstoken, user } = result.data.data;
-      localStorage.setItem("user", JSON.stringify(user));
-      dispatch(setReduxUser(user));
-      Cookies.set("at", accesstoken, {
-        expires: 2,
-        secure: true,
-      });
-      Cookies.set("rft", refreshToken, {
-        expires: 7,
-        secure: true,
-      });
+      if (result.data.data) {
+        let { refreshToken, accesstoken, user } = result.data.data;
 
-      navigate("/");
+        dispatch(setReduxUser(user));
+        Cookies.set("at", accesstoken, {
+          expires: 2,
+          secure: true,
+        });
+        Cookies.set("rft", refreshToken, {
+          expires: 7,
+          secure: true,
+        });
+
+        navigate("/");
+      }
     }
   };
 

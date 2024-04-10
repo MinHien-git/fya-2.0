@@ -7,3 +7,7 @@ export function PostCreatePage(data) {
 export function GetPages() {
   return api.get<any>("/page");
 }
+
+export function GetPage(id) {
+  return api.get<any>(`/page/${id}`);
+}

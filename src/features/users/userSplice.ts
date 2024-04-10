@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { IUser } from "../../components/NavigationBar/NavigationBar";
 
 export const userSlice = createSlice({
   name: "user",

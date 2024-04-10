@@ -40,20 +40,39 @@ import { useSelector, useDispatch } from "react-redux";
 import { setUser as setReduxUser } from "../../features/users/userSplice";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { HiSearch } from "react-icons/hi";
-interface IUser {
-  name?: string;
+import { PostRefreshToken } from "../../api/lib/token";
+export interface IUser {
   email?: string;
   fname?: string;
   lname?: string;
+  role: number;
 }
-const profileMenuItems = [
+const agencyProfileItems = [
   {
     label: "Management",
     url: "/management",
     icon: Cog6ToothIcon,
   },
   {
-    label: "Manage Page",
+    label: "Help",
+    url: "/help",
+    icon: LifebuoyIcon,
+  },
+  {
+    label: "Sign Out",
+    url: "/help",
+    icon: PowerIcon,
+  },
+];
+
+const profileMenuItems = [
+  {
+    label: "Project Management",
+    url: "/client",
+    icon: Cog6ToothIcon,
+  },
+  {
+    label: "Create Page",
     url: "/page-navigation",
     icon: InboxArrowDownIcon,
   },
@@ -79,26 +98,30 @@ const notLoginMenuItems = [
 
 function ProfileMenu() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [profile, setProfile] = useState<Array<any>>([]);
   const userSelector = useSelector((state: any) => state.user.value);
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    if (localStorage.getItem("user")) {
-      var u = JSON.parse(localStorage.getItem("user") || "{}");
-      dispatch(setReduxUser(u));
-      console.log(userSelector);
-    }
-  }, []);
   const handleSubmit = async (e) => {
     e.preventDefault();
     let result = await Signout(Cookies.get("rft"));
 
     if (result.status === 204) {
-      localStorage.removeItem("user");
+      Cookies.set("rft", null);
       dispatch(setReduxUser(null));
       window.location.reload();
     }
   };
+
+  useEffect(() => {
+    if (userSelector) {
+      if (userSelector.role === 1) {
+        setProfile(agencyProfileItems);
+      } else {
+        setProfile(profileMenuItems);
+      }
+    }
+  }, [userSelector]);
   const closeMenu = () => setIsMenuOpen(false);
 
   return (
@@ -154,8 +177,8 @@ function ProfileMenu() {
             </MenuItem>
           ) : null}
           {userSelector
-            ? profileMenuItems.map(({ label, icon, url }, key) => {
-                const isLastItem = key === profileMenuItems.length - 1;
+            ? profile.map(({ label, icon, url }, key) => {
+                const isLastItem = key === profile.length - 1;
                 return !isLastItem ? (
                   <MenuItem
                     placeholder={undefined}

@@ -12,6 +12,12 @@ export const pageSlice = createSlice({
     website: "",
     email_address: "",
     phone_number: "",
+    page_id: "",
+    tagline: "",
+    create_by: "",
+    page_type: "",
+    rating: 0,
+    turnover: "",
   },
   reducers: {
     setCompanyName: (state, action) => {
@@ -44,6 +50,10 @@ export const pageSlice = createSlice({
     setTeamMember: (state, action) => {
       state.team_members = action.payload;
     },
+
+    setPage: (state, action) => {
+      state = { ...action.payload };
+    },
   },
 });
 
@@ -57,6 +67,7 @@ export const {
   setPhoneNumer,
   setTeamMember,
   setDescription,
+  setPage,
 } = pageSlice.actions;
 
 export default pageSlice.reducer;

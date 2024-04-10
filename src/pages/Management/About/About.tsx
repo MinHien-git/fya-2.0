@@ -1,123 +1,156 @@
 import { Button } from "@material-tailwind/react";
 import SecondaryNavigationBar from "../../../components/SecondaryNavigationBar/SecondaryNavigationBar";
-import { FileInput, Label } from "flowbite-react";
+import { FileInput, Label, Textarea, TextInput } from "flowbite-react";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { setPage as setPageRedux } from "../../../features/pages/pageSplice";
+import { GetPage } from "../../../api/lib/page";
+import { useNavigate } from "react-router-dom";
 
 export default function About() {
+  const dispatch = useDispatch();
+  const pageSelector = useSelector((state: any) => state.page);
+  const userSelector = useSelector((state: any) => state.user.value);
+  const navigate = useNavigate();
+  useEffect(() => {
+    async function getPage() {
+      if (userSelector) {
+        let result = await GetPage(userSelector.id);
+        dispatch(setPageRedux(result.data.data));
+        console.log(result.data.data);
+        console.log(pageSelector);
+      } else {
+        navigate("/");
+      }
+      //dispatch(setPage(result));
+    }
+    getPage();
+  }, [pageSelector]);
   return (
     <div className="mt-5 mx-auto h-[80vh] flex flex-col px-12 gap-2 overflow-y-auto">
       <section className="max-w-7xl w-[90%] pb-10 rounded-xl border-2 mt-10 mx-auto flex-col px-12">
         <h2 className="font-title text-[1.875rem] text-center font-bold pt-5">
           General information
         </h2>
-        <section className="grid w-full gap-5">
-          <div className="grid w-full mx-auto">
-            <label
-              htmlFor="name"
-              className="font-semibold w-fit py-[0.225rem] md:py-[0.425rem] text-sm rounded-md text-text"
-            >
-              Agency name
-            </label>
-            <input
-              type="text"
-              id="name"
-              className="border-[1px] p-2 rounded-md"
+        <section className="grid w-full gap-2">
+          <div className="block">
+            <Label
+              htmlFor="agencyName"
+              value="Agency name"
+              className="font-semibold"
             />
           </div>
+          <TextInput
+            id="agencyName"
+            type="text"
+            placeholder="name@flowbite.com"
+            value={pageSelector.company_name}
+            required
+          />
           <div className="flex w-full mx-auto gap-10 items-end">
-            <div className="grid w-1/2 mx-auto">
-              <label
-                htmlFor="services"
-                className="font-semibold w-fit py-[0.125rem] text-sm rounded-md text-text"
-              >
-                Annual turnover in USD/VND (private)
-              </label>
-              <span className="text-gray-300 text-sm py-[0.225rem]">
-                We will not show this info on your page.
-              </span>
-              <input
+            <div className="grid w-1/2 mx-auto mt-2 gap-2">
+              <div className="grid gap-2">
+                <Label
+                  htmlFor="agencyName"
+                  value="Annual turnover in USD/VND (private)"
+                  className="font-semibold"
+                />
+                <p className="text-gray-300 text-sm">
+                  We will not show this info on your page.
+                </p>
+              </div>
+              <TextInput
+                id="agencyName"
                 type="text"
-                id="language"
-                className="border-[1px] p-2 rounded-md"
+                placeholder="Annual turnover"
+                value={pageSelector.turnover}
+                required
               />
             </div>
-            <div className="grid w-1/2 mx-auto">
-              <label
-                htmlFor="language"
-                className="font-semibold w-fit py-[0.225rem] md:py-[0.425rem] text-sm rounded-md text-text"
-              >
-                Language(s) available
-              </label>
-              <input
+            <div className="grid w-1/2 mx-auto mt-2 gap-2">
+              <div className="grid gap-2">
+                <Label
+                  htmlFor="agencyName"
+                  value="Languages"
+                  className="font-semibold"
+                />
+              </div>
+              <TextInput
+                id="agencyName"
                 type="text"
-                id="language"
-                className="border-[1px] p-2 rounded-md"
+                placeholder="Languages"
+                required
               />
             </div>
           </div>
           <div className="flex w-full mx-auto gap-10 items-end">
             <div className="w-1/2 flex gap-5 items-end">
-              <div className="grid w-1/3">
-                <label
-                  htmlFor="services"
-                  className="font-semibold w-fit py-[0.125rem] text-sm rounded-md text-text"
-                >
-                  Established in
-                </label>
-
-                <input
+              <div className="grid w-1/3 gap-2">
+                <div className="grid gap-2">
+                  <Label
+                    htmlFor="Establish date"
+                    value="Establish date"
+                    className="font-semibold"
+                  />
+                </div>
+                <TextInput
+                  id="Establish date"
                   type="text"
-                  id="services"
-                  className="border-[1px] p-2 rounded-md w-full"
+                  placeholder="Establish date"
+                  required
                 />
               </div>
-              <div className="grid w-2/3 ">
-                <label
-                  htmlFor="services"
-                  className="font-semibold w-fit py-[0.125rem] text-sm rounded-md text-text"
-                >
-                  Number of team/company members
-                </label>
-
-                <input
+              <div className="grid w-2/3 gap-2">
+                <div className="grid gap-2">
+                  <Label
+                    htmlFor="agencyName"
+                    value="Number of team/company members"
+                    className="font-semibold"
+                  />
+                </div>
+                <TextInput
+                  id="agencyName"
                   type="text"
-                  id="services"
-                  className="border-[1px] p-2 rounded-md w-full"
+                  placeholder="Number of team"
+                  required
                 />
               </div>
             </div>
             <div className="grid w-1/2 mx-auto">
-              <label
-                htmlFor="services"
-                className="font-semibold w-fit py-[0.125rem] text-sm rounded-md text-text"
-              >
-                Agency tagline
-              </label>
-              <span className="text-gray-300 text-[10px] py-[0.225rem]">
-                The tagline will be shown on your agency's thumbnail on search
-                results, and on the front page with the Advertising Features
-              </span>
-              <input
+              <div className="grid gap-2">
+                <Label
+                  htmlFor="agencyName"
+                  value="Agency tagline"
+                  className="font-semibold"
+                />
+                <p className="text-gray-300 text-xs">
+                  The tagline will be shown on your agency's thumbnail on search
+                  results, and on the front page with the Advertising Features
+                </p>
+              </div>
+              <TextInput
+                id="agencyName"
                 type="text"
-                id="services"
-                className="border-[1px] p-2 rounded-md"
+                placeholder="Agency tagline"
+                required
               />
             </div>
           </div>
           <div className="flex w-full mx-auto gap-10 items-end">
-            <div className="grid w-full mx-auto">
-              <label
-                htmlFor="description"
-                className="font-semibold w-fit py-[0.125rem] text-sm rounded-md text-text"
-              >
-                Agency description
-              </label>
-              <span className="text-gray-300 text-sm py-[0.225rem]">
-                Description will be shown on your Agency Page.
-              </span>
-              <textarea
+            <div className="grid w-full mx-auto  mt-2">
+              <div className="mb-2 block">
+                <Label htmlFor="description" value="Agency description" />
+                <p className="text-gray-300 text-sm py-[0.225rem]">
+                  Description will be shown on your Agency Page.
+                </p>
+              </div>
+              <Textarea
                 id="description"
-                className="border-[1px] p-2 rounded-md"
-              ></textarea>
+                className="px-4 pt-2"
+                placeholder="Leave a comment..."
+                required
+                rows={4}
+              />
             </div>
           </div>
         </section>
