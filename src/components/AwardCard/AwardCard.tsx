@@ -1,11 +1,25 @@
 import { Button } from "@material-tailwind/react";
 import { useState } from "react";
+import { postPageAward, PutPageAward } from "../../api/lib/page";
+import { useSelector } from "react-redux";
 export interface IEditCard {
   isEmpty: boolean;
+  id?: string;
 }
 export default function AwardCard({ isEmpty }: IEditCard) {
   const [editMode, setEditMode] = useState(false);
   const [empty, setEmpty] = useState(isEmpty);
+  const [award, setAward] = useState<any>({});
+  const page_id = useSelector((state: any) => state.page.page_id);
+
+  async function handleSubmit() {
+    if (!award.award_id) {
+      const result = await postPageAward(page_id, award);
+      setAward({ ...award, award_id: result });
+    } else {
+      const result = await PutPageAward(award.award_id, award);
+    }
+  }
 
   return empty ? (
     <div
@@ -69,14 +83,26 @@ export default function AwardCard({ isEmpty }: IEditCard) {
         </li>
         <li className="w-1/4 px-5">
           <li className="text-xs">Award Name</li>
-          <li className="font-bold text-nowrap" contentEditable={editMode}>
+          <li
+            className="font-bold text-nowrap"
+            contentEditable={editMode}
+            onInput={(e) => {
+              setAward({ ...award, name: e.currentTarget.textContent });
+            }}
+          >
             [Award Name]
           </li>
         </li>
         <li className="w-1/4 px-5 border-l-2">
           <ul>
             <li className="text-xs">Category</li>
-            <li className="font-bold text-nowrap" contentEditable={editMode}>
+            <li
+              className="font-bold text-nowrap"
+              contentEditable={editMode}
+              onInput={(e) => {
+                setAward({ ...award, catergory: e.currentTarget.textContent });
+              }}
+            >
               [Catergory Name]
             </li>
           </ul>
@@ -84,7 +110,13 @@ export default function AwardCard({ isEmpty }: IEditCard) {
         <li className="w-1/4 px-5 border-l-2">
           <ul>
             <li className="text-xs">Date</li>
-            <li className="font-bold text-nowrap" contentEditable={editMode}>
+            <li
+              className="font-bold text-nowrap"
+              contentEditable={editMode}
+              onInput={(e) => {
+                setAward({ ...award, date: e.currentTarget.textContent });
+              }}
+            >
               [mm/yyyy]
             </li>
           </ul>
@@ -92,24 +124,61 @@ export default function AwardCard({ isEmpty }: IEditCard) {
         <li className="w-1/4 pl-5 border-l-2">
           <ul>
             <li className="text-xs text-nowrap">Link to an existing work</li>
-            <li className="font-bold text-nowrap" contentEditable={editMode}>
+            <li
+              className="font-bold text-nowrap"
+              contentEditable={editMode}
+              onInput={(e) => {
+                console.log(award);
+                setAward({ ...award, url: e.currentTarget.textContent });
+              }}
+            >
               [sample.com]
             </li>
           </ul>
         </li>
         <li className="px-8">
           {editMode ? (
-            <Button
-              placeholder={undefined}
-              onClick={() => setEditMode(!editMode)}
-              className="bg-primary"
-            >
-              Save
-            </Button>
+            <div className="flex gap-4">
+              {award.award_id ? (
+                <Button
+                  placeholder={undefined}
+                  onClick={() => {
+                    setEditMode(!editMode);
+                    handleSubmit();
+                  }}
+                  className="bg-red-200 text-red-400"
+                >
+                  Delete
+                </Button>
+              ) : (
+                <Button
+                  placeholder={undefined}
+                  onClick={() => {
+                    setEditMode(!editMode);
+                    handleSubmit();
+                  }}
+                  className="bg-red-200 text-red-400"
+                >
+                  Cancel
+                </Button>
+              )}
+              <Button
+                placeholder={undefined}
+                onClick={() => {
+                  setEditMode(!editMode);
+                  handleSubmit();
+                }}
+                className="bg-primary"
+              >
+                Save
+              </Button>
+            </div>
           ) : (
             <Button
               placeholder={undefined}
-              onClick={() => setEditMode(!editMode)}
+              onClick={() => {
+                setEditMode(!editMode);
+              }}
             >
               Edit
             </Button>

@@ -98,7 +98,7 @@ export const speakingLanguages = [
   "Quechua",
   "Kinyarwanda",
 ];
-const agencySkillTagsRequirements = [
+export const agencySkillTagsRequirements = [
   "Adobe Creative Suite",
   "UI/UX Design",
   "Responsive Web Design",

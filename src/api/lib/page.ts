@@ -18,3 +18,15 @@ export function GetManagePage(id) {
 export function PutAboutPage(id, data) {
   return api.put<any>(`/page/about/update/${id}`, data);
 }
+
+export function GetPageAward(pageId) {
+  return api.get<any>(`/page/awards/${pageId}`);
+}
+
+export function PutPageAward(awardId, data) {
+  return api.put<any>(`/page/award/${awardId}/update`, data);
+}
+
+export function postPageAward(pageId, data) {
+  return api.post<any>(`/page/award/${pageId}`, data);
+}

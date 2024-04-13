@@ -1,7 +1,8 @@
 import { Button, IconButton, Input, Radio } from "@material-tailwind/react";
 import { isContentEditable } from "@testing-library/user-event/dist/utils";
 import { Label, Textarea } from "flowbite-react";
-import { useRef } from "react";
+import { useRef, useState } from "react";
+import { speakingLanguages } from "../../../components/PostProjectPopup/PostProjectPopup";
 
 export interface ITab {
   moveNext: () => void;
@@ -11,6 +12,15 @@ export interface ITab {
 
 export default function EditService({ moveNext, addService }: ITab) {
   const priceRef = useRef<any>(null);
+  const [languages, setLanguage] = useState<Array<string>>(speakingLanguages);
+  const [currentLanguage, setCurrentLanguage] = useState<Array<string>>([]);
+
+  const [focus, setFocus] = useState(false);
+  const [currentSearch, setCurrentSearch] = useState("");
+
+  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setCurrentSearch(e.target.value);
+  };
   return (
     <>
       <section className="max-w-7xl w-[90%] h-[80vh] rounded-xl border-2 mt-10 mx-auto flex-col px-6 pb-10 overflow-y-auto">
@@ -39,7 +49,7 @@ export default function EditService({ moveNext, addService }: ITab) {
                 className="bg-red-200 text-red-500 capitalize py-5"
                 placeholder={undefined}
               >
-                Delete service
+                {!addService ? "Delete service" : "Cancel"}
               </Button>
             </li>
             <li className="min-w-max bg-blue-500 rounded-md text-sm flex items-center font-bold">
