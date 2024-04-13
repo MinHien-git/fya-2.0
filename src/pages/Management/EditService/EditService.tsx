@@ -1,34 +1,55 @@
-import { IconButton } from "@material-tailwind/react";
+import { Button, IconButton, Input, Radio } from "@material-tailwind/react";
+import { isContentEditable } from "@testing-library/user-event/dist/utils";
+import { Label, Textarea } from "flowbite-react";
+import { useRef } from "react";
 
 export interface ITab {
   moveNext: () => void;
+  addService?: boolean;
   id?: string;
 }
 
-export default function EditService({ moveNext }: ITab) {
+export default function EditService({ moveNext, addService }: ITab) {
+  const priceRef = useRef<any>(null);
   return (
     <>
       <section className="max-w-7xl w-[90%] h-[80vh] rounded-xl border-2 mt-10 mx-auto flex-col px-6 pb-10 overflow-y-auto">
         <div className="flex w-full px-10 mt-14 gap-6">
           <ul className="flex w-[50%] gap-3">
             <li
-              className="w-8 aspect-square rounded-md bg-slate-300 cursor-pointer"
+              className="aspect-square rounded-md cursor-pointer"
               onClick={moveNext}
             >
-              <IconButton placeholder={undefined}>
+              <IconButton
+                placeholder={undefined}
+                size="lg"
+                className="!w-[60px] h-[60px] !max-w-[60px] !max-h-[60px]"
+              >
                 <i className="fa-solid fa-arrow-left-long"></i>
               </IconButton>
             </li>
             <li className="bg-slate-300 px-6 rounded-md text-blue-500 py-1 text-sm flex items-center font-bold cursor-pointer">
-              Edit
+              {!addService ? "Edit Service" : "Add Service"}
             </li>
           </ul>
-          <ul className="flex ml-auto gap-3">
-            <li className="min-w-max bg-red-200 text-red-500 px-6 rounded-md py-1 text-sm flex items-center font-bold">
-              Delete service
+          <ul className="flex ml-auto gap-6">
+            <li className="min-w-max rounded-md text-sm flex items-center font-bold">
+              <Button
+                size="lg"
+                className="bg-red-200 text-red-500 capitalize py-5"
+                placeholder={undefined}
+              >
+                Delete service
+              </Button>
             </li>
-            <li className="min-w-max bg-blue-500 text-white px-6 rounded-md py-1 text-sm flex items-center font-bold bg-primary">
-              Save changes
+            <li className="min-w-max bg-blue-500 rounded-md text-sm flex items-center font-bold">
+              <Button
+                size="lg"
+                className="bg-primary text-white capitalize py-5"
+                placeholder={undefined}
+              >
+                Save changes
+              </Button>
             </li>
           </ul>
         </div>
@@ -59,8 +80,8 @@ export default function EditService({ moveNext }: ITab) {
                 </div>
               </div>
             </div>
-
-            <h2 className="font-bold text-2xl font-title mt-4">
+            {/* 
+            <h2 className="">
               Description for your service
             </h2>
             <p className="font-bold mb-2 text-xs">(optional)</p>
@@ -76,8 +97,22 @@ export default function EditService({ moveNext }: ITab) {
                 id="description"
                 className="border-[1px] p-2 rounded-md h-[6.25rem]"
               ></textarea>
+            </div> */}
+            <div className="font-bold text-2xl font-title mt-4">
+              <Label
+                htmlFor="comment"
+                value="Description for your service"
+                className="font-bold text-2xl font-title mt-4"
+              />
+              <p className="font-bold mb-2 text-xs">(optional)</p>
             </div>
-
+            <Textarea
+              id="comment"
+              placeholder="Description"
+              required
+              className="p-3"
+              rows={4}
+            />
             <h2 className="font-bold text-2xl font-title mt-4">
               Starting price for this service
             </h2>
@@ -85,85 +120,62 @@ export default function EditService({ moveNext }: ITab) {
               Set your starting price so that we could match you with clients
               with similar budget
             </p>
-            <div className="flex w-full mx-auto flex-nowrap gap-4">
-              <div className="flex w-1/6 mx-auto items-center">
-                <input
-                  id="default-radio-1"
-                  type="radio"
-                  value=""
-                  name="default-radio"
-                  className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+            <div className="flex w-full flex-nowrap gap-4">
+              <div className="flex gap-2">
+                <Radio
+                  name="type"
+                  label="$100"
+                  placeholder={undefined}
+                  labelProps={{
+                    className: "text-xs font-bold",
+                  }}
+                  crossOrigin={false}
                 />
-                <label
-                  htmlFor="default-radio-1"
-                  className="ms-2 font-medium text-gray-900 dark:text-gray-300"
-                >
-                  $100
-                </label>
-              </div>
-              <div className="flex w-1/6 mx-auto items-center">
-                <input
-                  id="default-radio-1"
-                  type="radio"
-                  value=""
-                  name="default-radio"
-                  className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                <Radio
+                  name="type"
+                  label="$1000"
+                  placeholder={undefined}
+                  labelProps={{
+                    className: "text-xs font-bold",
+                  }}
+                  crossOrigin={false}
                 />
-                <label
-                  htmlFor="default-radio-1"
-                  className="ms-2 font-medium text-gray-900 dark:text-gray-300"
-                >
-                  $1000
-                </label>
-              </div>
-              <div className="flex w-1/6 mx-auto items-center">
-                <input
-                  id="default-radio-1"
-                  type="radio"
-                  value=""
-                  name="default-radio"
-                  className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                <Radio
+                  name="type"
+                  label="$5000"
+                  placeholder={undefined}
+                  labelProps={{
+                    className: "text-xs font-bold",
+                  }}
+                  crossOrigin={false}
                 />
-                <label
-                  htmlFor="default-radio-1"
-                  className="ms-2 font-medium text-gray-900 dark:text-gray-300"
-                >
-                  $5000
-                </label>
-              </div>
-              <div className="flex w-1/6 mx-auto items-center">
-                <input
-                  id="default-radio-1"
-                  type="radio"
-                  value=""
-                  name="default-radio"
-                  className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                <Radio
+                  name="type"
+                  label="$10000"
+                  placeholder={undefined}
+                  crossOrigin={false}
+                  labelProps={{
+                    className: "text-xs font-bold",
+                  }}
                 />
-                <label
-                  htmlFor="default-radio-1"
-                  className="ms-2 font-medium text-gray-900 dark:text-gray-300"
-                >
-                  $10000
-                </label>
-              </div>
-              <div className="flex w-2/6 mx-auto items-center">
-                <input
-                  id="default-radio-1"
-                  type="radio"
-                  value=""
-                  name="default-radio"
-                  className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                <Radio
+                  name="type"
+                  label={
+                    <div
+                      className="border-b-2 w-16 h-5 pb-2 font-bold text-xs"
+                      contentEditable={true}
+                      ref={priceRef}
+                    >
+                      123
+                    </div>
+                  }
+                  onFocus={() => priceRef?.current?.focus()}
+                  labelProps={{
+                    className: "text-xs font-bold h-full flex items-center",
+                  }}
+                  placeholder={undefined}
+                  crossOrigin={false}
                 />
-                <label
-                  htmlFor="default-radio-1"
-                  className="ms-2 font-medium text-gray-900 dark:text-gray-300 w-full"
-                >
-                  <input
-                    type="text"
-                    id="default-radio-1"
-                    className="border-2 w-full rounded-md"
-                  />
-                </label>
               </div>
             </div>
           </div>

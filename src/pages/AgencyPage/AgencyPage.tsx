@@ -1,35 +1,64 @@
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { GetPage } from "../../api/lib/page";
+import { Button } from "@material-tailwind/react";
+
 export default function AgencyPage() {
+  const { pageId } = useParams();
+  const [page, setPage] = useState<any>(null);
+  useEffect(() => {
+    async function fetchData() {
+      let result = await GetPage(pageId);
+      console.log(result);
+      if (result.data) {
+        setPage(result.data.data);
+      }
+    }
+    fetchData();
+  }, [pageId]);
   return (
     <main className="w-full min-h-80 p-2">
       <section className="w-full border-2 max-w-7xl my-5 rounded-xl md:mx-auto h-[40vh] bg-light_gray flex aspect-[4/1]">
         <div className="flex items-center w-full border-t-2 border-gray-300 h-[3rem] mt-auto relative ">
           <div className="w-[6rem] aspect-square bg-gray-500 rounded-full absolute top-[-3.5rem] left-[1.5rem] h-auto md:w-[8rem] md:top-[-3rem]"></div>
           <h1 className="pl-[8rem] text-md font-bold md:hidden">
-            [Brand Name Brand Name]
+            {page?.company_name}
           </h1>
 
-          <ul className="justify-center w-full hidden md:flex gap-4 md:ml-20">
-            <li>About</li>
+          <ul className="justify-center w-full hidden md:flex gap-4 md:ml-20 font-bold">
+            <li>
+              <a href="#about">About</a>
+            </li>
             <li>
               <hr className="h-full w-[2px] bg-slate-500" />
             </li>
-            <li>Services</li>
+            <li>
+              <a href="#service">Services</a>
+            </li>
             <li>
               <hr className="h-full w-[2px] bg-slate-500" />
             </li>
-            <li>Portfolio</li>
+            <li>
+              <a href="#portfolio">Portfolio</a>
+            </li>
             <li>
               <hr className="h-full w-[2px] bg-slate-500" />
             </li>
-            <li>Awards</li>
+            <li>
+              <a href="#awards">Awards</a>
+            </li>
             <li>
               <hr className="h-full w-[2px] bg-slate-500" />
             </li>
-            <li>Reviews</li>
+            <li>
+              <a href="#reviews">Reviews</a>
+            </li>
             <li>
               <hr className="h-full w-[2px] bg-slate-500" />
             </li>
-            <li>Contact</li>
+            <li>
+              <a href="#contact">Contact</a>
+            </li>
           </ul>
         </div>
       </section>
@@ -43,27 +72,37 @@ export default function AgencyPage() {
           <li>Contact</li>
         </ul>
       </section>
-      <section className="w-full max-w-7xl my-5 md:mx-auto grid md:flex lg:gap-4">
+      <section
+        className="w-full max-w-7xl my-5 md:mx-auto grid md:flex lg:gap-4 scroll-mt-64"
+        id="about"
+      >
         <div className="flex flex-col gap-3 px-2 md:mt-5 content-baseline lg:w-3/6 lg:ml-6 lg:gap-5">
           <h1 className="text-md font-bold hidden md:block text-xl lg:text-2xl">
-            [Brand Name Brand Name]
+            {page?.company_name}
           </h1>
-          <p className="text-text text-sm lg:text-base">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce at
-            sapien eu ipsum ornare sollicitudin vel nec nisl. Nullam ut lacus
-            porttitor, vestibulum ipsum eu, porta libero. Aliquam erat volutpat.
-            Morbi ac tincidunt orci.
-          </p>
-          <div className="grid gap-1 mt-6 lg:mt-auto mb-5">
-            <button className="bg-primary w-4/6 rounded-2xl py-4 text-[1.125rem] mt-2 font-bold lg:w-[15rem] lg:mt-auto mb-1 font-title text-white">
+          <p className="text-text text-sm lg:text-base">{page?.description}</p>
+          <div className="grid gap-2 mt-6 lg:mt-auto mb-5">
+            <Button
+              size="lg"
+              className="bg-primary text-white font-semibold rounded-md text-xs w-full lg:w-[15rem] py-5"
+              placeholder={undefined}
+            >
               Contact
-            </button>
-            <button className="bg-secondary w-4/6 rounded-2xl py-4 text-[1.125rem] mt-2 font-bold lg:w-[15rem] lg:mt-auto mb-1 font-title">
+            </Button>
+            <Button
+              size="lg"
+              className="bg-secondary text-black font-semibold rounded-md text-xs w-full lg:w-[15rem] py-5"
+              placeholder={undefined}
+            >
               Open website
-            </button>
-            <button className="bg-tertiary w-4/6 rounded-2xl py-4 text-[1.125rem] mt-2 font-bold lg:w-[15rem] lg:mt-auto mb-1 font-title text-primary">
+            </Button>
+            <Button
+              size="lg"
+              className="bg-tertiary text-primary font-semibold rounded-md text-xs w-full lg:w-[15rem] py-5"
+              placeholder={undefined}
+            >
               Add To Saved
-            </button>
+            </Button>
           </div>
         </div>
         <section className="w-full max-w-7xl my-5 md:mx-auto flex lg:w-3/6">
@@ -98,25 +137,32 @@ export default function AgencyPage() {
                 <li className="bg-secondary w-6 aspect-square rounded-full"></li>
               </ul>
               <p className="text-center font-bold">0.0/5.0</p>
-              <p>
-                (no review yet) Have You worked with [Brand Name] Before?{" "}
+              <p className="capitalize">
+                (no review yet) Have You worked with{" "}
+                {page?.company_name
+                  .toLowerCase()
+                  .replace(/\b(\w)/g, (x) => x.toUpperCase())}{" "}
+                Before?{" "}
                 <span className="text-blue-500 underline"> Review Here</span>
               </p>
             </div>
             <div className="w-full border-2 max-w-7xl px-4 sm:px-4 lg:px-8 py-8 rounded-xl md:mx-auto grid gap-3 lg:content-baseline lg:gap-6">
               <p>Team: 123 people </p>
-              <p>Founded in: 2023</p>
-              <p>Language(s) available: English, Vietnamese</p>
+              <p>Founded in: {page?.founded_date.split("T")[0]}</p>
+              <p>Language(s) available: {page?.languages.join(",")}</p>
               <p>Has joined Fya since: 2023</p>
             </div>
           </div>
         </section>
       </section>
 
-      <section className="w-full border-[1px] border-border bg-light_gray max-w-7xl px-2 sm:px-4 lg:px-40 my-5 rounded-[3rem] md:mx-auto flex flex-col justify-center items-center relative">
+      <section className="w-full border-[1px] border-border bg-light_gray max-w-7xl px-2 sm:px-4 lg:px-40 my-5 rounded-[3rem] md:mx-auto flex flex-col justify-center items-center relative scroll-mt-[100px]">
         <div className="py-5 pb-10">
-          <h2 className="text-[2rem] py-2 font-bold text-center font-title">
-            Agencies Similar to [Agency Name]
+          <h2 className="text-[2rem] py-2 font-bold text-center font-title capitalize">
+            Agencies Similar to{" "}
+            {page?.company_name
+              .toLowerCase()
+              .replace(/\b(\w)/g, (x) => x.toUpperCase())}
           </h2>
           <div className="flex justify-center mt-5 flex-wrap gap-4 md:flex-nowrap md:w-full max-w-5xl mx-auto">
             <div className="font-sans w-10/12 flex border-2 rounded-2xl sm:w-2/5 bg-white">
@@ -159,9 +205,13 @@ export default function AgencyPage() {
                 </div>
 
                 <div className="flex w-5/6 gap-1 my-2">
-                  <button className="bg-secondary w-5/6 font-semibold rounded-md text-xs">
+                  <Button
+                    className="bg-secondary w-5/6 font-semibold rounded-md text-xs text-text"
+                    placeholder={undefined}
+                  >
                     Contact
-                  </button>
+                  </Button>
+
                   <button className="bg-slate-200 w-1/6 aspect-square rounded-md"></button>
                 </div>
               </div>
@@ -206,9 +256,12 @@ export default function AgencyPage() {
                 </div>
 
                 <div className="flex w-5/6 gap-1 my-2">
-                  <button className="bg-secondary w-5/6 font-semibold rounded-md text-xs">
+                  <Button
+                    className="bg-secondary w-5/6 font-semibold rounded-md text-xs text-text"
+                    placeholder={undefined}
+                  >
                     Contact
-                  </button>
+                  </Button>
                   <button className="bg-slate-200 w-1/6 aspect-square rounded-md"></button>
                 </div>
               </div>
@@ -253,9 +306,12 @@ export default function AgencyPage() {
                 </div>
 
                 <div className="flex w-5/6 gap-1 my-2">
-                  <button className="bg-secondary w-5/6 font-semibold rounded-md text-xs">
+                  <Button
+                    className="bg-secondary w-5/6 font-semibold rounded-md text-xs text-text"
+                    placeholder={undefined}
+                  >
                     Contact
-                  </button>
+                  </Button>
                   <button className="bg-slate-200 w-1/6 aspect-square rounded-md"></button>
                 </div>
               </div>
@@ -275,7 +331,10 @@ export default function AgencyPage() {
           />
         </div>
       </section>
-      <section className="w-full border-[1px] border-border max-w-7xl bg-light_gray px-2 sm:px-4 lg:px-40 my-5 rounded-[3rem] md:mx-auto flex flex-col justify-center items-center relative">
+      <section
+        className="w-full border-[1px] border-border max-w-7xl bg-light_gray px-2 sm:px-4 lg:px-40 my-5 rounded-[3rem] md:mx-auto flex flex-col justify-center items-center relative scroll-mt-[100px]"
+        id="service"
+      >
         <div className="py-5 w-full pb-10">
           <h2 className="text-[2rem] py-2 font-bold text-center font-title">
             Services
@@ -436,10 +495,13 @@ export default function AgencyPage() {
           </p>
         </div>
       </section>
-      <section className="w-full border-[1px] border-border max-w-7xl bg-light_gray px-2 sm:px-4 lg:px-40 my-5 rounded-[3rem] md:mx-auto flex flex-col justify-center items-center relative">
+      <section className="w-full border-[1px] border-border max-w-7xl bg-light_gray px-2 sm:px-4 lg:px-40 my-5 rounded-[3rem] md:mx-auto flex flex-col justify-center items-center relative ">
         <div className="py-5 w-10/12 md:w-full pb-10">
-          <h2 className="text-[2rem] py-2 font-bold text-center font-title">
-            Brand Name's Agency Projects
+          <h2 className="text-[2rem] py-2 font-bold text-center font-title capitalize">
+            {page?.company_name
+              .toLowerCase()
+              .replace(/\b(\w)/g, (x) => x.toUpperCase())}
+            's Agency Projects
           </h2>
           <div className="flex flex-wrap mt-4 gap-4 md:flex-nowrap max-w-5xl mx-auto">
             <div className="flex flex-col h-auto sm:h-[32rem] md:h-auto w-full p-4 border border-gray-200 rounded-2xl shadow dark:bg-gray-800 dark:border-gray-700 md:w-1/3 drop-shadow-md">
@@ -513,7 +575,10 @@ export default function AgencyPage() {
           />
         </div>
       </section>
-      <section className="w-full border-[1px] border-border max-w-7xl bg-light_gray px-2 sm:px-4 lg:px-40 my-5 rounded-[3rem] md:mx-auto flex flex-col justify-center items-center relative">
+      <section
+        className="w-full border-[1px] border-border max-w-7xl bg-light_gray px-2 sm:px-4 lg:px-40 my-5 rounded-[3rem] md:mx-auto flex flex-col justify-center items-center relative scroll-mt-[100px]"
+        id="portfolio"
+      >
         <div className="py-5 w-10/12 md:w-full pb-10">
           <h2 className="text-[2rem] py-2 font-bold text-center font-title">
             Portfolio
@@ -591,7 +656,10 @@ export default function AgencyPage() {
           />
         </div>
       </section>
-      <section className="w-full border-[1px] border-border max-w-7xl px-2 sm:px-4 lg:px-40 my-5 rounded-[3rem] md:mx-auto flex flex-col justify-center items-center relative">
+      <section
+        className="w-full border-[1px] border-border max-w-7xl px-2 sm:px-4 lg:px-40 my-5 rounded-[3rem] md:mx-auto flex flex-col justify-center items-center relative scroll-mt-[100px]"
+        id="awards"
+      >
         <div className="py-5 w-10/12 md:w-full pb-10">
           <h2 className="text-[2rem] py-2 font-bold text-center font-title">
             Awards
@@ -670,7 +738,10 @@ export default function AgencyPage() {
         </div>
       </section>
 
-      <section className="w-full border-[1px] border-border bg-light_gray max-w-7xl px-2 sm:px-4 lg:px-40 my-5 rounded-[3rem] md:mx-auto flex flex-col justify-center items-center relative">
+      <section
+        className="w-full border-[1px] border-border bg-light_gray max-w-7xl px-2 sm:px-4 lg:px-40 my-5 rounded-[3rem] md:mx-auto flex flex-col justify-center items-center relative scroll-mt-[100px]"
+        id="reviews"
+      >
         <div className="py-5 w-10/12 md:w-full max-w-5xl mx-auto pb-10">
           <h2 className="text-[2rem] py-2 font-bold text-center font-title">
             Reviews & Feedback
@@ -759,7 +830,10 @@ export default function AgencyPage() {
           />
         </div>
       </section>
-      <section className="w-full border-[1px] border-border bg-light_gray max-w-7xl px-2 sm:px-4 lg:px-40 my-5 rounded-[3rem] md:mx-auto flex flex-col justify-center items-center relative">
+      <section
+        className="w-full border-[1px] border-border bg-light_gray max-w-7xl px-2 sm:px-4 lg:px-40 my-5 rounded-[3rem] md:mx-auto flex flex-col justify-center items-center relative scroll-mt-[100px]"
+        id="contact"
+      >
         <div className="py-5 grid w-11/12 gap-5 md:flex pb-10">
           <div className="flex flex-col gap-3 items-center md:w-1/2 content-center justify-center lg:justify-start lg:items-start">
             <h2 className="text-[2rem] font-bold text-center font-title">
@@ -770,15 +844,24 @@ export default function AgencyPage() {
                 Addresses
               </div>
               <div className="text-sm rounded-t-xs py-3 px-4 font-bold">
-                123 ABC address, Street, City abc
+                {page.address}
               </div>
             </div>
-            <button className="bg-primary text-white rounded-md text-xs h-[2.125rem] font-semibold lg:w-[20rem] lg:h-[3rem] mt-5 w-full">
+
+            <Button
+              size="lg"
+              className="bg-primary text-white font-semibold rounded-md text-xs w-full lg:w-[20rem]"
+              placeholder={undefined}
+            >
               Contact
-            </button>
-            <button className="bg-secondary rounded-md text-xs h-[2.125rem] font-semibold lg:w-[20rem] lg:h-[3rem] w-full">
+            </Button>
+            <Button
+              size="lg"
+              className="bg-secondary font-semibold rounded-md text-xs w-full lg:w-[20rem] text-text"
+              placeholder={undefined}
+            >
               Open website
-            </button>
+            </Button>
 
             <ul className="flex gap-3 items-center w-full">
               <li className="bg-gray-300 w-1/12 aspect-square rounded-full"></li>

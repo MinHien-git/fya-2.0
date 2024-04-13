@@ -154,7 +154,7 @@ export default function SearchResult() {
           </h2>
           <div className="flex justify-center mt-5 flex-wrap gap-4 md:flex-nowrap md:w-full md:grid md:grid-cols-3 lg:grid-cols-4">
             {pages?.map((page) => (
-              <LargeAgencyCard />
+              <LargeAgencyCard page={page} />
             ))}
           </div>
         </div>

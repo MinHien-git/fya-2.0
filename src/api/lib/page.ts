@@ -7,9 +7,12 @@ export function PostCreatePage(data) {
 export function GetPages() {
   return api.get<any>("/page");
 }
-
 export function GetPage(id) {
   return api.get<any>(`/page/${id}`);
+}
+
+export function GetManagePage(id) {
+  return api.get<any>(`/management/page/${id}`);
 }
 
 export function PutAboutPage(id, data) {

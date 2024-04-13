@@ -9,7 +9,7 @@ import {
   setTagline,
   setTeamMember,
 } from "../../../features/pages/pageSplice";
-import { GetPage, PutAboutPage } from "../../../api/lib/page";
+import { GetManagePage, PutAboutPage } from "../../../api/lib/page";
 import { useNavigate } from "react-router-dom";
 import {
   setCompanyName,
@@ -63,7 +63,7 @@ export default function About() {
   useEffect(() => {
     async function getPage() {
       if (userSelector) {
-        let result = await GetPage(userSelector.id);
+        let result = await GetManagePage(userSelector.id);
         dispatch(setPageRedux(result.data.data));
         console.log(result.data.data);
         console.log(pageSelector);
@@ -156,7 +156,7 @@ export default function About() {
               />
               {focus ? (
                 <ul className="absolute  py-3 bg-white w-full shadow-lg rounded-b-xl h-auto max-h-[12rem] overflow-y-auto gap-2 z-[10000] -bottom-[9rem]">
-                  {languages.map((i) => (
+                  {languages?.map((i) => (
                     <li
                       className="px-3 w-full py-4 font-semibold text-xs cursor-pointer text-text hover:bg-gray-100 shadow-sm"
                       onClick={() => {

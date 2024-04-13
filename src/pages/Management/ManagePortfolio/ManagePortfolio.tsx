@@ -1,18 +1,27 @@
+import { IconButton } from "@material-tailwind/react";
 import SecondaryNavigationBar from "../../../components/SecondaryNavigationBar/SecondaryNavigationBar";
 import { ITab } from "../EditService/EditService";
 
-export default function ManagePortfolio({ moveNext }: ITab) {
+export default function ManagePortfolio({ moveNext, addService }: ITab) {
   return (
     <div className="h-[80vh] overflow-y-auto">
       <section className="max-w-7xl w-[90%] rounded-xl border-2 mt-10 mx-auto flex-col px-6 pb-10">
         <div className="flex w-full px-10 mt-14 gap-6">
           <ul className="flex w-[50%] gap-3">
             <li
-              className="w-8 aspect-square rounded-md bg-slate-300 cursor-pointer"
+              className="aspect-square rounded-md cursor-pointer"
               onClick={moveNext}
-            ></li>
-            <li className="bg-slate-300 px-6 rounded-md text-blue-500 py-1 text-sm flex items-center font-bold">
-              Edit
+            >
+              <IconButton
+                placeholder={undefined}
+                size="lg"
+                className="!w-[60px] h-[60px] !max-w-[60px] !max-h-[60px]"
+              >
+                <i className="fa-solid fa-arrow-left-long"></i>
+              </IconButton>
+            </li>
+            <li className="bg-slate-300 px-6 rounded-md text-blue-500 py-1 text-sm flex items-center font-bold cursor-pointer">
+              {!addService ? "Edit Portfolio" : "Add Portfolio"}
             </li>
           </ul>
         </div>

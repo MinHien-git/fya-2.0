@@ -81,7 +81,7 @@ function App() {
         <Routes>
           <Route path="/" element={<GuestLayout />}>
             <Route path="/" element={<Home />} />
-            <Route path="/agencypage" element={<AgencyPage />} />
+            <Route path="/agencypage/:pageId" element={<AgencyPage />} />
             <Route path="/brandpage" element={<BrandPage />} />
             <Route path="/searchresult" element={<SearchResult />} />
             <Route path="/saveList" element={<SaveList />} />

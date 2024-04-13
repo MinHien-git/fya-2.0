@@ -33,14 +33,14 @@ const onResponseError = async (
 ): Promise<AxiosError | void> => {
   if (error.response) {
     // Access Token was expired
-    if (error.response.status === 401) {
+    if (error.response.status == 401) {
       const rft = Cookies.get("rft");
-
+      console.log(rft);
       try {
         const rs = await axios.post(`${API_URL}/token`, {
           token: rft,
         });
-
+        console.log(rs);
         const { accesstoken, refreshToken, user } = rs.data.data;
 
         Cookies.set("at", accesstoken, {
@@ -48,7 +48,7 @@ const onResponseError = async (
           secure: true,
         });
         Cookies.set("rft", refreshToken, {
-          expires: 7,
+          expires: 31,
           secure: true,
         });
 
