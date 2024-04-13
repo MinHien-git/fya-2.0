@@ -46,7 +46,7 @@ interface IProjectPopupProps {
   toggle: () => void;
 }
 
-const speakingLanguages = [
+export const speakingLanguages = [
   "English",
   "Spanish",
   "Mandarin Chinese",
@@ -727,7 +727,7 @@ function StepFour({ moveNext, movePrevious }: IStep) {
               onChange={handleSearch}
             />
             {focus ? (
-              <ul className="absolute  py-3 bg-white w-full shadow-lg rounded-b-xl h-auto max-h-[7rem] overflow-y-auto gap-2 z-10000">
+              <ul className="absolute  py-3 bg-white w-full shadow-lg rounded-b-xl h-auto max-h-[7rem] overflow-y-auto gap-2 z-10000 ">
                 {languages.map((i) => (
                   <li
                     className="px-3 w-full py-4 font-semibold text-xs cursor-pointer text-text hover:bg-gray-100 shadow-sm"

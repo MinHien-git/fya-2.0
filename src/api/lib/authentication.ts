@@ -16,7 +16,7 @@ export interface IToken {
   token: string;
 }
 export function Signin(data: ISignInData) {
-  return api.post("/signin", JSON.stringify(data));
+  return api.post("/signin", JSON.stringify({ ...data }));
 }
 
 export function Signup(data: ISignUpData) {

@@ -6,6 +6,7 @@ import axios, {
   InternalAxiosRequestConfig,
 } from "axios";
 import Cookies from "js-cookie";
+import { useSelector } from "react-redux";
 const API_URL = `http://localhost:4000` || process.env.URL;
 
 const onRequest = (

@@ -1,3 +1,5 @@
+import { IconButton } from "@material-tailwind/react";
+
 export interface ITab {
   moveNext: () => void;
   id?: string;
@@ -12,7 +14,11 @@ export default function EditService({ moveNext }: ITab) {
             <li
               className="w-8 aspect-square rounded-md bg-slate-300 cursor-pointer"
               onClick={moveNext}
-            ></li>
+            >
+              <IconButton placeholder={undefined}>
+                <i className="fa-solid fa-arrow-left-long"></i>
+              </IconButton>
+            </li>
             <li className="bg-slate-300 px-6 rounded-md text-blue-500 py-1 text-sm flex items-center font-bold cursor-pointer">
               Edit
             </li>

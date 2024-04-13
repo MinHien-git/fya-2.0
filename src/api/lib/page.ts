@@ -11,3 +11,7 @@ export function GetPages() {
 export function GetPage(id) {
   return api.get<any>(`/page/${id}`);
 }
+
+export function PutAboutPage(id, data) {
+  return api.put<any>(`/page/about/update/${id}`, data);
+}

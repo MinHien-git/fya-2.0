@@ -29,11 +29,17 @@ export const pageSlice = createSlice({
     setTeamMembers: (state, action) => {
       state.team_members = action.payload;
     },
+    setTurnover: (state, action) => {
+      state.turnover = action.payload;
+    },
     setLanguages: (state, action) => {
       state.languages = action.payload;
     },
     setAddress: (state, action) => {
       state.address = action.payload;
+    },
+    setTagline: (state, action) => {
+      state.tagline = action.payload;
     },
     setFoundedDate: (state, action) => {
       state.founded_date = action.payload;
@@ -67,7 +73,9 @@ export const {
   setPhoneNumer,
   setTeamMember,
   setDescription,
+  setTurnover,
   setPage,
+  setTagline,
 } = pageSlice.actions;
 
 export default pageSlice.reducer;

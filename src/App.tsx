@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Home from "./pages/Home/Home";
 import NavigationBar from "./components/NavigationBar/NavigationBar";
 import SaveList from "./pages/SaveList/SaveList";
@@ -44,6 +44,7 @@ import Cookies from "js-cookie";
 import { useSelector, useDispatch } from "react-redux";
 import { setUser as setReduxUser } from "./features/users/userSplice";
 import { PostRefreshToken } from "./api/lib/token";
+import { setIp } from "./features/ip/ipSplice";
 
 function App() {
   const { isOpen, toggle } = usePostProject();

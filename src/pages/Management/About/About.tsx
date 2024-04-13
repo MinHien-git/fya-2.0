@@ -1,17 +1,65 @@
 import { Button, Option, Select } from "@material-tailwind/react";
 import SecondaryNavigationBar from "../../../components/SecondaryNavigationBar/SecondaryNavigationBar";
 import { FileInput, Label, Textarea, TextInput } from "flowbite-react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setPage as setPageRedux } from "../../../features/pages/pageSplice";
-import { GetPage } from "../../../api/lib/page";
+import {
+  setDescription,
+  setPage as setPageRedux,
+  setTagline,
+  setTeamMember,
+} from "../../../features/pages/pageSplice";
+import { GetPage, PutAboutPage } from "../../../api/lib/page";
 import { useNavigate } from "react-router-dom";
+import {
+  setCompanyName,
+  setTurnover,
+  setFoundedDate,
+  setLanguages,
+} from "../../../features/pages/pageSplice";
+import { speakingLanguages } from "../../../components/PostProjectPopup/PostProjectPopup";
+import stringSimilarity from "string-similarity-js";
 
 export default function About() {
   const dispatch = useDispatch();
   const pageSelector = useSelector((state: any) => state.page);
   const userSelector = useSelector((state: any) => state.user.value);
+  const [languages, setLanguage] = useState<Array<string>>(speakingLanguages);
+  const currentLanguage = useSelector((state: any) => state.page.languages);
+  const [currentSearch, setCurrentSearch] = useState("");
+  let inteval: any = null;
+  const [focus, setFocus] = useState(false);
+
+  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setCurrentSearch(e.target.value);
+  };
+
+  useEffect(() => {
+    console.log(currentSearch);
+    const delayDebounceFn = setTimeout(() => {
+      if (currentSearch) {
+        console.log(currentLanguage);
+        setLanguage(
+          speakingLanguages.filter(
+            (i) =>
+              (stringSimilarity(i, currentSearch) > 0.8 ||
+                i.toLowerCase().includes(currentSearch.toLowerCase())) &&
+              !currentLanguage.includes(i)
+          )
+        );
+      } else {
+        console.log(currentLanguage);
+        setLanguage(
+          speakingLanguages.filter((i) => !currentLanguage.includes(i))
+        );
+      }
+    }, 200);
+
+    return () => clearTimeout(delayDebounceFn);
+  }, [currentSearch, currentLanguage]);
+
   const navigate = useNavigate();
+
   useEffect(() => {
     async function getPage() {
       if (userSelector) {
@@ -26,9 +74,20 @@ export default function About() {
     }
     getPage();
   }, []);
-  useEffect(() => {}, [userSelector]);
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+    console.log(pageSelector);
+    const result = await PutAboutPage(pageSelector.page_id, pageSelector);
+    console.log(result);
+    dispatch(setPageRedux(result.data.data));
+  }
+
   return (
-    <div className="mt-5 mx-auto h-[80vh] flex flex-col px-12 gap-2 overflow-y-auto">
+    <form
+      className="mt-5 mx-auto h-[80vh] flex flex-col px-12 gap-2 overflow-y-auto"
+      onSubmit={handleSubmit}
+    >
       <section className="max-w-7xl w-[90%] pb-10 rounded-xl border-2 mt-10 mx-auto flex-col px-12">
         <h2 className="font-title text-[1.875rem] text-center font-bold pt-5">
           General information
@@ -45,7 +104,8 @@ export default function About() {
             id="agencyName"
             type="text"
             placeholder="name@flowbite.com"
-            value={pageSelector.company_name}
+            value={pageSelector?.company_name}
+            onChange={(e) => dispatch(setCompanyName(e.target.value))}
             required
           />
           <div className="flex w-full mx-auto gap-10 items-start">
@@ -65,23 +125,53 @@ export default function About() {
                 type="text"
                 placeholder="Annual turnover"
                 value={pageSelector.turnover}
+                onChange={(e) => dispatch(setTurnover(e.target.value))}
                 required
               />
             </div>
-            <div className="grid w-1/2 mx-auto mt-2">
+            <div className="grid w-1/2 mx-auto mt-2 relative">
               <div className="grid gap-2">
                 <Label
-                  htmlFor="agencyName"
+                  htmlFor="_Languages"
                   value="Languages"
                   className="font-semibold mb-2"
                 />
               </div>
               <TextInput
-                id="agencyName"
+                id="_Languages"
                 type="text"
                 placeholder="Languages"
-                required
+                name="Languages"
+                value={currentSearch}
+                onFocus={() => {
+                  clearTimeout(inteval);
+                  setFocus(true);
+                }}
+                onBlur={() => {
+                  inteval = setTimeout(function () {
+                    setFocus(false);
+                  }, 200);
+                }}
+                onChange={handleSearch}
               />
+              {focus ? (
+                <ul className="absolute  py-3 bg-white w-full shadow-lg rounded-b-xl h-auto max-h-[12rem] overflow-y-auto gap-2 z-[10000] -bottom-[9rem]">
+                  {languages.map((i) => (
+                    <li
+                      className="px-3 w-full py-4 font-semibold text-xs cursor-pointer text-text hover:bg-gray-100 shadow-sm"
+                      onClick={() => {
+                        if (!currentLanguage.includes(i)) {
+                          dispatch(setLanguages([...currentLanguage, i]));
+                          console.log(i);
+                          setCurrentSearch("");
+                        }
+                      }}
+                    >
+                      {i}
+                    </li>
+                  ))}
+                </ul>
+              ) : null}
               <ul className="w-full h-max-[5rem] flex items-start flex-wrap gap-2 border-2 border-t-0 border-dashed p-2 rounded-2xl">
                 {pageSelector.languages.map((language) => (
                   <li className="bg-primary px-4 py-2 rounded-md text-white text-xs font-semibold">
@@ -105,9 +195,12 @@ export default function About() {
                   id="Establish date"
                   type="date"
                   placeholder="Establish date"
-                  value={new Date(pageSelector.founded_date)
-                    .toISOString()
-                    .substring(0, 10)}
+                  value={
+                    new Date(pageSelector?.founded_date)
+                      ?.toJSON()
+                      ?.split("T")[0]
+                  }
+                  onChange={(e) => dispatch(setFoundedDate(e.target.value))}
                   required
                 />
               </div>
@@ -125,6 +218,7 @@ export default function About() {
                   labelProps={{
                     className: "hidden",
                   }}
+                  onChange={(e) => dispatch(setTeamMember(e))}
                 >
                   <Option value="1 person">1 person</Option>
                   <Option value="2-10 people">2-10 people</Option>
@@ -153,7 +247,8 @@ export default function About() {
                 id="agencyName"
                 type="text"
                 placeholder="Agency tagline"
-                required
+                value={pageSelector.tagline}
+                onChange={(e) => dispatch(setTagline(e.target.value))}
               />
             </div>
           </div>
@@ -172,6 +267,7 @@ export default function About() {
                 required
                 rows={4}
                 value={pageSelector.description}
+                onChange={(e) => dispatch(setDescription(e.target.value))}
               />
             </div>
           </div>
@@ -248,6 +344,7 @@ export default function About() {
             size="lg"
             className="bg-primary text-white w-full"
             placeholder={undefined}
+            type="submit"
           >
             Save changes
           </Button>
@@ -260,6 +357,6 @@ export default function About() {
           </Button>
         </section>
       </section>
-    </div>
+    </form>
   );
 }
