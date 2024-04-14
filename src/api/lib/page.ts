@@ -30,3 +30,23 @@ export function PutPageAward(awardId, data) {
 export function postPageAward(pageId, data) {
   return api.post<any>(`/page/award/${pageId}`, data);
 }
+
+export function DeletePageAward(awardId) {
+  return api.delete<any>(`/page/award/${awardId}/delete`);
+}
+
+export function GetPageService(pageId) {
+  return api.get<any>(`/page/services/${pageId}`);
+}
+
+export function PutPageService(serviceId, data) {
+  return api.put<any>(`/page/service/${serviceId}/update`, data);
+}
+
+export function postPageService(pageId, data) {
+  return api.post<any>(`/page/service/${pageId}`, data);
+}
+
+export function DeletePageService(serviceId) {
+  return api.delete<any>(`/page/services/${serviceId}/delete`);
+}

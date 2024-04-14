@@ -5,15 +5,16 @@ import { GetPageAward } from "../../../api/lib/page";
 import { useSelector } from "react-redux";
 
 export default function Awards() {
-  const [award, setAwards] = useState<any>([]);
+  const [awards, setAwards] = useState<Array<any>>([]);
   const page_id = useSelector((state: any) => state.page.page_id);
   useEffect(() => {
     async function getData() {
       const result = await GetPageAward(page_id);
-      console.log(result);
+      setAwards(result.data.data);
     }
 
     getData();
+    console.log(awards);
   }, []);
   return (
     <>
@@ -29,11 +30,12 @@ export default function Awards() {
           The arrangement of your awards will be displayed on your Page.
         </p>
         <section className="grid w-full gap-5 mt-6  overflow-y-auto">
-          <AwardCard isEmpty={true} />
-          <AwardCard isEmpty={true} />
-          <AwardCard isEmpty={true} />
-          <AwardCard isEmpty={true} />
-          <AwardCard isEmpty={true} />
+          {awards.map((award) => (
+            <AwardCard isEmpty={false} award_data={award} />
+          ))}
+          {Array.apply(null, new Array(5 - awards.length)).map((i) => (
+            <AwardCard isEmpty={true} award_data={{}} />
+          ))}
         </section>
       </section>
     </>

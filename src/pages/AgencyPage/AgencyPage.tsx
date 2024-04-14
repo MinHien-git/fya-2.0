@@ -844,7 +844,7 @@ export default function AgencyPage() {
                 Addresses
               </div>
               <div className="text-sm rounded-t-xs py-3 px-4 font-bold">
-                {page.address}
+                {page?.address}
               </div>
             </div>
 

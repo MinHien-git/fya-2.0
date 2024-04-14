@@ -1,13 +1,29 @@
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import EditService from "../EditService/EditService";
 import { Reorder, useDragControls, useMotionValue } from "framer-motion";
 import { useRaisedShadow } from "../../../hooks/useRaisedShadow";
 import DragServiceCard from "../../../components/DragServicesCard/DragServicesCard";
-const initialItems = ["🍅 Tomato", "🥒 Cucumber", "🧀 Cheese", "🥬 Lettuce"];
+import { GetPageService } from "../../../api/lib/page";
+import { useSelector } from "react-redux";
+import ServiceCard from "../../../components/ServiceCard/ServiceCard";
+
 export default function Services() {
   const [state, setState] = useState(0);
-  const [items, setItems] = useState(initialItems);
+
+  const page_id = useSelector((state: any) => state.page.page_id);
+  const [services, setServices] = useState<Array<any>>([]);
+
+  useEffect(() => {
+    async function getData() {
+      const result = await GetPageService(page_id);
+      console.log(result);
+      setServices(result.data.data);
+    }
+
+    getData();
+    console.log(services);
+  }, []);
 
   return (
     <>
@@ -29,132 +45,21 @@ export default function Services() {
             <Reorder.Group
               className="w-full grid gap-5"
               axis="y"
-              onReorder={setItems}
-              values={items}
+              onReorder={setServices}
+              values={services}
             >
-              {/* {items.map((i) => (
+              {services.map((i) => (
                 <DragServiceCard
-                  key={i.toString()}
+                  key={i.service_id.toString()}
                   moveNext={() => setState(1)}
-                  id={i.toString()}
+                  id={i.service_id.toString()}
+                  skill_tags={i.skill_tags}
                 />
-              ))} */}
+              ))}
             </Reorder.Group>
-            <div
-              className="font-sans flex border-2 rounded-[10px] h-[6.25rem] gap-8 border-dotted w-full py-8 px-8 border-text items-center"
-              onClick={() => setState(2)}
-            >
-              <svg
-                viewBox="0 0 21 21"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-6 aspect-square"
-              >
-                <rect width="21" height="21" fill="#F9F9F9" />
-                <circle
-                  cx="10.5"
-                  cy="10.5"
-                  r="10"
-                  fill="#D9D9D9"
-                  stroke="#9EA0A3"
-                />
-                <path d="M5 10.5H16" stroke="#9EA0A3" />
-                <path d="M10.5 16L10.5 5" stroke="#9EA0A3" />
-              </svg>
-              <p className="text-text font-semibold">Add another service</p>
-            </div>
-            <div
-              className="font-sans flex border-2 rounded-[10px] h-[6.25rem] gap-8 border-dotted w-full py-8 px-8 border-text items-center"
-              onClick={() => setState(2)}
-            >
-              <svg
-                viewBox="0 0 21 21"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-6 aspect-square"
-              >
-                <rect width="21" height="21" fill="#F9F9F9" />
-                <circle
-                  cx="10.5"
-                  cy="10.5"
-                  r="10"
-                  fill="#D9D9D9"
-                  stroke="#9EA0A3"
-                />
-                <path d="M5 10.5H16" stroke="#9EA0A3" />
-                <path d="M10.5 16L10.5 5" stroke="#9EA0A3" />
-              </svg>
-              <p className="text-text font-semibold">Add another service</p>
-            </div>
-            <div
-              className="font-sans flex border-2 rounded-[10px] h-[6.25rem] gap-8 border-dotted w-full py-8 px-8 border-text items-center"
-              onClick={() => setState(2)}
-            >
-              <svg
-                viewBox="0 0 21 21"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-6 aspect-square"
-              >
-                <rect width="21" height="21" fill="#F9F9F9" />
-                <circle
-                  cx="10.5"
-                  cy="10.5"
-                  r="10"
-                  fill="#D9D9D9"
-                  stroke="#9EA0A3"
-                />
-                <path d="M5 10.5H16" stroke="#9EA0A3" />
-                <path d="M10.5 16L10.5 5" stroke="#9EA0A3" />
-              </svg>
-              <p className="text-text font-semibold">Add another service</p>
-            </div>
-            <div
-              className="font-sans flex border-2 rounded-[10px] h-[6.25rem] gap-8 border-dotted w-full py-8 px-8 border-text items-center"
-              onClick={() => setState(2)}
-            >
-              <svg
-                viewBox="0 0 21 21"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-6 aspect-square"
-              >
-                <rect width="21" height="21" fill="#F9F9F9" />
-                <circle
-                  cx="10.5"
-                  cy="10.5"
-                  r="10"
-                  fill="#D9D9D9"
-                  stroke="#9EA0A3"
-                />
-                <path d="M5 10.5H16" stroke="#9EA0A3" />
-                <path d="M10.5 16L10.5 5" stroke="#9EA0A3" />
-              </svg>
-              <p className="text-text font-semibold">Add another service</p>
-            </div>
-            <div
-              className="font-sans flex border-2 rounded-[10px] h-[6.25rem] gap-8 border-dotted w-full py-8 px-8 border-text items-center"
-              onClick={() => setState(2)}
-            >
-              <svg
-                viewBox="0 0 21 21"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-6 aspect-square"
-              >
-                <rect width="21" height="21" fill="#F9F9F9" />
-                <circle
-                  cx="10.5"
-                  cy="10.5"
-                  r="10"
-                  fill="#D9D9D9"
-                  stroke="#9EA0A3"
-                />
-                <path d="M5 10.5H16" stroke="#9EA0A3" />
-                <path d="M10.5 16L10.5 5" stroke="#9EA0A3" />
-              </svg>
-              <p className="text-text font-semibold">Add another service</p>
-            </div>
+            {Array.apply(null, new Array(5 - services.length)).map((i) => (
+              <ServiceCard moveNext={() => setState(2)} />
+            ))}
           </section>
         </section>
       ) : state === 1 ? (

@@ -65,9 +65,7 @@ export default function About() {
       if (userSelector) {
         let result = await GetManagePage(userSelector.id);
         console.log(result);
-        dispatch(setPageRedux(result.data.data));
-        console.log(result.data.data);
-        console.log(pageSelector);
+        dispatch(setPageRedux(result?.data?.data));
       } else {
         navigate("/");
       }

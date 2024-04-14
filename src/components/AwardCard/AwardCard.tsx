@@ -1,24 +1,37 @@
 import { Button } from "@material-tailwind/react";
 import { useState } from "react";
-import { postPageAward, PutPageAward } from "../../api/lib/page";
+import {
+  DeletePageAward,
+  postPageAward,
+  PutPageAward,
+} from "../../api/lib/page";
 import { useSelector } from "react-redux";
 export interface IEditCard {
   isEmpty: boolean;
   id?: string;
+  award_data?: any;
 }
-export default function AwardCard({ isEmpty }: IEditCard) {
+export default function AwardCard({ isEmpty, award_data }: IEditCard) {
   const [editMode, setEditMode] = useState(false);
   const [empty, setEmpty] = useState(isEmpty);
-  const [award, setAward] = useState<any>({});
+  const [award, setAward] = useState<any>(award_data);
   const page_id = useSelector((state: any) => state.page.page_id);
 
   async function handleSubmit() {
     if (!award.award_id) {
+      console.log(award);
       const result = await postPageAward(page_id, award);
       setAward({ ...award, award_id: result });
     } else {
       const result = await PutPageAward(award.award_id, award);
+      console.log(result);
     }
+  }
+
+  async function deleteAward() {
+    const result = await DeletePageAward(award.award_id);
+    console.log(result);
+    setEmpty(true);
   }
 
   return empty ? (
@@ -82,58 +95,78 @@ export default function AwardCard({ isEmpty }: IEditCard) {
           </button>
         </li>
         <li className="w-1/4 px-5">
-          <li className="text-xs">Award Name</li>
-          <li
-            className="font-bold text-nowrap"
-            contentEditable={editMode}
-            onInput={(e) => {
-              setAward({ ...award, name: e.currentTarget.textContent });
-            }}
-          >
-            [Award Name]
-          </li>
+          <li className="text-xs">Name</li>
+          {!editMode ? (
+            <li className="font-bold text-nowrap">{award?.award_name}</li>
+          ) : (
+            <li className="font-bold text-nowrap">
+              <input
+                title="name"
+                className="border-b-2 border-black w-full focus:outline-none"
+                onChange={(e) => {
+                  setAward({ ...award, award_name: e.target.value });
+                }}
+                value={award?.award_name}
+              />
+            </li>
+          )}
         </li>
         <li className="w-1/4 px-5 border-l-2">
           <ul>
             <li className="text-xs">Category</li>
-            <li
-              className="font-bold text-nowrap"
-              contentEditable={editMode}
-              onInput={(e) => {
-                setAward({ ...award, catergory: e.currentTarget.textContent });
-              }}
-            >
-              [Catergory Name]
-            </li>
+            {!editMode ? (
+              <li className="font-bold text-nowrap">{award?.catergory}</li>
+            ) : (
+              <li className="font-bold text-nowrap">
+                <input
+                  title="name"
+                  className="border-b-2 border-black w-full focus:outline-none"
+                  onChange={(e) => {
+                    setAward({ ...award, catergory: e.target.value });
+                  }}
+                  value={award?.catergory}
+                />
+              </li>
+            )}
           </ul>
         </li>
         <li className="w-1/4 px-5 border-l-2">
           <ul>
             <li className="text-xs">Date</li>
-            <li
-              className="font-bold text-nowrap"
-              contentEditable={editMode}
-              onInput={(e) => {
-                setAward({ ...award, date: e.currentTarget.textContent });
-              }}
-            >
-              [mm/yyyy]
-            </li>
+            {!editMode ? (
+              <li className="font-bold text-nowrap">{award?.date}</li>
+            ) : (
+              <li className="font-bold text-nowrap">
+                <input
+                  title="name"
+                  type="month"
+                  className="border-b-2 border-black w-full focus:outline-none"
+                  onChange={(e) => {
+                    setAward({ ...award, date: e.target.value });
+                  }}
+                  value={award?.date}
+                />
+              </li>
+            )}
           </ul>
         </li>
         <li className="w-1/4 pl-5 border-l-2">
           <ul>
             <li className="text-xs text-nowrap">Link to an existing work</li>
-            <li
-              className="font-bold text-nowrap"
-              contentEditable={editMode}
-              onInput={(e) => {
-                console.log(award);
-                setAward({ ...award, url: e.currentTarget.textContent });
-              }}
-            >
-              [sample.com]
-            </li>
+            {!editMode ? (
+              <li className="font-bold text-nowrap">{award?.url}</li>
+            ) : (
+              <li className="font-bold text-nowrap">
+                <input
+                  title="name"
+                  className="border-b-2 border-black w-full focus:outline-none"
+                  onChange={(e) => {
+                    setAward({ ...award, url: e.target.value });
+                  }}
+                  value={award?.url}
+                />
+              </li>
+            )}
           </ul>
         </li>
         <li className="px-8">
@@ -144,7 +177,8 @@ export default function AwardCard({ isEmpty }: IEditCard) {
                   placeholder={undefined}
                   onClick={() => {
                     setEditMode(!editMode);
-                    handleSubmit();
+                    setAward({});
+                    deleteAward();
                   }}
                   className="bg-red-200 text-red-400"
                 >
@@ -155,7 +189,6 @@ export default function AwardCard({ isEmpty }: IEditCard) {
                   placeholder={undefined}
                   onClick={() => {
                     setEditMode(!editMode);
-                    handleSubmit();
                   }}
                   className="bg-red-200 text-red-400"
                 >

@@ -150,7 +150,7 @@ export const agencySkillTagsRequirements = [
   "Attention to Detail",
 ];
 
-const agencyServices = [
+export const agencyServices = [
   "Advertising",
   "Public Relations",
   "Marketing",
