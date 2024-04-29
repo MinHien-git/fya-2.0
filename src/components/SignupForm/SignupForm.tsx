@@ -14,6 +14,8 @@ import { ISignUpData, Signup } from "../../api/lib/authentication";
 import { MdErrorOutline } from "react-icons/md";
 import clsx from "clsx";
 import { Button } from "@material-tailwind/react";
+import useToast from "../../hooks/useToast";
+import Toast from "../Toast/Toast";
 const customInputTheme: CustomFlowbiteTheme["textInput"] = {
   base: "flex",
   addon:
@@ -68,6 +70,7 @@ interface ISignupError {
   fname?: string;
 }
 export default function SignupForm() {
+  const { isOpen, toggle, message, setToastMessage } = useToast();
   const [user, setUser] = useState<ISignUpData>({
     email: "",
     password: "",
@@ -97,8 +100,9 @@ export default function SignupForm() {
 
   const finishSubmit = async () => {
     console.log(user);
-    let result = await Signup(user);
+    let result: any = await Signup(user);
     console.log(result);
+    if (result.data.message) setToastMessage(result.data.message);
   };
 
   const validateValues = (inputValues) => {
@@ -129,6 +133,7 @@ export default function SignupForm() {
   };
   return (
     <form className="flex flex-col gap-4 mb-5 h-50%" onSubmit={handleSubmit}>
+      {isOpen && <Toast isOpen={isOpen} toggle={toggle} message={message} />}
       <div>
         {errors?.fname ? (
           <div className="flex text-red-400 gap-2 mb-2">
