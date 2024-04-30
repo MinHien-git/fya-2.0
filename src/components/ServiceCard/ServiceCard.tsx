@@ -2,6 +2,7 @@ export interface IServiceTab {
   moveNext: () => void;
   skill_tags?: Array<string>;
   id?: string;
+  serviceName?: string;
 }
 
 export default function ServiceCard({ moveNext }: IServiceTab) {

@@ -1,9 +1,42 @@
 import { FileInput, Label, Textarea } from "flowbite-react";
 import SecondaryNavigationBar from "../../../components/SecondaryNavigationBar/SecondaryNavigationBar";
+import { Button } from "@material-tailwind/react";
+import { useState } from "react";
+import { IoCloseSharp } from "react-icons/io5";
+interface IImageReview {
+  image: any;
+  closeReview?: () => void;
+}
+function ImageReviewer({ image, closeReview }: IImageReview) {
+  return (
+    <div className="fixed w-[100vw] h-[100vh] bg-black/50 z-[1000] left-0 top-0 flex justify-center items-center">
+      <div className="h-[80%] w-[80%] relative">
+        <div
+          className="absolute top-2 right-2 bg-gray-200 rounded-full p-2"
+          onClick={closeReview}
+        >
+          <IoCloseSharp className="w-6 h-6" />
+        </div>
+
+        <img src={image} alt="review upload" />
+      </div>
+    </div>
+  );
+}
 
 export default function Company() {
+  const [review, setReview] = useState<boolean>();
+  const [file, setFile] = useState<any>();
+  function handleChange(e) {
+    console.log(e.target.files);
+    setFile(URL.createObjectURL(e.target.files[0]));
+  }
+
   return (
     <div className="mt-5 mx-auto h-[80vh] flex flex-col px-12 gap-2 overflow-y-auto">
+      {review && file && (
+        <ImageReviewer image={file} closeReview={() => setReview(false)} />
+      )}
       <section className="max-w-7xl w-[90%] pb-10 rounded-xl border-2 mt-10 mx-auto flex-col px-6">
         <div className="flex justify-between items-center">
           <div className="grid">
@@ -14,12 +47,18 @@ export default function Company() {
               Add a picture of your team/company to your Agency Page.
             </p>
           </div>
-          <button
-            className="middle none center rounded-md py-2 px-10 font-sans text-sm font-bold text-white shadow-md shadow-primary-500/20 transition-all hover:shadow-lg hover:shadow-pink-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none bg-primary hidden lg:inline-block mr-2"
-            data-ripple-light="true"
-          >
-            Save changes
-          </button>
+          <div className="flex gap-4">
+            <Button
+              placeholder={undefined}
+              onClick={() => setReview(true)}
+              className="bg-transparent capitalize underline text-primary shadow-none"
+            >
+              Review
+            </Button>
+            <Button placeholder={undefined} className="bg-primary capitalize">
+              Save changes
+            </Button>
+          </div>
         </div>
         <div className="flex w-full items-center justify-center">
           <Label
@@ -50,7 +89,11 @@ export default function Company() {
                 SVG, PNG, JPG or GIF (MAX. 800x400px)
               </p>
             </div>
-            <FileInput id="dropzone-file" className="hidden" />
+            <FileInput
+              id="dropzone-file"
+              className="hidden"
+              onChange={handleChange}
+            />
           </Label>
         </div>
       </section>
@@ -68,12 +111,10 @@ export default function Company() {
               core values of your agency.
             </p>
           </div>
-          <button
-            className="middle none center rounded-md py-2 px-10 font-sans text-sm font-bold text-white shadow-md shadow-primary-500/20 transition-all hover:shadow-lg hover:shadow-pink-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none bg-primary hidden lg:inline-block mr-2"
-            data-ripple-light="true"
-          >
+
+          <Button placeholder={undefined} className="bg-primary capitalize">
             Save changes
-          </button>
+          </Button>
         </div>
         <section className="grid w-full gap-5 mt-4">
           <Textarea

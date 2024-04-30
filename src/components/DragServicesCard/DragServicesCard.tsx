@@ -8,6 +8,7 @@ export default function DragServiceCard({
   id,
   moveNext,
   skill_tags,
+  serviceName,
 }: IServiceTab) {
   const y = useMotionValue(0);
   const boxShadow = useRaisedShadow(y);
@@ -65,7 +66,7 @@ export default function DragServiceCard({
         className="flex w-full items-center h-full cursor-pointer"
         onClick={moveNext}
       >
-        <li className="flex w-1/6 font-bold text-nowrap px-5">{id}</li>
+        <li className="flex w-1/6 font-bold text-nowrap px-5">{serviceName}</li>
 
         <ul className="w-2/3 px-3 border-2 rounded-lg flex gap-1 py-3 overflow-x-auto no-scrollbar overflow-y-hidden max-w-[25rem] ml-auto h-[3.125rem] items-center">
           {skill_tags?.map((i) => (

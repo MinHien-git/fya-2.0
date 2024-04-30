@@ -47,6 +47,26 @@ export function postPageService(pageId, data) {
   return api.post<any>(`/page/service/${pageId}`, data);
 }
 
-export function DeletePageService(serviceId) {
-  return api.delete<any>(`/page/services/${serviceId}/delete`);
+export function DeletePageService(serviceId: string) {
+  return api.delete<any>(`/page/service/${serviceId}/delete`);
+}
+
+export function GetService(serviceId: string) {
+  return api.get<any>(`/page/service/${serviceId}`);
+}
+
+export function GetPageAddress(pageId) {
+  return api.get<any>(`/page/addresses/${pageId}`);
+}
+
+export function PutPageAddress(addressId, data) {
+  return api.put<any>(`/page/address/${addressId}/update`, data);
+}
+
+export function postPageAddress(addressId, data) {
+  return api.post<any>(`/page/address/${addressId}`, data);
+}
+
+export function DeletePageAddress(addressId) {
+  return api.delete<any>(`/page/address/${addressId}/delete`);
 }

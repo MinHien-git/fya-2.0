@@ -1,8 +1,37 @@
 import { useSelector } from "react-redux";
 import AddressCard from "../../../components/AddressCard/AddressCard";
+import { useEffect, useState } from "react";
+import { GetPageAddress } from "../../../api/lib/page";
 
 export default function Contact() {
   const pageSelector = useSelector((state: any) => state.page);
+  const [pageAddress, setPageAddress] = useState<Array<any>>([]);
+  const [reload, setReload] = useState<boolean>(false);
+
+  useEffect(() => {
+    async function fetchData() {
+      const result = await GetPageAddress(pageSelector.page_id);
+      if (result.data.data) {
+        setPageAddress(result.data.data);
+        console.log(result.data.data);
+      }
+    }
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    async function fetchData() {
+      const result = await GetPageAddress(pageSelector.page_id);
+      console.log(result);
+      if (result.data.data) {
+        setPageAddress(result.data.data);
+      }
+    }
+    if (reload) {
+      fetchData();
+      setReload(false);
+    }
+  }, [reload]);
   return (
     <div className="mt-5 mx-auto h-[80vh] flex flex-col px-12 gap-2 overflow-y-auto">
       <section className="max-w-7xl w-[90%] pb-10 rounded-xl border-2 mt-10 mx-auto flex-col px-6">
@@ -37,6 +66,7 @@ export default function Contact() {
                   id="language"
                   className="border-[1px] p-2 rounded-md w-2/3"
                   value={pageSelector?.phone_number}
+                  disabled
                 />
               </div>
             </div>
@@ -57,6 +87,7 @@ export default function Contact() {
                 id="language"
                 className="border-[1px] p-2 rounded-md"
                 value={pageSelector?.email_address}
+                disabled
               />
             </div>
           </div>
@@ -68,8 +99,21 @@ export default function Contact() {
         </h2>
 
         <div className="grid gap-3">
-          <AddressCard isEmpty={false} />
-          <AddressCard isEmpty={true} />
+          {pageAddress.map((address) => (
+            <AddressCard
+              isEmpty={false}
+              id={address.contactid}
+              page_id={pageSelector.page_id}
+              ad_description={address.description}
+              reloadPage={() => setReload(true)}
+            />
+          ))}
+          {/* <AddressCard isEmpty={false} /> */}
+          <AddressCard
+            isEmpty={true}
+            page_id={pageSelector.page_id}
+            reloadPage={() => setReload(true)}
+          />
         </div>
         <div className="grid gap-1">
           <h2 className="font-title text-[1.25rem] pt-5">Remote Work option</h2>

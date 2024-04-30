@@ -1,10 +1,56 @@
 import { Button } from "@material-tailwind/react";
 import { useState } from "react";
 import { IEditCard } from "../AwardCard/AwardCard";
-
-export default function AddressCard({ isEmpty }: IEditCard) {
+import {
+  DeletePageAddress,
+  postPageAddress,
+  PutPageAddress,
+} from "../../api/lib/page";
+export interface IAdressCard {
+  isEmpty: boolean;
+  id?: string;
+  award_data?: any;
+  page_id?: string;
+  ad_description?: string;
+  reloadPage: () => void;
+}
+export default function AddressCard({
+  isEmpty,
+  id,
+  page_id,
+  ad_description,
+  reloadPage,
+}: IAdressCard) {
   const [editMode, setEditMode] = useState(false);
   const [empty, setEmpty] = useState(isEmpty);
+  const [description, setDescription] = useState<string>(
+    ad_description ? ad_description : ""
+  );
+
+  async function handleSubmit() {
+    console.log(id);
+    if (!id) {
+      const result = await postPageAddress(page_id, {
+        description: description,
+      });
+      reloadPage();
+      console.log(result);
+    } else {
+      const result = await PutPageAddress(id, {
+        description: description,
+      });
+      reloadPage();
+      console.log(result);
+    }
+  }
+
+  async function deleteService() {
+    if (id) {
+      const result = await DeletePageAddress(id);
+      console.log(result);
+      reloadPage();
+    }
+  }
 
   return !empty ? (
     <div className="font-sans flex border-2 rounded-[10px] w-full py-6 px-8 items-center shadow-md shadow-primary-500/20">
@@ -45,21 +91,51 @@ export default function AddressCard({ isEmpty }: IEditCard) {
             </svg>
           </button>
         </li>
-        <li
-          className="flex pl-5 w-1/4 font-bold pr-5 text-nowrap mr-auto"
+        <input
+          title="address"
+          className="flex ml-5 w-1/4 font-bold pr-5 text-nowrap mr-auto disabled:bg-transparent"
           contentEditable={editMode}
-        >
-          [Address]
-        </li>
+          onChange={(e) => {
+            setDescription(e.target.value);
+          }}
+          value={description}
+          disabled={!editMode}
+        />
+
         <li className="px-8">
           {editMode ? (
-            <Button
-              placeholder={undefined}
-              onClick={() => setEditMode(!editMode)}
-              className="bg-primary"
-            >
-              Save
-            </Button>
+            <div className="flex gap-5">
+              {id ? (
+                <Button
+                  placeholder={undefined}
+                  onClick={() => {
+                    deleteService();
+                    setEditMode(!editMode);
+                  }}
+                  className="bg-red-200 text-red-500"
+                >
+                  Delete
+                </Button>
+              ) : (
+                <Button
+                  placeholder={undefined}
+                  onClick={() => setEditMode(!editMode)}
+                  className="bg-red-200 text-red-500"
+                >
+                  Cancel
+                </Button>
+              )}
+              <Button
+                placeholder={undefined}
+                onClick={() => {
+                  handleSubmit();
+                  setEditMode(!editMode);
+                }}
+                className="bg-primary"
+              >
+                Save
+              </Button>
+            </div>
           ) : (
             <Button
               placeholder={undefined}

@@ -5,7 +5,6 @@ import { useEffect, useRef, useState } from "react";
 import {
   agencyServices,
   agencySkillTagsRequirements,
-  speakingLanguages,
 } from "../../../components/PostProjectPopup/PostProjectPopup";
 import stringSimilarity from "string-similarity-js";
 import { motion } from "framer-motion";
@@ -13,6 +12,7 @@ import {
   DeletePageService,
   postPageService,
   PutPageService,
+  GetService,
 } from "../../../api/lib/page";
 import { useSelector } from "react-redux";
 
@@ -32,7 +32,7 @@ export default function EditService({ moveNext, id }: ITab) {
     agencySkillTagsRequirements
   );
 
-  const [currentServices, setCurrentService] = useState<Array<string>>([]);
+  const [currentServices, setCurrentService] = useState<string>("");
   const [currentSkills, setCurrentSkill] = useState<Array<string>>([]);
 
   const [focus, setFocus] = useState(false);
@@ -49,13 +49,15 @@ export default function EditService({ moveNext, id }: ITab) {
 
   async function handleSubmit() {
     if (!id) {
+      console.log(currentServices);
+
       const result = await postPageService(page_id, {
         ...service,
         skills_tags: currentSkills,
         service_tags: currentServices,
       });
-      console.log(result);
     } else {
+      console.log(currentServices);
       const result = await PutPageService(id, {
         ...service,
         skills_tags: currentSkills,
@@ -63,11 +65,15 @@ export default function EditService({ moveNext, id }: ITab) {
       });
       console.log(result);
     }
+    moveNext();
   }
 
   async function deleteService() {
-    const result = await DeletePageService(id);
-    console.log(result);
+    if (id) {
+      const result = await DeletePageService(id);
+      console.log(result);
+      moveNext();
+    }
   }
 
   const handleSkillSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -75,7 +81,6 @@ export default function EditService({ moveNext, id }: ITab) {
   };
 
   useEffect(() => {
-    console.log(currentSearch);
     const delayDebounceFn = setTimeout(() => {
       if (currentSearch) {
         setServices(
@@ -83,12 +88,11 @@ export default function EditService({ moveNext, id }: ITab) {
             (i) =>
               (stringSimilarity(i, currentSearch) > 0.8 ||
                 i.toLowerCase().includes(currentSearch.toLowerCase())) &&
-              !currentServices.includes(i)
+              currentServices !== i
           )
         );
       } else {
-        console.log(currentServices);
-        setServices(agencyServices.filter((i) => !currentServices.includes(i)));
+        setServices(agencyServices.filter((i) => currentServices !== i));
       }
     }, 200);
 
@@ -117,8 +121,25 @@ export default function EditService({ moveNext, id }: ITab) {
   }, [skillSearch, currentSkills]);
 
   useEffect(() => {
-    console.log(service);
-  }, [service]);
+    async function fetchService() {
+      if (id) {
+        let result = await GetService(id);
+        if (result.data.data) {
+          let {
+            service_id,
+            price,
+            service_description,
+            skill_tags,
+            service_tags,
+          } = result.data.data;
+          setService(result.data.data);
+          setCurrentService(service_tags);
+          setCurrentSkill(skill_tags);
+        }
+      }
+    }
+    fetchService();
+  }, []);
 
   return (
     <>
@@ -207,11 +228,8 @@ export default function EditService({ moveNext, id }: ITab) {
                     <li
                       className="px-3 w-full py-4 font-semibold text-xs cursor-pointer text-text hover:bg-gray-100 shadow-sm"
                       onClick={() => {
-                        if (!currentServices.includes(i)) {
-                          setCurrentService([...currentServices, i]);
-                          console.log(i);
-                          setCurrentSearch("");
-                        }
+                        setCurrentService(i);
+                        setCurrentSearch("");
                       }}
                     >
                       {i}
@@ -220,42 +238,23 @@ export default function EditService({ moveNext, id }: ITab) {
                 </ul>
               ) : null}
               <ul className="w-full h-[6rem] border-dashed border-2 border-t-0 rounded-lg flex gap-2 pt-3 flex-wrap items-start px-2 overflow-y-auto py-3">
-                {currentServices.map((tag) => (
+                {currentServices && (
                   <motion.li
                     initial={{ scale: 0, opacity: 0 }}
                     whileInView={{ scale: 1, opacity: 1 }}
                     transition={{ ease: "easeOut", duration: 0.2, delay: 0.2 }}
                     className="text-primary bg-tertiary w-auto text-xs h-auto px-2 py-2 rounded-md font-bold"
-                    key={tag}
+                    key={currentServices}
                     onClick={() => {
-                      setCurrentService(
-                        currentServices.filter((i) => i !== tag)
-                      );
+                      setCurrentService("");
                     }}
                   >
-                    {tag}
+                    {currentServices}
                   </motion.li>
-                ))}
+                )}
               </ul>
             </div>
-            {/* 
-            <h2 className="">
-              Description for your service
-            </h2>
-            <p className="font-bold mb-2 text-xs">(optional)</p>
-            <div className="grid w-full mx-auto">
-              <label
-                htmlFor="description"
-                className="hidden font-semibold w-fit py-[0.125rem] text-sm rounded-md text-text"
-              >
-                Agency description
-              </label>
 
-              <textarea
-                id="description"
-                className="border-[1px] p-2 rounded-md h-[6.25rem]"
-              ></textarea>
-            </div> */}
             <div className="font-bold text-2xl font-title mt-4">
               <Label
                 htmlFor="comment"
@@ -270,6 +269,7 @@ export default function EditService({ moveNext, id }: ITab) {
               required
               className="p-3"
               rows={4}
+              value={service?.service_description}
               onChange={(e) =>
                 setService({ ...service, service_description: e.target.value })
               }
@@ -295,6 +295,7 @@ export default function EditService({ moveNext, id }: ITab) {
                   onChange={(e) =>
                     setService({ ...service, price: e.target.value })
                   }
+                  defaultChecked={service.price === 100}
                 />
                 <Radio
                   name="type"
@@ -308,6 +309,7 @@ export default function EditService({ moveNext, id }: ITab) {
                   onChange={(e) =>
                     setService({ ...service, price: e.target.value })
                   }
+                  defaultChecked={service.price === 1000}
                 />
                 <Radio
                   name="type"
@@ -321,6 +323,7 @@ export default function EditService({ moveNext, id }: ITab) {
                   onChange={(e) =>
                     setService({ ...service, price: e.target.value })
                   }
+                  defaultChecked={service.price === 5000}
                 />
                 <Radio
                   name="type"
@@ -334,6 +337,7 @@ export default function EditService({ moveNext, id }: ITab) {
                   onChange={(e) =>
                     setService({ ...service, price: e.target.value })
                   }
+                  defaultChecked={service.price === 10000}
                 />
                 <Radio
                   name="type"
@@ -348,6 +352,7 @@ export default function EditService({ moveNext, id }: ITab) {
                         onChange={(e) =>
                           setService({ ...service, price: e.target.value })
                         }
+                        value={service?.price}
                       />
                     </>
                   }
@@ -441,21 +446,6 @@ export default function EditService({ moveNext, id }: ITab) {
                   </motion.li>
                 ))}
               </ul>
-            </div>
-            <div className="grid w-full mx-auto">
-              <label
-                htmlFor="name"
-                className="font-semibold w-fit py-[0.225rem] md:py-[0.425rem] text-sm rounded-md text-text"
-              >
-                Search for specific skills tags:
-              </label>
-              <input
-                type="text"
-                id="name"
-                className="border-[1px] p-2 rounded-md"
-                placeholder="Search for skills here..."
-              />
-              <div className="w-full border-2 border-t-0 border-dashed flex py-4 rounded-b-2xl px-4 gap-2 flex-wrap min-h-[3rem]"></div>
             </div>
           </div>
         </div>

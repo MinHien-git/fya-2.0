@@ -13,6 +13,7 @@ export default function Services() {
 
   const page_id = useSelector((state: any) => state.page.page_id);
   const [services, setServices] = useState<Array<any>>([]);
+  const [serviceId, setServicesID] = useState<string>("");
 
   useEffect(() => {
     async function getData() {
@@ -23,7 +24,7 @@ export default function Services() {
 
     getData();
     console.log(services);
-  }, []);
+  }, [state]);
 
   return (
     <>
@@ -50,8 +51,12 @@ export default function Services() {
             >
               {services.map((i) => (
                 <DragServiceCard
+                  serviceName={i.service_tags}
                   key={i.service_id.toString()}
-                  moveNext={() => setState(1)}
+                  moveNext={() => {
+                    setState(1);
+                    setServicesID(i.service_id);
+                  }}
                   id={i.service_id.toString()}
                   skill_tags={i.skill_tags}
                 />
@@ -62,8 +67,12 @@ export default function Services() {
             ))}
           </section>
         </section>
-      ) : state === 1 ? (
-        <EditService moveNext={() => setState(0)} addService={false} />
+      ) : state === 1 && serviceId ? (
+        <EditService
+          moveNext={() => setState(0)}
+          addService={false}
+          id={serviceId}
+        />
       ) : (
         <EditService moveNext={() => setState(0)} addService={true} />
       )}

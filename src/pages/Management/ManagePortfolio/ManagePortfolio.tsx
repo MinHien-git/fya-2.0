@@ -1,4 +1,4 @@
-import { IconButton } from "@material-tailwind/react";
+import { Button, IconButton } from "@material-tailwind/react";
 import SecondaryNavigationBar from "../../../components/SecondaryNavigationBar/SecondaryNavigationBar";
 import { ITab } from "../EditService/EditService";
 
@@ -368,21 +368,7 @@ export default function ManagePortfolio({ moveNext, addService }: ITab) {
                 </div>
               </div>
             </div>
-            <div className="grid w-full mx-auto">
-              <label
-                htmlFor="name"
-                className="font-semibold w-fit py-[0.225rem] md:py-[0.425rem] text-sm rounded-md text-text"
-              >
-                Search for specific skills tags:
-              </label>
-              <input
-                type="text"
-                id="name"
-                className="border-[1px] p-2 rounded-md"
-                placeholder="Search for skills here..."
-              />
-              <div className="w-full border-2 border-t-0 border-dashed flex py-4 rounded-b-2xl px-4 gap-2 flex-wrap min-h-[3rem]"></div>
-            </div>
+
             <h2 className="font-bold text-2xl font-title mt-4">Results link</h2>
             <p className="font-bold mb-2 text-xs">(optional)</p>
             <div className="grid w-full mx-auto">
@@ -398,25 +384,23 @@ export default function ManagePortfolio({ moveNext, addService }: ITab) {
                 className="border-[1px] p-2 rounded-md"
               ></input>
             </div>
-            <div className="flex mt-10">
-              <button
-                className="middle none center rounded-md py-2 px-10 font-sans text-xs font-bold text-primary shadow-md shadow-primary-500/20 transition-all hover:shadow-lg hover:shadow-pink-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 bg-gray-300 disabled:shadow-none lg:inline-block mr-2 text-nowrap"
-                data-ripple-light="true"
+            <div className="flex gap-4 mt-32">
+              <Button
+                placeholder={undefined}
+                className="text-primary bg-blue-gray-200 w-1/3"
               >
                 Cancel
-              </button>
-              <button
-                className="middle none center rounded-md py-2 px-10 font-sans font-bold  shadow-md shadow-primary-500/20 transition-all hover:shadow-lg hover:shadow-pink-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none  bg-red-200 text-red-500 lg:inline-block mr-2 text-xs text-nowrap"
-                data-ripple-light="true"
+              </Button>
+
+              <Button
+                placeholder={undefined}
+                className="bg-red-200 text-red-500 w-1/3"
               >
-                Delete project
-              </button>
-              <button
-                className="middle none center rounded-md py-2 px-10 font-sans text-xs font-bold text-white shadow-md shadow-primary-500/20 transition-all hover:shadow-lg hover:shadow-pink-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none bg-primary hidden lg:inline-block mr-2 text-nowrap"
-                data-ripple-light="true"
-              >
-                Save changes
-              </button>
+                Delete
+              </Button>
+              <Button placeholder={undefined} className="bg-primary w-1/3">
+                Save
+              </Button>
             </div>
           </div>
         </div>
