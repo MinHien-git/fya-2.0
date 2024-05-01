@@ -1,4 +1,5 @@
 import api from "../axiosClient";
+import apiForm from "../axiosFormData";
 
 export function PostCreatePage(data) {
   return api.post("/page", data);
@@ -69,4 +70,32 @@ export function postPageAddress(addressId, data) {
 
 export function DeletePageAddress(addressId) {
   return api.delete<any>(`/page/address/${addressId}/delete`);
+}
+
+export function GetCompany(pageId: string) {
+  return api.get<any>(`/page/${pageId}/company`);
+}
+
+export function PostCompanyTeamCover(pageId: string, data) {
+  return apiForm.post<any>(`/page/${pageId}/company/team_cover`, data);
+}
+
+export function PostCompanyStory(pageId: string, data) {
+  return api.post<any>(`/page/${pageId}/company/story`, data);
+}
+
+export function PostCompanyCover(pageId: string, data) {
+  return apiForm.post<any>(`/page/${pageId}/company/cover`, data, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+  });
+}
+
+export function PostCompanyLogo(pageId: string, data) {
+  return api.post<any>(`/page/${pageId}/company/logo`, data, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+  });
 }

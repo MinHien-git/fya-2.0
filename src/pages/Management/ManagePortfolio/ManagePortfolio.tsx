@@ -1,10 +1,93 @@
-import { Button, IconButton } from "@material-tailwind/react";
+import { Button, IconButton, Input } from "@material-tailwind/react";
 import SecondaryNavigationBar from "../../../components/SecondaryNavigationBar/SecondaryNavigationBar";
 import { ITab } from "../EditService/EditService";
+import { FileInput, Label } from "flowbite-react";
+import { ImageReviewer } from "../Company/Company";
+import { useEffect, useState } from "react";
+import {
+  agencyServices,
+  agencySkillTagsRequirements,
+} from "../../../components/PostProjectPopup/PostProjectPopup";
+import stringSimilarity from "string-similarity-js";
+import { motion } from "framer-motion";
 
 export default function ManagePortfolio({ moveNext, addService }: ITab) {
+  const [review, setReview] = useState<boolean>();
+  const [file, setFile] = useState<any>();
+  let inteval: any = null;
+  const [services, setServices] = useState<Array<string>>(agencyServices);
+  const [skills, setSkills] = useState<Array<string>>(
+    agencySkillTagsRequirements
+  );
+
+  const [focus, setFocus] = useState(false);
+  const [skillFocus, setSkillFocus] = useState(false);
+
+  const [currentSearch, setCurrentSearch] = useState<string>("");
+  const [skillSearch, setSkillSearch] = useState<string>("");
+
+  const [currentServices, setCurrentServices] = useState<Array<string>>([]);
+  const [currentSkills, setCurrentSkills] = useState<Array<string>>([]);
+
+  function handleChange(e) {
+    console.log(e.target.files);
+    setFile(URL.createObjectURL(e.target.files[0]));
+  }
+
+  useEffect(() => {
+    console.log(currentSearch);
+    const delayDebounceFn = setTimeout(() => {
+      if (currentSearch) {
+        setServices(
+          agencyServices.filter(
+            (i) =>
+              (stringSimilarity(i, currentSearch) > 0.8 ||
+                i.toLowerCase().includes(currentSearch.toLowerCase())) &&
+              !currentServices.includes(i)
+          )
+        );
+      } else {
+        console.log(currentServices);
+        setServices(agencyServices.filter((i) => !currentServices.includes(i)));
+      }
+    }, 200);
+
+    return () => clearTimeout(delayDebounceFn);
+  }, [currentSearch, currentServices]);
+
+  useEffect(() => {
+    const delayDebounceFn = setTimeout(() => {
+      if (skillSearch) {
+        setSkills(
+          agencySkillTagsRequirements.filter(
+            (i) =>
+              (stringSimilarity(i, currentSearch) > 0.8 ||
+                i.toLowerCase().includes(skillSearch.toLowerCase())) &&
+              !currentSkills.includes(i)
+          )
+        );
+      } else {
+        setSkills(
+          agencySkillTagsRequirements.filter((i) => !currentSkills.includes(i))
+        );
+      }
+    }, 200);
+
+    return () => clearTimeout(delayDebounceFn);
+  }, [skillSearch, currentSkills]);
+
+  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setCurrentSearch(e.target.value);
+  };
+
+  const handleSkillSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSkillSearch(e.target.value);
+  };
   return (
     <div className="h-[80vh] overflow-y-auto">
+      {review && file && (
+        <ImageReviewer image={file} closeReview={() => setReview(false)} />
+      )}
       <section className="max-w-7xl w-[90%] rounded-xl border-2 mt-10 mx-auto flex-col px-6 pb-10">
         <div className="flex w-full px-10 mt-14 gap-6">
           <ul className="flex w-[50%] gap-3">
@@ -44,30 +127,56 @@ export default function ManagePortfolio({ moveNext, addService }: ITab) {
                 placeholder="Enter project’s name here..."
               />
             </div>
-            <div className="grid w-full mx-auto">
-              <h3 className="font-bold text-[1.875rem] font-title w-fit rounded-md">
-                Project’s Media
-              </h3>
+            <div className="grid w-full mx-auto mt-4">
+              <div className="flex justify-between items-center pb-2">
+                <h3 className="text-3xl font-bold"> Project’s Media</h3>
+                <Button
+                  placeholder={undefined}
+                  className="bg-transparent capitalize underline text-primary shadow-none"
+                  onClick={() => setReview(true)}
+                >
+                  Review
+                </Button>
+              </div>
               <p className="font-title w-fit rounded-md pb-[0.425rem]">
                 Showcase some images or videos of your work.
               </p>
-              <div className="w-full aspect-[10/8] border-2 rounded-2xl border-dashed flex items-center justify-center flex-wrap gap-3">
-                <div className="flex flex-wrap gap-3 items-center justify-center">
-                  <div className="bg-slate-300 px-4 py-2 rounded-md text-sm">
-                    Upload
+              <div className="flex w-full items-center justify-center">
+                <Label
+                  htmlFor="dropzone-file"
+                  className="flex h-[32rem] mt-4 w-full cursor-pointer flex-col items-center justify-center rounded-lg border-2 border-dashed border-gray-300 bg-gray-50 hover:bg-gray-100 dark:border-gray-600 dark:bg-gray-700 dark:hover:border-gray-500 dark:hover:bg-gray-600"
+                >
+                  <div className="flex flex-col items-center justify-center pb-6 pt-5">
+                    <svg
+                      className="mb-4 h-8 w-8 text-gray-500 dark:text-gray-400"
+                      aria-hidden="true"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 20 16"
+                    >
+                      <path
+                        stroke="currentColor"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"
+                      />
+                    </svg>
+                    <p className="mb-2 text-sm text-gray-500 dark:text-gray-400">
+                      <span className="font-semibold">Click to upload</span> or
+                      drag and drop
+                    </p>
+                    <p className="text-xs text-gray-500 dark:text-gray-400">
+                      SVG, PNG, JPG or GIF (MAX. 800x400px)
+                    </p>
                   </div>
-                  <div className="bg-slate-300 px-4 py-2 rounded-md text-sm">
-                    Add YouTube video
-                  </div>
-                  <div className="bg-slate-300 px-4 py-2 rounded-md text-sm">
-                    Add Google Drive media file
-                  </div>
-                </div>
+                  <FileInput
+                    id="dropzone-file"
+                    className="hidden"
+                    onChange={handleChange}
+                  />
+                </Label>
               </div>
-              <span className="text-gray-300 text-xs mt-2 ">
-                Image min res.: 1200x900px Image max. size: 2MB Aspect ratio:
-                1.3:1
-              </span>
             </div>
           </div>
           <div className="w-1/2 grid gap-1">
@@ -174,29 +283,65 @@ export default function ManagePortfolio({ moveNext, addService }: ITab) {
             <p className="text-sm  mb-2">
               Indicate the services you provided for the client in this project.
             </p>
-            <div className="grid w-full mx-auto">
-              <label
-                htmlFor="name"
-                className="hidden font-semibold w-fit py-[0.225rem] md:py-[0.425rem] text-sm rounded-md text-text"
-              >
-                Agency name
-              </label>
-              <input
-                type="text"
-                id="name"
-                className="border-[1px] p-2 rounded-md"
-                placeholder="Select service"
+            <div className="w-full h-[9rem] relative">
+              <Input
+                crossOrigin={undefined}
+                size="lg"
+                type="email"
+                placeholder="Select services"
+                className="!border !border-gray-300 bg-white text-gray-900 shadow-lg shadow-gray-900/5 ring-4 ring-transparent placeholder:text-gray-500 placeholder:opacity-100 focus:!border-gray-900 focus:!border-t-gray-900 focus:ring-gray-900/10"
+                labelProps={{
+                  className: "hidden",
+                }}
+                value={currentSearch}
+                containerProps={{ className: "min-w-[100px]" }}
+                onFocus={() => {
+                  clearTimeout(inteval);
+                  setFocus(true);
+                }}
+                onBlur={() => {
+                  inteval = setTimeout(function () {
+                    setFocus(false);
+                  }, 300);
+                }}
+                onChange={handleSearch}
               />
-              <div className="w-full border-2 border-t-0 border-dashed flex py-4 rounded-b-2xl px-4 gap-2 flex-wrap">
-                <div className="flex text-xs justify-between w-fit gap-8 bg-primary text-white px-4 rounded-[10px] font-semibold py-2 font-title">
-                  <div>[Service Name]</div>
-                  <div>X</div>
-                </div>
-                <div className="flex text-xs justify-between w-fit gap-8 bg-primary text-white px-4 rounded-[10px] font-semibold py-2 font-title">
-                  <div>[Service Name]</div>
-                  <div>X</div>
-                </div>
-              </div>
+              {focus ? (
+                <ul className="absolute  py-3 bg-white w-full shadow-lg rounded-b-xl h-auto max-h-[7rem] overflow-y-auto gap-2 z-10000">
+                  {services.map((i) => (
+                    <li
+                      className="px-3 w-full py-4 font-semibold text-xs cursor-pointer text-text hover:bg-gray-100 shadow-sm"
+                      onClick={() => {
+                        if (!currentServices.includes(i)) {
+                          setCurrentServices([...currentServices, i]);
+                          console.log(i);
+                          setCurrentSearch("");
+                        }
+                      }}
+                    >
+                      {i}
+                    </li>
+                  ))}
+                </ul>
+              ) : null}
+              <ul className="w-full h-[6rem] border-dashed border-2 border-t-0 rounded-lg flex gap-2 pt-3 flex-wrap items-start px-2 overflow-y-auto py-3">
+                {currentServices.map((tag) => (
+                  <motion.li
+                    initial={{ scale: 0, opacity: 0 }}
+                    whileInView={{ scale: 1, opacity: 1 }}
+                    transition={{ ease: "easeOut", duration: 0.2, delay: 0.2 }}
+                    className="text-primary bg-tertiary w-auto text-xs h-auto px-2 py-2 rounded-md font-bold"
+                    key={tag}
+                    onClick={() => {
+                      setCurrentServices(
+                        currentServices.filter((i) => i !== tag)
+                      );
+                    }}
+                  >
+                    {tag}
+                  </motion.li>
+                ))}
+              </ul>
             </div>
 
             <h2 className="font-bold text-2xl font-title mt-4">Budget</h2>
@@ -297,76 +442,86 @@ export default function ManagePortfolio({ moveNext, addService }: ITab) {
               Indicate the skills needed for your team to complete the project
               to the client.
             </p>
-            <div className="grid w-full mx-auto mt-2">
-              <label
-                htmlFor="name"
-                className="hidden font-semibold w-fit py-[0.225rem] md:py-[0.425rem] text-sm rounded-md text-text"
-              >
-                Agency name
-              </label>
-              <input
-                type="text"
-                id="name"
-                className="border-[1px] p-2 rounded-md"
-                placeholder="Select service"
+
+            <div className="w-full h-[9rem] relative">
+              <Input
+                crossOrigin={undefined}
+                type="email"
+                size="lg"
+                placeholder="Select services"
+                className="!border !border-gray-300 bg-white text-gray-900 shadow-lg shadow-gray-900/5 ring-4 ring-transparent placeholder:text-gray-500 placeholder:opacity-100 focus:!border-gray-900 focus:!border-t-gray-900 focus:ring-gray-900/10"
+                labelProps={{
+                  className: "hidden",
+                }}
+                value={skillSearch}
+                containerProps={{ className: "min-w-[100px]" }}
+                onFocus={() => {
+                  clearTimeout(inteval);
+                  setSkillFocus(true);
+                }}
+                onBlur={() => {
+                  inteval = setTimeout(function () {
+                    setSkillFocus(false);
+                  }, 300);
+                }}
+                onChange={handleSkillSearch}
               />
-              <div className="w-full border-2 border-t-0 border-dashed flex py-4 rounded-b-2xl px-4 gap-2 flex-wrap">
-                <div className="flex text-xs justify-between w-fit gap-8 bg-secondary text-text px-4 rounded-[10px] font-semibold py-2 font-title">
-                  <div>[Skills Skills Name]</div>
-                  <div>X</div>
-                </div>
-                <div className="flex text-xs justify-between w-fit gap-8 bg-secondary text-text px-4 rounded-[10px] font-semibold py-2 font-title">
-                  <div>[Skills Name]</div>
-                  <div>X</div>
-                </div>{" "}
-                <div className="flex text-xs justify-between w-fit gap-8 bg-secondary text-text px-4 rounded-[10px] font-semibold py-2 font-title">
-                  <div>[Name Skills]</div>
-                  <div>X</div>
-                </div>
-                <div className="flex text-xs justify-between w-fit gap-8 bg-secondary text-text px-4 rounded-[10px] font-semibold py-2 font-title">
-                  <div>[Skills Name Skills]</div>
-                  <div>X</div>
-                </div>
-                <div className="flex text-xs justify-between w-fit gap-8 bg-secondary text-text px-4 rounded-[10px] font-semibold py-2 font-title">
-                  <div>[Name Skills Name Name]</div>
-                  <div>X</div>
-                </div>
-                <div className="flex text-xs justify-between w-fit gap-8 bg-secondary text-text px-4 rounded-[10px] font-semibold py-2 font-title">
-                  <div>[Skills Name]</div>
-                  <div>X</div>
-                </div>
-              </div>
+              {skillFocus ? (
+                <ul className="absolute  py-3 bg-white w-full shadow-lg rounded-b-xl h-auto max-h-[7rem] overflow-y-auto gap-2 z-10000">
+                  {skills.map((i) => (
+                    <li
+                      className="px-3 w-full py-4 font-semibold text-xs cursor-pointer text-text hover:bg-gray-100 shadow-sm"
+                      onClick={() => {
+                        if (!currentServices.includes(i)) {
+                          setCurrentSkills([...currentSkills, i]);
+                          console.log(i);
+                          setSkillSearch("");
+                        }
+                      }}
+                    >
+                      {i}
+                    </li>
+                  ))}
+                </ul>
+              ) : null}
+              <ul className="w-full h-[6rem] border-dashed border-2 border-t-0 rounded-lg flex gap-2 pt-3 flex-wrap items-start px-2 overflow-y-auto py-3">
+                {currentSkills.map((tag) => (
+                  <motion.li
+                    initial={{ scale: 0, opacity: 0 }}
+                    whileInView={{ scale: 1, opacity: 1 }}
+                    transition={{ ease: "easeOut", duration: 0.2, delay: 0.2 }}
+                    className="bg-secondary text-text w-auto text-xs h-auto px-2 py-2 rounded-md font-bold"
+                    key={tag}
+                    onClick={() => {
+                      setCurrentSkills(currentSkills.filter((i) => i !== tag));
+                    }}
+                  >
+                    {tag}
+                  </motion.li>
+                ))}
+              </ul>
             </div>
+
             <div className="grid w-full mx-auto mt-5">
               <p className="font-semibold w-fit py-[0.225rem] md:py-[0.425rem] text-sm rounded-md text-text">
                 Suggested skills tags:
               </p>
-              <div className="w-full flex py-2 rounded-b-2xl gap-2 flex-wrap">
-                <div className="flex text-xs justify-between w-fit gap-8 bg-secondary text-text px-4 rounded-[10px] font-semibold py-2 font-title">
-                  <div>[Skills Skills Name]</div>
-                  <div>X</div>
-                </div>
-                <div className="flex text-xs justify-between w-fit gap-8 bg-secondary text-text px-4 rounded-[10px] font-semibold py-2 font-title">
-                  <div>[Skills Name]</div>
-                  <div>X</div>
-                </div>{" "}
-                <div className="flex text-xs justify-between w-fit gap-8 bg-secondary text-text px-4 rounded-[10px] font-semibold py-2 font-title">
-                  <div>[Name Skills]</div>
-                  <div>X</div>
-                </div>
-                <div className="flex text-xs justify-between w-fit gap-8 bg-secondary text-text px-4 rounded-[10px] font-semibold py-2 font-title">
-                  <div>[Skills Name Skills]</div>
-                  <div>X</div>
-                </div>
-                <div className="flex text-xs justify-between w-fit gap-8 bg-secondary text-text px-4 rounded-[10px] font-semibold py-2 font-title">
-                  <div>[Name Skills Name Name]</div>
-                  <div>X</div>
-                </div>
-                <div className="flex text-xs justify-between w-fit gap-8 bg-secondary text-text px-4 rounded-[10px] font-semibold py-2 font-title">
-                  <div>[Skills Name]</div>
-                  <div>X</div>
-                </div>
-              </div>
+              <ul className="w-full h-[8rem] border-dashed border-2 border-t-0 rounded-lg flex gap-2 pt-3 flex-wrap items-start px-2 overflow-y-auto py-3">
+                {agencySkillTagsRequirements.map((tag) => (
+                  <motion.li
+                    initial={{ scale: 0, opacity: 0 }}
+                    whileInView={{ scale: 1, opacity: 1 }}
+                    transition={{ ease: "easeOut", duration: 0.2, delay: 0.2 }}
+                    className="bg-secondary text-text w-auto text-xs h-auto px-2 py-2 rounded-md font-bold"
+                    key={tag}
+                    onClick={() => {
+                      setCurrentSkills(currentSkills.filter((i) => i !== tag));
+                    }}
+                  >
+                    {tag}
+                  </motion.li>
+                ))}
+              </ul>
             </div>
 
             <h2 className="font-bold text-2xl font-title mt-4">Results link</h2>
@@ -384,25 +539,25 @@ export default function ManagePortfolio({ moveNext, addService }: ITab) {
                 className="border-[1px] p-2 rounded-md"
               ></input>
             </div>
-            <div className="flex gap-4 mt-32">
-              <Button
-                placeholder={undefined}
-                className="text-primary bg-blue-gray-200 w-1/3"
-              >
-                Cancel
-              </Button>
-
-              <Button
-                placeholder={undefined}
-                className="bg-red-200 text-red-500 w-1/3"
-              >
-                Delete
-              </Button>
-              <Button placeholder={undefined} className="bg-primary w-1/3">
-                Save
-              </Button>
-            </div>
           </div>
+        </div>
+        <div className="flex gap-4 justify-end w-1/2 ml-auto">
+          <Button
+            placeholder={undefined}
+            className="text-primary bg-blue-gray-200 w-1/3"
+          >
+            Cancel
+          </Button>
+
+          <Button
+            placeholder={undefined}
+            className="bg-red-200 text-red-500 w-1/3"
+          >
+            Delete
+          </Button>
+          <Button placeholder={undefined} className="bg-primary w-1/3">
+            Save
+          </Button>
         </div>
       </section>
     </div>

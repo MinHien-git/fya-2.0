@@ -6,15 +6,16 @@ import axios, {
   InternalAxiosRequestConfig,
 } from "axios";
 import Cookies from "js-cookie";
-import { useSelector } from "react-redux";
 const API_URL = `http://localhost:4000` || process.env.URL;
 
 const onRequest = (
   config: InternalAxiosRequestConfig
 ): InternalAxiosRequestConfig => {
   const token = Cookies.get("at");
+  console.log(token);
+
   if (token) {
-    console.log(token);
+    console.log(config);
     config.headers!["Authorization"] = `Bearer ${token}`;
   }
   return config;
@@ -35,7 +36,7 @@ const onResponseError = async (
     const rft = Cookies.get("rft");
     console.log(rft);
     // Access Token was expired
-    if (error.response.status === 401) {
+    if (error.response.status === 403) {
       const rft = Cookies.get("rft");
       console.log(rft);
       try {
@@ -46,7 +47,6 @@ const onResponseError = async (
         const { accesstoken } = rs.data;
 
         Cookies.set("at", accesstoken, {
-          expires: 2,
           secure: true,
         });
         // Cookies.set("rft", refreshToken, {
