@@ -1,4 +1,10 @@
-import { Button, IconButton, Input } from "@material-tailwind/react";
+import {
+  Button,
+  IconButton,
+  Input,
+  Option,
+  Select,
+} from "@material-tailwind/react";
 import SecondaryNavigationBar from "../../../components/SecondaryNavigationBar/SecondaryNavigationBar";
 import { ITab } from "../EditService/EditService";
 import { FileInput, Label } from "flowbite-react";
@@ -10,8 +16,67 @@ import {
 } from "../../../components/PostProjectPopup/PostProjectPopup";
 import stringSimilarity from "string-similarity-js";
 import { motion } from "framer-motion";
+import {
+  DeletePagePortfoilio,
+  GetPortfoilio,
+  PostPagePortfoilio,
+  PostPagePortfoilioImage,
+  PutPageAward,
+  PutPagePortfoilio,
+} from "../../../api/lib/page";
+import { decode as base64_decode, encode as base64_encode } from "base-64";
+import { useSelector } from "react-redux";
+import FileBase64 from "react-file-base64";
 
-export default function ManagePortfolio({ moveNext, addService }: ITab) {
+interface IPortfolio {
+  media: string;
+  project_name: string;
+  client_name: string;
+  client_address: string;
+  client_sector: string;
+  budget: number;
+  services: Array<string>;
+  skills: Array<string>;
+  description: string;
+  start_date: string;
+  end_date: string;
+  is_working: boolean;
+  project_scope: string;
+  project_audience: string;
+  client_email: string;
+  project_id: string;
+  result_link: string;
+}
+export interface IPortfolioTab {
+  moveNext: () => void;
+  addService?: boolean;
+  id?: string;
+}
+export default function ManagePortfolio({
+  moveNext,
+  addService,
+  id,
+}: IPortfolioTab) {
+  const [portfolio, setPortfolio] = useState<IPortfolio>({
+    media: "",
+    project_name: "",
+    client_name: "",
+    client_address: "",
+    client_sector: "",
+    budget: 0,
+    services: [],
+    skills: [],
+    description: "",
+    start_date: "",
+    end_date: "",
+    is_working: false,
+    project_scope: "",
+    project_audience: "",
+    client_email: "",
+    project_id: "",
+    result_link: "",
+  });
+
   const [review, setReview] = useState<boolean>();
   const [file, setFile] = useState<any>();
   let inteval: any = null;
@@ -19,7 +84,7 @@ export default function ManagePortfolio({ moveNext, addService }: ITab) {
   const [skills, setSkills] = useState<Array<string>>(
     agencySkillTagsRequirements
   );
-
+  const page_id = useSelector((state: any) => state.page.page_id);
   const [focus, setFocus] = useState(false);
   const [skillFocus, setSkillFocus] = useState(false);
 
@@ -30,10 +95,51 @@ export default function ManagePortfolio({ moveNext, addService }: ITab) {
   const [currentSkills, setCurrentSkills] = useState<Array<string>>([]);
 
   function handleChange(e) {
-    console.log(e.target.files);
-    setFile(URL.createObjectURL(e.target.files[0]));
+    // console.log(e.target.files);
+    setFile(e.target.files[0]);
   }
-
+  useEffect(() => {
+    async function getData() {
+      if (id) {
+        const result = await GetPortfoilio(id);
+        setPortfolio(result.data.data);
+        setCurrentServices(result.data.data.services);
+        setCurrentSkills(result.data.data.skills);
+      }
+    }
+    getData();
+  }, []);
+  async function handleSubmit() {
+    console.log(portfolio);
+    setPortfolio({
+      ...portfolio,
+      services: currentServices,
+      skills: currentSkills,
+    });
+    if (!id) {
+      const result = await PostPagePortfoilio(page_id, portfolio);
+      if (result.data.data) {
+        let formData = new FormData();
+        formData.append("my_file", file);
+        const image = await PostPagePortfoilioImage(
+          result.data.data.id,
+          formData
+        );
+        console.log(image);
+      }
+    } else {
+      const result = await PutPagePortfoilio(id, portfolio);
+      console.log(result);
+    }
+    moveNext();
+  }
+  async function handleDelete() {
+    if (id) {
+      const result = await DeletePagePortfoilio(id);
+      console.log(result);
+    }
+    moveNext();
+  }
   useEffect(() => {
     console.log(currentSearch);
     const delayDebounceFn = setTimeout(() => {
@@ -76,6 +182,10 @@ export default function ManagePortfolio({ moveNext, addService }: ITab) {
     return () => clearTimeout(delayDebounceFn);
   }, [skillSearch, currentSkills]);
 
+  useEffect(() => {
+    console.log(portfolio);
+  }, [portfolio]);
+
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     setCurrentSearch(e.target.value);
   };
@@ -83,11 +193,28 @@ export default function ManagePortfolio({ moveNext, addService }: ITab) {
   const handleSkillSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSkillSearch(e.target.value);
   };
+
+  function handleInputChange(e) {
+    const value = e.target.value;
+    setPortfolio({
+      ...portfolio,
+      [e.target.name]: value,
+    });
+  }
   return (
     <div className="h-[80vh] overflow-y-auto">
-      {review && file && (
-        <ImageReviewer image={file} closeReview={() => setReview(false)} />
-      )}
+      {review &&
+        (file ? (
+          <ImageReviewer
+            image={URL.createObjectURL(file)}
+            closeReview={() => setReview(false)}
+          />
+        ) : (
+          <ImageReviewer
+            image={portfolio.media}
+            closeReview={() => setReview(false)}
+          />
+        ))}
       <section className="max-w-7xl w-[90%] rounded-xl border-2 mt-10 mx-auto flex-col px-6 pb-10">
         <div className="flex w-full px-10 mt-14 gap-6">
           <ul className="flex w-[50%] gap-3">
@@ -125,6 +252,9 @@ export default function ManagePortfolio({ moveNext, addService }: ITab) {
                 id="name"
                 className="border-[1px] p-2 rounded-md"
                 placeholder="Enter project’s name here..."
+                name="project_name"
+                onChange={handleInputChange}
+                value={portfolio.project_name}
               />
             </div>
             <div className="grid w-full mx-auto mt-4">
@@ -146,7 +276,7 @@ export default function ManagePortfolio({ moveNext, addService }: ITab) {
                   htmlFor="dropzone-file"
                   className="flex h-[32rem] mt-4 w-full cursor-pointer flex-col items-center justify-center rounded-lg border-2 border-dashed border-gray-300 bg-gray-50 hover:bg-gray-100 dark:border-gray-600 dark:bg-gray-700 dark:hover:border-gray-500 dark:hover:bg-gray-600"
                 >
-                  <div className="flex flex-col items-center justify-center pb-6 pt-5">
+                  <div className="flex flex-col items-center justify-center pb-6 pt-5 peer">
                     <svg
                       className="mb-4 h-8 w-8 text-gray-500 dark:text-gray-400"
                       aria-hidden="true"
@@ -195,6 +325,9 @@ export default function ManagePortfolio({ moveNext, addService }: ITab) {
                 id="name"
                 className="border-[1px] p-2 rounded-md"
                 placeholder="Enter company name here..."
+                name="client_name"
+                onChange={handleInputChange}
+                value={portfolio.client_name}
               />
             </div>
             <div className="grid w-full mx-auto">
@@ -209,6 +342,9 @@ export default function ManagePortfolio({ moveNext, addService }: ITab) {
                 id="name"
                 className="border-[1px] p-2 rounded-md"
                 placeholder="Enter client’s address here..."
+                name="client_address"
+                onChange={handleInputChange}
+                value={portfolio.client_address}
               />
             </div>
             <div className="grid w-full mx-auto">
@@ -223,6 +359,9 @@ export default function ManagePortfolio({ moveNext, addService }: ITab) {
                 id="name"
                 className="border-[1px] p-2 rounded-md"
                 placeholder="Enter client’s sector here..."
+                name="client_sector"
+                onChange={handleInputChange}
+                value={portfolio.client_sector}
               />
             </div>
             <div className="grid w-full mx-auto">
@@ -232,12 +371,24 @@ export default function ManagePortfolio({ moveNext, addService }: ITab) {
               >
                 Project’s scope (optional)
               </label>
-              <input
-                type="text"
-                id="name"
-                className="border-[1px] p-2 rounded-md"
-                placeholder="Select client’s scope"
-              />
+              <Select
+                size="lg"
+                placeholder={undefined}
+                className="!border !border-gray-300 bg-white text-gray-900 shadow-lg shadow-gray-900/5 ring-4 ring-transparent placeholder:text-gray-500 placeholder:opacity-100 focus:!border-gray-900 focus:!border-t-gray-900 focus:ring-gray-900/10"
+                label="Project’s scope"
+                labelProps={{
+                  className: "hidden",
+                }}
+                name="project_scope"
+                onChange={(e: any) =>
+                  setPortfolio({ ...portfolio, project_scope: e })
+                }
+                value={portfolio.project_scope}
+              >
+                <Option value="Regional">Regional</Option>
+                <Option value="National">National</Option>
+                <Option value="International">International</Option>
+              </Select>
             </div>
             <div className="grid w-full mx-auto">
               <label
@@ -246,12 +397,25 @@ export default function ManagePortfolio({ moveNext, addService }: ITab) {
               >
                 Project’s audience (optional)
               </label>
-              <input
-                type="text"
-                id="name"
-                className="border-[1px] p-2 rounded-md"
-                placeholder="Select client’s scope"
-              />
+              <Select
+                size="lg"
+                placeholder={undefined}
+                className="!border !border-gray-300 bg-white text-gray-900 shadow-lg shadow-gray-900/5 ring-4 ring-transparent placeholder:text-gray-500 placeholder:opacity-100 focus:!border-gray-900 focus:!border-t-gray-900 focus:ring-gray-900/10"
+                label="Project’s scope"
+                labelProps={{
+                  className: "hidden",
+                }}
+                name="project_audience"
+                onChange={(e: any) =>
+                  setPortfolio({ ...portfolio, project_audience: e })
+                }
+                value={portfolio.project_audience}
+              >
+                <Option value="B2B">B2B</Option>
+                <Option value="B2C">B2C</Option>
+                <Option value="C2C">C2C</Option>
+                <Option value="B2G">B2G</Option>
+              </Select>
             </div>
             <div className="grid w-full mx-auto">
               <label
@@ -265,7 +429,9 @@ export default function ManagePortfolio({ moveNext, addService }: ITab) {
                 id="name"
                 className="border-[1px] p-2 rounded-md"
                 placeholder="Enter client’s email"
-                disabled
+                name="client_email"
+                onChange={handleInputChange}
+                value={portfolio.client_email}
               />
               <span className="text-gray-300 text-xs mt-2 ">
                 Confidential: Your client's email is private and will not be
@@ -358,7 +524,13 @@ export default function ManagePortfolio({ moveNext, addService }: ITab) {
                 Agency description
               </label>
 
-              <input id="description" className="border-[1px] p-2 rounded-md" />
+              <input
+                id="description"
+                className="border-[1px] p-2 rounded-md"
+                name="budget"
+                onChange={handleInputChange}
+                value={portfolio.budget}
+              />
               <p className="mb-2 text-xs mt-2">
                 Confidential: This information will not be made public on your
                 Agency Page, but it will assist us in sending you more accurate
@@ -383,8 +555,11 @@ export default function ManagePortfolio({ moveNext, addService }: ITab) {
               </label>
 
               <textarea
+                name="description"
+                onChange={handleInputChange}
                 id="description"
                 className="border-[1px] p-2 rounded-md h-[10rem]"
+                value={portfolio.description}
               ></textarea>
             </div>
 
@@ -404,6 +579,11 @@ export default function ManagePortfolio({ moveNext, addService }: ITab) {
                   type="date"
                   id="name"
                   className="border-[1px] p-2 rounded-md w-full"
+                  name="start_date"
+                  onChange={handleInputChange}
+                  value={
+                    new Date(portfolio.start_date)?.toJSON()?.split("T")[0]
+                  }
                 />
               </div>
               <div className="grid w-1/2">
@@ -417,16 +597,23 @@ export default function ManagePortfolio({ moveNext, addService }: ITab) {
                   type="date"
                   id="name"
                   className="border-[1px] p-2 rounded-md w-full"
+                  name="end_date"
+                  onChange={handleInputChange}
+                  value={new Date(portfolio.end_date)?.toJSON()?.split("T")[0]}
                 />
               </div>
             </div>
             <div className="flex mt-3 items-center">
               <input
                 id="default-radio-1"
-                type="radio"
-                value=""
-                name="default-radio"
+                type="checkbox"
+                checked={portfolio.is_working}
                 className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600 "
+                name="end_date"
+                onChange={(e) => {
+                  const { checked } = e.target;
+                  setPortfolio({ ...portfolio, is_working: checked });
+                }}
               />
               <label
                 htmlFor="default-radio-1"
@@ -537,25 +724,36 @@ export default function ManagePortfolio({ moveNext, addService }: ITab) {
               <input
                 id="description"
                 className="border-[1px] p-2 rounded-md"
+                name="result_link"
+                onChange={handleInputChange}
+                value={portfolio.result_link}
               ></input>
             </div>
           </div>
         </div>
         <div className="flex gap-4 justify-end w-1/2 ml-auto">
+          {!id ? (
+            <Button
+              placeholder={undefined}
+              className="bg-red-200 text-red-500 w-1/3"
+              onClick={moveNext}
+            >
+              Cancel
+            </Button>
+          ) : (
+            <Button
+              placeholder={undefined}
+              className="bg-red-200 text-red-500 w-1/3"
+              onClick={handleDelete}
+            >
+              Delete
+            </Button>
+          )}
           <Button
             placeholder={undefined}
-            className="text-primary bg-blue-gray-200 w-1/3"
+            className="bg-primary w-1/3"
+            onClick={handleSubmit}
           >
-            Cancel
-          </Button>
-
-          <Button
-            placeholder={undefined}
-            className="bg-red-200 text-red-500 w-1/3"
-          >
-            Delete
-          </Button>
-          <Button placeholder={undefined} className="bg-primary w-1/3">
             Save
           </Button>
         </div>

@@ -1,4 +1,5 @@
 import { Button, IconButton } from "@material-tailwind/react";
+import { log } from "console";
 import { Link } from "react-router-dom";
 
 interface IPageCard {
@@ -6,12 +7,23 @@ interface IPageCard {
 }
 
 export default function LargeAgencyCard({ page }: IPageCard) {
-  const { company_name, tagline, page_id } = page;
+  const {
+    company_name,
+    tagline,
+    page_id,
+    address,
+    turnover,
+    founded_date,
+    logo,
+    team_members,
+    tags,
+  } = page;
+  console.log(page);
   return (
     <div className="card mx-auto flex-col py-4 flex items-center gap-1 bg-white border-2 rounded-2xl font-sans  lg:w-full">
       <img
         className="w-20 mx-auto rounded-full border-8 border-white mb-2"
-        src="/static/images/profile.png"
+        src={logo ? logo : "/static/images/profile.png"}
         alt=""
       />
       <div className="flex flex-col py-5 border-2 rounded-md w-5/6 justify-center ">
@@ -34,27 +46,23 @@ export default function LargeAgencyCard({ page }: IPageCard) {
           <li className="hidden lg:block">(0 review)</li>
         </ul>
       </div>
-      <ul className="text-center mt-2 font-light text-sm gap-1 flex flex-wrap w-5/6">
-        <li className="text-xs font-bold bg-tertiary text-primary px-3 py-1 rounded-md">
-          Digital Marketing
-        </li>
-        <li className="text-xs font-bold bg-tertiary text-primary px-3 py-1 rounded-md">
-          Data Analyzing
-        </li>
-        <li className="text-xs font-bold bg-tertiary text-primary px-3 py-1 rounded-md">
-          Social Media Advertising
-        </li>
+      <ul className="text-center mt-2 font-light text-sm gap-1 flex flex-wrap w-5/6 h-[2.5rem] items-start">
+        {tags?.map((tag) => (
+          <li className="text-xs font-bold bg-tertiary text-primary px-3 py-1 rounded-md">
+            {tag}
+          </li>
+        ))}
       </ul>
-      <div className="border-2 rounded-md font-normal text-xs w-5/6 mt-2 py-3 px-2 text-text md:max-h-[5rem] overflow-hidden">
+      <div className="border-2 rounded-md font-normal text-xs w-5/6 py-3 px-2 text-text md:max-h-[5rem] overflow-hidden mt-auto h-[2.5rem]">
         <p>{tagline}</p>
       </div>
 
-      <div className="flex w-5/6 gap-1">
-        <div className="w-1/2 bg-slate-200 text-xs text-center py-2 rounded-md">
-          ABC City, Vietnam
+      <div className="flex w-5/6 gap-1 ">
+        <div className="w-1/2 bg-slate-200 text-xs text-center py-2 rounded-md text-clip	truncate ">
+          {address}
         </div>
         <div className="w-1/2 bg-slate-200 text-xs text-center py-2 rounded-md">
-          SE Asia
+          {turnover}
         </div>
       </div>
       <div className="w-5/6 bg-slate-200 text-xs text-center py-2 rounded-md">
@@ -62,10 +70,10 @@ export default function LargeAgencyCard({ page }: IPageCard) {
       </div>
       <div className="flex w-5/6 gap-1">
         <div className="w-1/2 bg-slate-200 text-xs text-center py-2 rounded-md">
-          ABC City, Vietnam
+          {new Date(founded_date)?.toJSON()?.split("T")[0]}
         </div>
         <div className="w-1/2 bg-slate-200 text-xs text-center py-2 rounded-md">
-          SE Asia
+          {team_members}
         </div>
       </div>
       <div className="flex w-5/6 gap-1 my-2">

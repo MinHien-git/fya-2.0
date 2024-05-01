@@ -1,10 +1,28 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import SecondaryNavigationBar from "../../../components/SecondaryNavigationBar/SecondaryNavigationBar";
 import ManagePortfolio from "../ManagePortfolio/ManagePortfolio";
-
+import { Reorder } from "framer-motion";
+import DragPortfolioCard from "../../../components/DragPortfolio/DragPortfolioCard";
+import PortfolioCard from "../../../components/PortfolioCard/PortfolioCard";
+import { GetPagePortfoilio } from "../../../api/lib/page";
+import { useSelector } from "react-redux";
+const initialItems = ["🍅 Tomato", "🥒 Cucumber", "🧀 Cheese", "🥬 Lettuce"];
 export default function Portfolio() {
   const [state, setState] = useState(0);
+  const [services, setServices] = useState<Array<any>>([]);
+  const page_id = useSelector((state: any) => state.page.page_id);
+  const [portfolioID, setPortfolioID] = useState<string>("");
 
+  useEffect(() => {
+    async function getData() {
+      const result = await GetPagePortfoilio(page_id);
+      if (result.data.data) {
+        setServices(result.data.data);
+        console.log(result);
+      }
+    }
+    getData();
+  }, [state]);
   return (
     <>
       {state === 0 ? (
@@ -24,179 +42,37 @@ export default function Portfolio() {
             The arrangement of your awards will be displayed on your Page.
           </p>
           <section className="grid w-full gap-5 mt-6 overflow-y-auto">
-            <div className="font-sans flex border-2 rounded-[10px] w-full h-[6.25rem] items-center shadow-md shadow-primary-500/20">
-              <ul className="flex w-full items-center h-full">
-                <li className="h-[3.125rem] flex w-[5%] px-8">
-                  <button
-                    className="inline-flex mt-0 pl-0 items-center justify-center p-2 rounded-md text-gray-400 cursor-grab py-6"
-                    aria-label="Main menu"
-                    aria-expanded="false"
-                  >
-                    <svg
-                      className="block h-6 w-6"
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M4 6h16M4 12h16M4 18h16"
-                      ></path>
-                    </svg>
-                    <svg
-                      className="hidden h-6 w-6"
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M6 18L18 6M6 6l12 12"
-                      ></path>
-                    </svg>
-                  </button>
-                </li>
-                <ul
-                  onClick={() => setState(1)}
-                  className="flex w-[95%] items-center py-6 cursor-pointer pr-6"
-                >
-                  <li className="flex px-5 w-1/6 font-bold text-nowrap">
-                    [Project Name]
-                  </li>
-
-                  <li className="w-1/3 px-3 border-2 h-full rounded-lg flex gap-1 py-3 overflow-x-auto no-scrollbar overflow-y-hidden max-w-[18rem] ml-auto">
-                    <div className="flex text-xs justify-between items-center w-auto gap-2 flex-nowrap text-nowrap bg-primary text-white px-1 rounded-md font-semibold py-2 max-h-[2rem]">
-                      <div>[Service Name]</div>
-                    </div>
-                    <div className="flex text-xs justify-between items-center w-auto gap-2 flex-nowrap text-nowrap bg-primary text-white px-1 rounded-md font-semibold py-2 max-h-[2rem]">
-                      <div>[Service Name]</div>
-                    </div>
-                    <div className="flex text-xs justify-between items-center flex-nowrap w-auto gap-2 text-nowrap bg-primary text-white px-2 rounded-md font-semibold py-2 max-h-[2rem]">
-                      <div>[Service Name]</div>
-                    </div>
-                    <div className="flex text-xs justify-between items-center w-auto gap-2 flex-nowrap text-nowrap bg-primary text-white px-1 rounded-md font-semibold py-2 max-h-[2rem]">
-                      <div>[Service Name]</div>
-                    </div>
-                  </li>
-                  <li className="w-1/3 px-3 border-2 h-full rounded-lg flex gap-1 py-3 overflow-x-auto no-scrollbar overflow-y-hidden max-w-[18rem] ml-2">
-                    <div className="flex text-xs justify-between items-center w-auto gap-2 text-nowrap bg-secondary text-white px-1 rounded-md font-semibold py-2 max-h-[2rem]">
-                      <div>[Skills Name]</div>
-                    </div>
-                    <div className="flex text-xs justify-between items-center w-auto gap-2 text-nowrap bg-secondary text-white px-1 rounded-md font-semibold py-2 max-h-[2rem]">
-                      <div>[Skills Name]</div>
-                    </div>
-                    <div className="flex text-xs justify-between items-center w-auto gap-2 text-nowrap bg-secondary text-white px-2 rounded-md font-semibold py-2 max-h-[2rem]">
-                      <div>[Skills Name]</div>
-                    </div>
-                    <div className="flex text-xs justify-between items-center w-auto gap-2 text-nowrap bg-secondary text-white px-1 rounded-md font-semibold py-2 max-h-[2rem]">
-                      <div>[Skills Name]</div>
-                    </div>
-                  </li>
-                </ul>
-              </ul>
-            </div>
-            <div
-              className="font-sans flex border-2 rounded-[10px] h-[6.25rem] gap-8 border-dotted w-full py-8 px-8 border-text items-center cursor-pointer"
-              onClick={() => setState(1)}
+            <Reorder.Group
+              className="w-full grid gap-5"
+              axis="y"
+              onReorder={setServices}
+              values={services}
             >
-              <svg
-                viewBox="0 0 21 21"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-6 aspect-square"
-              >
-                <rect width="21" height="21" fill="#F9F9F9" />
-                <circle
-                  cx="10.5"
-                  cy="10.5"
-                  r="10"
-                  fill="#D9D9D9"
-                  stroke="#9EA0A3"
+              {services.map((i) => (
+                <DragPortfolioCard
+                  projectName={i.project_name}
+                  id={i.toString()}
+                  key={i}
+                  service_tags={i.services}
+                  skill_tags={i.skills}
+                  moveNext={() => {
+                    setState(1);
+                    setPortfolioID(i.portfolio_id);
+                  }}
                 />
-                <path d="M5 10.5H16" stroke="#9EA0A3" />
-                <path d="M10.5 16L10.5 5" stroke="#9EA0A3" />
-              </svg>
-              <p className="text-text font-semibold">Add another project</p>
-            </div>
-            <div
-              className="font-sans flex border-2 rounded-[10px] h-[6.25rem] gap-8 border-dotted w-full py-8 px-8 border-text items-center cursor-pointer"
-              onClick={() => setState(1)}
-            >
-              <svg
-                viewBox="0 0 21 21"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-6 aspect-square"
-              >
-                <rect width="21" height="21" fill="#F9F9F9" />
-                <circle
-                  cx="10.5"
-                  cy="10.5"
-                  r="10"
-                  fill="#D9D9D9"
-                  stroke="#9EA0A3"
-                />
-                <path d="M5 10.5H16" stroke="#9EA0A3" />
-                <path d="M10.5 16L10.5 5" stroke="#9EA0A3" />
-              </svg>
-              <p className="text-text font-semibold">Add another project</p>
-            </div>
-            <div
-              className="font-sans flex border-2 rounded-[10px] h-[6.25rem] gap-8 border-dotted w-full py-8 px-8 border-text items-center cursor-pointer"
-              onClick={() => setState(1)}
-            >
-              <svg
-                viewBox="0 0 21 21"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-6 aspect-square"
-              >
-                <rect width="21" height="21" fill="#F9F9F9" />
-                <circle
-                  cx="10.5"
-                  cy="10.5"
-                  r="10"
-                  fill="#D9D9D9"
-                  stroke="#9EA0A3"
-                />
-                <path d="M5 10.5H16" stroke="#9EA0A3" />
-                <path d="M10.5 16L10.5 5" stroke="#9EA0A3" />
-              </svg>
-              <p className="text-text font-semibold">Add another project</p>
-            </div>
-            <div
-              className="font-sans flex border-2 rounded-[10px] h-[6.25rem] gap-8 border-dotted w-full py-8 px-8 border-text items-center cursor-pointer"
-              onClick={() => setState(1)}
-            >
-              <svg
-                viewBox="0 0 21 21"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-6 aspect-square"
-              >
-                <rect width="21" height="21" fill="#F9F9F9" />
-                <circle
-                  cx="10.5"
-                  cy="10.5"
-                  r="10"
-                  fill="#D9D9D9"
-                  stroke="#9EA0A3"
-                />
-                <path d="M5 10.5H16" stroke="#9EA0A3" />
-                <path d="M10.5 16L10.5 5" stroke="#9EA0A3" />
-              </svg>
-              <p className="text-text font-semibold">Add another project</p>
-            </div>
+              ))}
+            </Reorder.Group>
+            {Array.apply(null, new Array(5)).map((i) => (
+              <PortfolioCard moveNext={() => setState(2)} />
+            ))}
           </section>
         </section>
       ) : state == 1 ? (
-        <ManagePortfolio moveNext={() => setState(0)} addService={false} />
+        <ManagePortfolio
+          moveNext={() => setState(0)}
+          addService={false}
+          id={portfolioID}
+        />
       ) : (
         <ManagePortfolio moveNext={() => setState(0)} addService={true} />
       )}

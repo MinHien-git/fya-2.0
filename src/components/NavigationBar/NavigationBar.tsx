@@ -54,6 +54,11 @@ const agencyProfileItems = [
     icon: Cog6ToothIcon,
   },
   {
+    label: "Save List",
+    url: "/saveList",
+    icon: LifebuoyIcon,
+  },
+  {
     label: "Help",
     url: "/help",
     icon: LifebuoyIcon,

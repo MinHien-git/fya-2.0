@@ -3,6 +3,7 @@ import SecondaryNavigationBar from "../../../components/SecondaryNavigationBar/S
 import { Button } from "@material-tailwind/react";
 import { useEffect, useState } from "react";
 import { IoCloseSharp } from "react-icons/io5";
+import { motion } from "framer-motion";
 import {
   GetCompany,
   PostCompanyCover,
@@ -17,7 +18,12 @@ interface IImageReview {
 }
 export function ImageReviewer({ image, closeReview }: IImageReview) {
   return (
-    <div className="fixed w-[100vw] h-[100vh] bg-black/50 z-[1000] left-0 top-0 flex justify-center items-center">
+    <motion.div
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      transition={{ ease: "easeOut", duration: 0.5 }}
+      className="fixed w-[100vw] h-[100vh] bg-black/50 z-[1000] left-0 top-0 flex justify-center items-center"
+    >
       <div className="h-[80%] w-[80%] relative justify-center items-center flex">
         <div
           className="absolute top-2 right-2 bg-gray-200 rounded-full p-2"
@@ -26,13 +32,16 @@ export function ImageReviewer({ image, closeReview }: IImageReview) {
           <IoCloseSharp className="w-6 h-6" />
         </div>
 
-        <img
+        <motion.img
           src={image}
+          initial={{ opacity: 0, scale: 0 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          transition={{ ease: "easeOut", duration: 0.5 }}
           alt="review upload"
           className="object-contain w-full h-full"
         />
       </div>
-    </div>
+    </motion.div>
   );
 }
 
@@ -233,7 +242,7 @@ export default function Company() {
         </section>
       </section>
 
-      <section className="max-w-7xl w-[90%] pb-10 rounded-xl border-2 mt-10 mx-auto px-12 flex gap-4">
+      <section className="max-w-7xl w-[90%] pb-10 rounded-xl border-2 mt-10 mx-auto px-12 flex gap-4 justify-between">
         <div className="py-6 grid gap-2 font-title w-fit">
           <div className="flex justify-between items-center pb-5">
             <h3 className="text-3xl font-bold">Logo</h3>

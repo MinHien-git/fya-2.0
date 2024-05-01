@@ -99,3 +99,29 @@ export function PostCompanyLogo(pageId: string, data) {
     },
   });
 }
+
+export function GetPagePortfoilio(pageId) {
+  return api.get<any>(`/page/${pageId}/portfolio`);
+}
+
+export function PutPagePortfoilio(portfolioId, data) {
+  return api.put<any>(`/page/portfolio/${portfolioId}/update`, data);
+}
+
+export function PostPagePortfoilio(pageId, data) {
+  return api.post<any>(`/page/portfolio/${pageId}`, data);
+}
+export function PostPagePortfoilioImage(portfolioId, data) {
+  return api.post<any>(`/page/portfolio/${portfolioId}/image`, data, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+  });
+}
+export function DeletePagePortfoilio(portfolioId: string) {
+  return api.delete<any>(`/page/portfolio/${portfolioId}/delete`);
+}
+
+export function GetPortfoilio(portfolioId: string) {
+  return api.get<any>(`/page/portfolio/${portfolioId}`);
+}
