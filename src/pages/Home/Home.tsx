@@ -12,8 +12,14 @@ import {
 } from "@material-tailwind/react";
 import { useDocumentTitle } from "@uidotdev/usehooks";
 import { motion } from "framer-motion";
-import PostProjectModal from "../../components/PostProjectPopup/PostProjectPopup";
+import PostProjectModal, {
+  agencyServices,
+} from "../../components/PostProjectPopup/PostProjectPopup";
 import usePostProject from "../../hooks/usePostProjectPopup";
+import { useEffect, useState } from "react";
+import stringSimilarity from "string-similarity-js";
+import { ChevronDownIcon } from "@heroicons/react/24/solid";
+import { useNavigate } from "react-router-dom";
 let data = [
   {
     label: "service 1",
@@ -27,7 +33,43 @@ let data = [
 ];
 export default function Home() {
   const { isOpen, toggle } = usePostProject();
+  const [services, setServices] = useState<Array<string>>(agencyServices);
+  const [openMenu, setOpenMenu] = useState(false);
+  const [location, setLocation] = useState<string>("");
+  const navigate = useNavigate();
+
+  const [currentServices, setCurrentServices] = useState<Array<string>>([]);
+  const [currentSearch, setCurrentSearch] = useState("");
+  const [focus, setFocus] = useState(false);
+  let inteval: any = null;
+
+  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setCurrentSearch(e.target.value);
+  };
+
+  useEffect(() => {
+    console.log(currentSearch);
+    const delayDebounceFn = setTimeout(() => {
+      if (currentSearch) {
+        setServices(
+          agencyServices.filter(
+            (i) =>
+              (stringSimilarity(i, currentSearch) > 0.8 ||
+                i.toLowerCase().includes(currentSearch.toLowerCase())) &&
+              !currentServices.includes(i)
+          )
+        );
+      } else {
+        console.log(currentServices);
+        setServices(agencyServices.filter((i) => !currentServices.includes(i)));
+      }
+    }, 200);
+
+    return () => clearTimeout(delayDebounceFn);
+  }, [currentSearch, currentServices]);
+
   useDocumentTitle("Home");
+
   return (
     <main className="w-full min-h-80 p-2">
       {isOpen && <PostProjectModal isOpen={isOpen} toggle={toggle} />}
@@ -56,42 +98,91 @@ export default function Home() {
             </Typography>
 
             <div className="items-center px-0 rounded-lg pt-3 pb-2 lg:flex-nowrap w-full relative flex lg:w-[85%]">
-              <Menu placement="bottom-start">
-                <MenuHandler>
+              <div>
+                <div className="w-full relative">
                   <Button
                     placeholder={undefined}
-                    ripple={false}
-                    variant="text"
-                    color="blue-gray"
-                    className="flex h-10 items-center gap-2 rounded-r-none border border-r-0 border-blue-gray-200 bg-blue-gray-500/10 pl-3 w-1/2 md:w-2/5"
+                    className="w-full flex h-10 items-center gap-2 rounded-r-none border border-r-0 text-black border-blue-gray-200 bg-blue-gray-500/10 pl-3"
+                    onClick={() => setOpenMenu(!openMenu)}
                   >
-                    {/* <img
-                      src={flags.svg}
-                      alt={name}
-                      className="h-4 w-4 rounded-full object-cover"
-                    /> */}
-                    {"Services"}
+                    Services{" "}
+                    <ChevronDownIcon
+                      strokeWidth={2.5}
+                      className={`h-3.5 w-3.5 transition-transform ${
+                        openMenu ? "rotate-180" : ""
+                      }`}
+                    />
                   </Button>
-                </MenuHandler>
-                <MenuList
-                  className="max-h-[20rem] max-w-[18rem]"
-                  placeholder={undefined}
-                >
-                  {data.map(({ label }, index) => {
-                    return (
-                      <MenuItem
-                        placeholder={undefined}
-                        key={label}
-                        value={label}
-                        className="flex items-center gap-2"
-                        // onClick={() => setCountry(index)}
-                      >
-                        {label}{" "}
-                      </MenuItem>
-                    );
-                  })}
-                </MenuList>
-              </Menu>
+                  {openMenu && (
+                    <div className="max-h-[20rem] min-w-[20rem] max-w-[36rem] absolute bg-white top-[3rem] z-[1000]">
+                      <div className="w-full h-[9rem] relative">
+                        <Input
+                          crossOrigin={undefined}
+                          size="lg"
+                          type="email"
+                          placeholder="Select services"
+                          className="!border !border-gray-300 bg-white text-gray-900 shadow-lg shadow-gray-900/5 ring-4 ring-transparent placeholder:text-gray-500 placeholder:opacity-100 focus:!border-gray-900 focus:!border-t-gray-900 focus:ring-gray-900/10"
+                          labelProps={{
+                            className: "hidden",
+                          }}
+                          value={currentSearch}
+                          containerProps={{ className: "min-w-[100px]" }}
+                          onFocus={() => {
+                            clearTimeout(inteval);
+                            setFocus(true);
+                          }}
+                          onBlur={() => {
+                            inteval = setTimeout(function () {
+                              setFocus(false);
+                            }, 300);
+                          }}
+                          onChange={handleSearch}
+                        />
+                        {focus ? (
+                          <ul className="absolute  py-3 bg-white w-full shadow-lg rounded-b-xl h-auto max-h-[7rem] overflow-y-auto gap-2 ">
+                            {services.map((i) => (
+                              <li
+                                className="px-3 w-full py-4 font-semibold text-xs cursor-pointer text-text hover:bg-gray-100 shadow-sm"
+                                onClick={() => {
+                                  if (!currentServices.includes(i)) {
+                                    setCurrentServices([...currentServices, i]);
+                                    console.log(i);
+                                    setCurrentSearch("");
+                                  }
+                                }}
+                              >
+                                {i}
+                              </li>
+                            ))}
+                          </ul>
+                        ) : null}
+                        <ul className="w-full h-[6rem] border-dashed border-2 border-t-0 rounded-lg flex gap-2 pt-3 flex-wrap items-start px-2 overflow-y-auto py-3">
+                          {currentServices.map((tag) => (
+                            <motion.li
+                              initial={{ scale: 0, opacity: 0 }}
+                              whileInView={{ scale: 1, opacity: 1 }}
+                              transition={{
+                                ease: "easeOut",
+                                duration: 0.2,
+                                delay: 0.2,
+                              }}
+                              className="text-primary bg-tertiary w-auto text-xs h-auto px-2 py-2 rounded-md font-bold"
+                              key={tag}
+                              onClick={() => {
+                                setCurrentServices(
+                                  currentServices.filter((i) => i !== tag)
+                                );
+                              }}
+                            >
+                              {tag}
+                            </motion.li>
+                          ))}
+                        </ul>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </div>
               <Input
                 crossOrigin={undefined}
                 type="text"
@@ -103,6 +194,10 @@ export default function Home() {
                 containerProps={{
                   className: "min-w-0",
                 }}
+                value={location}
+                onChange={(e) => {
+                  setLocation(e.target.value);
+                }}
               />
               {/* <button className="ml-4 hidden md:block bg-primary text-white text-xs rounded-lg px-6 py-3 font-semibold mt-2 md:mt-0 w-full max-w-[10rem]">
                 Search Agencies
@@ -111,6 +206,11 @@ export default function Home() {
                 size="md"
                 className="hidden md:block bg-primary text-white max-w-[30rem] ml-4 w-[20rem] normal-case"
                 placeholder={undefined}
+                onClick={() =>
+                  navigate("/searchResult", {
+                    state: { services: currentServices, location: location },
+                  })
+                }
               >
                 Search Agencies
               </Button>
@@ -120,6 +220,11 @@ export default function Home() {
               size="md"
               className="bg-primary text-white max-w-[12rem] w-full md:hidden mt-2"
               placeholder={undefined}
+              onClick={() =>
+                navigate("/searchResult", {
+                  state: { services: currentServices, location: location },
+                })
+              }
             >
               Search Agencies
             </Button>

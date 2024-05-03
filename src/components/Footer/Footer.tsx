@@ -9,7 +9,7 @@ export default function Footer() {
             <img
               src={"/static/images/Logo_BG.svg"}
               alt="logo"
-              className="w-[4rem] mb-6"
+              className="w-[4rem] mb-6 "
             />
             <h2 className="text-primary text-2xl font-bold">
               Find <span className="text-secondary">Your</span> Agencies

@@ -17,6 +17,8 @@ export default function LargeAgencyCard({ page }: IPageCard) {
     logo,
     team_members,
     tags,
+    minprice,
+    languages,
   } = page;
   console.log(page);
   return (
@@ -58,15 +60,15 @@ export default function LargeAgencyCard({ page }: IPageCard) {
       </div>
 
       <div className="flex w-5/6 gap-1 ">
-        <div className="w-1/2 bg-slate-200 text-xs text-center py-2 rounded-md text-clip	truncate ">
+        <div className="w-1/2 bg-slate-200 text-xs text-center py-2 rounded-md text-clip	truncate px-2">
           {address}
         </div>
-        <div className="w-1/2 bg-slate-200 text-xs text-center py-2 rounded-md">
-          {turnover}
+        <div className="w-1/2 bg-slate-200 text-xs text-center py-2 rounded-md text-clip	truncate px-2">
+          {languages.join(", ")}
         </div>
       </div>
       <div className="w-5/6 bg-slate-200 text-xs text-center py-2 rounded-md">
-        From $9999/project
+        From {minprice ? "$" + minprice : "Negotiate"}/project
       </div>
       <div className="flex w-5/6 gap-1">
         <div className="w-1/2 bg-slate-200 text-xs text-center py-2 rounded-md">

@@ -2,25 +2,49 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { GetPage } from "../../api/lib/page";
 import { Button } from "@material-tailwind/react";
+import AgencyServiceCard from "../../components/AgencyServiceCard/AgencyServiceCard";
+import AgencyPortfolioCard from "../../components/AgencyPortfoilioCard/AgencyPortfolioCard";
+import AgencyAwardCard from "../../components/AgencyAwardCard/AgencyAwardCard";
 
 export default function AgencyPage() {
   const { pageId } = useParams();
   const [page, setPage] = useState<any>(null);
+  const [company, setCompany] = useState<any>(null);
+  const [services, setServices] = useState<any>(null);
+  const [awards, setAwards] = useState<any>(null);
+  const [portfolios, setPortfolio] = useState<any>(null);
   useEffect(() => {
     async function fetchData() {
       let result = await GetPage(pageId);
-      console.log(result);
-      if (result.data) {
-        setPage(result.data.data);
+      if (result.data.data) {
+        let { pageInfo, awards, companyInfo, portifolio, services } =
+          result.data.data;
+        setPage(pageInfo);
+        setCompany(companyInfo);
+        setServices(services);
+        setAwards(awards);
+        setPortfolio(portifolio);
       }
+      console.log(result);
     }
     fetchData();
   }, [pageId]);
   return (
-    <main className="w-full min-h-80 p-2">
-      <section className="w-full border-2 max-w-7xl my-5 rounded-xl md:mx-auto h-[40vh] bg-light_gray flex aspect-[4/1]">
-        <div className="flex items-center w-full border-t-2 border-gray-300 h-[3rem] mt-auto relative ">
-          <div className="w-[6rem] aspect-square bg-gray-500 rounded-full absolute top-[-3.5rem] left-[1.5rem] h-auto md:w-[8rem] md:top-[-3rem]"></div>
+    <main className="w-full min-h-80 p-2 grid gap-1">
+      <section className="w-full border-2 max-w-7xl my-5 rounded-xl md:mx-auto bg-light_gray flex aspect-[4/1] flex-col">
+        <img
+          src={company?.cover}
+          alt="cover"
+          className="w-full bg-cover object-cover h-[35vh] object-center rounded-xl"
+        />
+        <div className="flex items-center w-full border-t-2 bg-white shadow-lg shadow-primary/50 h-[3rem] mt-auto relative rounded-b-xl">
+          <div className="w-[6rem] aspect-square bg-gray-500 rounded-full flex justify-center items-center absolute top-[-3.5rem] left-[1.5rem] h-auto md:w-[8rem] md:top-[-3rem]">
+            <img
+              className="w-full h-full rounded-full shadow-xl shadow-grey/50"
+              src={company?.logo}
+              alt="logo"
+            />
+          </div>
           <h1 className="pl-[8rem] text-md font-bold md:hidden">
             {page?.company_name}
           </h1>
@@ -107,28 +131,21 @@ export default function AgencyPage() {
         </div>
         <section className="w-full max-w-7xl my-5 md:mx-auto flex lg:w-3/6">
           <div className="grid gap-3 px-2 lg:grid lg:grid-cols-2">
-            <div className="w-full border-2 max-w-7xl px-4 sm:px-4 lg:px-8 py-5 rounded-xl md:mx-auto grid gap-3 lg:col-span-2">
+            <div className="w-full max-w-7xl px-4 sm:px-4 lg:px-8 py-5 rounded-xl md:mx-auto grid gap-3 lg:col-span-2 shadow-lg shadow-grey/80">
               <p className="text-primary">Provides services in:</p>
               <ul className="w-full flex flex-wrap gap-2">
-                <li className="bg-primary py-2 px-6 rounded-md text-white text-sm font-semibold text-nowrap">
-                  Website{" "}
-                </li>
-                <li className="bg-primary py-2 px-6 rounded-md text-white text-sm font-semibold text-nowrap">
-                  Lorem ipsum dolor sit amet .
-                </li>
-                <li className="bg-primary py-2 px-6 rounded-md text-white text-sm font-semibold text-nowrap">
-                  ipsum dolor sit
-                </li>
-                <li className="bg-primary py-2 px-6 rounded-md text-white text-sm font-semibold text-nowrap">
-                  Lorem ipsum dolor sit amet .
-                </li>
+                {page?.tags.map((i) => (
+                  <li className="bg-primary py-2 px-6 rounded-md text-white text-sm font-semibold text-nowrap">
+                    {i}
+                  </li>
+                ))}
               </ul>
             </div>
-            <div className="w-full border-2 max-w-7xl px-4 sm:px-4 lg:px-8 py-5 rounded-xl md:mx-auto grid gap-3 lg:col-span-2">
-              <p>Based in: ABC City</p>
+            <div className="w-full max-w-7xl px-4 sm:px-4 lg:px-8 py-5 rounded-xl md:mx-auto grid gap-3 lg:col-span-2 shadow-lg shadow-grey/80">
+              <p>Based in: {page?.address}</p>
               <p>Available: Nationwide</p>
             </div>
-            <div className="w-full border-2 max-w-7xl px-4 sm:px-4 lg:px-8 py-8 rounded-xl md:mx-auto grid gap-3 lg:content-baseline lg:gap-6">
+            <div className="w-full max-w-7xl px-4 sm:px-4 lg:px-8 py-8 rounded-xl md:mx-auto grid gap-3 lg:content-baseline lg:gap-6 shadow-lg shadow-grey/80">
               <ul className="flex mt-1 gap-2 items-center justify-center">
                 <li className="bg-secondary w-6 aspect-square rounded-full"></li>
                 <li className="bg-secondary w-6 aspect-square rounded-full"></li>
@@ -146,17 +163,34 @@ export default function AgencyPage() {
                 <span className="text-blue-500 underline"> Review Here</span>
               </p>
             </div>
-            <div className="w-full border-2 max-w-7xl px-4 sm:px-4 lg:px-8 py-8 rounded-xl md:mx-auto grid gap-3 lg:content-baseline lg:gap-6">
-              <p>Team: 123 people </p>
-              <p>Founded in: {page?.founded_date.split("T")[0]}</p>
-              <p>Language(s) available: {page?.languages.join(",")}</p>
-              <p>Has joined Fya since: 2023</p>
+            <div className="w-full max-w-7xl px-4 sm:px-4 lg:px-8 py-8 rounded-xl md:mx-auto grid gap-3 lg:content-baseline lg:gap-6 shadow-lg shadow-grey/80">
+              <p>
+                Team: <span className="font-semibold">123 people</span>{" "}
+              </p>
+              <p>
+                Founded in:{" "}
+                <span className="font-semibold">
+                  {page?.founded_date.split("T")[0]}
+                </span>
+              </p>
+              <p>
+                Language(s) available:{" "}
+                <span className="font-semibold">
+                  {page?.languages.join(",")}
+                </span>
+              </p>
+              <p>
+                Has joined Fya since:{" "}
+                <span className="font-semibold">
+                  {page?.created_date.split("T")[0].split("-")[0]}
+                </span>
+              </p>
             </div>
           </div>
         </section>
       </section>
 
-      <section className="w-full border-[1px] border-border bg-light_gray max-w-7xl px-2 sm:px-4 lg:px-40 my-5 rounded-[3rem] md:mx-auto flex flex-col justify-center items-center relative scroll-mt-[100px]">
+      <section className="w-full border-[1px] bg-white shadow-lg shadow-primary/50 max-w-7xl px-2 sm:px-4 lg:px-40 my-5 rounded-[3rem] md:mx-auto flex flex-col justify-center items-center relative scroll-mt-[100px]">
         <div className="py-5 pb-10">
           <h2 className="text-[2rem] py-2 font-bold text-center font-title capitalize">
             Agencies Similar to{" "}
@@ -332,7 +366,7 @@ export default function AgencyPage() {
         </div>
       </section>
       <section
-        className="w-full border-[1px] border-border max-w-7xl bg-light_gray px-2 sm:px-4 lg:px-40 my-5 rounded-[3rem] md:mx-auto flex flex-col justify-center items-center relative scroll-mt-[100px]"
+        className="w-full border-[1px] max-w-7xl bg-tertiary shadow-lg shadow-primary/50 px-2 sm:px-4 lg:px-40 my-5 rounded-[3rem] md:mx-auto flex flex-col justify-center items-center relative scroll-mt-[100px]"
         id="service"
       >
         <div className="py-5 w-full pb-10">
@@ -348,154 +382,33 @@ export default function AgencyPage() {
               <li className="w-1/3 text-xs md:ml-4 text-text">Starting from</li>
             </ul>
             <ul className="grid w-full gap-5">
-              <li className="grid w-full items-center relative">
-                <div className="flex w-full items-center md:gap-2 relative border-[1px] border-border rounded-xl bg-tertiary drop-shadow-md">
-                  <div className="w-1/3 border-r-2 py-2 my-2 lg:py-4 lg:my-4">
-                    <h3 className="text-xs md:text-lg font-bold sm:pl-2 md:pl-5 text-center md:text-left">
-                      E-commerce
-                    </h3>
-                  </div>
-                  <div className="w-1/3 border-r-2 py-2 my-2 lg:py-4 lg:my-4">
-                    <ul className="flex mt-1 gap-1 md:gap-2 justify-center items-center">
-                      <li className="bg-secondary w-2 md:w-4 aspect-square rounded-full"></li>
-                      <li className="bg-secondary w-2 md:w-4 aspect-square rounded-full"></li>
-                      <li className="bg-secondary w-2 md:w-4 aspect-square rounded-full"></li>
-                      <li className="bg-secondary w-2 md:w-4 aspect-square rounded-full"></li>
-                      <li className="bg-secondary w-2 md:w-4 aspect-square rounded-full"></li>
-                      <li className="hidden md:block ml-5 font-bold">
-                        0.0/5.0
-                      </li>
-                    </ul>
-                  </div>
-                  <div className="w-1/3 py-2 my-2 lg:py-4 lg:my-4">
-                    <p className="text-xs md:text-base font-bold pl-2 md:pl-5">
-                      $0 - $100
-                    </p>
-                  </div>
-                </div>
-                <ul
-                  className="w-1/3 bottom-[-2rem]
-                border-l-[1px] border-r-[1px] border-b-[1px] rounded-b-lg flex flex-wrap gap-2 px-2 py-4 border-dashed border-text"
-                >
-                  <li className="bg-secondary font-semibold text-xs md:text-sm px-2 py-1 rounded-md">
-                    [Skills Name]
-                  </li>
-                  <li className="bg-secondary font-semibold text-xs md:text-sm px-2 py-1 rounded-md">
-                    [Skills Name Name]
-                  </li>
-                  <li className="bg-secondary font-semibold text-xs md:text-sm px-2 py-1 rounded-md">
-                    [Skills Name]
-                  </li>
-                  <li className="bg-secondary font-semibold text-xs md:text-sm px-2 py-1 rounded-md">
-                    [Skills Name]
-                  </li>
-                </ul>
-              </li>
-              <li className="grid w-full items-center relative">
-                <div className="flex w-full items-center md:gap-2 relative border-[1px] border-border rounded-xl bg-primary  drop-shadow-md">
-                  <div className="w-1/3 border-r-2 py-2 my-2 lg:py-4 lg:my-4">
-                    <h3 className="text-xs md:text-lg font-bold sm:pl-2 md:pl-5 text-white text-center md:text-left">
-                      E-commerce
-                    </h3>
-                  </div>
-                  <div className="w-1/3 border-r-2 py-2 my-2 lg:py-4 lg:my-4">
-                    <ul className="flex mt-1 gap-1 md:gap-2 justify-center items-center">
-                      <li className="bg-secondary w-2 md:w-4 aspect-square rounded-full"></li>
-                      <li className="bg-secondary w-2 md:w-4 aspect-square rounded-full"></li>
-                      <li className="bg-secondary w-2 md:w-4 aspect-square rounded-full"></li>
-                      <li className="bg-secondary w-2 md:w-4 aspect-square rounded-full"></li>
-                      <li className="bg-secondary w-2 md:w-4 aspect-square rounded-full"></li>
-                      <li className="hidden md:block ml-5 font-bold text-white">
-                        0.0/5.0
-                      </li>
-                    </ul>
-                  </div>
-                  <div className="w-1/3 py-2 my-2 lg:py-4 lg:my-4">
-                    <p className="text-xs md:text-base font-bold pl-2 md:pl-5 text-white">
-                      $0 - $100
-                    </p>
-                  </div>
-                </div>
-                <ul
-                  className="w-1/3 bottom-[-2rem]
-                border-l-[1px] border-r-[1px] border-b-[1px] rounded-b-lg flex flex-wrap gap-2 px-2 py-4 border-dashed border-text"
-                >
-                  <li className="bg-secondary font-semibold text-xs md:text-sm px-2 py-1 rounded-md">
-                    [Skills Name]
-                  </li>
-                  <li className="bg-secondary font-semibold text-xs md:text-sm px-2 py-1 rounded-md">
-                    [Skills Name Name]
-                  </li>
-                  <li className="bg-secondary font-semibold text-xs md:text-sm px-2 py-1 rounded-md">
-                    [Skills Name Name]
-                  </li>
-                  <li className="bg-secondary font-semibold text-xs md:text-sm px-2 py-1 rounded-md">
-                    [Skills Name]
-                  </li>
-                </ul>
-              </li>
-              <li className="grid w-full items-center relative">
-                <div className="flex w-full items-center md:gap-2 relative border-[1px] border-border rounded-xl bg-tertiary drop-shadow-md">
-                  <div className="w-1/3 border-r-2 py-2 my-2 lg:py-4 lg:my-4">
-                    <h3 className="text-xs md:text-lg font-bold sm:pl-2 md:pl-5 text-center md:text-left">
-                      E-commerce
-                    </h3>
-                  </div>
-                  <div className="w-1/3 border-r-2 py-2 my-2 lg:py-4 lg:my-4">
-                    <ul className="flex mt-1 gap-1 md:gap-2 justify-center items-center">
-                      <li className="bg-secondary w-2 md:w-4 aspect-square rounded-full"></li>
-                      <li className="bg-secondary w-2 md:w-4 aspect-square rounded-full"></li>
-                      <li className="bg-secondary w-2 md:w-4 aspect-square rounded-full"></li>
-                      <li className="bg-secondary w-2 md:w-4 aspect-square rounded-full"></li>
-                      <li className="bg-secondary w-2 md:w-4 aspect-square rounded-full"></li>
-                      <li className="hidden md:block ml-5 font-bold">
-                        0.0/5.0
-                      </li>
-                    </ul>
-                  </div>
-                  <div className="w-1/3 py-2 my-2 lg:py-4 lg:my-4">
-                    <p className="text-xs md:text-base font-bold pl-2 md:pl-5">
-                      $0 - $100
-                    </p>
-                  </div>
-                </div>
-                <ul
-                  className="w-1/3 bottom-[-2rem]
-                border-l-[1px] border-r-[1px] border-b-[1px] rounded-b-lg flex flex-wrap gap-2 px-2 py-4 border-dashed border-text"
-                >
-                  <li className="bg-secondary font-semibold text-xs md:text-sm px-2 py-1 rounded-md">
-                    [Skills Name]
-                  </li>
-                  <li className="bg-secondary font-semibold text-xs md:text-sm px-2 py-1 rounded-md">
-                    [Skills Name Name]
-                  </li>
-                  <li className="bg-secondary font-semibold text-xs md:text-sm px-2 py-1 rounded-md">
-                    [Skills Name Name]
-                  </li>
-                  <li className="bg-secondary font-semibold text-xs md:text-sm px-2 py-1 rounded-md">
-                    [Skills Name]
-                  </li>
-                </ul>
-              </li>
+              {services?.map((service) => (
+                <AgencyServiceCard
+                  name={service.service_tags}
+                  price={service.price}
+                  skill_tags={service.skill_tags}
+                />
+              ))}
             </ul>
           </div>
         </div>
       </section>
-      <section className="w-full border-[1px] border-border max-w-7xl bg-light_gray px-2 sm:px-4 lg:px-40 my-5 rounded-[3rem] md:mx-auto flex flex-col justify-center items-center relative">
+      <section className="w-full border-[1px] max-w-7xl bg-white shadow-lg shadow-primary/50 px-2 sm:px-4 lg:px-40 my-5 rounded-[3rem] md:mx-auto flex flex-col justify-center items-center relative">
         <div className="py-5 w-11/12 mx-auto grid gap-5 justify-items-center max-w-5xl pb-10">
           <h2 className="text-[2rem] py-2 font-bold text-center font-title">
             Company
           </h2>
-          <div className="bg-tertiary aspect-video w-full rounded-2xl text-xs drop-shadow-md"></div>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce at
-            sapien eu ipsum ornare sollicitudin vel nec nisl. Nullam ut lacus
-            porttitor, vestibulum ipsum eu, porta libero. Aliquam erat volutpat.
-            Morbi ac tincidunt orci.
-          </p>
+          <div className="bg-tertiary aspect-video w-full rounded-2xl text-xs drop-shadow-md">
+            <img
+              src={company?.team_cover}
+              alt="company cover"
+              className="w-full h-full rounded-2xl "
+            />
+          </div>
+          <p>{company?.story}</p>
         </div>
       </section>
-      <section className="w-full border-[1px] border-border max-w-7xl bg-light_gray px-2 sm:px-4 lg:px-40 my-5 rounded-[3rem] md:mx-auto flex flex-col justify-center items-center relative ">
+      {/* <section className="w-full border-[1px] border-border max-w-7xl bg-light_gray px-2 sm:px-4 lg:px-40 my-5 rounded-[3rem] md:mx-auto flex flex-col justify-center items-center relative ">
         <div className="py-5 w-10/12 md:w-full pb-10">
           <h2 className="text-[2rem] py-2 font-bold text-center font-title capitalize">
             {page?.company_name
@@ -574,9 +487,9 @@ export default function AgencyPage() {
             className="w-6 md:w-10"
           />
         </div>
-      </section>
+      </section> */}
       <section
-        className="w-full border-[1px] border-border max-w-7xl bg-light_gray px-2 sm:px-4 lg:px-40 my-5 rounded-[3rem] md:mx-auto flex flex-col justify-center items-center relative scroll-mt-[100px]"
+        className="w-full border-[1px] max-w-7xl bg-tertiary shadow-lg shadow-primary/50 px-2 sm:px-4 lg:px-40 my-5 rounded-[3rem] md:mx-auto flex flex-col justify-center items-center relative scroll-mt-[100px]"
         id="portfolio"
       >
         <div className="py-5 w-10/12 md:w-full pb-10">
@@ -585,62 +498,14 @@ export default function AgencyPage() {
           </h2>
 
           <div className="flex flex-wrap mt-4 gap-4 md:flex-nowrap max-w-5xl mx-auto">
-            <div className="flex flex-col h-auto sm:h-[32rem] md:h-auto w-full p-4 border border-gray-200 rounded-2xl shadow dark:bg-gray-800 dark:border-gray-700 md:w-1/3 drop-shadow-md">
-              <div className="w-full bg-tertiary aspect-[4/3] self-center justify-self-center rounded-md mb-4"></div>
-              <a href="/#">
-                <h5 className="mb-2 text-lg font-bold tracking-tight text-gray-900 dark:text-white">
-                  Lorem ipsum dolor sit amet
-                </h5>
-              </a>
-              <p className="mb-3 font-normal text-sm text-gray-700 dark:text-gray-400">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce
-                at sapien eu ipsum ornare sollicitudin vel nec nisl.
-              </p>
-              <ul className="flex flex-wrap gap-2">
-                <li className="bg-gray-300 w-2/5 h-5 rounded-xl"></li>
-                <li className="bg-gray-300 w-2/5 h-5 rounded-xl"></li>
-                <li className="bg-gray-300 w-2/5 h-5 rounded-xl"></li>
-                <li className="bg-gray-300 w-2/5 h-5 rounded-xl"></li>
-              </ul>
-            </div>
-
-            <div className="flex flex-col h-auto sm:h-[32rem] md:h-auto w-full p-4 border border-gray-200 rounded-2xl shadow dark:bg-gray-800 dark:border-gray-700 md:w-1/3 drop-shadow-md">
-              <div className="w-full bg-tertiary aspect-[4/3] self-center justify-self-center rounded-md mb-4"></div>
-              <a href="/#">
-                <h5 className="mb-2 text-lg font-bold tracking-tight text-gray-900 dark:text-white">
-                  Lorem ipsum dolor sit amet
-                </h5>
-              </a>
-              <p className="mb-3 font-normal text-sm text-gray-700 dark:text-gray-400">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce
-                at sapien eu ipsum ornare sollicitudin vel nec nisl.
-              </p>
-              <ul className="flex flex-wrap gap-2">
-                <li className="bg-gray-300 w-2/5 h-5 rounded-xl"></li>
-                <li className="bg-gray-300 w-2/5 h-5 rounded-xl"></li>
-                <li className="bg-gray-300 w-2/5 h-5 rounded-xl"></li>
-                <li className="bg-gray-300 w-2/5 h-5 rounded-xl"></li>
-              </ul>
-            </div>
-
-            <div className="flex flex-col h-auto sm:h-[32rem] md:h-auto w-full p-4 border border-gray-200 rounded-2xl shadow dark:bg-gray-800 dark:border-gray-700 md:w-1/3 drop-shadow-md">
-              <div className="w-full bg-tertiary aspect-[4/3] self-center justify-self-center rounded-md mb-4"></div>
-              <a href="/#">
-                <h5 className="mb-2 text-lg font-bold tracking-tight text-gray-900 dark:text-white">
-                  Lorem ipsum dolor sit amet
-                </h5>
-              </a>
-              <p className="mb-3 font-normal text-sm text-gray-700 dark:text-gray-400">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce
-                at sapien eu ipsum ornare sollicitudin vel nec nisl.
-              </p>
-              <ul className="flex flex-wrap gap-2">
-                <li className="bg-gray-300 w-2/5 h-5 rounded-xl"></li>
-                <li className="bg-gray-300 w-2/5 h-5 rounded-xl"></li>
-                <li className="bg-gray-300 w-2/5 h-5 rounded-xl"></li>
-                <li className="bg-gray-300 w-2/5 h-5 rounded-xl"></li>
-              </ul>
-            </div>
+            {portfolios?.map((portfolios) => (
+              <AgencyPortfolioCard
+                image={portfolios?.media}
+                project_name={portfolios?.project_name}
+                description={portfolios?.description}
+                services={portfolios?.services}
+              />
+            ))}
           </div>
         </div>
         <div className="absolute w-full left-0 h-full flex items-center justify-between md:relative lg:absolute lg:px-10 md:py-2 -z-10">
@@ -657,7 +522,7 @@ export default function AgencyPage() {
         </div>
       </section>
       <section
-        className="w-full border-[1px] border-border max-w-7xl px-2 sm:px-4 lg:px-40 my-5 rounded-[3rem] md:mx-auto flex flex-col justify-center items-center relative scroll-mt-[100px]"
+        className="w-full border-[1px] max-w-7xl bg-white shadow-lg shadow-primary/50 px-2 sm:px-4 lg:px-40 my-5 rounded-[3rem] md:mx-auto flex flex-col justify-center items-center relative scroll-mt-[100px]"
         id="awards"
       >
         <div className="py-5 w-10/12 md:w-full pb-10">
@@ -666,62 +531,13 @@ export default function AgencyPage() {
           </h2>
 
           <div className="flex flex-wrap mt-4 gap-4 md:flex-nowrap max-w-5xl mx-auto">
-            <div className="flex flex-col h-auto sm:h-[32rem] md:h-auto w-full p-4 border border-gray-200 rounded-2xl shadow dark:bg-gray-800 dark:border-gray-700 md:w-1/3 drop-shadow-md">
-              <div className="w-full bg-tertiary aspect-[4/3] self-center justify-self-center rounded-md mb-4"></div>
-              <a href="/#">
-                <h5 className="mb-2 text-lg font-bold tracking-tight text-gray-900 dark:text-white">
-                  Lorem ipsum dolor sit amet
-                </h5>
-              </a>
-              <p className="mb-3 font-normal text-sm text-gray-700 dark:text-gray-400">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce
-                at sapien eu ipsum ornare sollicitudin vel nec nisl.
-              </p>
-              <ul className="flex flex-wrap gap-2">
-                <li className="bg-gray-300 w-2/5 h-5 rounded-xl"></li>
-                <li className="bg-gray-300 w-2/5 h-5 rounded-xl"></li>
-                <li className="bg-gray-300 w-2/5 h-5 rounded-xl"></li>
-                <li className="bg-gray-300 w-2/5 h-5 rounded-xl"></li>
-              </ul>
-            </div>
-
-            <div className="flex flex-col h-auto sm:h-[32rem] md:h-auto w-full p-4 border border-gray-200 rounded-2xl shadow dark:bg-gray-800 dark:border-gray-700 md:w-1/3 drop-shadow-md">
-              <div className="w-full bg-tertiary aspect-[4/3] self-center justify-self-center rounded-md mb-4"></div>
-              <a href="/#">
-                <h5 className="mb-2 text-lg font-bold tracking-tight text-gray-900 dark:text-white">
-                  Lorem ipsum dolor sit amet
-                </h5>
-              </a>
-              <p className="mb-3 font-normal text-sm text-gray-700 dark:text-gray-400">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce
-                at sapien eu ipsum ornare sollicitudin vel nec nisl.
-              </p>
-              <ul className="flex flex-wrap gap-2">
-                <li className="bg-gray-300 w-2/5 h-5 rounded-xl"></li>
-                <li className="bg-gray-300 w-2/5 h-5 rounded-xl"></li>
-                <li className="bg-gray-300 w-2/5 h-5 rounded-xl"></li>
-                <li className="bg-gray-300 w-2/5 h-5 rounded-xl"></li>
-              </ul>
-            </div>
-
-            <div className="flex flex-col h-auto sm:h-[32rem] md:h-auto w-full p-4 border border-gray-200 rounded-2xl shadow dark:bg-gray-800 dark:border-gray-700 md:w-1/3 drop-shadow-md">
-              <div className="w-full bg-tertiary aspect-[4/3] self-center justify-self-center rounded-md mb-4"></div>
-              <a href="/#">
-                <h5 className="mb-2 text-lg font-bold tracking-tight text-gray-900 dark:text-white">
-                  Lorem ipsum dolor sit amet
-                </h5>
-              </a>
-              <p className="mb-3 font-normal text-sm text-gray-700 dark:text-gray-400">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce
-                at sapien eu ipsum ornare sollicitudin vel nec nisl.
-              </p>
-              <ul className="flex flex-wrap gap-2">
-                <li className="bg-gray-300 w-2/5 h-5 rounded-xl"></li>
-                <li className="bg-gray-300 w-2/5 h-5 rounded-xl"></li>
-                <li className="bg-gray-300 w-2/5 h-5 rounded-xl"></li>
-                <li className="bg-gray-300 w-2/5 h-5 rounded-xl"></li>
-              </ul>
-            </div>
+            {awards?.map((awards) => (
+              <AgencyAwardCard
+                award_name={awards.award_name}
+                catergory={awards.catergory}
+                date={awards.date}
+              />
+            ))}
           </div>
         </div>
         <div className="absolute w-full left-0 h-full flex items-center justify-between md:relative lg:absolute lg:px-10 md:py-2 -z-10">
@@ -739,7 +555,7 @@ export default function AgencyPage() {
       </section>
 
       <section
-        className="w-full border-[1px] border-border bg-light_gray max-w-7xl px-2 sm:px-4 lg:px-40 my-5 rounded-[3rem] md:mx-auto flex flex-col justify-center items-center relative scroll-mt-[100px]"
+        className="w-full border-[1px] bg-tertiary shadow-lg shadow-primary/50 max-w-7xl px-2 sm:px-4 lg:px-40 my-5 rounded-[3rem] md:mx-auto flex flex-col justify-center items-center relative scroll-mt-[100px]"
         id="reviews"
       >
         <div className="py-5 w-10/12 md:w-full max-w-5xl mx-auto pb-10">
@@ -831,7 +647,7 @@ export default function AgencyPage() {
         </div>
       </section>
       <section
-        className="w-full border-[1px] border-border bg-light_gray max-w-7xl px-2 sm:px-4 lg:px-40 my-5 rounded-[3rem] md:mx-auto flex flex-col justify-center items-center relative scroll-mt-[100px]"
+        className="w-full border-[1px] bg-white shadow-lg shadow-primary/50 max-w-7xl px-2 sm:px-4 lg:px-40 my-5 rounded-[3rem] md:mx-auto flex flex-col justify-center items-center relative scroll-mt-[100px]"
         id="contact"
       >
         <div className="py-5 grid w-11/12 gap-5 md:flex pb-10">
