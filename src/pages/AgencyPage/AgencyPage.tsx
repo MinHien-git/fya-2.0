@@ -31,7 +31,7 @@ export default function AgencyPage() {
   }, [pageId]);
   return (
     <main className="w-full min-h-80 p-2 grid gap-1">
-      <section className="w-full border-2 max-w-7xl my-5 rounded-xl md:mx-auto bg-light_gray flex aspect-[4/1] flex-col">
+      <section className="w-full border-2 max-w-7xl my-5 rounded-xl md:mx-auto bg-light_gray flex flex-col">
         <img
           src={company?.cover}
           alt="cover"
@@ -49,7 +49,7 @@ export default function AgencyPage() {
             {page?.company_name}
           </h1>
 
-          <ul className="justify-center w-full hidden md:flex gap-4 md:ml-20 font-bold">
+          <ul className="justify-center w-full hidden md:flex gap-8 md:ml-20 font-bold">
             <li>
               <a href="#about">About</a>
             </li>
