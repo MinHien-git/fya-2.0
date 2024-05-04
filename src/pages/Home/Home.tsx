@@ -409,9 +409,8 @@ export default function Home() {
               What We can Do For{" "}
               <span className="text-secondary"> You & Your Business</span>
             </Typography>
-            <p className="text-text text-center">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce at
-              sapien eu ipsum ornare{" "}
+            <p className="text-text text-center font-semibold mb-4">
+              Bring you top-list Agencies FREE of charge
             </p>
             <div className="h-full w-full flex justify-center md:justify-start mt-5 flex-wrap gap-4 md:flex-nowrap md:w-[80%] max-w-5xl mx-auto">
               <motion.div
@@ -425,7 +424,7 @@ export default function Home() {
                 </div>
                 <a href="/#">
                   <h5 className="mb-2 text-xl font-bold tracking-tight text-gray-900 ">
-                    Find you an Agency that fit.
+                    Find you an Agency that fit
                   </h5>
                 </a>
                 <Typography
@@ -433,10 +432,9 @@ export default function Home() {
                   variant="small"
                   className="mb-3 font-normal text-gray-700 dark:text-gray-400"
                 >
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce
-                  at sapien eu ipsum ornare sollicitudin vel nec nisl. Nullam ut
-                  lacus porttitor, vestibulum ipsum eu, porta libero. Aliquam
-                  erat volutpat. Morbi ac tincidunt orci.
+                  Simplify your search. Among Fya’s network of 600+ verified
+                  local Agencies, we pair you with the best one that matches
+                  your needs.
                 </Typography>
 
                 <Button
@@ -482,10 +480,9 @@ export default function Home() {
                   variant="small"
                   className="mb-3 font-normal text-gray-700 dark:text-gray-400"
                 >
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce
-                  at sapien eu ipsum ornare sollicitudin vel nec nisl. Nullam ut
-                  lacus porttitor, vestibulum ipsum eu, porta libero. Aliquam
-                  erat volutpat. Morbi ac tincidunt orci.
+                  Outline your project requirements with Fya. We provide you
+                  with list of proposals that are precisely prepared to meet
+                  your criteria.
                 </Typography>
                 <Button
                   size="sm"
@@ -530,13 +527,12 @@ export default function Home() {
                   variant="small"
                   className="mb-3 font-normal text-gray-700 dark:text-gray-400"
                 >
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce
-                  at sapien eu ipsum ornare sollicitudin vel nec nisl. Nullam ut
-                  lacus porttitor, vestibulum ipsum eu, porta libero. Aliquam
-                  erat volutpat. Morbi ac tincidunt orci.
+                  Cut out unnecessary delays. Fya connects you directly with
+                  top-tier agencies within 24-48 hours. No intermediaries, just
+                  efficient results.
                 </Typography>
 
-                <form className="flex items-center">
+                <form className="flex items-center mt-auto">
                   <label htmlFor="simple-search" className="sr-only">
                     Search
                   </label>
@@ -615,10 +611,10 @@ export default function Home() {
               placeholder={undefined}
               className="pt-4 text-center font-title"
             >
-              Join the community of agencies
+              Join the community of Agencies
             </Typography>
-            <p className="text-text text-center">
-              if you are a small agencies and wanna grow your business larger?
+            <p className="text-text text-center font-semibold mb-4">
+              Eager to Scale Up your business?
             </p>
             <div className="h-full w-full flex justify-center md:justify-start mt-5 flex-wrap gap-4 md:flex-nowrap md:w-[80%] max-w-5xl mx-auto">
               <motion.div
@@ -632,7 +628,7 @@ export default function Home() {
                 </div>
                 <a href="/#">
                   <h5 className="mb-2 text-xl font-bold tracking-tight text-gray-900 ">
-                    Reach your potential customer
+                    Reach your potential customers
                   </h5>
                 </a>
                 <Typography
@@ -640,10 +636,8 @@ export default function Home() {
                   variant="small"
                   className="mb-3 font-normal text-gray-700 dark:text-gray-400"
                 >
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce
-                  at sapien eu ipsum ornare sollicitudin vel nec nisl. Nullam ut
-                  lacus porttitor, vestibulum ipsum eu, porta libero. Aliquam
-                  erat volutpat. Morbi ac tincidunt orci.
+                  Grow your client base effortlessly with Fya. Connect with
+                  potential customers and expand your business reach.
                 </Typography>
                 <Button
                   size="sm"
@@ -679,7 +673,7 @@ export default function Home() {
                 </div>
                 <a href="/#">
                   <h5 className="mb-2 text-xl font-bold tracking-tight text-gray-900 ">
-                    Get notification for suitable project
+                    Get alerted for suitable project
                   </h5>
                 </a>
                 <Typography
@@ -687,10 +681,9 @@ export default function Home() {
                   variant="small"
                   className="mb-3 font-normal text-gray-700 dark:text-gray-400"
                 >
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce
-                  at sapien eu ipsum ornare sollicitudin vel nec nisl. Nullam ut
-                  lacus porttitor, vestibulum ipsum eu, porta libero. Aliquam
-                  erat volutpat. Morbi ac tincidunt orci.
+                  Stay informed. Receive instant notifications for projects that
+                  match your skills, ensuring you never miss out on
+                  opportunities.
                 </Typography>
                 <Button
                   size="sm"
@@ -726,7 +719,7 @@ export default function Home() {
                 </div>
                 <a href="/#">
                   <h5 className="mb-2 text-xl font-bold tracking-tight text-gray-900 ">
-                    Generate quality leads efficiently
+                    Stay updated with the Industry
                   </h5>
                 </a>
                 <Typography
@@ -734,10 +727,8 @@ export default function Home() {
                   variant="small"
                   className="mb-3 font-normal text-gray-700 dark:text-gray-400"
                 >
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce
-                  at sapien eu ipsum ornare sollicitudin vel nec nisl. Nullam ut
-                  lacus porttitor, vestibulum ipsum eu, porta libero. Aliquam
-                  erat volutpat. Morbi ac tincidunt orci.
+                  Get the latest industry news and insights from top agencies,
+                  helping you stay ahead in the market.
                 </Typography>
                 <Button
                   size="sm"
@@ -797,10 +788,10 @@ export default function Home() {
               placeholder={undefined}
               className="pt-4 text-center font-title"
             >
-              Join the community of agencies
+              Our Resources
             </Typography>
             <p className="text-text text-center">
-              if you are a small agencies and wanna grow your business larger?
+              Discover advice and answers from Expert and Fya
             </p>
             <div className="h-full w-full flex justify-center md:justify-start mt-5 flex-wrap gap-4 md:flex-nowrap md:w-[80%] max-w-5xl mx-auto">
               <motion.div
@@ -814,7 +805,7 @@ export default function Home() {
                 </div>
                 <a href="/#">
                   <h5 className="mb-2 text-xl font-bold tracking-tight text-gray-900 ">
-                    Reach your potential customer
+                    Marketing Insights
                   </h5>
                 </a>
                 <Typography
@@ -822,10 +813,8 @@ export default function Home() {
                   variant="small"
                   className="mb-3 font-normal text-gray-700 dark:text-gray-400"
                 >
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce
-                  at sapien eu ipsum ornare sollicitudin vel nec nisl. Nullam ut
-                  lacus porttitor, vestibulum ipsum eu, porta libero. Aliquam
-                  erat volutpat. Morbi ac tincidunt orci.
+                  Let our industry experts help you make the most informed
+                  decision through comprehensive reports and guides.
                 </Typography>
               </motion.div>
               <motion.div
@@ -842,7 +831,7 @@ export default function Home() {
                 </div>
                 <a href="/#">
                   <h5 className="mb-2 text-xl font-bold tracking-tight text-gray-900 ">
-                    Get notification for suitable project
+                    Daily Blog
                   </h5>
                 </a>
                 <Typography
@@ -850,10 +839,8 @@ export default function Home() {
                   variant="small"
                   className="mb-3 font-normal text-gray-700 dark:text-gray-400"
                 >
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce
-                  at sapien eu ipsum ornare sollicitudin vel nec nisl. Nullam ut
-                  lacus porttitor, vestibulum ipsum eu, porta libero. Aliquam
-                  erat volutpat. Morbi ac tincidunt orci.
+                  Look into our daily blog posts full of valuable tips, stories
+                  and inspirations to fuel your business
                 </Typography>
               </motion.div>
               <motion.div
@@ -867,7 +854,7 @@ export default function Home() {
                 </div>
                 <a href="/#">
                   <h5 className="mb-2 text-xl font-bold tracking-tight text-gray-900 ">
-                    Generate quality leads efficiently
+                    Help & Support
                   </h5>
                 </a>
                 <Typography
@@ -875,10 +862,8 @@ export default function Home() {
                   variant="small"
                   className="mb-3 font-normal text-gray-700 dark:text-gray-400"
                 >
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce
-                  at sapien eu ipsum ornare sollicitudin vel nec nisl. Nullam ut
-                  lacus porttitor, vestibulum ipsum eu, porta libero. Aliquam
-                  erat volutpat. Morbi ac tincidunt orci.
+                  If you need our support, Fya is here to help and answer any
+                  questions you might have.
                 </Typography>
               </motion.div>
             </div>
