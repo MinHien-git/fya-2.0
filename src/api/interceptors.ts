@@ -53,11 +53,10 @@ const onResponseError = async (
         //   expires: 31,
         //   secure: true,
         // });
-
-        return;
       } catch (_error) {
         return Promise.reject(_error);
       }
+      return Promise.reject(error);
     }
   }
   return Promise.reject(error);
