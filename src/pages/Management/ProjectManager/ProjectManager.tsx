@@ -333,11 +333,11 @@ function SentProject() {
                       label="Select project duration"
                       placeholder={undefined}
                     >
-                      <Option>Material Tailwind HTML</Option>
-                      <Option>Material Tailwind React</Option>
-                      <Option>Material Tailwind Vue</Option>
-                      <Option>Material Tailwind Angular</Option>
-                      <Option>Material Tailwind Svelte</Option>
+                      <Option>1 day</Option>
+                      <Option>1 weeks</Option>
+                      <Option>1 - 3 weeks</Option>
+                      <Option>1 month</Option>
+                      <Option>2 - 3 months</Option>
                     </Select>
                   </div>
                   <div className="w-full">
