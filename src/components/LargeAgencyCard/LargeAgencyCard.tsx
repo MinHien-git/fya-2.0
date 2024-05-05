@@ -22,7 +22,7 @@ export default function LargeAgencyCard({ page }: IPageCard) {
   } = page;
   console.log(page);
   return (
-    <div className="card mx-auto flex-col py-4 flex items-center gap-1 bg-white border-2 rounded-2xl font-sans  lg:w-full">
+    <div className="card mx-auto flex-col py-4 flex items-center gap-1 bg-white border-2 rounded-2xl font-sans w-full">
       <img
         className="w-20 mx-auto rounded-full border-8 border-white mb-2"
         src={logo ? logo : "/static/images/profile.png"}

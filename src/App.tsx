@@ -43,9 +43,10 @@ import AdvertisingFeature from "./pages/AdvertisingFeature/AdvertisingFeature";
 import Cookies from "js-cookie";
 import { useSelector, useDispatch } from "react-redux";
 import { setUser as setReduxUser } from "./features/users/userSplice";
-import { PostRefreshToken } from "./api/lib/token";
+import { requestRefreshToken } from "./api/lib/token";
 import { setIp } from "./features/ip/ipSplice";
 import { agencyServices } from "./components/PostProjectPopup/PostProjectPopup";
+import { ResponseInterceptor } from "./components/ResponseInterceptor/ResponseInterceptor";
 
 function App() {
   const { isOpen, toggle } = usePostProject();
@@ -58,7 +59,7 @@ function App() {
       if (rft) {
         console.log(rft);
         try {
-          let result = await PostRefreshToken({ token: rft });
+          let result = await requestRefreshToken({ token: rft });
 
           if (result) {
             let { user } = result.data;
@@ -79,6 +80,7 @@ function App() {
     <>
       <BrowserRouter>
         <ScrollToTop />
+        <ResponseInterceptor />
         <Routes>
           <Route path="/" element={<GuestLayout />}>
             <Route path="/" element={<Home />} />

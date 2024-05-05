@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { GetPage } from "../../api/lib/page";
+import { AddSavePage, GetPage } from "../../api/lib/page";
 import { Button } from "@material-tailwind/react";
 import AgencyServiceCard from "../../components/AgencyServiceCard/AgencyServiceCard";
 import AgencyPortfolioCard from "../../components/AgencyPortfoilioCard/AgencyPortfolioCard";
@@ -29,6 +29,13 @@ export default function AgencyPage() {
     }
     fetchData();
   }, [pageId]);
+
+  async function addSavePage() {
+    if (pageId) {
+      let result = await AddSavePage(pageId);
+      console.log(result);
+    }
+  }
   return (
     <main className="w-full min-h-80 p-2 grid gap-1">
       <section className="w-full border-2 max-w-7xl my-5 rounded-xl md:mx-auto bg-light_gray flex flex-col">
@@ -124,6 +131,7 @@ export default function AgencyPage() {
               size="lg"
               className="bg-tertiary text-primary font-semibold rounded-md text-xs w-full lg:w-[15rem] py-5"
               placeholder={undefined}
+              onClick={addSavePage}
             >
               Add To Saved
             </Button>

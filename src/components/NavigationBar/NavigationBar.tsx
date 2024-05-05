@@ -40,7 +40,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { setUser as setReduxUser } from "../../features/users/userSplice";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { HiSearch } from "react-icons/hi";
-import { PostRefreshToken } from "../../api/lib/token";
+import { requestRefreshToken } from "../../api/lib/token";
 export interface IUser {
   email?: string;
   fname?: string;

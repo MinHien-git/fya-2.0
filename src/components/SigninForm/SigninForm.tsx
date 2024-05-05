@@ -115,22 +115,20 @@ export default function SigninForm() {
   const finishSubmit = async () => {
     let result = await Signin(user);
     console.log(result);
-    if (result.status === 200) {
-      if (result.data.data) {
-        let { refreshToken, accesstoken, user } = result.data.data;
+    if (result?.data.data) {
+      let { refreshToken, accesstoken, user } = result.data.data;
 
-        dispatch(setReduxUser(user));
-        Cookies.set("at", accesstoken, {
-          expires: 2,
-          secure: true,
-        });
-        Cookies.set("rft", refreshToken, {
-          expires: 7,
-          secure: true,
-        });
+      dispatch(setReduxUser(user));
+      Cookies.set("at", accesstoken, {
+        expires: 2,
+        secure: true,
+      });
+      Cookies.set("rft", refreshToken, {
+        expires: 7,
+        secure: true,
+      });
 
-        navigate("/");
-      }
+      navigate("/");
     }
   };
 

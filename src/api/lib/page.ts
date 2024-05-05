@@ -126,3 +126,14 @@ export function DeletePagePortfoilio(portfolioId: string) {
 export function GetPortfoilio(portfolioId: string) {
   return api.get<any>(`/page/portfolio/${portfolioId}`);
 }
+
+export function AddSavePage(pageId) {
+  return api.post<any>(`/user/save/${pageId}`);
+}
+export function GetSavePage() {
+  return api.get<any>(`/user/save/`);
+}
+
+export function RemoveSavePage(pageId: string) {
+  return api.put<any>(`/user/save/${pageId}/delete`);
+}

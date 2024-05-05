@@ -1,5 +1,5 @@
 import api from "../axiosClient";
 
-export function PostRefreshToken(data): any {
-  return api.post<Object>("/token", data);
+export function requestRefreshToken(data): any {
+  return api.post("/token", data);
 }

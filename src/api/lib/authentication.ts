@@ -1,4 +1,5 @@
 import api from "../axiosClient";
+import baseAPI from "../axiosUser";
 
 export interface ISignInData {
   email: string;
@@ -17,15 +18,15 @@ export interface IToken {
 }
 
 export function Signin(data: ISignInData) {
-  return api.post("/signin", JSON.stringify({ ...data }));
+  return baseAPI.post("/signin", JSON.stringify({ ...data }));
 }
 
 export function Signup(data: ISignUpData) {
-  return api.post("/signup", JSON.stringify(data));
+  return baseAPI.post("/signup", JSON.stringify(data));
 }
 
 export function Signout(data: string) {
-  return api.delete(`/logout/${data}`);
+  return baseAPI.delete(`/logout/${data}`);
 }
 
 export function getUserInformation() {
