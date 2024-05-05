@@ -13,6 +13,7 @@ import {
   Select,
 } from "@material-tailwind/react";
 import { Link } from "react-router-dom";
+import { GetNewProject } from "../../../api/lib/admin";
 const tabsData = ["New", "Open", "Won", "Archived"];
 export default function ProjectManager() {
   const [activeTabIndex, setActiveTabIndex] = useState(0);
@@ -106,12 +107,10 @@ export default function ProjectManager() {
 
 const TABLE_HEAD: string[] = [
   "Project’s name",
-  "Price",
   "Client’s name",
   "Company’s name",
   "Budget",
   "Contacts",
-  "Stage",
   "Status",
   "Date",
 ];
@@ -120,77 +119,93 @@ const TABLE_ROWS = [
   {
     name: "[Project Name]",
     price: "$1000",
-    clientName: "Minh Hien",
-    companyName: "ABC Corporation",
+    clientName: "(Hidden until Accepted)",
+    companyName: "(Hidden until Accepted)",
     budget: "$100-1000",
-    contacts: "abc@abc.com",
-    stage: "Proposal accepted",
-    status: "English",
+    contacts: "(Hidden until Accepted)",
+    status: "New",
     date: "2021-01-01",
   },
   {
     name: "[Project Name]",
     price: "$1000",
-    clientName: "Minh Hien",
-    companyName: "ABC Corporation",
+    clientName: "(Hidden until Accepted)",
+    companyName: "(Hidden until Accepted)",
     budget: "$100-1000",
-    contacts: "abc@abc.com",
-    stage: "Proposal accepted",
-    status: "English",
+    contacts: "(Hidden until Accepted)",
+    status: "New",
     date: "2021-01-01",
   },
   {
     name: "[Project Name]",
     price: "$1000",
-    clientName: "Minh Hien",
-    companyName: "ABC Corporation",
+    clientName: "(Hidden until Accepted)",
+    companyName: "(Hidden until Accepted)",
     budget: "$100-1000",
-    contacts: "abc@abc.com",
-    stage: "Proposal accepted",
-    status: "English",
+    contacts: "(Hidden until Accepted)",
+    status: "New",
     date: "2021-01-01",
   },
 ];
 
 function SentProject() {
   const [toggle, setToggle] = useState(false);
+  const [projects, setProjects] = useState<any>([]);
+  useEffect(() => {
+    async function fetchData() {
+      let result = await GetNewProject();
+      console.log(result);
+      setProjects(result.data.data);
+    }
+    fetchData();
+  }, []);
 
   return (
     <div className="overflow-x-auto">
       <Table hoverable>
         <Table.Head>
           {TABLE_HEAD.map((i) => (
-            <Table.HeadCell className="capitalize">{i}</Table.HeadCell>
+            <Table.HeadCell className="capitalize text-center border-l-2">
+              {i}
+            </Table.HeadCell>
           ))}
         </Table.Head>
-        <Table.Body className="divide-y">
-          {TABLE_ROWS.map(
+        <Table.Body className="divide-y [&>*]:text-center">
+          {projects.map(
             ({
-              name,
-              price,
-              clientName,
-              companyName,
-              budget,
-              contacts,
-              stage,
-              status,
-              date,
+              project_id,
+              project_title,
+              budget_range,
+              lname,
+              fname,
+              languages,
+              project_status,
+              contact_email,
+              create_date,
             }) => (
               <Table.Row
                 className="bg-white dark:border-gray-700 dark:bg-gray-800"
                 onClick={() => setToggle(true)}
               >
-                <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white text-xs py-8 ">
-                  {name}
+                <Table.Cell className="whitespace-nowrap text-gray-900 dark:text-white text-sm capitalize py-8 font-bold">
+                  {project_title}
                 </Table.Cell>
-                <Table.Cell className="text-xs">{price}</Table.Cell>
-                <Table.Cell className="text-xs">{clientName}</Table.Cell>
-                <Table.Cell className="text-xs">{companyName}</Table.Cell>
-                <Table.Cell className="text-xs">{budget}</Table.Cell>
-                <Table.Cell className="text-xs">{contacts}</Table.Cell>
-                <Table.Cell className="text-xs">{stage}</Table.Cell>
-                <Table.Cell className="text-xs">{status}</Table.Cell>
-                <Table.Cell className="text-xs">{date}</Table.Cell>
+                <Table.Cell className="text-xs">
+                  (Hidden until Accepted)
+                </Table.Cell>
+                <Table.Cell className="text-xs">
+                  (Hidden until Accepted)
+                </Table.Cell>
+                <Table.Cell className="text-xs">{budget_range}</Table.Cell>
+                <Table.Cell className="text-xs">
+                  (Hidden until Accepted)
+                </Table.Cell>
+                <Table.Cell className="text-sm font-bold text-green-500">
+                  {project_status === 0 ? "New" : "Open"}
+                </Table.Cell>
+                <Table.Cell className="text-xs">
+                  {new Date(create_date)?.toJSON()?.split("T")[0]}
+                </Table.Cell>
               </Table.Row>
             )
           )}
@@ -456,10 +471,12 @@ function RecieveProposal() {
       <Table hoverable>
         <Table.Head>
           {TABLE_HEAD.map((i) => (
-            <Table.HeadCell className="capitalize">{i}</Table.HeadCell>
+            <Table.HeadCell className="capitalize text-center">
+              {i}
+            </Table.HeadCell>
           ))}
         </Table.Head>
-        <Table.Body className="divide-y">
+        <Table.Body className="divide-y [&>*]:text-center">
           {TABLE_ROWS.map(
             ({
               name,
@@ -468,7 +485,6 @@ function RecieveProposal() {
               companyName,
               budget,
               contacts,
-              stage,
               status,
               date,
             }) => (
@@ -484,7 +500,6 @@ function RecieveProposal() {
                 <Table.Cell className="text-xs">{companyName}</Table.Cell>
                 <Table.Cell className="text-xs">{budget}</Table.Cell>
                 <Table.Cell className="text-xs">{contacts}</Table.Cell>
-                <Table.Cell className="text-xs">{stage}</Table.Cell>
                 <Table.Cell className="text-xs">{status}</Table.Cell>
                 <Table.Cell className="text-xs">{date}</Table.Cell>
               </Table.Row>
