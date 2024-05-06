@@ -19,7 +19,9 @@ export default function Services() {
     async function getData() {
       const result = await GetPageService(page_id);
       console.log(result);
-      setServices(result.data.data);
+      if (result?.data?.data) {
+        setServices(result?.data?.data);
+      }
     }
 
     getData();
@@ -49,7 +51,7 @@ export default function Services() {
               onReorder={setServices}
               values={services}
             >
-              {services.map((i) => (
+              {services?.map((i) => (
                 <DragServiceCard
                   serviceName={i.service_tags}
                   key={i.service_id.toString()}
