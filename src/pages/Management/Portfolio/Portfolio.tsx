@@ -6,18 +6,19 @@ import DragPortfolioCard from "../../../components/DragPortfolio/DragPortfolioCa
 import PortfolioCard from "../../../components/PortfolioCard/PortfolioCard";
 import { GetPagePortfoilio } from "../../../api/lib/page";
 import { useSelector } from "react-redux";
-const initialItems = ["🍅 Tomato", "🥒 Cucumber", "🧀 Cheese", "🥬 Lettuce"];
 export default function Portfolio() {
   const [state, setState] = useState(0);
   const [services, setServices] = useState<Array<any>>([]);
   const page_id = useSelector((state: any) => state.page.page_id);
   const [portfolioID, setPortfolioID] = useState<string>("");
+  const [portfoliosID, setPortfoliosID] = useState<Array<string>>([]);
 
   useEffect(() => {
     async function getData() {
       const result = await GetPagePortfoilio(page_id);
       if (result.data.data) {
         setServices(result.data.data);
+        setPortfoliosID(result.data.data.map((i) => i.portfolio_id));
         console.log(result);
       }
     }
@@ -45,14 +46,14 @@ export default function Portfolio() {
             <Reorder.Group
               className="w-full grid gap-5"
               axis="y"
-              onReorder={setServices}
-              values={services}
+              onReorder={setPortfoliosID}
+              values={portfoliosID}
             >
-              {services.map((i) => (
+              {services.map((i, index) => (
                 <DragPortfolioCard
                   projectName={i.project_name}
-                  id={i.toString()}
-                  key={i}
+                  id={portfoliosID[index]}
+                  key={portfoliosID[index]}
                   service_tags={i.services}
                   skill_tags={i.skills}
                   moveNext={() => {

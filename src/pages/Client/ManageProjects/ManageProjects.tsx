@@ -8,8 +8,9 @@ import { Button, Rating, Textarea, Typography } from "@material-tailwind/react";
 import { Link } from "react-router-dom";
 import { GetUserProjects } from "../../../api/lib/project";
 import ProjectBrief from "../../../components/ProjectBrief/ProjectBrief";
-import { GetProposal } from "../../../api/lib/proposal";
+import { GetProposal, GetUserOngoingProject } from "../../../api/lib/proposal";
 import AgencyProposal from "../../../components/AgencyProposal/AgencyProposal";
+import ProgressPopup from "../../../components/ProgressPopup/ProgressPopup";
 const tabsData = ["Sent", "Received", "Ongoing", "Completed"];
 export default function ManageProject() {
   const [activeTabIndex, setActiveTabIndex] = useState(0);
@@ -91,7 +92,7 @@ export default function ManageProject() {
         ) : activeTabIndex === 1 ? (
           <RecieveProposal />
         ) : activeTabIndex === 2 ? (
-          <SentProject />
+          <OnGoingProject />
         ) : (
           <CompleteProposal />
         )}
@@ -108,36 +109,6 @@ const TABLE_HEAD: string[] = [
   "Search in areas of",
   "Language(s)",
   "Date",
-];
-
-const TABLE_ROWS = [
-  {
-    name: "[Project Name]",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit...",
-    duration: "2021-01-01",
-    budget: "$10000",
-    area: "Lorem ipsum dolor sit amet, consectetur adipiscing elit...",
-    language: "English",
-    date: "2021-01-01",
-  },
-  {
-    name: "[Project Name]",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit...",
-    duration: "2021-01-01",
-    budget: "$10000",
-    area: "Lorem ipsum dolor sit amet, consectetur adipiscing elit...",
-    language: "English",
-    date: "2021-01-01",
-  },
-  {
-    name: "[Project Name]",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit...",
-    duration: "2021-01-01",
-    budget: "$10000",
-    area: "Lorem ipsum dolor sit amet, consectetur adipiscing elit...",
-    language: "English",
-    date: "2021-01-01",
-  },
 ];
 
 function SentProject() {
@@ -211,6 +182,83 @@ function SentProject() {
   );
 }
 
+function OnGoingProject() {
+  const [toggle, setToggle] = useState(false);
+  const [projects, setProjects] = useState<any>([]);
+  const [currentId, setCurrentId] = useState<string>("");
+
+  useEffect(() => {
+    async function fetchData() {
+      const result = await GetUserOngoingProject();
+      console.log(result);
+      if (result.data.data) {
+        setProjects(result.data.data);
+      }
+      console.log(result);
+    }
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    console.log(projects);
+  }, [projects]);
+  return (
+    <div className="overflow-x-auto">
+      <Table hoverable>
+        <Table.Head>
+          {TABLE_HEAD.map((i) => (
+            <Table.HeadCell className="capitalize text-center border-l-2">
+              {i}
+            </Table.HeadCell>
+          ))}
+        </Table.Head>
+        <Table.Body className="divide-y">
+          {projects.map(
+            ({
+              proposal_id,
+              project_id,
+              project_title,
+              project_description,
+              project_duration,
+              budgetrange,
+              location,
+              languages,
+              created_date,
+            }) => (
+              <Table.Row
+                className="bg-white dark:border-gray-700 dark:bg-gray-800"
+                onClick={() => {
+                  setToggle(true);
+                  setCurrentId(proposal_id);
+                }}
+              >
+                <Table.Cell className="whitespace-nowrap text-gray-900 dark:text-white text-sm py-8 capitalize font-bold">
+                  {project_title}
+                </Table.Cell>
+                <Table.Cell className="text-xs">
+                  {project_description}
+                </Table.Cell>
+                <Table.Cell className="text-xs">{project_duration}</Table.Cell>
+                <Table.Cell className="text-xs">{budgetrange}</Table.Cell>
+                <Table.Cell className="text-xs">{location}</Table.Cell>
+                <Table.Cell className="text-xs">
+                  {languages?.join(",")}
+                </Table.Cell>
+                <Table.Cell className="text-xs">
+                  {created_date?.split("T")[0]}
+                </Table.Cell>
+              </Table.Row>
+            )
+          )}
+        </Table.Body>
+      </Table>
+      {toggle && currentId ? (
+        <ProgressPopup handleClose={() => setToggle(false)} id={currentId} />
+      ) : null}
+    </div>
+  );
+}
+
 const PROPOSAL_HEAD: string[] = [
   "Project name",
   "Agency name",
@@ -222,38 +270,6 @@ const PROPOSAL_HEAD: string[] = [
   "Date",
 ];
 
-const PROPOSAL_ROWS = [
-  {
-    name: "[Project Name]",
-    agency: "[Agency Name]",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit...",
-    duration: "2021-01-01",
-    price: "$10000",
-    location: "Lorem ipsum dolor sit amet, consectetur adipiscing elit...",
-    rating: "English",
-    date: "2021-01-01",
-  },
-  {
-    name: "[Project Name]",
-    agency: "[Agency Name]",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit...",
-    duration: "2021-01-01",
-    price: "$10000",
-    location: "Lorem ipsum dolor sit amet, consectetur adipiscing elit...",
-    rating: "English",
-    date: "2021-01-01",
-  },
-  {
-    name: "[Project Name]",
-    agency: "[Agency Name]",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit...",
-    duration: "2021-01-01",
-    price: "$10000",
-    location: "Lorem ipsum dolor sit amet, consectetur adipiscing elit...",
-    rating: "English",
-    date: "2021-01-01",
-  },
-];
 function RecieveProposal() {
   const [toggle, setToggle] = useState(false);
   const [proposals, setProposals] = useState<Array<any>>([]);
@@ -291,6 +307,7 @@ function RecieveProposal() {
               address,
               rating,
               proposal_date,
+              accepted,
             }) => (
               <Table.Row
                 className="bg-white dark:border-gray-700 dark:bg-gray-800"
@@ -299,18 +316,24 @@ function RecieveProposal() {
                   setCurrentId(proposal_id);
                 }}
               >
-                <Table.Cell className="whitespace-nowrap font-bold text-gray-900 dark:text-white text-sm py-8 capitalize">
+                <Table.Cell className="whitespace-nowrap font-bold text-gray-900 dark:text-white text-sm py-8 capitalize text-center">
                   {project_title}
                 </Table.Cell>
-                <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white text-xs py-8 ">
+                <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white text-xs py-8 text-center">
                   {company_name}
                 </Table.Cell>
                 <Table.Cell className="text-xs">{description}</Table.Cell>
-                <Table.Cell className="text-xs">{duration}</Table.Cell>
-                <Table.Cell className="text-xs">{price}</Table.Cell>
+                <Table.Cell className="text-xs text-center w-[5%]">
+                  {duration}
+                </Table.Cell>
+                <Table.Cell className="text-xs text-center w-[5%]">
+                  {price}
+                </Table.Cell>
                 <Table.Cell className="text-xs">{address}</Table.Cell>
-                <Table.Cell className="text-xs">{rating}</Table.Cell>
-                <Table.Cell className="text-xs">
+                <Table.Cell className="text-xs text-center w-[5%]">
+                  {rating}
+                </Table.Cell>
+                <Table.Cell className="text-xs text-center">
                   {proposal_date?.split("T")[0]}
                 </Table.Cell>
               </Table.Row>
@@ -319,7 +342,7 @@ function RecieveProposal() {
         </Table.Body>
       </Table>
       {toggle && currentId ? (
-        <AgencyProposal id={currentId} handleClose={() => setToggle(false)} />
+        <ProgressPopup id={currentId} handleClose={() => setToggle(false)} />
       ) : null}
     </div>
   );

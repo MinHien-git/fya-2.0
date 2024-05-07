@@ -13,7 +13,8 @@ export default function Services() {
 
   const page_id = useSelector((state: any) => state.page.page_id);
   const [services, setServices] = useState<Array<any>>([]);
-  const [serviceId, setServicesID] = useState<string>("");
+  const [servicesID, setServicesID] = useState<Array<string>>([]);
+  const [serviceId, setServiceID] = useState<string>("");
 
   useEffect(() => {
     async function getData() {
@@ -21,6 +22,7 @@ export default function Services() {
       console.log(result);
       if (result?.data?.data) {
         setServices(result?.data?.data);
+        setServicesID(result?.data?.data.map((i) => i.service_id));
       }
     }
 
@@ -48,18 +50,18 @@ export default function Services() {
             <Reorder.Group
               className="w-full grid gap-5"
               axis="y"
-              onReorder={setServices}
-              values={services}
+              onReorder={setServicesID}
+              values={servicesID}
             >
-              {services?.map((i) => (
+              {services?.map((i, index) => (
                 <DragServiceCard
                   serviceName={i.service_tags}
-                  key={i.service_id.toString()}
+                  key={servicesID[index]}
                   moveNext={() => {
                     setState(1);
-                    setServicesID(i.service_id);
+                    setServiceID(i.service_id);
                   }}
-                  id={i.service_id.toString()}
+                  id={servicesID[index]}
                   skill_tags={i.skill_tags}
                 />
               ))}

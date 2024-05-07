@@ -116,11 +116,9 @@ function ProfileMenu() {
     e.preventDefault();
     let result = await Signout(Cookies.get("rft"));
 
-    if (result.status === 204) {
-      Cookies.set("rft", null);
-      dispatch(setReduxUser(null));
-      window.location.reload();
-    }
+    Cookies.set("rft", null);
+    dispatch(setReduxUser(null));
+    window.location.reload();
   };
 
   useEffect(() => {

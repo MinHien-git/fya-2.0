@@ -16,7 +16,7 @@ interface IAgencyProposal {
   id: string;
 }
 
-export default function AgencyProposal({ handleClose, id }: IAgencyProposal) {
+export default function ProgressPopup({ handleClose, id }: IAgencyProposal) {
   const [propsal, setProposal] = useState<any>(null);
   const [link, setLink] = useState<any>("");
 
@@ -33,12 +33,12 @@ export default function AgencyProposal({ handleClose, id }: IAgencyProposal) {
 
     getProjectDetails();
   }, [id]);
-  async function handleRejectProposal() {
+  async function handleCancelProposal() {
     const result = await RejectProposal(id);
     console.log(result);
   }
 
-  async function handleAcceptProposal() {
+  async function handleCompleteProposal() {
     const result = await AcceptProposal(id, propsal.project_id);
     console.log(result);
   }
@@ -201,23 +201,23 @@ export default function AgencyProposal({ handleClose, id }: IAgencyProposal) {
             </div>
           </div>
         </div>
-        {propsal?.accepted === 0 ? (
+        {propsal?.accepted === 2 ? (
           <div className="flex w-fit justify-center py-2 gap-4 mt-auto">
             <Button
               placeholder={undefined}
-              className="flex bg-red-300 text-red-700 min-w-[8rem] items-center justify-center w-fit capitalize"
+              className="flex bg-red-400 text-white min-w-[8rem] items-center justify-center w-fit capitalize"
               size="lg"
-              onClick={handleRejectProposal}
+              onClick={handleCancelProposal}
             >
-              Reject proposal
+              Cancel
             </Button>
             <Button
               placeholder={undefined}
               className="flex text-tertiary min-w-[8rem] items-center justify-center bg-primary w-fit capitalize"
               size="lg"
-              onClick={handleAcceptProposal}
+              onClick={handleCompleteProposal}
             >
-              Accept proposal
+              Marked Complete
             </Button>
           </div>
         ) : propsal?.accepted === 1 ? (
