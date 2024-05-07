@@ -60,11 +60,15 @@ function App() {
         console.log(rft);
         try {
           let result = await requestRefreshToken({ token: rft });
+          console.log(result);
 
           if (result) {
-            let { user } = result.data;
+            let { user, accesstoken } = result.data;
             if (user) {
               dispatch(setReduxUser(user));
+            }
+            if (accesstoken) {
+              Cookies.set("at", accesstoken, { secure: true });
             }
           }
         } catch (error) {

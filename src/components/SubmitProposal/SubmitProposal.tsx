@@ -15,6 +15,7 @@ import { storage } from "../../firebase/firebase";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { v4 } from "uuid";
 import { useSelector } from "react-redux";
+import { SendProposal } from "../../api/lib/proposal";
 
 interface IProposal {
   handleClose: () => void;
@@ -26,7 +27,6 @@ interface IProposalContent {
   durations: string;
   prices: string;
   page_id: string;
-  project_id: string;
 }
 export default function SubmitProposal({ handleClose, id }: IProposal) {
   const page_id = useSelector((state: any) => state.page.page_id);
@@ -39,7 +39,6 @@ export default function SubmitProposal({ handleClose, id }: IProposal) {
     durations: "",
     prices: "",
     page_id: "",
-    project_id: "",
   });
 
   const handleChange = (e) => {
@@ -54,13 +53,15 @@ export default function SubmitProposal({ handleClose, id }: IProposal) {
       uploadBytes(imageRef, file)
         .then((snapshot) => {
           getDownloadURL(snapshot.ref)
-            .then((url) => {
+            .then(async (url) => {
+              console.log(page_id);
               let data = {
                 ...proposal,
                 attachments: url,
                 page_id: page_id,
-                project_id: id,
               };
+              let result = await SendProposal(id, data);
+              console.log(result);
             })
             .catch((error) => {
               console.log(error);
@@ -237,13 +238,15 @@ export default function SubmitProposal({ handleClose, id }: IProposal) {
                   label="Select project duration"
                   placeholder={undefined}
                   name="duration"
-                  onChange={handleChange}
+                  onChange={(v) => {
+                    if (v) setProposal({ ...proposal, durations: v });
+                  }}
                 >
-                  <Option>1 day</Option>
-                  <Option>1 weeks</Option>
-                  <Option>1 - 3 weeks</Option>
-                  <Option>1 month</Option>
-                  <Option>2 - 3 months</Option>
+                  <Option value="1 day">1 day</Option>
+                  <Option value="1 weeks">1 weeks</Option>
+                  <Option value="1 - 3 weeks">1 - 3 weeks</Option>
+                  <Option value="1 month">1 month</Option>
+                  <Option value="2 - 3 months">2 - 3 months</Option>
                 </Select>
               </div>
               <div className="w-full">
@@ -256,7 +259,8 @@ export default function SubmitProposal({ handleClose, id }: IProposal) {
                 <TextInput
                   placeholder="Type price..."
                   id="price"
-                  name="price"
+                  name="prices"
+                  type="number"
                   onChange={handleChange}
                 />
               </div>

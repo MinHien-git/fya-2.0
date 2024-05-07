@@ -321,7 +321,12 @@ export default function AgencyNavigationBar() {
                 <div className="bg-white h-8 aspect-square rounded-full"></div>
                 <div className="grid">
                   <p className="text-sm">{pageSelector?.company_name}</p>{" "}
-                  <a className="underline text-sm">See Agency Page</a>
+                  <Link
+                    to={`/agencypage/${pageSelector.page_id}`}
+                    className="underline text-sm"
+                  >
+                    See Agency Page
+                  </Link>
                 </div>
               </div>
             </li>

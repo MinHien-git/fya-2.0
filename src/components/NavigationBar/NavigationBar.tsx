@@ -77,6 +77,11 @@ const profileMenuItems = [
     icon: Cog6ToothIcon,
   },
   {
+    label: "Save List",
+    url: "/saveList",
+    icon: LifebuoyIcon,
+  },
+  {
     label: "Create Page",
     url: "/page-navigation",
     icon: InboxArrowDownIcon,

@@ -239,7 +239,7 @@ function RecieveProposal() {
       <Table hoverable>
         <Table.Head>
           {TABLE_HEAD.map((i) => (
-            <Table.HeadCell className="capitalize text-center">
+            <Table.HeadCell className="capitalize text-center border-l-2">
               {i}
             </Table.HeadCell>
           ))}

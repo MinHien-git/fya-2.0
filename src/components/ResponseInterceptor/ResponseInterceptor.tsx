@@ -21,8 +21,6 @@ export const ResponseInterceptor = () => {
           secure: true,
         });
         window.location.reload();
-      } else {
-        Cookies.set("at", null);
       }
     }
     interceptorId.current = api.interceptors.response.use(
