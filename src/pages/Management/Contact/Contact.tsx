@@ -109,11 +109,13 @@ export default function Contact() {
             />
           ))}
           {/* <AddressCard isEmpty={false} /> */}
-          <AddressCard
-            isEmpty={true}
-            page_id={pageSelector.page_id}
-            reloadPage={() => setReload(true)}
-          />
+          {!reload ? (
+            <AddressCard
+              isEmpty={true}
+              page_id={pageSelector.page_id}
+              reloadPage={() => setReload(true)}
+            />
+          ) : null}
         </div>
         <div className="grid gap-1">
           <h2 className="font-title text-[1.25rem] pt-5">Remote Work option</h2>

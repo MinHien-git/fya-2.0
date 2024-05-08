@@ -16,6 +16,7 @@ import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { v4 } from "uuid";
 import { useSelector } from "react-redux";
 import { SendProposal } from "../../api/lib/proposal";
+import { motion } from "framer-motion";
 
 interface IProposal {
   handleClose: () => void;
@@ -90,8 +91,18 @@ export default function SubmitProposal({ handleClose, id }: IProposal) {
     getProjectDetails();
   }, [id]);
   return (
-    <div className="w-[100vw] h-[100vh] bg-blue-gray-500/50 absolute top-0 left-0 flex justify-center items-center">
-      <div className="bg-white shadow-lg rounded-2xl min-w-[70rem] flex flex-col items-center py-10 max-w-[72rem] relative z-[1000] h-[80vh] max-h-[60rem]">
+    <motion.div
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      transition={{ ease: "easeOut", duration: 0.2 }}
+      className="w-[100vw] h-[100vh] bg-blue-gray-500/50 absolute top-0 left-0 flex justify-center items-center z-[1000]"
+    >
+      <motion.div
+        initial={{ opacity: 0, scale: 0 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        transition={{ ease: "easeOut", duration: 0.5 }}
+        className="bg-white shadow-lg rounded-2xl min-w-[70rem] flex flex-col items-center py-10 max-w-[72rem] relative z-[1000] h-[80vh] max-h-[60rem]"
+      >
         <div
           className="absolute top-2 right-2 bg-gray-200 rounded-full p-2"
           onClick={handleClose}
@@ -346,9 +357,7 @@ export default function SubmitProposal({ handleClose, id }: IProposal) {
           >
             Cancel
           </Button>
-          <Button placeholder={undefined} className="bg-red-400 text-red-100">
-            Reject Project
-          </Button>
+
           <Button
             placeholder={undefined}
             className="bg-primary text-white"
@@ -357,7 +366,7 @@ export default function SubmitProposal({ handleClose, id }: IProposal) {
             Submit
           </Button>
         </div>
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   );
 }

@@ -91,9 +91,6 @@ export default function ManagePortfolio({
   const [currentSearch, setCurrentSearch] = useState<string>("");
   const [skillSearch, setSkillSearch] = useState<string>("");
 
-  const [currentServices, setCurrentServices] = useState<Array<string>>([]);
-  const [currentSkills, setCurrentSkills] = useState<Array<string>>([]);
-
   function handleChange(e) {
     // console.log(e.target.files);
     setFile(e.target.files[0]);
@@ -103,8 +100,6 @@ export default function ManagePortfolio({
       if (id) {
         const result = await GetPortfoilio(id);
         setPortfolio(result.data.data);
-        setCurrentServices(result.data.data.services);
-        setCurrentSkills(result.data.data.skills);
       }
     }
     getData();
@@ -113,8 +108,6 @@ export default function ManagePortfolio({
     console.log(portfolio);
     setPortfolio({
       ...portfolio,
-      services: currentServices,
-      skills: currentSkills,
     });
     if (!id) {
       const result = await PostPagePortfoilio(page_id, portfolio);
@@ -149,17 +142,18 @@ export default function ManagePortfolio({
             (i) =>
               (stringSimilarity(i, currentSearch) > 0.8 ||
                 i.toLowerCase().includes(currentSearch.toLowerCase())) &&
-              !currentServices.includes(i)
+              !portfolio.services.includes(i)
           )
         );
       } else {
-        console.log(currentServices);
-        setServices(agencyServices.filter((i) => !currentServices.includes(i)));
+        setServices(
+          agencyServices.filter((i) => !portfolio.services.includes(i))
+        );
       }
     }, 200);
 
     return () => clearTimeout(delayDebounceFn);
-  }, [currentSearch, currentServices]);
+  }, [currentSearch, portfolio.services]);
 
   useEffect(() => {
     const delayDebounceFn = setTimeout(() => {
@@ -169,18 +163,20 @@ export default function ManagePortfolio({
             (i) =>
               (stringSimilarity(i, currentSearch) > 0.8 ||
                 i.toLowerCase().includes(skillSearch.toLowerCase())) &&
-              !currentSkills.includes(i)
+              !portfolio.skills.includes(i)
           )
         );
       } else {
         setSkills(
-          agencySkillTagsRequirements.filter((i) => !currentSkills.includes(i))
+          agencySkillTagsRequirements.filter(
+            (i) => !portfolio.skills.includes(i)
+          )
         );
       }
     }, 200);
 
     return () => clearTimeout(delayDebounceFn);
-  }, [skillSearch, currentSkills]);
+  }, [skillSearch, portfolio.skills]);
 
   useEffect(() => {
     console.log(portfolio);
@@ -478,8 +474,11 @@ export default function ManagePortfolio({
                     <li
                       className="px-3 w-full py-4 font-semibold text-xs cursor-pointer text-text hover:bg-gray-100 shadow-sm"
                       onClick={() => {
-                        if (!currentServices.includes(i)) {
-                          setCurrentServices([...currentServices, i]);
+                        if (!portfolio.services.includes(i)) {
+                          setPortfolio({
+                            ...portfolio,
+                            services: [...portfolio.services, i],
+                          });
                           console.log(i);
                           setCurrentSearch("");
                         }
@@ -491,7 +490,7 @@ export default function ManagePortfolio({
                 </ul>
               ) : null}
               <ul className="w-full h-[6rem] border-dashed border-2 border-t-0 rounded-lg flex gap-2 pt-3 flex-wrap items-start px-2 overflow-y-auto py-3">
-                {currentServices.map((tag) => (
+                {portfolio.services.map((tag) => (
                   <motion.li
                     initial={{ scale: 0, opacity: 0 }}
                     whileInView={{ scale: 1, opacity: 1 }}
@@ -499,9 +498,10 @@ export default function ManagePortfolio({
                     className="text-primary bg-tertiary w-auto text-xs h-auto px-2 py-2 rounded-md font-bold"
                     key={tag}
                     onClick={() => {
-                      setCurrentServices(
-                        currentServices.filter((i) => i !== tag)
-                      );
+                      setPortfolio({
+                        ...portfolio,
+                        services: portfolio.services.filter((i) => i !== tag),
+                      });
                     }}
                   >
                     {tag}
@@ -659,8 +659,11 @@ export default function ManagePortfolio({
                     <li
                       className="px-3 w-full py-4 font-semibold text-xs cursor-pointer text-text hover:bg-gray-100 shadow-sm"
                       onClick={() => {
-                        if (!currentServices.includes(i)) {
-                          setCurrentSkills([...currentSkills, i]);
+                        if (!portfolio.skills.includes(i)) {
+                          setPortfolio({
+                            ...portfolio,
+                            skills: [...portfolio.skills, i],
+                          });
                           console.log(i);
                           setSkillSearch("");
                         }
@@ -672,7 +675,7 @@ export default function ManagePortfolio({
                 </ul>
               ) : null}
               <ul className="w-full h-[6rem] border-dashed border-2 border-t-0 rounded-lg flex gap-2 pt-3 flex-wrap items-start px-2 overflow-y-auto py-3">
-                {currentSkills.map((tag) => (
+                {portfolio.skills.map((tag) => (
                   <motion.li
                     initial={{ scale: 0, opacity: 0 }}
                     whileInView={{ scale: 1, opacity: 1 }}
@@ -680,7 +683,10 @@ export default function ManagePortfolio({
                     className="bg-secondary text-text w-auto text-xs h-auto px-2 py-2 rounded-md font-bold"
                     key={tag}
                     onClick={() => {
-                      setCurrentSkills(currentSkills.filter((i) => i !== tag));
+                      setPortfolio({
+                        ...portfolio,
+                        skills: portfolio.skills.filter((i) => i !== tag),
+                      });
                     }}
                   >
                     {tag}
@@ -701,9 +707,6 @@ export default function ManagePortfolio({
                     transition={{ ease: "easeOut", duration: 0.2, delay: 0.2 }}
                     className="bg-secondary text-text w-auto text-xs h-auto px-2 py-2 rounded-md font-bold"
                     key={tag}
-                    onClick={() => {
-                      setCurrentSkills(currentSkills.filter((i) => i !== tag));
-                    }}
                   >
                     {tag}
                   </motion.li>

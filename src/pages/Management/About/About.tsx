@@ -66,7 +66,11 @@ export default function About() {
       if (userSelector) {
         let result = await GetManagePage(userSelector.id);
         console.log(result);
-        dispatch(setPageRedux(result?.data?.data));
+        dispatch(
+          setPageRedux({
+            ...result?.data?.data,
+          })
+        );
       } else {
         navigate("/");
       }
@@ -78,9 +82,11 @@ export default function About() {
   async function handleSubmit(e) {
     e.preventDefault();
     console.log(pageSelector);
+
     const result = await PutAboutPage(pageSelector.page_id, pageSelector);
     console.log(result);
-    dispatch(setPageRedux(result.data.data));
+
+    // dispatch(setPageRedux(result.data.data));
   }
 
   return (
@@ -226,9 +232,9 @@ export default function About() {
                     <Option value="11-50 people">11-50 people</Option>
                     <Option value="51-100 people">51-100 people</Option>
                     <Option value="101-500 people">101-500 people</Option>
-                    <Option value="101-500 people">501-1000 people</Option>
-                    <Option value="101-500 people">1001-5000 people</Option>
-                    <Option value="101-500 people">
+                    <Option value="501-1000 people">501-1000 people</Option>
+                    <Option value="1001-5000 people">1001-5000 people</Option>
+                    <Option value="More than 5000 people">
                       More than 5000 people
                     </Option>
                   </Select>

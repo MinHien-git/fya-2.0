@@ -27,7 +27,6 @@ export default function AwardCard({ isEmpty, award_data, id }: IEditCard) {
     if (!award.award_id) {
       console.log(award);
       const result = await postPageAward(page_id, award);
-      setAward({ ...award, award_id: result });
     } else {
       const result = await PutPageAward(award.award_id, award);
       console.log(result);

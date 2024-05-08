@@ -41,6 +41,7 @@
     "react-router-dom": "6",
     "react-scripts": "5.0.1",
     "react-sparkle": "^2.0.0",
+    "react-spinners": "^0.13.8",
     "redux": "^5.0.1",
     "string-similarity": "^4.0.4",
     "string-similarity-js": "^2.1.4",

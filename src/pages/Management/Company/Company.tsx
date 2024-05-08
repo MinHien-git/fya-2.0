@@ -171,7 +171,7 @@ export default function Company() {
         </div>
         <div className="flex w-full items-center justify-center">
           <Label
-            htmlFor="dropzone-file"
+            htmlFor="dropzone-file-company"
             className="flex h-[32rem] mt-4 w-full cursor-pointer flex-col items-center justify-center rounded-lg border-2 border-dashed border-gray-300 bg-gray-50 hover:bg-gray-100 dark:border-gray-600 dark:bg-gray-700 dark:hover:border-gray-500 dark:hover:bg-gray-600"
           >
             <div className="flex flex-col items-center justify-center pb-6 pt-5">
@@ -199,7 +199,7 @@ export default function Company() {
               </p>
             </div>
             <FileInput
-              id="dropzone-file"
+              id="dropzone-file-company"
               className="hidden"
               onChange={handleChange}
             />

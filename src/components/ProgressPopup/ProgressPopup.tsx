@@ -4,8 +4,10 @@ import { useState, useEffect } from "react";
 import { IoCloseSharp } from "react-icons/io5";
 import { GetUserProjectsDetail } from "../../api/lib/project";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 import {
   AcceptProposal,
+  CompleteProposal,
   GetAgencyProposalDetail,
   RejectProposal,
 } from "../../api/lib/proposal";
@@ -39,9 +41,10 @@ export default function ProgressPopup({ handleClose, id }: IAgencyProposal) {
   }
 
   async function handleCompleteProposal() {
-    const result = await AcceptProposal(id, propsal.project_id);
+    const result = await CompleteProposal(id);
     console.log(result);
   }
+
   useEffect(() => {
     if (propsal?.attachments) {
       const xhr = new XMLHttpRequest();
@@ -56,8 +59,18 @@ export default function ProgressPopup({ handleClose, id }: IAgencyProposal) {
   }, [propsal]);
 
   return (
-    <div className="w-[100vw] h-[100vh] bg-blue-gray-500/50 absolute top-0 left-0 flex justify-center items-center z-[1000]">
-      <div className="bg-white shadow-lg rounded-2xl min-w-[70rem] flex flex-col items-center py-10 max-w-[72rem] relative h-[80vh] max-h-[60rem]">
+    <motion.div
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      transition={{ ease: "easeOut", duration: 0.2 }}
+      className="w-[100vw] h-[100vh] bg-blue-gray-500/50 absolute top-0 left-0 flex justify-center items-center z-[1000]"
+    >
+      <motion.div
+        initial={{ opacity: 0, scale: 0 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        transition={{ ease: "easeOut", duration: 0.5 }}
+        className="bg-white shadow-lg rounded-2xl min-w-[70rem] flex flex-col items-center py-10 max-w-[72rem] relative h-[80vh] max-h-[60rem]"
+      >
         <div
           className="absolute top-2 right-2 bg-gray-200 rounded-full p-2 "
           onClick={handleClose}
@@ -229,7 +242,7 @@ export default function ProgressPopup({ handleClose, id }: IAgencyProposal) {
             You have accept this proposal
           </div>
         ) : null}
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   );
 }

@@ -12,6 +12,13 @@ export function GetAgencyProposalDetail(proposal_id: string) {
   return api.get<any>(`/proposal/agency/${proposal_id}`);
 }
 
+export function GetAgencyProposalFeedbackDetail(
+  proposal_id: string,
+  project_id: string
+) {
+  return api.get<any>(`/proposal/${project_id}/feedback/${proposal_id}`);
+}
+
 export function AcceptProposal(proposal_id: string, project_id: string) {
   return api.patch<any>(`/proposal/agency/${proposal_id}/accept/${project_id}`);
 }
@@ -19,6 +26,11 @@ export function AcceptProposal(proposal_id: string, project_id: string) {
 export function RejectProposal(proposal_id: string) {
   return api.put<any>(`/proposal/agency/${proposal_id}/reject`);
 }
+
+export function CompleteProposal(proposal_id: string) {
+  return api.put<any>(`/proposal/agency/${proposal_id}/complete`);
+}
+
 export function GetUserOngoingProject() {
   return api.get<any>(`/proposal/user/onGoing`);
 }

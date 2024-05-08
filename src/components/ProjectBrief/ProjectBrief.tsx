@@ -3,6 +3,7 @@ import { Label } from "flowbite-react";
 import { useState, useEffect } from "react";
 import { IoCloseSharp } from "react-icons/io5";
 import { GetUserProjectsDetail } from "../../api/lib/project";
+import { motion } from "framer-motion";
 interface IProjectBrief {
   handleClose: () => void;
   id: string;
@@ -26,8 +27,18 @@ export default function ProjectBrief({ handleClose, id }: IProjectBrief) {
   }, [id]);
 
   return (
-    <div className="w-[100vw] h-[100vh] bg-blue-gray-500/50 absolute top-0 left-0 flex justify-center items-center">
-      <div className="bg-white shadow-lg rounded-2xl min-w-[70rem] flex flex-col items-center py-10 max-w-[72rem] relative z-[1000] h-[80vh] max-h-[60rem]">
+    <motion.div
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      transition={{ ease: "easeOut", duration: 0.2 }}
+      className="w-[100vw] h-[100vh] bg-blue-gray-500/50 absolute top-0 left-0 flex justify-center items-center"
+    >
+      <motion.div
+        initial={{ opacity: 0, scale: 0 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        transition={{ ease: "easeOut", duration: 0.5 }}
+        className="bg-white shadow-2xl rounded-2xl min-w-[70rem] flex flex-col items-center py-10 max-w-[72rem] relative z-[1000] h-[80vh] max-h-[60rem]"
+      >
         <div
           className="absolute top-2 right-2 bg-gray-200 rounded-full p-2"
           onClick={handleClose}
@@ -66,7 +77,7 @@ export default function ProjectBrief({ handleClose, id }: IProjectBrief) {
               <span className="font-normal">{project?.position}</span>
             </Typography>
           </div>
-          <div className="w-1/2 shadow-lg rounded-xl px-6 py-8 flex flex-col gap-4 border h-fit">
+          <div className="w-1/2 shadow-lg rounded-xl px-6 py-8 flex flex-col gap-4 border h-fit mb-8">
             <Typography
               variant="h4"
               placeholder={undefined}
@@ -149,7 +160,7 @@ export default function ProjectBrief({ handleClose, id }: IProjectBrief) {
             </div>
           </div>
         </div>
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   );
 }

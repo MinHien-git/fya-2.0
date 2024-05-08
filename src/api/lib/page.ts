@@ -78,7 +78,11 @@ export function GetCompany(pageId: string) {
 }
 
 export function PostCompanyTeamCover(pageId: string, data) {
-  return api.post<any>(`/page/${pageId}/company/team_cover`, data);
+  return api.post<any>(`/page/${pageId}/company/team_cover`, data, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+  });
 }
 
 export function PostCompanyStory(pageId: string, data) {
