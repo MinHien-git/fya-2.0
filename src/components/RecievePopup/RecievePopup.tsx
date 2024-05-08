@@ -4,21 +4,21 @@ import { useState, useEffect } from "react";
 import { IoCloseSharp } from "react-icons/io5";
 import { GetUserProjectsDetail } from "../../api/lib/project";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 import {
   AcceptProposal,
+  CompleteProposal,
   GetAgencyProposalDetail,
   RejectProposal,
 } from "../../api/lib/proposal";
 import { storage } from "../../firebase/firebase";
 import { FaPaperclip } from "react-icons/fa6";
-import { motion } from "framer-motion";
-
 interface IAgencyProposal {
   handleClose: () => void;
   id: string;
 }
 
-export default function AgencyProposal({ handleClose, id }: IAgencyProposal) {
+export default function ReceivePopup({ handleClose, id }: IAgencyProposal) {
   const [propsal, setProposal] = useState<any>(null);
   const [link, setLink] = useState<any>("");
 
@@ -35,15 +35,16 @@ export default function AgencyProposal({ handleClose, id }: IAgencyProposal) {
 
     getProjectDetails();
   }, [id]);
-  async function handleRejectProposal() {
+  async function handleCancelProposal() {
     const result = await RejectProposal(id);
     console.log(result);
   }
 
-  async function handleAcceptProposal() {
-    const result = await AcceptProposal(id, propsal.project_id);
+  async function handleCompleteProposal() {
+    const result = await CompleteProposal(id);
     console.log(result);
   }
+
   useEffect(() => {
     if (propsal?.attachments) {
       const xhr = new XMLHttpRequest();
@@ -68,7 +69,7 @@ export default function AgencyProposal({ handleClose, id }: IAgencyProposal) {
         initial={{ opacity: 0, scale: 0 }}
         whileInView={{ opacity: 1, scale: 1 }}
         transition={{ ease: "easeOut", duration: 0.5 }}
-        className="bg-white shadow-2xl rounded-2xl min-w-[70rem] flex flex-col items-center py-10 max-w-[72rem] relative h-[80vh] max-h-[60rem]"
+        className="bg-white shadow-lg rounded-2xl min-w-[70rem] flex flex-col items-center py-10 max-w-[72rem] relative h-[80vh] max-h-[60rem]"
       >
         <div
           className="absolute top-2 right-2 bg-gray-200 rounded-full p-2 "
@@ -99,9 +100,7 @@ export default function AgencyProposal({ handleClose, id }: IAgencyProposal) {
               </Typography>
               <Typography variant="h6" placeholder={undefined}>
                 Rating:{" "}
-                <span className="font-normal">
-                  {propsal?.rating?.toFixed(1)}/5.0
-                </span>
+                <span className="font-normal">{propsal?.rating}/5.0</span>
               </Typography>
 
               <Link
@@ -215,24 +214,23 @@ export default function AgencyProposal({ handleClose, id }: IAgencyProposal) {
             </div>
           </div>
         </div>
-
         {propsal?.accepted === 0 ? (
           <div className="flex w-fit justify-center py-2 gap-4 mt-auto">
             <Button
               placeholder={undefined}
-              className="flex bg-red-300 text-red-700 min-w-[8rem] items-center justify-center w-fit capitalize"
+              className="flex bg-red-400 text-white min-w-[8rem] items-center justify-center w-fit capitalize"
               size="lg"
-              onClick={handleRejectProposal}
+              onClick={handleCancelProposal}
             >
-              Reject proposal
+              Cancel
             </Button>
             <Button
               placeholder={undefined}
               className="flex text-tertiary min-w-[8rem] items-center justify-center bg-primary w-fit capitalize"
               size="lg"
-              onClick={handleAcceptProposal}
+              onClick={handleCompleteProposal}
             >
-              Accept proposal
+              Marked Complete
             </Button>
           </div>
         ) : propsal?.accepted === 1 ? (
@@ -242,10 +240,6 @@ export default function AgencyProposal({ handleClose, id }: IAgencyProposal) {
         ) : propsal?.accepted === 2 ? (
           <div className="flex justify-center py-6 absolute bottom-0 rounded-b-2xl gap-4 mt-auto w-full px-10 bg-green-50 text-green-500 font-bold">
             You have accept this proposal
-          </div>
-        ) : propsal?.accepted === 3 ? (
-          <div className="flex justify-center py-6 absolute bottom-0 rounded-b-2xl gap-4 mt-auto w-full px-10 bg-green-50 text-green-500 font-bold">
-            This project is complete
           </div>
         ) : null}
       </motion.div>

@@ -16,6 +16,8 @@ import { Link } from "react-router-dom";
 import { GetNewProject } from "../../../api/lib/admin";
 import RatingProposal from "../../../components/RatingProposal/RatingProposal";
 import SubmitProposal from "../../../components/SubmitProposal/SubmitProposal";
+import { GetArchiveProposal, GetWonProposal } from "../../../api/lib/proposal";
+import { useSelector } from "react-redux";
 const tabsData = ["New", "Open", "Won", "Archived"];
 export default function ProjectManager() {
   const [activeTabIndex, setActiveTabIndex] = useState(0);
@@ -96,9 +98,9 @@ export default function ProjectManager() {
         {activeTabIndex === 0 ? (
           <SentProject />
         ) : activeTabIndex === 1 ? (
-          <SentProject />
+          <NewProject />
         ) : activeTabIndex === 2 ? (
-          <RecieveProposal />
+          <WonProposal />
         ) : (
           <RecieveProposal />
         )}
@@ -117,40 +119,99 @@ const TABLE_HEAD: string[] = [
   "Date",
 ];
 
-const TABLE_ROWS = [
-  {
-    name: "[Project Name]",
-    price: "$1000",
-    clientName: "(Hidden until Accepted)",
-    companyName: "(Hidden until Accepted)",
-    budget: "$100-1000",
-    contacts: "(Hidden until Accepted)",
-    status: "New",
-    date: "2021-01-01",
-  },
-  {
-    name: "[Project Name]",
-    price: "$1000",
-    clientName: "(Hidden until Accepted)",
-    companyName: "(Hidden until Accepted)",
-    budget: "$100-1000",
-    contacts: "(Hidden until Accepted)",
-    status: "New",
-    date: "2021-01-01",
-  },
-  {
-    name: "[Project Name]",
-    price: "$1000",
-    clientName: "(Hidden until Accepted)",
-    companyName: "(Hidden until Accepted)",
-    budget: "$100-1000",
-    contacts: "(Hidden until Accepted)",
-    status: "New",
-    date: "2021-01-01",
-  },
+const WON_TABLE_HEAD: string[] = [
+  "Project’s name",
+  "Price",
+  "Client’s name",
+  "Company’s name",
+  "Budget",
+  "Contacts",
+  "Status",
+  "Date",
 ];
 
 function SentProject() {
+  const [toggle, setToggle] = useState(false);
+  const [projects, setProjects] = useState<any>([]);
+  const [currentId, setCurrentId] = useState<string>("");
+
+  useEffect(() => {
+    async function fetchData() {
+      let result = await GetNewProject();
+      console.log(result);
+      setProjects(result.data.data);
+    }
+    fetchData();
+  }, []);
+
+  return (
+    <div className="overflow-x-auto">
+      <Table hoverable>
+        <Table.Head>
+          {WON_TABLE_HEAD.map((i) => (
+            <Table.HeadCell className="capitalize text-center border-l-2">
+              {i}
+            </Table.HeadCell>
+          ))}
+        </Table.Head>
+        <Table.Body className="divide-y [&>*]:text-center">
+          {projects.map(
+            ({
+              project_id,
+              project_title,
+              budget_range,
+              lname,
+              fname,
+              languages,
+              project_status,
+              contact_email,
+              create_date,
+            }) => (
+              <Table.Row
+                className="bg-white dark:border-gray-700 dark:bg-gray-800"
+                onClick={() => {
+                  setToggle(true);
+                  setCurrentId(project_id);
+                }}
+              >
+                <Table.Cell className="whitespace-nowrap text-gray-900 dark:text-white text-sm capitalize py-8 font-bold">
+                  {project_title}
+                </Table.Cell>
+                <Table.Cell className="text-xs">
+                  (Hidden until Accepted)
+                </Table.Cell>
+                <Table.Cell className="text-xs">
+                  (Hidden until Accepted)
+                </Table.Cell>
+                <Table.Cell className="text-xs">{budget_range}</Table.Cell>
+                <Table.Cell className="text-xs">
+                  (Hidden until Accepted)
+                </Table.Cell>
+                <Table.Cell className="text-sm font-bold text-green-500">
+                  {project_status === 0 ? "New" : "Open"}
+                </Table.Cell>
+                <Table.Cell className="text-xs">
+                  {new Date(create_date)?.toJSON()?.split("T")[0]}
+                </Table.Cell>
+              </Table.Row>
+            )
+          )}
+        </Table.Body>
+      </Table>
+      {toggle && currentId ? (
+        <SubmitProposal
+          handleClose={() => {
+            setToggle(false);
+            setCurrentId("");
+          }}
+          id={currentId}
+        />
+      ) : null}
+    </div>
+  );
+}
+
+function NewProject() {
   const [toggle, setToggle] = useState(false);
   const [projects, setProjects] = useState<any>([]);
   const [currentId, setCurrentId] = useState<string>("");
@@ -231,52 +292,158 @@ function SentProject() {
   );
 }
 
-function RecieveProposal() {
+function WonProposal() {
   const [toggle, setToggle] = useState(false);
+  const [proposals, setProposals] = useState<Array<any>>();
+  const page_id = useSelector((state: any) => state.page.page_id);
+  const [currentId, setCurrentId] = useState<string>("");
+  const [project_id, setProjectId] = useState<string>("");
+  useEffect(() => {
+    async function fetchData() {
+      let result = await GetWonProposal(page_id);
+      console.log(result);
+      setProposals(result.data.data);
+    }
+    fetchData();
+  }, []);
 
   return (
     <div className="overflow-x-auto">
       <Table hoverable>
         <Table.Head>
-          {TABLE_HEAD.map((i) => (
+          {WON_TABLE_HEAD.map((i) => (
             <Table.HeadCell className="capitalize text-center border-l-2">
               {i}
             </Table.HeadCell>
           ))}
         </Table.Head>
         <Table.Body className="divide-y [&>*]:text-center">
-          {TABLE_ROWS.map(
+          {proposals?.map(
             ({
-              name,
+              project_id,
+              proposal_id,
+              company_name,
+              project_title,
+              client_fname,
+              client_lname,
               price,
-              clientName,
-              companyName,
               budget,
-              contacts,
+              contact,
+              proposal_date,
               status,
-              date,
             }) => (
               <Table.Row
                 className="bg-white dark:border-gray-700 dark:bg-gray-800"
-                onClick={() => setToggle(true)}
+                onClick={() => {
+                  setToggle(true);
+                  setProjectId(project_id);
+                  setCurrentId(proposal_id);
+                }}
               >
                 <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white text-xs py-8 ">
-                  {name}
+                  {project_title}
                 </Table.Cell>
                 <Table.Cell className="text-xs">{price}</Table.Cell>
-                <Table.Cell className="text-xs">{clientName}</Table.Cell>
-                <Table.Cell className="text-xs">{companyName}</Table.Cell>
+                <Table.Cell className="text-xs">
+                  {client_fname} {client_lname}
+                </Table.Cell>
+                <Table.Cell className="text-xs">{company_name}</Table.Cell>
                 <Table.Cell className="text-xs">{budget}</Table.Cell>
-                <Table.Cell className="text-xs">{contacts}</Table.Cell>
+                <Table.Cell className="text-xs">{contact}</Table.Cell>
                 <Table.Cell className="text-xs">{status}</Table.Cell>
-                <Table.Cell className="text-xs">{date}</Table.Cell>
+                <Table.Cell className="text-xs">
+                  {proposal_date?.split("T")[0]}
+                </Table.Cell>
               </Table.Row>
             )
           )}
         </Table.Body>
       </Table>
-      {toggle ? (
-        <RatingProposal id="" handleClose={() => setToggle(false)} />
+      {toggle && currentId && project_id ? (
+        <RatingProposal
+          id={currentId}
+          handleClose={() => setToggle(false)}
+          project_id={project_id}
+        />
+      ) : null}
+    </div>
+  );
+}
+
+function RecieveProposal() {
+  const [toggle, setToggle] = useState(false);
+  const [proposals, setProposals] = useState<Array<any>>();
+  const [currentId, setCurrentId] = useState<string>("");
+  const [project_id, setProjectId] = useState<string>("");
+  const page_id = useSelector((state: any) => state.page.page_id);
+  useEffect(() => {
+    async function fetchData() {
+      let result = await GetArchiveProposal(page_id);
+      console.log(result);
+      setProposals(result.data.data);
+    }
+    fetchData();
+  }, []);
+
+  return (
+    <div className="overflow-x-auto">
+      <Table hoverable>
+        <Table.Head>
+          {WON_TABLE_HEAD.map((i) => (
+            <Table.HeadCell className="capitalize text-center border-l-2">
+              {i}
+            </Table.HeadCell>
+          ))}
+        </Table.Head>
+        <Table.Body className="divide-y [&>*]:text-center">
+          {proposals?.map(
+            ({
+              project_id,
+              proposal_id,
+              company_name,
+              project_title,
+              client_fname,
+              client_lname,
+              price,
+              budget,
+              contact,
+              proposal_date,
+              status,
+            }) => (
+              <Table.Row
+                className="bg-white dark:border-gray-700 dark:bg-gray-800"
+                onClick={() => {
+                  setToggle(true);
+                  setCurrentId(proposal_id);
+                  setProjectId(project_id);
+                }}
+              >
+                <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white text-xs py-8 ">
+                  {project_title}
+                </Table.Cell>
+                <Table.Cell className="text-xs">{price}</Table.Cell>
+                <Table.Cell className="text-xs">
+                  {client_fname} {client_lname}
+                </Table.Cell>
+                <Table.Cell className="text-xs">{company_name}</Table.Cell>
+                <Table.Cell className="text-xs">{budget}</Table.Cell>
+                <Table.Cell className="text-xs">{contact}</Table.Cell>
+                <Table.Cell className="text-xs">{status}</Table.Cell>
+                <Table.Cell className="text-xs">
+                  {proposal_date?.split("T")[0]}
+                </Table.Cell>
+              </Table.Row>
+            )
+          )}
+        </Table.Body>
+      </Table>
+
+      {toggle && currentId && project_id ? (
+        <RatingProposal
+          id={currentId}
+          handleClose={() => setToggle(false)}
+          project_id={project_id}
+        />
       ) : null}
     </div>
   );

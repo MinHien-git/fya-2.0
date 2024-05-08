@@ -37,3 +37,15 @@ export function GetUserOngoingProject() {
 export function GetUserCompletedProposal() {
   return api.get<any>(`/proposal/user/completed`);
 }
+
+export function GetWonProposal(page_id: string) {
+  return api.get<any>(`/proposal/agency/won/${page_id}`);
+}
+
+export function GetProposalDetail(proposal_id: string, project_id: string) {
+  return api.get<any>(`/proposal/agency/${proposal_id}/detail/${project_id}`);
+}
+
+export function GetArchiveProposal(page_id: string) {
+  return api.get<any>(`/proposal/agency/archive/${page_id}`);
+}

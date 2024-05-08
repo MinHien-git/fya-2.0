@@ -3,30 +3,60 @@ import { Label } from "flowbite-react";
 import { useEffect, useState } from "react";
 import { IoCloseSharp } from "react-icons/io5";
 import { Link } from "react-router-dom";
-import { GetClientProjectDetail } from "../../api/lib/project";
+import { GetProposalDetail } from "../../api/lib/proposal";
+import { RatedIcon, UnratedIcon } from "../RatingAndFeedback/RatingAndFeedback";
+import { postUserFeedback } from "../../api/lib/feedback";
 interface IRatingProposal {
   handleClose: () => void;
   id: string;
+  project_id: string;
 }
-export default function RatingProposal({ handleClose, id }: IRatingProposal) {
+
+interface IUserRating {
+  name: string;
+  value: number;
+}
+
+export default function RatingProposal({
+  handleClose,
+  id,
+  project_id,
+}: IRatingProposal) {
   const [index, SetIndex] = useState<number>(1);
-  const [project, SetProject] = useState<any>({});
+  const [proposal, SetProposal] = useState<any>({});
+  const [perfomance, setPerfomance] = useState<Array<IUserRating>>([
+    { name: "Punctuality", value: 0 },
+    { name: "Work Ethics", value: 0 },
+  ]);
+  const [rating, setRating] = useState<number>(0);
+  const [note, setNote] = useState<string>("");
+
   useEffect(() => {
     SetIndex(0);
   }, []);
 
   useEffect(() => {
     async function getProjectDetails() {
-      const result = await GetClientProjectDetail(id);
+      const result = await GetProposalDetail(id, project_id);
       console.log(result);
 
       if (result.data.data) {
         console.log(result.data.data);
+        SetProposal(result.data.data);
       }
     }
 
     getProjectDetails();
   }, [id]);
+
+  async function handleSubmit() {
+    let result = await postUserFeedback(proposal?.project_id, {
+      client_rate: perfomance,
+      note: note,
+      rating: rating,
+    });
+    console.log(result);
+  }
 
   return index === 0 ? (
     <div className="w-[100vw] h-[100vh] bg-blue-gray-500/50 absolute top-0 left-0 flex justify-center items-center z-[1000]">
@@ -38,7 +68,7 @@ export default function RatingProposal({ handleClose, id }: IRatingProposal) {
           <IoCloseSharp className="w-6 h-6" />
         </div>
         <Typography variant="h2" placeholder={undefined} className="capitalize">
-          Client Name’s project
+          {proposal?.client_name}’s project
         </Typography>
         <div className="flex w-full px-10  mt-6  gap-2 overflow-y-auto">
           <div className="w-1/2 flex flex-col gap-4 ">
@@ -52,17 +82,23 @@ export default function RatingProposal({ handleClose, id }: IRatingProposal) {
               </Typography>
               <Typography variant="h6" placeholder={undefined}>
                 Name:{" "}
-                <span className="font-normal">{} (Hidden until Accepted)</span>
+                <span className="font-normal">
+                  {proposal?.fname} {proposal?.lname}
+                </span>
               </Typography>
               <Typography variant="h6" placeholder={undefined}>
-                Office address: <span className="font-normal">[Address]</span>
+                Office address:{" "}
+                <span className="font-normal">{proposal?.client_location}</span>
               </Typography>
               <Typography variant="h6" placeholder={undefined}>
-                Rating: <span className="font-normal">0.0/5.0</span>
+                Rating:{" "}
+                <span className="font-normal">
+                  {proposal?.user_rating?.toFixed(1)}/5.0
+                </span>
               </Typography>
 
               <Link to="/" className="text-primary underline font-bold">
-                See Client Name’s Review and Feedback
+                See {proposal?.client_name}’s Review and Feedback
               </Link>
             </div>
             <div className="grid w-full shadow-lg px-6 py-8 border rounded-xl gap-4 h-fit">
@@ -71,23 +107,27 @@ export default function RatingProposal({ handleClose, id }: IRatingProposal) {
                 placeholder={undefined}
                 className="capitalize"
               >
-                Your company detail:
+                Client company detail:
               </Typography>
               <Typography variant="h6" placeholder={undefined}>
-                Company name: <span className="font-normal">[Name]</span>
+                Company name:{" "}
+                <span className="font-normal">{proposal?.client_name}</span>
               </Typography>
               <Typography variant="h6" placeholder={undefined}>
-                Office address: <span className="font-normal">[Address]</span>
+                Office address:{" "}
+                <span className="font-normal">{proposal?.client_location}</span>
               </Typography>
               <Typography variant="h6" placeholder={undefined}>
-                Team size: <span className="font-normal"> xx-yy people</span>
+                Team size:{" "}
+                <span className="font-normal"> {proposal?.client_size}</span>
               </Typography>
               <Typography variant="h6" placeholder={undefined}>
-                Industry: <span className="font-normal"> [Industry Name]</span>
+                Industry:{" "}
+                <span className="font-normal">{proposal?.industry}</span>
               </Typography>
               <Typography variant="h6" placeholder={undefined}>
                 Your role in the company:{" "}
-                <span className="font-normal"> [Role Name]</span>
+                <span className="font-normal"> {proposal?.client_role}</span>
               </Typography>
             </div>
             <div className="grid w-full shadow-lg px-6 py-8 border rounded-xl gap-4 h-fit">
@@ -122,8 +162,8 @@ export default function RatingProposal({ handleClose, id }: IRatingProposal) {
             >
               Your proposal for the project:
             </Typography>
-            <Typography variant="small" placeholder={undefined}>
-              [Lorem ipsum dolor sit amet, consectetur adipiscing elit.]
+            <Typography variant="h6" placeholder={undefined}>
+              {proposal?.project_title}
             </Typography>
             <div>
               <div className="mb-2 block">
@@ -133,7 +173,13 @@ export default function RatingProposal({ handleClose, id }: IRatingProposal) {
                   className="font-bold"
                 />
               </div>
-              <div className="w-full h-[4rem] border rounded-lg"></div>
+              <ul className="w-full h-[6rem] border-2 rounded-lg flex gap-2 pt-3 flex-wrap items-start px-2 overflow-y-auto py-3">
+                {proposal?.services?.map((i) => (
+                  <li className="text-white bg-primary w-auto text-xs h-auto px-2 py-2 rounded-md font-bold">
+                    {i}
+                  </li>
+                ))}
+              </ul>
             </div>
             <div>
               <div className="mb-2 block">
@@ -143,36 +189,29 @@ export default function RatingProposal({ handleClose, id }: IRatingProposal) {
                   className="font-bold"
                 />
               </div>
-              <div className="w-full h-[4rem] border rounded-lg"></div>
+              <ul className="w-full h-[6rem] border-2 rounded-lg flex gap-2 pt-3 flex-wrap items-start px-2 overflow-y-auto py-3">
+                {proposal?.skills?.map((i) => (
+                  <li className="text-text bg-secondary w-auto text-xs h-auto px-2 py-2 rounded-md font-bold">
+                    {i}
+                  </li>
+                ))}
+              </ul>
             </div>
             <p>
-              <span className="font-bold">Proposed price:</span> $xxxx - $xxxx
-            </p>
-            <p>
-              <span className="font-bold">Client’s email: </span>{" "}
-              sample@sample.com
+              <span className="font-bold">Proposed price:</span>{" "}
+              {proposal?.price}
             </p>
 
             <p>
-              <span className="font-bold">Proposed duration: </span> x - x
-              months
+              <span className="font-bold">Proposed duration: </span>{" "}
+              {proposal?.duration}
             </p>
 
             <div className="grid w-full">
               <p>
                 <span className="font-bold">Proposal:</span>
               </p>
-              <p>
-                "Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-                accusantium doloremque laudantium, totam rem aperiam, eaque ipsa
-                quae ab illo inventore veritatis et quasi architecto beatae
-                vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia
-                voluptas sit aspernatur aut odit aut fugit, sed quia
-                consequuntur magni dolores eos qui ratione voluptatem sequi
-                nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor
-                sit amet, consectetur, adipisci velit, sed quia non numquam eius
-                modi...
-              </p>
+              <p>{proposal?.description}</p>
             </div>
           </div>
         </div>
@@ -187,7 +226,7 @@ export default function RatingProposal({ handleClose, id }: IRatingProposal) {
         >
           <IoCloseSharp className="w-6 h-6" />
         </div>
-        <Typography variant="h2" placeholder={undefined} className="capitalize">
+        <Typography variant="h4" placeholder={undefined} className="capitalize">
           Review & Feedback for Client Name’s project
         </Typography>
         <div className="flex w-full px-10  mt-6  gap-2 overflow-y-auto h-fit">
@@ -200,9 +239,16 @@ export default function RatingProposal({ handleClose, id }: IRatingProposal) {
               >
                 Rating
               </Typography>
-              <Rating placeholder={undefined} />
+              <Rating
+                placeholder={undefined}
+                unratedIcon={<UnratedIcon />}
+                ratedIcon={<RatedIcon />}
+                className="flex gap-2"
+                value={rating}
+                onChange={(value) => setRating(value)}
+              />
               <Typography variant="h6" placeholder={undefined}>
-                Rated this agency on:
+                Rated this client on:
                 <span className="font-normal"> [dd/mm/yyyy]</span>
               </Typography>
               <Typography variant="h6" placeholder={undefined}>
@@ -219,21 +265,11 @@ export default function RatingProposal({ handleClose, id }: IRatingProposal) {
                 Services provided
               </Typography>
               <ul className="flex flex-wrap gap-2">
-                <li className="text-white bg-primary h-[2rem] font-bold px-4 text-xs flex justify-center items-center rounded-md">
-                  Service 1
-                </li>
-                <li className="text-white bg-primary h-[2rem] font-bold px-4 text-xs flex justify-center items-center rounded-md">
-                  Service 2
-                </li>
-                <li className="text-white bg-primary h-[2rem] font-bold px-4 text-xs flex justify-center items-center rounded-md">
-                  Service 3
-                </li>
-                <li className="text-white bg-primary h-[2rem] font-bold px-4 text-xs flex justify-center items-center rounded-md">
-                  Service 3 Service 3
-                </li>
-                <li className="text-white bg-primary h-[2rem] font-bold px-4 text-xs flex justify-center items-center rounded-md">
-                  Service 3 Service 3
-                </li>
+                {proposal?.services?.map((i) => (
+                  <li className="text-white bg-primary w-auto text-xs h-auto px-2 py-2 rounded-md font-bold">
+                    {i}
+                  </li>
+                ))}
               </ul>
             </div>
             <div className="grid w-full shadow-lg px-6 py-8 border rounded-xl gap-4">
@@ -244,24 +280,69 @@ export default function RatingProposal({ handleClose, id }: IRatingProposal) {
               >
                 Rate your client
               </Typography>
-              <div>
+              <div className="flex gap-4 flex-col">
+                {/* {perfomance.map((i) => (
+                  <>
+                    <Typography
+                      variant="h6"
+                      placeholder={undefined}
+                      className="text-primary"
+                    >
+                      {i.name}:
+                    </Typography>
+                    <Rating
+                      placeholder={undefined}
+                      unratedIcon={<UnratedIcon />}
+                      ratedIcon={<RatedIcon />}
+                      value={i.value}
+                      className="flex gap-2"
+                      onChange={(value) => {
+                        setPerfomance([
+                          ...perfomance.filter((p) => p.name !== i.name),
+                          { name: i.name, value: value },
+                        ]);
+                      }}
+                    />
+                  </>
+                ))} */}
                 <Typography
                   variant="h6"
                   placeholder={undefined}
                   className="text-primary"
                 >
-                  Punctuality:
+                  {"Punctuality"}:
                 </Typography>
-                <Rating placeholder={undefined} />
-
+                <Rating
+                  placeholder={undefined}
+                  unratedIcon={<UnratedIcon />}
+                  ratedIcon={<RatedIcon />}
+                  className="flex gap-2"
+                  onChange={(value) => {
+                    setPerfomance([
+                      ...perfomance.filter((p) => p.name !== "Punctuality"),
+                      { name: "Punctuality", value: value },
+                    ]);
+                  }}
+                />
                 <Typography
                   variant="h6"
                   placeholder={undefined}
                   className="text-primary"
                 >
-                  Work Ethics:
+                  {"Work Ethics"}:
                 </Typography>
-                <Rating placeholder={undefined} />
+                <Rating
+                  placeholder={undefined}
+                  unratedIcon={<UnratedIcon />}
+                  ratedIcon={<RatedIcon />}
+                  className="flex gap-2"
+                  onChange={(value) => {
+                    setPerfomance([
+                      ...perfomance.filter((p) => p.name !== "Work Ethics"),
+                      { name: "Work Ethics", value: value },
+                    ]);
+                  }}
+                />
               </div>
             </div>
             <div className="flex w-full justify-between py-2 gap-4 mt-auto">
@@ -277,7 +358,10 @@ export default function RatingProposal({ handleClose, id }: IRatingProposal) {
                 placeholder={undefined}
                 className="flex text-text min-w-[8rem] items-center justify-center bg-secondary w-1/2"
                 size="md"
-                onClick={() => SetIndex(1)}
+                onClick={() => {
+                  handleSubmit();
+                  SetIndex(1);
+                }}
               >
                 Send feedback
               </Button>
@@ -293,26 +377,31 @@ export default function RatingProposal({ handleClose, id }: IRatingProposal) {
                 Contacts & Details (from project info)
               </Typography>
               <Typography variant="h6" placeholder={undefined}>
-                Your name: <span className="font-normal">[Name]</span>
+                Client name:{" "}
+                <span className="font-normal"> {proposal?.client_name}</span>
               </Typography>
               <Typography variant="h6" placeholder={undefined}>
-                Your job title: <span className="font-normal">[Job Title]</span>
+                Client job title:{" "}
+                <span className="font-normal"> {proposal?.client_role}</span>
               </Typography>
               <Typography variant="h6" placeholder={undefined}>
-                Your email address:
-                <span className="font-normal">[sample@sample.com]</span>
+                Client email address:
+                <span className="font-normal">
+                  {" "}
+                  {proposal?.fname} {proposal?.lname}
+                </span>
               </Typography>
               <Typography variant="h6" placeholder={undefined}>
-                Your company name:
-                <span className="font-normal">[Company Name]</span>
+                Client company name:
+                <span className="font-normal">{proposal?.client_email}</span>
               </Typography>
               <Typography variant="h6" placeholder={undefined}>
-                Your company industry:
-                <span className="font-normal">[Industry Name]</span>
+                Client company industry:
+                <span className="font-normal">{proposal?.industry}</span>
               </Typography>
               <Typography variant="h6" placeholder={undefined}>
-                Your company size:
-                <span className="font-normal">[Size]</span>
+                Client company size:
+                <span className="font-normal">{proposal?.client_size}</span>
               </Typography>
             </div>
             <div className="grid w-full shadow-lg px-6 py-8 border rounded-xl gap-4 h-min">
@@ -323,7 +412,13 @@ export default function RatingProposal({ handleClose, id }: IRatingProposal) {
               >
                 Your comment on your collaboration with Client Name:
               </Typography>
-              <Textarea placeholder={undefined} rows={6} label="Feedback" />
+              <Textarea
+                placeholder={undefined}
+                rows={6}
+                label="Feedback"
+                onChange={(e) => setNote(e.target.value)}
+                value={note}
+              />
             </div>
           </div>
         </div>

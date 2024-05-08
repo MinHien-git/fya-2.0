@@ -20,7 +20,7 @@ interface IRatingAndFeedback {
   project_id: string;
 }
 
-function RatedIcon() {
+export function RatedIcon() {
   return (
     <svg
       width="16"
@@ -34,7 +34,7 @@ function RatedIcon() {
   );
 }
 
-function UnratedIcon() {
+export function UnratedIcon() {
   return (
     <svg
       width="16"

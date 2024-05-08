@@ -13,9 +13,10 @@ import {
   GetUserCompletedProposal,
   GetUserOngoingProject,
 } from "../../../api/lib/proposal";
-import AgencyProposal from "../../../components/AgencyProposal/AgencyProposal";
 import ProgressPopup from "../../../components/ProgressPopup/ProgressPopup";
 import RatingAndFeedback from "../../../components/RatingAndFeedback/RatingAndFeedback";
+import ReceivePopup from "../../../components/RecievePopup/RecievePopup";
+import AgencyProposal from "../../../components/AgencyProposal/AgencyProposal";
 const tabsData = ["Sent", "Received", "Ongoing", "Completed"];
 export default function ManageProject() {
   const [activeTabIndex, setActiveTabIndex] = useState(0);
@@ -160,7 +161,7 @@ function SentProject() {
                   setCurrentId(project_id);
                 }}
               >
-                <Table.Cell className="whitespace-nowrap text-gray-900 dark:text-white text-sm py-8 capitalize font-bold">
+                <Table.Cell className="whitespace-nowrap text-gray-900 dark:text-white text-xs py-8 capitalize font-bold">
                   {projectTitle}
                 </Table.Cell>
                 <Table.Cell className="text-xs">
@@ -237,7 +238,7 @@ function OnGoingProject() {
                   setCurrentId(proposal_id);
                 }}
               >
-                <Table.Cell className="whitespace-nowrap text-gray-900 dark:text-white text-sm py-8 capitalize font-bold">
+                <Table.Cell className="whitespace-nowrap text-gray-900 dark:text-white text-xs py-8 capitalize font-bold">
                   {project_title}
                 </Table.Cell>
                 <Table.Cell className="text-xs">
@@ -321,7 +322,7 @@ function RecieveProposal() {
                   setCurrentId(proposal_id);
                 }}
               >
-                <Table.Cell className="whitespace-nowrap font-bold text-gray-900 dark:text-white text-sm py-8 capitalize text-center">
+                <Table.Cell className="whitespace-nowrap font-bold text-gray-900 dark:text-white text-xs py-8 capitalize text-center">
                   {project_title}
                 </Table.Cell>
                 <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white text-xs py-8 text-center">
@@ -347,7 +348,7 @@ function RecieveProposal() {
         </Table.Body>
       </Table>
       {toggle && currentId ? (
-        <ProgressPopup id={currentId} handleClose={() => setToggle(false)} />
+        <AgencyProposal id={currentId} handleClose={() => setToggle(false)} />
       ) : null}
     </div>
   );
@@ -363,38 +364,6 @@ const COMPLETE_HEAD: string[] = [
   "Date",
 ];
 
-const COMPLETE_ROWS = [
-  {
-    name: "[Project Name]",
-    price: "1000$",
-    agency: "[Agency Name]",
-    duration: "2021-01-01",
-    budget: "Lorem ipsum dolor sit amet, consectetur adipiscing elit...",
-    contacts: "1234567890",
-    rating: "English",
-    date: "2021-01-01",
-  },
-  {
-    name: "[Project Name]",
-    price: "1000$",
-    agency: "[Agency Name]",
-    duration: "2021-01-01",
-    budget: "Lorem ipsum dolor sit amet, consectetur adipiscing elit...",
-    contacts: "1234567890",
-    rating: "English",
-    date: "2021-01-01",
-  },
-  {
-    name: "[Project Name]",
-    price: "1000$",
-    agency: "[Agency Name]",
-    duration: "2021-01-01",
-    budget: "Lorem ipsum dolor sit amet, consectetur adipiscing elit...",
-    contacts: "1234567890",
-    rating: "English",
-    date: "2021-01-01",
-  },
-];
 function CompleteProposal() {
   const [toggle, setToggle] = useState(false);
   const [proposals, setProposals] = useState<Array<any>>([]);

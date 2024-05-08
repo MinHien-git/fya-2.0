@@ -34,6 +34,12 @@ export const ResponseInterceptor = () => {
             case 403:
               FetchRequestRefeshToken();
               break;
+            case 404:
+              navigate("/error");
+              break;
+            case 400:
+              navigate("/400");
+              break;
             default:
               return Promise.reject(error);
           }
