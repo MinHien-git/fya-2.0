@@ -148,7 +148,7 @@ function SentProject() {
     <div className="overflow-x-auto">
       <Table hoverable>
         <Table.Head>
-          {WON_TABLE_HEAD.map((i) => (
+          {TABLE_HEAD.map((i) => (
             <Table.HeadCell className="capitalize text-center border-l-2">
               {i}
             </Table.HeadCell>

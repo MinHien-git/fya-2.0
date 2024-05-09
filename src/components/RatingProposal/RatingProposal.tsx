@@ -43,6 +43,8 @@ export default function RatingProposal({
       if (result.data.data) {
         console.log(result.data.data);
         SetProposal(result.data.data);
+        setRating(result.data.data?.user_rating);
+        setNote(result.data.data?.note);
       }
     }
 
@@ -67,7 +69,7 @@ export default function RatingProposal({
         >
           <IoCloseSharp className="w-6 h-6" />
         </div>
-        <Typography variant="h2" placeholder={undefined} className="capitalize">
+        <Typography variant="h4" placeholder={undefined} className="capitalize">
           {proposal?.client_name}’s project
         </Typography>
         <div className="flex w-full px-10  mt-6  gap-2 overflow-y-auto">
@@ -139,10 +141,19 @@ export default function RatingProposal({
                 Your rating and feedback:
               </Typography>
               <Typography variant="h6" placeholder={undefined}>
-                Rating: <span className="font-normal">0.0/5.0</span>
+                Rating:{" "}
+                <span className="font-normal">
+                  {proposal?.user_rating?.toFixed(1)}/5.0
+                </span>
               </Typography>
               <Typography variant="h6" placeholder={undefined}>
-                Feedback: <span className="font-normal">No feedback yet.</span>
+                Feedback:{" "}
+                <span className="font-normal">
+                  {" "}
+                  {proposal?.feedback_id
+                    ? `Rated on ${proposal?.rated_date.split("T")[0]}`
+                    : "No feedback yet."}
+                </span>
               </Typography>
               <Button
                 placeholder={undefined}
@@ -150,7 +161,7 @@ export default function RatingProposal({
                 size="md"
                 onClick={() => SetIndex(1)}
               >
-                Send feedback
+                {proposal?.feedback_id ? "View feedback" : "Send feedback"}
               </Button>
             </div>
           </div>
@@ -249,11 +260,14 @@ export default function RatingProposal({
               />
               <Typography variant="h6" placeholder={undefined}>
                 Rated this client on:
-                <span className="font-normal"> [dd/mm/yyyy]</span>
+                <span className="font-normal">
+                  {" "}
+                  {proposal?.rated_date?.split("T")[0]}
+                </span>
               </Typography>
               <Typography variant="h6" placeholder={undefined}>
                 Duration of the project:{" "}
-                <span className="font-normal"> [mm/yyyy - mm/yyyy]</span>
+                <span className="font-normal">{proposal?.duration}</span>
               </Typography>
             </div>
             <div className="grid w-full shadow-lg px-6 py-8 border rounded-xl gap-4">
@@ -281,90 +295,96 @@ export default function RatingProposal({
                 Rate your client
               </Typography>
               <div className="flex gap-4 flex-col">
-                {/* {perfomance.map((i) => (
+                {proposal?.client_rate ? (
+                  <>
+                    {proposal?.client_rate[0].map((i) => (
+                      <>
+                        <Typography
+                          variant="h6"
+                          placeholder={undefined}
+                          className="text-primary"
+                        >
+                          {i.name}:
+                        </Typography>
+                        <Rating
+                          placeholder={undefined}
+                          unratedIcon={<UnratedIcon />}
+                          ratedIcon={<RatedIcon />}
+                          className="flex gap-2"
+                          value={i.value}
+                          readonly
+                        />
+                      </>
+                    ))}
+                  </>
+                ) : (
                   <>
                     <Typography
                       variant="h6"
                       placeholder={undefined}
                       className="text-primary"
                     >
-                      {i.name}:
+                      {"Punctuality"}:
                     </Typography>
                     <Rating
                       placeholder={undefined}
                       unratedIcon={<UnratedIcon />}
                       ratedIcon={<RatedIcon />}
-                      value={i.value}
                       className="flex gap-2"
                       onChange={(value) => {
                         setPerfomance([
-                          ...perfomance.filter((p) => p.name !== i.name),
-                          { name: i.name, value: value },
+                          ...perfomance.filter((p) => p.name !== "Punctuality"),
+                          { name: "Punctuality", value: value },
+                        ]);
+                      }}
+                    />
+                    <Typography
+                      variant="h6"
+                      placeholder={undefined}
+                      className="text-primary"
+                    >
+                      {"Work Ethics"}:
+                    </Typography>
+                    <Rating
+                      placeholder={undefined}
+                      unratedIcon={<UnratedIcon />}
+                      ratedIcon={<RatedIcon />}
+                      className="flex gap-2"
+                      onChange={(value) => {
+                        setPerfomance([
+                          ...perfomance.filter((p) => p.name !== "Work Ethics"),
+                          { name: "Work Ethics", value: value },
                         ]);
                       }}
                     />
                   </>
-                ))} */}
-                <Typography
-                  variant="h6"
-                  placeholder={undefined}
-                  className="text-primary"
-                >
-                  {"Punctuality"}:
-                </Typography>
-                <Rating
-                  placeholder={undefined}
-                  unratedIcon={<UnratedIcon />}
-                  ratedIcon={<RatedIcon />}
-                  className="flex gap-2"
-                  onChange={(value) => {
-                    setPerfomance([
-                      ...perfomance.filter((p) => p.name !== "Punctuality"),
-                      { name: "Punctuality", value: value },
-                    ]);
-                  }}
-                />
-                <Typography
-                  variant="h6"
-                  placeholder={undefined}
-                  className="text-primary"
-                >
-                  {"Work Ethics"}:
-                </Typography>
-                <Rating
-                  placeholder={undefined}
-                  unratedIcon={<UnratedIcon />}
-                  ratedIcon={<RatedIcon />}
-                  className="flex gap-2"
-                  onChange={(value) => {
-                    setPerfomance([
-                      ...perfomance.filter((p) => p.name !== "Work Ethics"),
-                      { name: "Work Ethics", value: value },
-                    ]);
-                  }}
-                />
+                )}
               </div>
             </div>
             <div className="flex w-full justify-between py-2 gap-4 mt-auto">
-              <Button
-                placeholder={undefined}
-                className="flex bg-red-300 text-red-700 min-w-[8rem] items-center justify-center w-1/2"
-                size="lg"
-                onClick={() => SetIndex(0)}
-              >
-                Cancel
-              </Button>
-              <Button
-                placeholder={undefined}
-                className="flex text-text min-w-[8rem] items-center justify-center bg-secondary w-1/2"
-                size="md"
-                onClick={() => {
-                  handleSubmit();
-                  SetIndex(1);
-                }}
-              >
-                Send feedback
-              </Button>
+              {!proposal?.feedback_id ? (
+                <>
+                  <Button
+                    placeholder={undefined}
+                    className="flex bg-red-300 text-red-700 min-w-[8rem] items-center justify-center w-1/2"
+                    size="lg"
+                    onClick={() => SetIndex(0)}
+                  >
+                    Cancel
+                  </Button>
+                  <Button
+                    placeholder={undefined}
+                    className="flex text-text min-w-[8rem] items-center justify-center bg-secondary w-1/2"
+                    size="md"
+                    onClick={() => {
+                      handleSubmit();
+                      SetIndex(1);
+                    }}
+                  >
+                    Send feedback
+                  </Button>
+                </>
+              ) : null}
             </div>
           </div>
           <div className="gap-2 flex flex-col">
@@ -410,7 +430,7 @@ export default function RatingProposal({
                 placeholder={undefined}
                 className="capitalize"
               >
-                Your comment on your collaboration with Client Name:
+                Your comment on your collaboration with {proposal?.client_name}:
               </Typography>
               <Textarea
                 placeholder={undefined}
@@ -418,6 +438,7 @@ export default function RatingProposal({
                 label="Feedback"
                 onChange={(e) => setNote(e.target.value)}
                 value={note}
+                disabled={proposal?.note}
               />
             </div>
           </div>

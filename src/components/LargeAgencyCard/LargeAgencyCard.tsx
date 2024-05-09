@@ -1,6 +1,7 @@
-import { Button, IconButton } from "@material-tailwind/react";
+import { Button, IconButton, Rating } from "@material-tailwind/react";
 import { log } from "console";
 import { Link } from "react-router-dom";
+import { RatedIcon, UnratedIcon } from "../RatingAndFeedback/RatingAndFeedback";
 
 interface IPageCard {
   page: any;
@@ -12,6 +13,8 @@ export default function LargeAgencyCard({ page }: IPageCard) {
     tagline,
     page_id,
     address,
+    rating,
+    total_rate,
     turnover,
     founded_date,
     logo,
@@ -39,13 +42,18 @@ export default function LargeAgencyCard({ page }: IPageCard) {
           </li>
         </ul>
         <ul className="flex mt-1 gap-1 items-center justify-center">
-          <li className="bg-secondary w-3 aspect-square rounded-md"></li>
-          <li className="bg-secondary w-3 aspect-square rounded-md"></li>
-          <li className="bg-secondary w-3 aspect-square rounded-md"></li>
-          <li className="bg-secondary w-3 aspect-square rounded-md"></li>
-          <li className="bg-secondary w-3 aspect-square rounded-md"></li>
-          <li className="font-bold">0.0/5.0</li>
-          <li className="hidden lg:block">(0 review)</li>
+          <li>
+            <Rating
+              placeholder={undefined}
+              className="flex gap-1"
+              ratedIcon={<RatedIcon />}
+              unratedIcon={<UnratedIcon />}
+              value={rating}
+              readonly
+            />
+          </li>
+          <li className="font-bold text-xs">{rating?.toFixed(1)}/5.0</li>
+          <li className="hidden lg:block text-xs">({total_rate} review)</li>
         </ul>
       </div>
       <ul className="text-center mt-2 font-light text-sm gap-1 flex flex-wrap w-5/6 h-[2.5rem] items-start">

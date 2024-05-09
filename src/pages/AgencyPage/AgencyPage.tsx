@@ -1,11 +1,38 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { AddSavePage, GetPage } from "../../api/lib/page";
-import { Button } from "@material-tailwind/react";
+import { Button, Rating } from "@material-tailwind/react";
 import AgencyServiceCard from "../../components/AgencyServiceCard/AgencyServiceCard";
 import AgencyPortfolioCard from "../../components/AgencyPortfoilioCard/AgencyPortfolioCard";
 import AgencyAwardCard from "../../components/AgencyAwardCard/AgencyAwardCard";
 
+export function RatedIconLarge() {
+  return (
+    <svg
+      width="22"
+      height="22"
+      viewBox="0 0 32 32"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <circle cx="16" cy="16" r="16" fill="#FFCB37" />
+    </svg>
+  );
+}
+
+export function UnratedIconLarge() {
+  return (
+    <svg
+      width="22"
+      height="22"
+      viewBox="0 0 32 32"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <circle cx="16" cy="16" r="13.5" stroke="#476FD4" stroke-width="5" />
+    </svg>
+  );
+}
 export default function AgencyPage() {
   const { pageId } = useParams();
   const [page, setPage] = useState<any>(null);
@@ -13,6 +40,7 @@ export default function AgencyPage() {
   const [services, setServices] = useState<any>(null);
   const [awards, setAwards] = useState<any>(null);
   const [portfolios, setPortfolio] = useState<any>(null);
+
   useEffect(() => {
     async function fetchData() {
       let result = await GetPage(pageId);
@@ -56,7 +84,7 @@ export default function AgencyPage() {
             {page?.company_name}
           </h1>
 
-          <ul className="justify-center w-full hidden md:flex gap-8 md:ml-20 font-bold">
+          <ul className="justify-center w-full hidden md:flex gap-8 md:ml-20 font-semibold">
             <li>
               <a href="#about">About</a>
             </li>
@@ -139,7 +167,7 @@ export default function AgencyPage() {
         </div>
         <section className="w-full max-w-7xl my-5 md:mx-auto flex lg:w-3/6">
           <div className="grid gap-3 px-2 lg:grid lg:grid-cols-2">
-            <div className="w-full max-w-7xl px-4 sm:px-4 lg:px-8 py-5 rounded-xl md:mx-auto grid gap-3 lg:col-span-2 shadow-lg shadow-grey/80">
+            <div className="w-full max-w-7xl px-4 sm:px-4 lg:px-8 py-5 rounded-xl md:mx-auto grid gap-3 lg:col-span-2 shadow-lg shadow-grey/80 border-2">
               <p className="text-primary">Provides services in:</p>
               <ul className="w-full flex flex-wrap gap-2">
                 {page?.tags.map((i) => (
@@ -149,21 +177,37 @@ export default function AgencyPage() {
                 ))}
               </ul>
             </div>
-            <div className="w-full max-w-7xl px-4 sm:px-4 lg:px-8 py-5 rounded-xl md:mx-auto grid gap-3 lg:col-span-2 shadow-lg shadow-grey/80">
+            <div className="w-full max-w-7xl px-4 sm:px-4 lg:px-8 py-5 rounded-xl md:mx-auto grid gap-3 lg:col-span-2 shadow-lg shadow-grey/80 border-2">
               <p>Based in: {page?.address}</p>
               <p>Available: Nationwide</p>
             </div>
-            <div className="w-full max-w-7xl px-4 sm:px-4 lg:px-8 py-8 rounded-xl md:mx-auto grid gap-3 lg:content-baseline lg:gap-6 shadow-lg shadow-grey/80">
-              <ul className="flex mt-1 gap-2 items-center justify-center">
-                <li className="bg-secondary w-6 aspect-square rounded-full"></li>
-                <li className="bg-secondary w-6 aspect-square rounded-full"></li>
-                <li className="bg-secondary w-6 aspect-square rounded-full"></li>
-                <li className="bg-secondary w-6 aspect-square rounded-full"></li>
-                <li className="bg-secondary w-6 aspect-square rounded-full"></li>
-              </ul>
-              <p className="text-center font-bold">0.0/5.0</p>
-              <p className="capitalize">
-                (no review yet) Have You worked with{" "}
+            <div className="w-full max-w-7xl px-4 sm:px-4 lg:px-8 py-8 rounded-xl md:mx-auto grid gap-3 lg:content-baseline lg:gap-6 shadow-lg shadow-grey/80 border-2">
+              <Rating
+                placeholder={undefined}
+                className="gap-3 mx-auto mt-4 hidden"
+                ratedIcon={<RatedIconLarge />}
+                unratedIcon={<UnratedIconLarge />}
+                value={page?.rating}
+                id={pageId}
+                readonly
+              />
+              <Rating
+                placeholder={undefined}
+                className="flex gap-3 mx-auto mt-4"
+                ratedIcon={<RatedIconLarge />}
+                unratedIcon={<UnratedIconLarge />}
+                value={page?.rating}
+                id={pageId}
+                readonly
+              />
+              <p className="text-center font-bold">
+                {page?.rating?.toFixed(1)}/5.0
+              </p>
+              <p className="capitalize text-xs">
+                {page?.total_rate == 0
+                  ? "(no review yet)"
+                  : `(${page?.total_rate} reviews)`}{" "}
+                Have You worked with{" "}
                 {page?.company_name
                   .toLowerCase()
                   .replace(/\b(\w)/g, (x) => x.toUpperCase())}{" "}
@@ -171,25 +215,25 @@ export default function AgencyPage() {
                 <span className="text-blue-500 underline"> Review Here</span>
               </p>
             </div>
-            <div className="w-full max-w-7xl px-4 sm:px-4 lg:px-8 py-8 rounded-xl md:mx-auto grid gap-3 lg:content-baseline lg:gap-6 shadow-lg shadow-grey/80">
+            <div className="w-full max-w-7xl px-4 sm:px-4 lg:px-8 py-8 rounded-xl md:mx-auto grid gap-3 lg:content-baseline lg:gap-6 shadow-lg shadow-grey/80 border-2">
               <p>
-                Team: <span className="font-semibold">123 people</span>{" "}
+                Team: <span className="font-semibold text-xs">123 people</span>{" "}
               </p>
               <p>
                 Founded in:{" "}
-                <span className="font-semibold">
+                <span className="font-semibold text-xs">
                   {page?.founded_date.split("T")[0]}
                 </span>
               </p>
               <p>
                 Language(s) available:{" "}
-                <span className="font-semibold">
+                <span className="font-semibold text-xs">
                   {page?.languages.join(",")}
                 </span>
               </p>
               <p>
                 Has joined Fya since:{" "}
-                <span className="font-semibold">
+                <span className="font-semibold text-xs">
                   {page?.created_date.split("T")[0].split("-")[0]}
                 </span>
               </p>
