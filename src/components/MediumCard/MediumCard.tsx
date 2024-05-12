@@ -8,7 +8,7 @@ interface IMediumCard {
 
 export default function MediumCard({ name, click }: IMediumCard) {
   return (
-    <div className="font-sans w-10/12 flex border-2 rounded-2xl md:w-1/3 bg-white">
+    <div className="font-sans w-10/12 flex border-2 rounded-2xl md:w-[95%] bg-white">
       <div className="card mx-auto flex-col py-4 flex items-center gap-2">
         <img
           className="w-20 mx-auto rounded-full border-8 border-white"

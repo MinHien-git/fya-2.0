@@ -12,7 +12,7 @@ export default function AgencyPortfolioCard({
   image,
 }: IPortfolio) {
   return (
-    <div className="flex flex-col h-auto sm:h-[32rem] bg-white md:h-auto w-full p-4 border bug-white border-gray-200 rounded-2xl shadow dark:bg-gray-800 dark:border-gray-700 md:w-1/3 drop-shadow-md">
+    <div className="w-full md:w-[95%] flex flex-col h-auto sm:h-[32rem] bg-white md:h-[25rem] p-4 border bug-white border-gray-200 rounded-2xl shadow dark:bg-gray-800 dark:border-gray-700 drop-shadow-md">
       <div className="w-full bg-tertiary aspect-[4/3] self-center justify-self-center rounded-md mb-4">
         <img
           src={image}

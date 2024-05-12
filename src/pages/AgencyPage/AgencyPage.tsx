@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { AddSavePage, GetPage } from "../../api/lib/page";
-import { Button, Rating } from "@material-tailwind/react";
+import { Button, Carousel, Rating } from "@material-tailwind/react";
 import AgencyServiceCard from "../../components/AgencyServiceCard/AgencyServiceCard";
 import AgencyPortfolioCard from "../../components/AgencyPortfoilioCard/AgencyPortfolioCard";
 import AgencyAwardCard from "../../components/AgencyAwardCard/AgencyAwardCard";
+import FeedbackCard from "../../components/FeedbackCard/FeedbackCard";
+import Slider from "react-slick";
 
 export function RatedIconLarge() {
   return (
@@ -40,18 +42,26 @@ export default function AgencyPage() {
   const [services, setServices] = useState<any>(null);
   const [awards, setAwards] = useState<any>(null);
   const [portfolios, setPortfolio] = useState<any>(null);
-
+  const [feedback, setFeedback] = useState<any>(null);
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 3,
+    slidesToScroll: 1,
+  };
   useEffect(() => {
     async function fetchData() {
       let result = await GetPage(pageId);
       if (result.data.data) {
-        let { pageInfo, awards, companyInfo, portifolio, services } =
+        let { pageInfo, awards, companyInfo, portifolio, services, feedback } =
           result.data.data;
         setPage(pageInfo);
         setCompany(companyInfo);
         setServices(services);
         setAwards(awards);
         setPortfolio(portifolio);
+        setFeedback(feedback);
       }
       console.log(result);
     }
@@ -549,15 +559,17 @@ export default function AgencyPage() {
             Portfolio
           </h2>
 
-          <div className="flex flex-wrap mt-4 gap-4 md:flex-nowrap max-w-5xl mx-auto">
-            {portfolios?.map((portfolios) => (
-              <AgencyPortfolioCard
-                image={portfolios?.media}
-                project_name={portfolios?.project_name}
-                description={portfolios?.description}
-                services={portfolios?.services}
-              />
-            ))}
+          <div className="flex flex-wrap mt-4 gap-4 md:flex-nowrap max-w-5xl mx-auto slider-container">
+            <Slider {...settings} className="w-full h-fit [&>.slick-list]:py-4">
+              {portfolios?.map((portfolios) => (
+                <AgencyPortfolioCard
+                  image={portfolios?.media}
+                  project_name={portfolios?.project_name}
+                  description={portfolios?.description}
+                  services={portfolios?.services}
+                />
+              ))}
+            </Slider>
           </div>
         </div>
         <div className="absolute w-full left-0 h-full flex items-center justify-between md:relative lg:absolute lg:px-10 md:py-2 -z-10">
@@ -582,14 +594,16 @@ export default function AgencyPage() {
             Awards
           </h2>
 
-          <div className="flex flex-wrap mt-4 gap-4 md:flex-nowrap max-w-5xl mx-auto">
-            {awards?.map((awards) => (
-              <AgencyAwardCard
-                award_name={awards.award_name}
-                catergory={awards.catergory}
-                date={awards.date}
-              />
-            ))}
+          <div className="flex flex-wrap mt-4 gap-4 md:flex-nowrap max-w-5xl mx-auto slider-container">
+            <Slider {...settings} className="w-full h-fit [&>.slick-list]:py-4">
+              {awards?.map((awards) => (
+                <AgencyAwardCard
+                  award_name={awards.award_name}
+                  catergory={awards.catergory}
+                  date={awards.date}
+                />
+              ))}
+            </Slider>
           </div>
         </div>
         <div className="absolute w-full left-0 h-full flex items-center justify-between md:relative lg:absolute lg:px-10 md:py-2 -z-10">
@@ -610,7 +624,7 @@ export default function AgencyPage() {
         className="w-full border-[1px] bg-tertiary shadow-lg shadow-primary/50 max-w-7xl px-2 sm:px-4 lg:px-40 my-5 rounded-[3rem] md:mx-auto flex flex-col justify-center items-center relative scroll-mt-[100px]"
         id="reviews"
       >
-        <div className="py-5 w-10/12 md:w-full max-w-5xl mx-auto pb-10">
+        <div className="py-5 w-10/12 md:w-full max-w-5xl mx-auto pb-10 h-[40vh]">
           <h2 className="text-[2rem] py-2 font-bold text-center font-title">
             Reviews & Feedback
           </h2>
@@ -618,71 +632,13 @@ export default function AgencyPage() {
             if you are a small agencies and wanna grow your business larger?
           </p>
           <div className="flex flex-wrap mt-4 gap-4 md:flex-nowrap">
-            <div className="flex flex-col h-auto sm:h-[32rem] md:h-auto w-full p-4 bg-white border border-gray-200 rounded-2xl shadow dark:bg-gray-800 dark:border-gray-700 md:w-1/3 drop-shadow-md">
-              <div className="w-full bg-tertiary aspect-[4/3] self-center justify-self-center rounded-md mb-4"></div>
-              <ul className="flex flex-wrap gap-2 items-center">
-                <li className="bg-secondary w-[0.75rem] aspect-square rounded-xl"></li>
-                <li className="bg-secondary w-[0.75rem] aspect-square rounded-xl"></li>
-                <li className="bg-secondary w-[0.75rem] aspect-square rounded-xl"></li>
-                <li className="bg-secondary w-[0.75rem] aspect-square rounded-xl"></li>
-                <li className="bg-secondary w-[0.75rem] aspect-square rounded-xl"></li>
-                <li className="ml-auto">0.0/5.0</li>
-              </ul>
-              <a href="/#">
-                <h5 className="mb-2 text-lg font-bold tracking-tight text-gray-900 dark:text-white">
-                  Lorem ipsum dolor sit amet
-                </h5>
-              </a>
-
-              <p className="mb-3 font-normal text-sm text-gray-700 dark:text-gray-400">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce
-                at sapien eu ipsum.
-              </p>
-            </div>
-
-            <div className="flex flex-col h-auto sm:h-[32rem] md:h-auto w-full p-4 bg-white border border-gray-200 rounded-2xl shadow dark:bg-gray-800 dark:border-gray-700 md:w-1/3 drop-shadow-md">
-              <div className="w-full bg-tertiary aspect-[4/3] self-center justify-self-center rounded-md mb-4"></div>
-              <ul className="flex flex-wrap gap-2 items-center">
-                <li className="bg-secondary w-[0.75rem] aspect-square rounded-xl"></li>
-                <li className="bg-secondary w-[0.75rem] aspect-square rounded-xl"></li>
-                <li className="bg-secondary w-[0.75rem] aspect-square rounded-xl"></li>
-                <li className="bg-secondary w-[0.75rem] aspect-square rounded-xl"></li>
-                <li className="bg-secondary w-[0.75rem] aspect-square rounded-xl"></li>
-                <li className="ml-auto">0.0/5.0</li>
-              </ul>
-              <a href="/#">
-                <h5 className="mb-2 text-lg font-bold tracking-tight text-gray-900 dark:text-white">
-                  Lorem ipsum dolor sit amet
-                </h5>
-              </a>
-
-              <p className="mb-3 font-normal text-sm text-gray-700 dark:text-gray-400">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce
-                at sapien eu ipsum.
-              </p>
-            </div>
-
-            <div className="flex flex-col h-auto sm:h-[32rem] md:h-auto w-full p-4 bg-white border border-gray-200 rounded-2xl shadow dark:bg-gray-800 dark:border-gray-700 md:w-1/3 drop-shadow-md">
-              <div className="w-full bg-tertiary aspect-[4/3] self-center justify-self-center rounded-md mb-4"></div>
-              <ul className="flex flex-wrap gap-2 items-center">
-                <li className="bg-secondary w-[0.75rem] aspect-square rounded-xl"></li>
-                <li className="bg-secondary w-[0.75rem] aspect-square rounded-xl"></li>
-                <li className="bg-secondary w-[0.75rem] aspect-square rounded-xl"></li>
-                <li className="bg-secondary w-[0.75rem] aspect-square rounded-xl"></li>
-                <li className="bg-secondary w-[0.75rem] aspect-square rounded-xl"></li>
-                <li className="ml-auto">0.0/5.0</li>
-              </ul>
-              <a href="/#">
-                <h5 className="mb-2 text-lg font-bold tracking-tight text-gray-900 dark:text-white">
-                  Lorem ipsum dolor sit amet
-                </h5>
-              </a>
-
-              <p className="mb-3 font-normal text-sm text-gray-700 dark:text-gray-400">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce
-                at sapien eu ipsum.
-              </p>
-            </div>
+            {feedback?.map((i) => (
+              <FeedbackCard
+                description={i.feedback_description}
+                rating={i.feedback_rating}
+                performance={i.performance[0]}
+              />
+            ))}
           </div>
         </div>
         <div className="absolute w-full left-0 h-full flex items-center justify-between md:relative lg:absolute lg:px-10 md:py-2 -z-10">

@@ -20,6 +20,7 @@ import { useEffect, useState } from "react";
 import stringSimilarity from "string-similarity-js";
 import { ChevronDownIcon } from "@heroicons/react/24/solid";
 import { useNavigate } from "react-router-dom";
+import Slider from "react-slick";
 let data = [
   {
     label: "service 1",
@@ -31,6 +32,7 @@ let data = [
     label: "service 3",
   },
 ];
+
 export default function Home() {
   const { isOpen, toggle } = usePostProject();
   const [services, setServices] = useState<Array<string>>(agencyServices);
@@ -42,7 +44,13 @@ export default function Home() {
   const [currentSearch, setCurrentSearch] = useState("");
   const [focus, setFocus] = useState(false);
   let inteval: any = null;
-
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 3,
+    slidesToScroll: 1,
+  };
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     setCurrentSearch(e.target.value);
   };
@@ -272,113 +280,17 @@ export default function Home() {
             >
               Top <span className="text-secondary">Agencies</span> of the week
             </Typography>
-            <div className="flex justify-center md:justify-start mt-5 flex-wrap gap-4 md:flex-nowrap md:w-full max-w-5xl mx-auto">
-              <Carousel
-                placeholder={undefined}
-                prevArrow={({ handlePrev }) => (
-                  <IconButton
-                    placeholder={undefined}
-                    variant="text"
-                    color="white"
-                    size="lg"
-                    onClick={handlePrev}
-                    className="!absolute top-2/4 left-4 -translate-y-2/4 bg-black rounded-3xl"
-                  >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      strokeWidth={2}
-                      stroke="currentColor"
-                      className="h-6 w-6"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"
-                      />
-                    </svg>
-                  </IconButton>
-                )}
-                nextArrow={({ handleNext }) => (
-                  <IconButton
-                    placeholder={undefined}
-                    variant="text"
-                    color="white"
-                    size="lg"
-                    onClick={handleNext}
-                    className="!absolute top-2/4 !right-4 -translate-y-2/4 bg-black rounded-3xl"
-                  >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      strokeWidth={2}
-                      stroke="currentColor"
-                      className="h-6 w-6"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
-                      />
-                    </svg>
-                  </IconButton>
-                )}
-                navigation={({ setActiveIndex, activeIndex, length }) => (
-                  <div className="absolute -bottom-0 left-2/4 z-50 flex -translate-x-2/4 gap-2">
-                    {new Array(length).fill("").map((_, i) => (
-                      <span
-                        key={i}
-                        className={`block h-1 cursor-pointer rounded-2xl transition-all content-[''] ${
-                          activeIndex === i
-                            ? "w-8 bg-primary"
-                            : "w-4 bg-primary/50"
-                        }`}
-                        onClick={() => setActiveIndex(i)}
-                      />
-                    ))}
-                  </div>
-                )}
-                className="overflow-y-hidden h-[100%] pb-12"
+            <div className="flex justify-center md:justify-start mt-5 flex-wrap gap-4 md:flex-nowrap md:w-full max-w-5xl mx-auto slider-container">
+              <Slider
+                {...settings}
+                className="w-full h-fit [&>.slick-list]:py-4"
               >
-                <div className="h-full w-full flex justify-center md:justify-start mt-5 flex-wrap gap-4 md:flex-nowrap md:w-[80%] max-w-5xl mx-auto">
-                  <MediumCard name="ABC Company" />
-                  <MediumCard name="BCD Company" />
-                  <MediumCard
-                    click={() => {
-                      console.log("Hello world");
-                    }}
-                  />
-                </div>
-                <div className="h-full w-full flex justify-center md:justify-start mt-5 flex-wrap gap-4 md:flex-nowrap md:w-[80%] max-w-5xl mx-auto">
-                  <MediumCard name="ABC Company" />
-                  <MediumCard name="BCD Company" />
-                  <MediumCard
-                    click={() => {
-                      console.log("Hello world");
-                    }}
-                  />
-                </div>
-                <div className="h-full w-full flex justify-center md:justify-start mt-5 flex-wrap gap-4 md:flex-nowrap md:w-[80%] max-w-5xl mx-auto">
-                  <MediumCard name="ABC Company" />
-                  <MediumCard name="BCD Company" />
-                  <MediumCard
-                    click={() => {
-                      console.log("Hello world");
-                    }}
-                  />
-                </div>
-                <div className="h-full w-full flex justify-center md:justify-start mt-5 flex-wrap gap-4 md:flex-nowrap md:w-[80%] max-w-5xl mx-auto">
-                  <MediumCard name="ABC Company" />
-                  <MediumCard name="BCD Company" />
-                  <MediumCard
-                    click={() => {
-                      console.log("Hello world");
-                    }}
-                  />
-                </div>
-              </Carousel>
+                <MediumCard name="ABC Company" />
+                <MediumCard name="EDF Company" />
+                <MediumCard name="AFC Company" />
+                <MediumCard name="CCF Company" />
+                <MediumCard name="AED Company" />
+              </Slider>
             </div>
           </div>
         </section>

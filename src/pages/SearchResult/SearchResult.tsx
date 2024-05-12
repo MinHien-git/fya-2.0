@@ -11,6 +11,7 @@ import {
   speakingLanguages,
 } from "../../components/PostProjectPopup/PostProjectPopup";
 import stringSimilarity from "string-similarity-js";
+import { setTeamMember } from "../../features/pages/pageSplice";
 export default function SearchResult() {
   const { state } = useLocation();
   const { services, location } = state;
@@ -48,6 +49,12 @@ export default function SearchResult() {
 
   const [focusL, setFocusL] = useState(false);
   const [currentLSearch, setCurrentLSearch] = useState("");
+
+  const [minBudget, setMinBudget] = useState<number>(0);
+  const [maxBudget, setMaxBudget] = useState<number>(0);
+
+  const [agencyLocation, setAgencyLocation] = useState<string>("");
+  const [teamSize, setTeamSize] = useState<string>("");
 
   useEffect(() => {
     console.log(currentSearch);
@@ -100,30 +107,30 @@ export default function SearchResult() {
     return () => clearTimeout(delayDebounceFn);
   }, [currentSearch, currentServices]);
 
-  useEffect(() => {
-    const delayDebounceFn = setTimeout(() => {
-      if (skillSearch) {
-        setSkills(
-          agencySkillTagsRequirements.filter(
-            (i) =>
-              (stringSimilarity(i, currentSearch) > 0.8 ||
-                i.toLowerCase().includes(skillSearch.toLowerCase())) &&
-              !currentSkills.includes(i)
-          )
-        );
-      } else {
-        setSkills(
-          agencySkillTagsRequirements.filter((i) => !currentSkills.includes(i))
-        );
-      }
-    }, 200);
+  // useEffect(() => {
+  //   const delayDebounceFn = setTimeout(() => {
+  //     if (skillSearch) {
+  //       setSkills(
+  //         agencySkillTagsRequirements.filter(
+  //           (i) =>
+  //             (stringSimilarity(i, currentSearch) > 0.8 ||
+  //               i.toLowerCase().includes(skillSearch.toLowerCase())) &&
+  //             !currentSkills.includes(i)
+  //         )
+  //       );
+  //     } else {
+  //       setSkills(
+  //         agencySkillTagsRequirements.filter((i) => !currentSkills.includes(i))
+  //       );
+  //     }
+  //   }, 200);
 
-    return () => clearTimeout(delayDebounceFn);
-  }, [skillSearch, currentSkills]);
+  //   return () => clearTimeout(delayDebounceFn);
+  // }, [skillSearch, currentSkills]);
 
-  const handleSkillSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSkillSearch(e.target.value);
-  };
+  // const handleSkillSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+  //   setSkillSearch(e.target.value);
+  // };
   return (
     <main className="w-full min-h-80 pt-0">
       <section className="w-full border-2 mb-5 pb-5 rounded-b-3xl md:mx-auto min-h-[40vh] bg-light_yellow px-3">
@@ -131,7 +138,7 @@ export default function SearchResult() {
           <div className="bg-tertiary text-primary font-bold px-16 py-4 text-center font-title w-fit mb-4">
             Result Filters:
           </div>
-          <div className="grid gap-5 md:flex justify-between items-start">
+          <div className="grid gap-5 md:flex justify-start items-start">
             <div className="grid gap-3 w-1/4">
               <label
                 htmlFor="services"
@@ -203,7 +210,7 @@ export default function SearchResult() {
                 </ul>
               </div>
             </div>
-            <div className="grid gap-3 w-1/4">
+            {/* <div className="grid gap-3 w-1/4">
               <label
                 htmlFor="services"
                 className="bg-secondary font-semibold w-fit px-6 py-[0.225rem] md:py-[0.425rem] text-sm rounded-md"
@@ -271,7 +278,7 @@ export default function SearchResult() {
                   ))}
                 </ul>
               </div>
-            </div>
+            </div> */}
             <div className="grid gap-3 w-1/4">
               <label
                 htmlFor="services"
@@ -384,19 +391,36 @@ export default function SearchResult() {
                 placeholder="Type location"
               />
             </div>
-            <div className="grid gap-3 w-1/4">
+            <div className="grid gap-3 w-1/4 ">
               <label
-                htmlFor="services"
+                htmlFor="team-Size"
                 className="bg-secondary font-semibold w-fit px-6 py-[0.225rem] md:py-[0.425rem] text-sm rounded-md"
               >
-                Team size
+                Team Size
               </label>
-              <input
-                type="text"
-                id="services"
-                className="border-primary border-2 p-2 rounded-md"
-                placeholder="Select a size"
-              />
+              <Select
+                placeholder={undefined}
+                label="Team Size"
+                size="lg"
+                id="team-Size"
+                className=" !border-primary !border-2 bg-white text-gray-900 shadow-lg shadow-gray-900/5 ring-4 ring-transparent placeholder:text-gray-500 placeholder:opacity-100 focus:!border-gray-900 focus:!border-t-gray-900 focus:ring-gray-900/10"
+                labelProps={{
+                  className: "hidden",
+                }}
+                onChange={(v) => {
+                  setTeamMember(v);
+                }}
+                value={teamSize}
+              >
+                <Option value="1 person">1 person</Option>
+                <Option value="2-10 people">2-10 people</Option>
+                <Option value="11-50 people">11-50 people</Option>
+                <Option value="51-100 people">51-100 people</Option>
+                <Option value="101-500 people">101-500 people</Option>
+                <Option value="101-500 people">501-1000 people</Option>
+                <Option value="101-500 people">1001-5000 people</Option>
+                <Option value="101-500 people">More than 5000 people</Option>
+              </Select>
             </div>
             <div className="grid gap-3 w-1/4">
               <label

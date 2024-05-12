@@ -47,7 +47,7 @@ export function UnratedIcon() {
     </svg>
   );
 }
-interface IPerformance {
+export interface IPerformance {
   name: string;
   value: number;
 }
@@ -207,7 +207,7 @@ export default function RatingAndFeedback({
                   <Typography variant="h6" placeholder={undefined}>
                     Rating:{" "}
                     <span className="font-normal">
-                      {propsal?.rating?.toFixed(1)}/5.0
+                      {propsal?.feedback_rating?.toFixed(1)}/5.0
                     </span>
                   </Typography>
                   <Typography variant="h6" placeholder={undefined}>
