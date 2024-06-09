@@ -45,9 +45,9 @@ export default function AdminPage() {
         </div>
       </div>
 
-      <section className="w-full mx-auto px-12 flex mt-1 gap-3 overflow-x-scroll overflow-y-scroll">
+      <section className="w-full mx-auto px-12 flex mt-1 gap-3">
         <div className="grid gap-3">
-          <div className="grid w-[15rem] h-[15rem] rounded-xl border-2 mx-auto flex-col px-6 pb-6">
+          <div className="grid w-[15rem] rounded-xl border-2 mx-auto flex-col px-6 pb-6">
             <div className="flex items-center gap-4">
               <div className="aspect-square bg-primary w-10 rounded-lg flex flex-col justify-center items-center">
                 <svg 
@@ -90,7 +90,7 @@ export default function AdminPage() {
             <div className="flex justify-center items-end text-xs">active users</div>
           </div>
 
-          <div className="grid w-[15rem] h-[15rem] rounded-xl border-2 mx-auto flex-col px-6 pb-6">
+          <div className="grid w-[15rem] rounded-xl border-2 mx-auto flex-col px-6 pb-6">
             <div className="flex items-center gap-4">
               <div className="aspect-square bg-primary w-10 rounded-lg flex justify-center items-center">
                 <svg 
@@ -131,7 +131,7 @@ export default function AdminPage() {
             <div className="flex justify-center items-end text-xs">new users this week</div>
           </div>
 
-          <div className="grid w-[15rem] h-[15rem] rounded-xl border-2 mx-auto flex-col px-6 pb-6">
+          <div className="grid w-[15rem] rounded-xl border-2 mx-auto flex-col px-6 pb-6">
             <div className="flex items-center gap-4">
               <div className="aspect-square bg-primary w-10 rounded-lg flex justify-center items-center">
                 <svg 
@@ -175,7 +175,7 @@ export default function AdminPage() {
         </div>
         
         <div className="grid gap-3">
-          <div className="grid w-[15rem] h-[15rem] rounded-xl border-2 mx-auto flex-col px-6 pb-6">
+          <div className="grid w-[15rem] rounded-xl border-2 mx-auto flex-col px-6 pb-6">
             <div className="flex items-center gap-4">
               <div className="aspect-square bg-dark_gray w-10 rounded-lg flex flex-col justify-center items-center">
                 <svg 
@@ -202,7 +202,7 @@ export default function AdminPage() {
             <div className="flex justify-center items-end text-xs">active Agency Pages</div>
           </div>
 
-          <div className="grid w-[15rem] h-[15rem] rounded-xl border-2 mx-auto flex-col px-6 pb-6">
+          <div className="grid w-[15rem] rounded-xl border-2 mx-auto flex-col px-6 pb-6">
             <div className="flex items-center gap-4">
               <div className="aspect-square bg-dark_gray w-10 rounded-lg flex justify-center items-center">
                 <svg 
@@ -226,7 +226,7 @@ export default function AdminPage() {
             <div className="flex justify-center items-end text-xs">new Agency Pages this week</div>
           </div>
 
-          <div className="grid w-[15rem] h-[15rem] rounded-xl border-2 mx-auto flex-col px-6 pb-6">
+          <div className="grid w-[15rem] rounded-xl border-2 mx-auto flex-col px-6 pb-6">
             <div className="flex items-center gap-4">
               <div className="aspect-square bg-dark_gray w-10 rounded-lg flex justify-center items-center">
                 <svg 
