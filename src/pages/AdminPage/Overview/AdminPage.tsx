@@ -413,81 +413,81 @@ export default function AdminPage() {
           </div>
           <ul className="flex h-[6rem] justify-between gap-8 px-4 pt-2 mt-4">
             <li>
-              <div className="text-3xl font-bold">0</div>
+              <div className="text-3xl font-bold">{data.user_rating_count}</div>
               <div className="text-xs w-[15rem]">all rating posted by all <strong>users</strong></div>
             </li>
             <li>
-              <div className="text-3xl font-bold">0.123/5</div>
+              <div className="text-3xl font-bold">{data.user_rating_avg}/5</div>
               <div className="text-xs w-[15rem]">average rating posted by all <strong>users</strong></div>
             </li>
           </ul>
           <ul className="flex h-[6rem] justify-between gap-8 px-4 -mt-4">
             <li>
-              <div className="text-3xl font-bold">0</div>
+              <div className="text-3xl font-bold">{data.agency_rating_count}</div>
               <div className="text-xs w-[15rem]">all rating posted on all <strong>Agency Page</strong></div>
             </li>
             <li>
-              <div className="text-3xl font-bold">0.123/5</div>
+              <div className="text-3xl font-bold">{data.agency_rating_avg}/5</div>
               <div className="text-xs w-[15rem]">average rating of all <strong>Agency Page</strong></div>
             </li>
           </ul>
           <ul className="flex h-[6rem] justify-between gap-8 px-4 -mt-4">
             <li>
-              <div className="text-3xl font-bold">0</div>
+              <div className="text-3xl font-bold">{data.client_rating_count}</div>
               <div className="text-xs w-[15rem]">all rating given to all <strong>Client</strong> (users who sent at least 1 briefing)</div>
             </li>
             <li>
-              <div className="text-3xl font-bold">0.123/5</div>
+              <div className="text-3xl font-bold">{data.client_rating_avg}/5</div>
               <div className="text-xs w-[15rem]">average rating of all <strong>Client</strong> (users who sent at least 1 briefing)</div>
             </li>
           </ul>
           <ul className="flex h-[6rem] justify-between gap-8 px-4 -mt-4 border-b-2">
             <li>
-              <div className="text-3xl font-bold">0</div>
+              <div className="text-3xl font-bold">{data.completed_project_rating_count}</div>
               <div className="text-xs w-[15rem]">all rating of all <strong>Completed projects</strong></div>
             </li>
             <li>
-              <div className="text-3xl font-bold">0.123/5</div>
+              <div className="text-3xl font-bold">{data.completed_project_rating_avg}/5</div>
               <div className="text-xs w-[15rem]">average rating of all <strong>Completed projects</strong></div>
             </li>
           </ul>
           <ul className="flex h-[6rem] justify-between gap-8 px-4 pt-2 mt-4">
             <li>
-              <div className="text-3xl font-bold">0</div>
+              <div className="text-3xl font-bold">{data.user_feedback_count}</div>
               <div className="text-xs w-[15rem]">number of all feedback posted by <strong>users</strong></div>
             </li>
             <li>
-              <div className="text-3xl font-bold">0.123</div>
+              <div className="text-3xl font-bold">{data.user_feedback_avg}</div>
               <div className="text-xs w-[15rem]">average number of feedback each user posted</div>
             </li>
           </ul>
           <ul className="flex h-[6rem] justify-between gap-8 px-4 -mt-4">
             <li>
-              <div className="text-3xl font-bold">0</div>
+              <div className="text-3xl font-bold">{data.agency_feedback_count}</div>
               <div className="text-xs w-[15rem]">number of feedback on all <strong>Agency Page</strong></div>
             </li>
             <li>
-              <div className="text-3xl font-bold">0.123</div>
+              <div className="text-3xl font-bold">{data.agency_feedback_avg}</div>
               <div className="text-xs w-[15rem]">average number of feedback on each <strong>Agency Page</strong></div>
             </li>
           </ul>
           <ul className="flex h-[6rem] justify-between gap-8 px-4 -mt-4">
             <li>
-              <div className="text-3xl font-bold">0</div>
+              <div className="text-3xl font-bold">{data.client_feedback_count}</div>
               <div className="text-xs w-[15rem]">number of feedback on all <strong>Client</strong> (users who sent at least 1 briefing)</div>
             </li>
             <li>
-              <div className="text-3xl font-bold">0.123</div>
+              <div className="text-3xl font-bold">{data.client_feedback_avg}</div>
               <div className="text-xs w-[15rem]">average number of feedback on each <strong>Client</strong> (users who sent at least 1 briefing)</div>
             </li>
           </ul>
           <ul className="flex h-[6rem] justify-between gap-8 px-4 -mt-4 ">
             <li>
-              <div className="text-3xl font-bold">0</div>
+              <div className="text-3xl font-bold">{data.completed_project_feedback_count}</div>
               <div className="text-xs w-[15rem]">number of feedback on all <strong>Completed projects </strong></div>
             </li>
             <li>
-              <div className="text-3xl font-bold">0.123</div>
+              <div className="text-3xl font-bold">{data.completed_project_feedback_avg}</div>
               <div className="text-xs w-[15rem]">average number of feedback on each <strong>Completed projects </strong></div>
             </li>
           </ul>
