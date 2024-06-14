@@ -32,6 +32,16 @@ import ClientManagementLayout from "./layouts/ClientLayout/ClientManagementLayou
 import ClientOverview from "./pages/Client/Overview/ClientOverview";
 import EditProfile from "./pages/Client/EditProfile/EditProfile";
 import ManageProject from "./pages/Client/ManageProjects/ManageProjects";
+import AdminManagementLayout from "./layouts/AdminLayout/AdminManagementLayout";
+import AdminPage from "./pages/AdminPage/Overview/AdminPage";
+import AgencyPageData from "./pages/AdminPage/AgencyData/AgencyPageData";
+import BriefingsAccepted from "./pages/AdminPage/BriefingsAccepted/BriefingsAccepted";
+import BriefingsSent from "./pages/AdminPage/BriefingsSent/BriefingsSent";
+import CompletedProjects from "./pages/AdminPage/CompletedProjects/CompletedProjects";
+import ProjectsData from "./pages/AdminPage/ProjectsData/ProjectsData";
+import ProposalsAccepted from "./pages/AdminPage/ProposalsAccepted/ProposalsAccepted";
+import ProposalSent from "./pages/AdminPage/ProposalsSent/ProposalsSent";
+import UserData from "./pages/AdminPage/UserData/UserData";
 import YourPage from "./pages/Management/YourPage/YourPage";
 import Notifications from "./pages/Management/Notification/Notification";
 import ProjectManager from "./pages/Management/ProjectManager/ProjectManager";
@@ -140,6 +150,18 @@ function App() {
             <Route path="manage-project" element={<ManageProject />} />
             <Route path="inbox" element={<ContructionPage />} />
             <Route path="helps" element={<ContructionPage />} />
+            <Route path="*" element={<Page404 />} />
+          </Route>
+          <Route path="/admin/" element={<AdminManagementLayout />}>
+            <Route path="" element={<AdminPage />} />
+            <Route path="users-data" element={<UserData />} />
+            <Route path="agency-page-data" element={<AgencyPageData />} />
+            <Route path="projects-data" element={<ProjectsData />} />
+            <Route path="briefings-sent-by-client" element={<BriefingsSent />} />
+            <Route path="briefings-accepted-by-agency" element={<BriefingsAccepted />} />
+            <Route path="proposals-sent-by-agency-to-clients-briefing" element={<ProposalSent />} />
+            <Route path="proposal-accepted-by-client" element={<ProposalsAccepted />} />
+            <Route path="completed-projects" element={<CompletedProjects/>} />
             <Route path="*" element={<Page404 />} />
           </Route>
         </Routes>
